@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.borgwarner.tbp</groupId>
+    <artifactId>testbenchplanner-backend</artifactId>
+    <version>5.0.0-SNAPSHOT</version>
+    <name>TestBenchPlanner · backend</name>
+    <description>Backend Java de TestBenchPlanner (migración de la 4.9.4)</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <playwright.version>1.48.0</playwright.version>
+        <!-- Carpeta del laboratorio de paridad (casos, referencias y escenarios) -->
+        <laboratorio.dir>${project.basedir}/../herramientas/laboratorio</laboratorio.dir>
+        <escenarios.dir>${project.basedir}/../datos/escenarios</escenarios.dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- Solo para el adaptador de SharePoint: conexión con el Edge del usuario por CDP -->
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>${playwright.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>testbenchplanner</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- La interfaz 4.9.4 original se empaqueta tal cual para servirla en /clasico -->
+            <resource>
+                <directory>${project.basedir}/../legacy</directory>
+                <includes>
+                    <include>BW_TestBench_Planner_31_Local.html</include>
+                </includes>
+                <targetPath>clasico</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <!-- Las fechas de la 4.9.4 son locales de Madrid: las pruebas también. -->
+                    <argLine>-Duser.timezone=Europe/Madrid -Dfile.encoding=UTF-8</argLine>
+                    <systemPropertyVariables>
+                        <laboratorio.dir>${laboratorio.dir}</laboratorio.dir>
+                        <escenarios.dir>${escenarios.dir}</escenarios.dir>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

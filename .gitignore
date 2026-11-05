@@ -8,3 +8,6 @@ node_modules/
 target/
 dist/
 *.log
+
+# Configuración local con URLs del sitio (no se versiona)
+backend/config/

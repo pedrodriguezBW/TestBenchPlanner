@@ -1,0 +1,10 @@
+#!/bin/sh
+# Lanzador de Maven sin instalación (equivalente a mvnw.cmd para Linux/macOS).
+MAVEN_VERSION=3.9.9
+MAVEN_DIR="$HOME/.m2/wrapper/apache-maven-$MAVEN_VERSION"
+if [ ! -x "$MAVEN_DIR/bin/mvn" ]; then
+  mkdir -p "$HOME/.m2/wrapper"
+  echo "[mvnw] Descargando Maven $MAVEN_VERSION..."
+  curl -fsSL "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/$MAVEN_VERSION/apache-maven-$MAVEN_VERSION-bin.tar.gz" | tar xz -C "$HOME/.m2/wrapper" || exit 1
+fi
+exec "$MAVEN_DIR/bin/mvn" "$@"

@@ -1,4 +1,20 @@
 [
- { "discrepancia": "D1", "caso": "^K11-", "ruta": "^/(cambiosPersistidos/ramz6496|estadisticas/)", "explicacion": "Corregir un cierre sin confirmar lo confirma (finalConfirmedBy/At)." },
- { "discrepancia": "D8", "caso": "^(F05|F06|P02)-", "ruta": "^/(kpi/fotoSemanal|otrasEscrituras)/", "explicacion": "La foto semanal usa el año ISO de la semana." }
+ {
+  "discrepancia": "D1",
+  "caso": "^K11-",
+  "ruta": "^/(cambiosPersistidos/ramz6496|estadisticas/)",
+  "explicacion": "Corregir un cierre sin confirmar lo confirma (finalConfirmedBy/At)."
+ },
+ {
+  "discrepancia": "D8",
+  "caso": "^(F05|F06|P02)-",
+  "ruta": "^/(kpi/fotoSemanal|otrasEscrituras)/",
+  "explicacion": "La foto semanal usa el año ISO de la semana."
+ },
+ {
+  "discrepancia": "D14",
+  "caso": "^R01-",
+  "ruta": "^/(planificacion|cambiosPersistidos|persistido)",
+  "explicacion": "Usuario de solo lectura: la 4.9.4 cambiaba la pantalla (sin guardar) si se llamaba a la función por dentro; en la interfaz no tiene botones. La versión nueva rechaza la operación en el servidor. No es observable desde la interfaz."
+ }
 ]

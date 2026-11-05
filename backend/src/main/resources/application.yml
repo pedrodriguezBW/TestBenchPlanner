@@ -1,0 +1,33 @@
+# Configuración por defecto de TestBenchPlanner.
+# Cualquier valor se puede cambiar al arrancar: --planner.almacen=sharepoint, etc.
+server:
+  port: 5001
+  address: 127.0.0.1          # solo accesible desde este PC, como la 4.9.4
+
+planner:
+  almacen: local              # local | sharepoint
+  fecha-fija: ""              # aaaa-mm-dd para reproducir un día concreto
+  carpeta-usuario: ${user.home}/.testbenchplanner
+
+  local:
+    carpeta-datos: ${planner.carpeta-usuario}/datos-locales
+    escenario-inicial: ../datos/escenarios/sharepoint-2026-11-05
+    reiniciar-al-arrancar: false
+    usuario-email: laboratorio@ejemplo.local
+    usuario-nombre: Laboratorio
+
+  sharepoint:
+    # La URL del sitio NO se guarda en el repositorio: indícala en
+    # config/application-sharepoint.yml junto al ejecutable o con --planner.sharepoint.sitio=…
+    sitio: ""
+    sitio-aprobaciones: ""
+    lista-aprobaciones: "Services approvals database V2"
+    escritura-habilitada: false   # ¡por defecto NO se escribe nada en SharePoint!
+    publicar-version: false       # solo al distribuir la versión al equipo
+    puerto-depuracion: 9222
+    carpeta-perfil-edge: ${planner.carpeta-usuario}/.edge_profile
+    espejo-habilitado: true
+
+logging:
+  level:
+    root: INFO
