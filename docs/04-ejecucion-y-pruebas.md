@@ -30,6 +30,9 @@ Pruebas incluidas:
 | `ParidadLaboratorioTest` | Los 67 casos del laboratorio: el dominio Java debe dar lo mismo que la 4.9.4 (planificación, DataJson guardado, orden, KPI, ocupación, estadísticas, histórico, ventana de cierre). Solo se admiten las diferencias de `cambios-aprobados.json` (D1, D8, D14). Deja cada foto en `target/paridad/`. |
 | `ValoresYJsonTest` | Conversión de valores y formato JSON idénticos a JavaScript y Python; festivos; semanas ISO. |
 | `ApiLocalTest` | Backend completo con el almacén local: API compatible, API nueva, conflicto 409 y «guardar la mía encima», 422 por regla de negocio, /clasico. |
+| `RelojTest` | D7: «hoy» cambia a medianoche de Madrid, también con fecha fija, y cada cálculo usa la fecha del momento. |
+| `ProteccionListasTest` | D11: reglas de lectura vacía y de lista vaciada. |
+| `ListasProtegidasTest` | D11 de punta a punta: sin lectura previa, lectura vacía, lectura fallida, vaciar proyectos, usuarios y recursos → 412 y el fichero queda idéntico. |
 
 Las fotos de Java también se pueden comparar con el comparador del laboratorio:
 `node herramientas/laboratorio/comparar.cjs backend/target/paridad`.
@@ -83,3 +86,11 @@ El perfil de Edge se crea en `%USERPROFILE%\.testbenchplanner\.edge_profile`
 | `planner.sharepoint.publicar-version` | `false` | Publicar la versión en TestBenchAppConfig |
 | `planner.sharepoint.espejo-habilitado` | `true` | Escribir las columnas espejo (solo con escritura habilitada) |
 | `planner.sharepoint.puerto-depuracion` | `9222` | Puerto CDP de Edge |
+| `planner.listas.permitir-vacias` | `false` | D11: permitir guardar sobre listas compartidas vacías (solo instalación nueva) |
+
+## Limitación conocida de /clasico (D12)
+
+`/clasico` es la interfaz 4.9.4 sin cambios y guarda con su contrato original:
+el último que guarda gana. El aviso de conflicto (409) y la comprobación de
+ETag solo existen en `/api/v1` (interfaz React). Usa `/clasico` solo como
+respaldo, no a la vez que la interfaz nueva sobre los mismos ensayos.
