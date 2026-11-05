@@ -83,9 +83,11 @@ public final class ListasAuxiliaresSharePoint {
 
     public static class Catalogos implements AlmacenCatalogos {
         private final ClienteSharePoint cliente;
+        private final boolean permitirVacias;
 
-        public Catalogos(ClienteSharePoint cliente) {
+        public Catalogos(ClienteSharePoint cliente, boolean permitirVacias) {
             this.cliente = cliente;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -128,12 +130,17 @@ public final class ListasAuxiliaresSharePoint {
             return titulos;
         }
 
+        /**
+         * do_save_config. Primero se leen y comprueban TODAS las listas
+         * afectadas (D11) y solo después se escribe; si una lectura falla o una
+         * comprobación no pasa, no se escribe ninguna.
+         */
         @Override
         public ObjectNode guardar(JsonNode catalogos) {
             cliente.exigirEscritura("guardar catálogos");
             return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
-                String digest = cliente.digest(contexto);
                 ObjectNode resultado = JsonJs.objetoVacio().put("ok", true);
+                ClienteSharePoint.PlanReconciliacion planResponsables = null;
                 JsonNode responsables = catalogos.path("responsibles");
                 if (responsables.isArray() && responsables.size() > 0) {
                     List<ObjectNode> filas = new ArrayList<>();
@@ -144,9 +151,7 @@ public final class ListasAuxiliaresSharePoint {
                             filas.add(JsonJs.objetoVacio().put("Title", n.asText()).put("Seq", i));
                         }
                     }
-                    resultado.set("responsibles", cliente.reconciliar(contexto, digest, RESPONSABLES, List.of("Org", "Seq"), filas));
-                } else {
-                    resultado.putObject("responsibles").put("skipped", "frozen (people come from TestBenchUsers)");
+                    planResponsables = cliente.prepararReconciliacion(contexto, RESPONSABLES, List.of("Org", "Seq"), filas, permitirVacias);
                 }
                 List<ObjectNode> proyectos = new ArrayList<>();
                 int i = 0;
@@ -156,7 +161,6 @@ public final class ListasAuxiliaresSharePoint {
                         proyectos.add(JsonJs.objetoVacio().put("Title", n.asText()).put("Seq", i));
                     }
                 }
-                resultado.set("projects", cliente.reconciliar(contexto, digest, PROYECTOS, List.of("Seq"), proyectos));
                 List<ObjectNode> bancos = new ArrayList<>();
                 for (JsonNode b : catalogos.path("benches")) {
                     if (!b.hasNonNull("name") || b.get("name").asText().isEmpty()) {
@@ -171,8 +175,20 @@ public final class ListasAuxiliaresSharePoint {
                     fila.set("Seq", numeroONulo(b.get("seq")));
                     bancos.add(fila);
                 }
-                resultado.set("benches", cliente.reconciliar(contexto, digest, BANCOS,
-                        List.of("GroupKey", "GroupName", "Dot", "Org", "Seq"), bancos));
+                ClienteSharePoint.PlanReconciliacion planProyectos =
+                        cliente.prepararReconciliacion(contexto, PROYECTOS, List.of("Seq"), proyectos, permitirVacias);
+                ClienteSharePoint.PlanReconciliacion planBancos = cliente.prepararReconciliacion(contexto, BANCOS,
+                        List.of("GroupKey", "GroupName", "Dot", "Org", "Seq"), bancos, permitirVacias);
+
+                // Todas las comprobaciones han pasado: ahora sí se escribe.
+                String digest = cliente.digest(contexto);
+                if (planResponsables != null) {
+                    resultado.set("responsibles", cliente.aplicarReconciliacion(contexto, digest, planResponsables));
+                } else {
+                    resultado.putObject("responsibles").put("skipped", "frozen (people come from TestBenchUsers)");
+                }
+                resultado.set("projects", cliente.aplicarReconciliacion(contexto, digest, planProyectos));
+                resultado.set("benches", cliente.aplicarReconciliacion(contexto, digest, planBancos));
                 return resultado;
             });
         }
@@ -242,9 +258,11 @@ public final class ListasAuxiliaresSharePoint {
 
     public static class Usuarios implements AlmacenUsuarios {
         private final ClienteSharePoint cliente;
+        private final boolean permitirVacias;
 
-        public Usuarios(ClienteSharePoint cliente) {
+        public Usuarios(ClienteSharePoint cliente, boolean permitirVacias) {
             this.cliente = cliente;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -317,9 +335,12 @@ public final class ListasAuxiliaresSharePoint {
                 fila.set("ResponsibleName", responsable.isEmpty() ? NullNode.getInstance() : TextNode.valueOf(responsable));
                 filas.add(fila);
             }
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> JsonJs.objetoVacio().put("ok", true)
-                    .set("users", cliente.reconciliar(contexto, cliente.digest(contexto), USUARIOS,
-                            List.of("Email", "Role", "ResponsibleName"), filas)));
+            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                ClienteSharePoint.PlanReconciliacion plan = cliente.prepararReconciliacion(contexto, USUARIOS,
+                        List.of("Email", "Role", "ResponsibleName"), filas, permitirVacias);
+                return JsonJs.objetoVacio().put("ok", true)
+                        .set("users", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
+            });
         }
     }
 
@@ -330,10 +351,12 @@ public final class ListasAuxiliaresSharePoint {
         private static final List<String> COLUMNAS_BLOQUEOS = List.of("Resource", "StartDate", "EndDate", "Reason", "Note", "Author");
         private final ClienteSharePoint cliente;
         private final Colaboracion colaboracion;
+        private final boolean permitirVacias;
 
-        public Recursos(ClienteSharePoint cliente, Colaboracion colaboracion) {
+        public Recursos(ClienteSharePoint cliente, Colaboracion colaboracion, boolean permitirVacias) {
             this.cliente = cliente;
             this.colaboracion = colaboracion;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -411,8 +434,12 @@ public final class ListasAuxiliaresSharePoint {
                 fila.set("Seq", r.hasNonNull("seq") ? numeroONulo(r.get("seq")) : com.fasterxml.jackson.databind.node.IntNode.valueOf(i));
                 filas.add(fila);
             }
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> JsonJs.objetoVacio().put("ok", true)
-                    .set("resources", cliente.reconciliar(contexto, cliente.digest(contexto), RECURSOS, COLUMNAS_RECURSOS, filas)));
+            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                ClienteSharePoint.PlanReconciliacion plan =
+                        cliente.prepararReconciliacion(contexto, RECURSOS, COLUMNAS_RECURSOS, filas, permitirVacias);
+                return JsonJs.objetoVacio().put("ok", true)
+                        .set("resources", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
+            });
         }
 
         @Override

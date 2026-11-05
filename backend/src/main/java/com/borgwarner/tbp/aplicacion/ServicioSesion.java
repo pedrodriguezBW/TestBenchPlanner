@@ -19,12 +19,14 @@ public class ServicioSesion {
 
     private final AlmacenUsuarios usuarios;
     private final Colaboracion colaboracion;
+    private final RegistroLecturas lecturas;
     private volatile Usuario actual;
     private volatile ArrayNode ultimaLista;
 
-    public ServicioSesion(AlmacenUsuarios usuarios, Colaboracion colaboracion) {
+    public ServicioSesion(AlmacenUsuarios usuarios, Colaboracion colaboracion, RegistroLecturas lecturas) {
         this.usuarios = usuarios;
         this.colaboracion = colaboracion;
+        this.lecturas = lecturas;
     }
 
     /** Usuario actual; la primera vez lo identifica y anota la conexión en el registro. */
@@ -40,7 +42,15 @@ public class ServicioSesion {
     public synchronized Usuario identificar() {
         AlmacenUsuarios.Identidad identidad = usuarios.identidadActual();
         String email = identidad.email() == null ? "" : identidad.email().toLowerCase();
-        ArrayNode lista = usuarios.leer();
+        ArrayNode lista;
+        try {
+            lista = usuarios.leer();
+        } catch (RuntimeException e) {
+            lecturas.anotar(RegistroLecturas.USUARIOS, false, 0);
+            throw e;
+        }
+        // Una lista vacía (lectura fallida en SharePoint) no habilita guardar usuarios (D11).
+        lecturas.anotar(RegistroLecturas.USUARIOS, true, lista.size());
         JsonNode encontrado = null;
         for (JsonNode u : lista) {
             String correo = u.path("email").asText("").trim().toLowerCase();

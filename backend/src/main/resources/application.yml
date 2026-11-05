@@ -9,6 +9,12 @@ planner:
   fecha-fija: ""              # aaaa-mm-dd para reproducir un día concreto
   carpeta-usuario: ${user.home}/.testbenchplanner
 
+  listas:
+    # D11: no se guarda una lista compartida (bancos, proyectos, usuarios,
+    # recursos) si su lectura falló o llegó vacía, ni se deja vacía.
+    # true solo para una instalación nueva con las listas vacías.
+    permitir-vacias: false
+
   local:
     carpeta-datos: ${planner.carpeta-usuario}/datos-locales
     escenario-inicial: ../datos/escenarios/sharepoint-2026-11-05

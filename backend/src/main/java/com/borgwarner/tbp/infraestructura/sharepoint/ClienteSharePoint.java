@@ -4,6 +4,7 @@ import com.borgwarner.tbp.aplicacion.puertos.SinSesionAlmacen;
 import com.borgwarner.tbp.aplicacion.puertos.EscrituraDesactivada;
 
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.dominio.listas.ProteccionListas;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microsoft.playwright.APIResponse;
@@ -253,29 +254,45 @@ public class ClienteSharePoint {
         return errores;
     }
 
+    /** Reconciliación preparada: lo que hay ahora en la lista y lo que se quiere guardar. */
+    public record PlanReconciliacion(String titulo, Map<String, Integer> existentes, List<ObjectNode> filas) {
+    }
+
     /**
-     * Reconciliación de una lista (_reconcile_list): crea o actualiza las filas
-     * recibidas y manda a la papelera las que no vienen.
+     * Fase 1 de la reconciliación (_reconcile_list): lee la lista y comprueba la
+     * protección D11. No escribe nada; si la lectura falla, lanza la excepción.
      */
-    public ObjectNode reconciliar(BrowserContext contexto, String digest, String titulo, List<String> columnas, List<ObjectNode> filas) {
-        exigirEscritura("reconciliar " + titulo);
-        String base = lista(titulo);
+    public PlanReconciliacion prepararReconciliacion(BrowserContext contexto, String titulo, List<String> columnas,
+                                                     List<ObjectNode> filas, boolean permitirVacias) {
         Map<String, Integer> existentes = new java.util.LinkedHashMap<>();
         for (JsonNode it : leerLista(contexto, titulo, columnas)) {
             if (it.hasNonNull("Title")) {
                 existentes.put(it.get("Title").asText(), it.path("Id").asInt());
             }
         }
+        List<String> entrantes = filas.stream().filter(f -> f.hasNonNull("Title")).map(f -> f.get("Title").asText()).toList();
+        ProteccionListas.comprobar(titulo, existentes.keySet(), entrantes, permitirVacias);
+        return new PlanReconciliacion(titulo, existentes, filas);
+    }
+
+    /**
+     * Fase 2: crea o actualiza las filas recibidas y manda a la papelera las
+     * que no vienen. Solo se llama cuando TODAS las listas de la operación han
+     * pasado la fase 1.
+     */
+    public ObjectNode aplicarReconciliacion(BrowserContext contexto, String digest, PlanReconciliacion plan) {
+        exigirEscritura("reconciliar " + plan.titulo());
+        String base = lista(plan.titulo());
         Set<String> recibidas = new HashSet<>();
         int creadas = 0, actualizadas = 0, borradas = 0;
         ObjectNode errores = JsonJs.objetoVacio();
-        for (ObjectNode fila : filas) {
+        for (ObjectNode fila : plan.filas()) {
             if (!fila.hasNonNull("Title")) {
                 continue;
             }
             String clave = fila.get("Title").asText();
             recibidas.add(clave);
-            Integer id = existentes.get(clave);
+            Integer id = plan.existentes().get(clave);
             if (id == null) {
                 id = crearMinimo(contexto, digest, base, clave);
                 if (id == null) {
@@ -287,7 +304,7 @@ public class ClienteSharePoint {
             }
             mergeCampoACampo(contexto, digest, base, id, fila).forEach(errores::put);
         }
-        for (Map.Entry<String, Integer> existente : existentes.entrySet()) {
+        for (Map.Entry<String, Integer> existente : plan.existentes().entrySet()) {
             if (!recibidas.contains(existente.getKey())) {
                 try {
                     reciclar(contexto, digest, base, existente.getValue());

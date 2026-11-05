@@ -4,6 +4,7 @@ import com.borgwarner.tbp.aplicacion.SinPermiso;
 import com.borgwarner.tbp.aplicacion.Versiones;
 import com.borgwarner.tbp.aplicacion.puertos.ConflictoEdicion;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.dominio.listas.ReconciliacionBloqueada;
 import com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida;
 import com.borgwarner.tbp.aplicacion.puertos.EscrituraDesactivada;
 import com.borgwarner.tbp.aplicacion.puertos.SinSesionAlmacen;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Traduce las excepciones a respuestas HTTP con un cuerpo JSON uniforme:
  *   401 sin sesión con SharePoint ({"error":"no-session"}, igual que la 4.9.4)
  *   403 sin permiso · 409 conflicto de edición · 422 regla de negocio
- *   503 escritura en SharePoint desactivada · 500 cualquier otro error
+ *   412 lista compartida protegida (D11) · 503 escritura desactivada · 500 otro error
  */
 @RestControllerAdvice
 public class ManejadorErrores {
@@ -54,6 +55,12 @@ public class ManejadorErrores {
             f.set("datos", fila.textoActual() == null ? null : JsonJs.leer(fila.textoActual()));
         }
         return ResponseEntity.status(HttpStatus.CONFLICT).body(cuerpo);
+    }
+
+    @ExceptionHandler(ReconciliacionBloqueada.class)
+    public ResponseEntity<ObjectNode> listaProtegida(ReconciliacionBloqueada e) {
+        return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)
+                .body(JsonJs.objetoVacio().put("error", "lista-protegida").put("mensaje", e.getMessage()));
     }
 
     @ExceptionHandler(EscrituraDesactivada.class)

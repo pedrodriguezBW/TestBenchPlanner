@@ -3,6 +3,7 @@ package com.borgwarner.tbp.api.compat;
 import com.borgwarner.tbp.TestBenchPlannerApplication;
 import com.borgwarner.tbp.api.comun.CicloDeVida;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
+import com.borgwarner.tbp.aplicacion.ServicioListas;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenEnsayos;
@@ -32,8 +33,13 @@ import java.util.List;
  * API compatible con el backend Python 4.9.4 (mismas rutas y mismos cuerpos).
  *
  * Permite servir la interfaz 4.9.4 original desde Java (/clasico) como
- * respaldo mientras se valida la interfaz nueva. Su contrato de guardado es el
- * de la 4.9.4: «el último que guarda gana» (sin control de versiones).
+ * respaldo mientras se valida la interfaz nueva.
+ *
+ * LIMITACIÓN (D12): el guardado de ensayos (/api/save) mantiene el contrato de
+ * la 4.9.4, «el último que guarda gana» (IF-MATCH: *, sin versiones ni 409),
+ * porque la interfaz clásica no sabe enviar versiones ni mostrar el aviso de
+ * conflicto. La protección completa (versión + ETag + 409) solo existe en
+ * /api/v1. Las listas compartidas SÍ tienen aquí la protección D11.
  */
 @RestController
 @RequestMapping("/api")
@@ -48,10 +54,13 @@ public class ApiCompatibleController {
     private final Colaboracion colaboracion;
     private final ServicioSesion sesion;
     private final CicloDeVida cicloDeVida;
+    private final ServicioListas listas;
 
     public ApiCompatibleController(AlmacenEnsayos ensayos, AlmacenCatalogos catalogos, AlmacenHistoricoKpi historico,
                                    AlmacenUsuarios usuarios, AlmacenRecursos recursos, ConsultaAprobaciones aprobaciones,
-                                   Colaboracion colaboracion, ServicioSesion sesion, CicloDeVida cicloDeVida) {
+                                   Colaboracion colaboracion, ServicioSesion sesion, CicloDeVida cicloDeVida,
+                                   ServicioListas listas) {
+        this.listas = listas;
         this.ensayos = ensayos;
         this.catalogos = catalogos;
         this.historico = historico;
@@ -131,22 +140,22 @@ public class ApiCompatibleController {
 
     @PostMapping("/save_users")
     public ObjectNode guardarUsuarios(@RequestBody(required = false) JsonNode entrada) {
-        return usuarios.guardar(cuerpo(entrada));
+        return listas.guardarUsuarios(cuerpo(entrada));
     }
 
     @PostMapping("/load_config")
     public ObjectNode cargarConfiguracion() {
-        return catalogos.leer();
+        return listas.leerCatalogos();
     }
 
     @GetMapping("/load_config")
     public ObjectNode cargarConfiguracionGet() {
-        return catalogos.leer();
+        return listas.leerCatalogos();
     }
 
     @PostMapping("/save_config")
     public ObjectNode guardarConfiguracion(@RequestBody(required = false) JsonNode entrada) {
-        return catalogos.guardar(cuerpo(entrada));
+        return listas.guardarCatalogos(cuerpo(entrada));
     }
 
     @PostMapping("/load_kpis")
@@ -213,12 +222,12 @@ public class ApiCompatibleController {
 
     @PostMapping("/load_resources")
     public ObjectNode cargarRecursos() {
-        return recursos.leer();
+        return listas.leerRecursos();
     }
 
     @PostMapping("/save_resources")
     public ObjectNode guardarRecursos(@RequestBody(required = false) JsonNode entrada) {
-        return recursos.guardarCatalogo(cuerpo(entrada));
+        return listas.guardarRecursos(cuerpo(entrada));
     }
 
     @PostMapping("/save_resource_block")

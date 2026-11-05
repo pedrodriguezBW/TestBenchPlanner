@@ -8,6 +8,7 @@ import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.dominio.listas.ProteccionListas;
 import com.borgwarner.tbp.dominio.usuarios.Usuario;
 import com.borgwarner.tbp.infraestructura.comun.FilaKpi;
 import com.borgwarner.tbp.infraestructura.comun.Versionado;
@@ -30,12 +31,26 @@ public final class AlmacenesAuxiliaresLocales {
     private AlmacenesAuxiliaresLocales() {
     }
 
+    /** Claves no vacías de una lista: el texto de cada elemento o el de su campo `campo`. */
+    static List<String> textos(JsonNode lista, String campo) {
+        List<String> claves = new ArrayList<>();
+        for (JsonNode n : lista) {
+            String clave = campo == null ? n.asText("") : n.path(campo).asText("");
+            if (!clave.isEmpty()) {
+                claves.add(clave);
+            }
+        }
+        return claves;
+    }
+
     /** Catálogos en configuracion.json. Guardar sustituye (equivale a reconciliar). */
     public static class Catalogos implements AlmacenCatalogos {
         private final DatosLocales datos;
+        private final boolean permitirVacias;
 
-        public Catalogos(DatosLocales datos) {
+        public Catalogos(DatosLocales datos, boolean permitirVacias) {
             this.datos = datos;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -52,6 +67,15 @@ public final class AlmacenesAuxiliaresLocales {
         @Override
         public ObjectNode guardar(JsonNode catalogos) {
             ObjectNode actual = leer();
+            // D11: se comprueban todas las listas antes de escribir nada.
+            if (catalogos.path("responsibles").isArray() && catalogos.path("responsibles").size() > 0) {
+                ProteccionListas.comprobar("TestBenchResponsibles", textos(actual.path("responsibles"), null),
+                        textos(catalogos.path("responsibles"), null), permitirVacias);
+            }
+            ProteccionListas.comprobar("TestBenchProjects", textos(actual.path("projects"), null),
+                    textos(catalogos.path("projects"), null), permitirVacias);
+            ProteccionListas.comprobar("TestBenchBenches", textos(actual.path("benches"), "name"),
+                    textos(catalogos.path("benches"), "name"), permitirVacias);
             ObjectNode resultado = JsonJs.objetoVacio().put("ok", true);
             // Responsables: congelada; solo se toca si llega una lista no vacía.
             if (catalogos.path("responsibles").isArray() && catalogos.path("responsibles").size() > 0) {
@@ -123,10 +147,12 @@ public final class AlmacenesAuxiliaresLocales {
     public static class Usuarios implements AlmacenUsuarios {
         private final DatosLocales datos;
         private final Identidad identidad;
+        private final boolean permitirVacias;
 
-        public Usuarios(DatosLocales datos, Identidad identidad) {
+        public Usuarios(DatosLocales datos, Identidad identidad, boolean permitirVacias) {
             this.datos = datos;
             this.identidad = identidad;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -162,6 +188,7 @@ public final class AlmacenesAuxiliaresLocales {
                 fila.put("role", rol.equals("readonly") ? "ReadOnly" : Character.toUpperCase(rol.charAt(0)) + rol.substring(1));
                 fila.put("responsibleName", u.path("responsibleName").asText(""));
             }
+            ProteccionListas.comprobar("TestBenchUsers", textos(leer(), "email"), textos(filas, "email"), permitirVacias);
             datos.escribir("usuarios.json", filas);
             return JsonJs.objetoVacio().put("ok", true);
         }
@@ -171,10 +198,12 @@ public final class AlmacenesAuxiliaresLocales {
     public static class Recursos implements AlmacenRecursos {
         private final DatosLocales datos;
         private final Colaboracion colaboracion;
+        private final boolean permitirVacias;
 
-        public Recursos(DatosLocales datos, Colaboracion colaboracion) {
+        public Recursos(DatosLocales datos, Colaboracion colaboracion, boolean permitirVacias) {
             this.datos = datos;
             this.colaboracion = colaboracion;
+            this.permitirVacias = permitirVacias;
         }
 
         @Override
@@ -205,6 +234,8 @@ public final class AlmacenesAuxiliaresLocales {
                 }
                 lista.add(copia);
             }
+            ProteccionListas.comprobar("TestBenchResources", textos(actual.path("resources"), "name"),
+                    textos(lista, "name"), permitirVacias);
             actual.set("resources", lista);
             datos.escribir("recursos.json", actual);
             return JsonJs.objetoVacio().put("ok", true);

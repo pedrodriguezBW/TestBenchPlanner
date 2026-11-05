@@ -87,7 +87,7 @@ public class PlanificacionController {
             Ensayo e = p.buscar(banco, id).orElseThrow(() -> new ReglaNoCumplida("El ensayo ya no existe en " + banco + "."));
             ResultadoPlan actual = plan;
             for (JsonNode cambio : cuerpo.path("cambios")) {
-                EdicionEnsayo.editar(e, cambio.path("campo").asText(), cambio.get("valor"), actual.de(e), reloj.hoy());
+                EdicionEnsayo.editar(e, cambio.path("campo").asText(), cambio.get("valor"), actual.de(e), plan.contexto().hoy());
                 actual = ResultadoPlan.calcular(p, plan.contexto()); // el siguiente cambio ve las fechas nuevas
             }
             return null;
@@ -138,10 +138,10 @@ public class PlanificacionController {
                                       @RequestParam(defaultValue = "false") boolean correccion) {
         Vista vista = servicio.vista();
         Ensayo e = vista.planificacion().buscar(banco, id).orElseThrow(() -> new ReglaNoCumplida("El ensayo ya no existe en " + banco + "."));
-        Cierre.Valores valores = Cierre.propuesta(e, vista.plan().de(e), correccion, sesion.usuarioActual(), reloj.hoy());
+        Cierre.Valores valores = Cierre.propuesta(e, vista.plan().de(e), correccion, sesion.usuarioActual(), vista.contexto().hoy());
         ObjectNode salida = JsonJs.objetoVacio();
         salida.set("valores", JsonJs.mapper().valueToTree(valores));
-        salida.set("validacion", JsonJs.mapper().valueToTree(Cierre.validar(e, valores, vista.contexto().calendario(), reloj.hoy())));
+        salida.set("validacion", JsonJs.mapper().valueToTree(Cierre.validar(e, valores, vista.contexto().calendario(), vista.contexto().hoy())));
         salida.put("comprometidoInicio", e.texto("confirmedStart"));
         salida.put("comprometidoFin", e.texto("confirmedEnd"));
         return salida;
@@ -152,7 +152,7 @@ public class PlanificacionController {
     public JsonNode validarCierre(@PathVariable String banco, @PathVariable String id, @RequestBody JsonNode cuerpo) {
         Vista vista = servicio.vista();
         Ensayo e = vista.planificacion().buscar(banco, id).orElseThrow(() -> new ReglaNoCumplida("El ensayo ya no existe en " + banco + "."));
-        return JsonJs.mapper().valueToTree(Cierre.validar(e, valores(cuerpo.path("valores")), vista.contexto().calendario(), reloj.hoy()));
+        return JsonJs.mapper().valueToTree(Cierre.validar(e, valores(cuerpo.path("valores")), vista.contexto().calendario(), vista.contexto().hoy()));
     }
 
     /** Confirmar el cierre (o la corrección de un cerrado, solo Admin). */
@@ -162,7 +162,7 @@ public class PlanificacionController {
         boolean correccion = cuerpo.path("correccion").asBoolean(false);
         Cierre.Valores valores = valores(cuerpo.path("valores"));
         var resultado = servicio.ejecutar(usuario, versiones(cuerpo), cuerpo.path("forzar").asBoolean(false), (p, plan) -> {
-            Cierre.confirmar(p, banco, id, valores, correccion, usuario, plan.contexto().calendario(), reloj.hoy(), reloj.ahora());
+            Cierre.confirmar(p, banco, id, valores, correccion, usuario, plan.contexto().calendario(), plan.contexto().hoy(), reloj.ahora());
             return null;
         });
         return respuesta(resultado.vista(), null, resultado.cambios().size());

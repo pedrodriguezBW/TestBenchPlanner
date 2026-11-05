@@ -1,5 +1,6 @@
 package com.borgwarner.tbp.api.v1;
 
+import com.borgwarner.tbp.aplicacion.ServicioListas;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCalendario;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
@@ -42,10 +43,12 @@ public class ConfiguracionController {
     private final Colaboracion colaboracion;
     private final ServicioSesion sesion;
     private final Reloj reloj;
+    private final ServicioListas listas;
 
     public ConfiguracionController(AlmacenCatalogos catalogos, AlmacenUsuarios usuarios, AlmacenRecursos recursos,
                                    AlmacenCalendario calendario, ConsultaAprobaciones aprobaciones,
-                                   Colaboracion colaboracion, ServicioSesion sesion, Reloj reloj) {
+                                   Colaboracion colaboracion, ServicioSesion sesion, Reloj reloj, ServicioListas listas) {
+        this.listas = listas;
         this.catalogos = catalogos;
         this.usuarios = usuarios;
         this.recursos = recursos;
@@ -58,14 +61,14 @@ public class ConfiguracionController {
 
     @GetMapping("/catalogos")
     public ObjectNode leerCatalogos() {
-        return catalogos.leer();
+        return listas.leerCatalogos();
     }
 
     /** Guardar la configuración de bancos y proyectos (en la 4.9.4 no exigía rol: se conserva). */
     @PutMapping("/catalogos")
     public ObjectNode guardarCatalogos(@RequestBody JsonNode cuerpo) {
         sesion.exigirEscritura(sesion.usuarioActual());
-        return catalogos.guardar(cuerpo);
+        return listas.guardarCatalogos(cuerpo);
     }
 
     @GetMapping("/usuarios")
@@ -76,20 +79,20 @@ public class ConfiguracionController {
     @PutMapping("/usuarios")
     public ObjectNode guardarUsuarios(@RequestBody JsonNode cuerpo) {
         sesion.exigirAdmin(sesion.usuarioActual());
-        ObjectNode r = usuarios.guardar(cuerpo);
+        ObjectNode r = listas.guardarUsuarios(cuerpo);
         sesion.identificar();
         return r;
     }
 
     @GetMapping("/recursos")
     public ObjectNode leerRecursos() {
-        return recursos.leer();
+        return listas.leerRecursos();
     }
 
     @PutMapping("/recursos")
     public ObjectNode guardarRecursos(@RequestBody JsonNode cuerpo) {
         sesion.exigirEscritura(sesion.usuarioActual());
-        return recursos.guardarCatalogo(cuerpo);
+        return listas.guardarRecursos(cuerpo);
     }
 
     @PostMapping("/recursos/bloqueos")

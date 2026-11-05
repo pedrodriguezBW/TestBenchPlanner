@@ -22,6 +22,7 @@ import com.borgwarner.tbp.infraestructura.sharepoint.EspejoSharePoint;
 import com.borgwarner.tbp.infraestructura.sharepoint.ListasAuxiliaresSharePoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,8 +73,8 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenCatalogos almacenCatalogos(DatosLocales datos) {
-            return new AlmacenesAuxiliaresLocales.Catalogos(datos);
+        public AlmacenCatalogos almacenCatalogos(DatosLocales datos, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+            return new AlmacenesAuxiliaresLocales.Catalogos(datos, permitirVacias);
         }
 
         @Bean
@@ -82,14 +83,16 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenUsuarios almacenUsuarios(DatosLocales datos, PropiedadesPlanner p) {
+        public AlmacenUsuarios almacenUsuarios(DatosLocales datos, PropiedadesPlanner p,
+                                               @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
             return new AlmacenesAuxiliaresLocales.Usuarios(datos,
-                    new AlmacenUsuarios.Identidad(p.local().usuarioEmail(), p.local().usuarioNombre()));
+                    new AlmacenUsuarios.Identidad(p.local().usuarioEmail(), p.local().usuarioNombre()), permitirVacias);
         }
 
         @Bean
-        public AlmacenRecursos almacenRecursos(DatosLocales datos, Colaboracion colaboracion) {
-            return new AlmacenesAuxiliaresLocales.Recursos(datos, colaboracion);
+        public AlmacenRecursos almacenRecursos(DatosLocales datos, Colaboracion colaboracion,
+                                               @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+            return new AlmacenesAuxiliaresLocales.Recursos(datos, colaboracion, permitirVacias);
         }
 
         @Bean
@@ -147,8 +150,8 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenCatalogos almacenCatalogos(ClienteSharePoint cliente) {
-            return new ListasAuxiliaresSharePoint.Catalogos(cliente);
+        public AlmacenCatalogos almacenCatalogos(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+            return new ListasAuxiliaresSharePoint.Catalogos(cliente, permitirVacias);
         }
 
         @Bean
@@ -157,13 +160,14 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenUsuarios almacenUsuarios(ClienteSharePoint cliente) {
-            return new ListasAuxiliaresSharePoint.Usuarios(cliente);
+        public AlmacenUsuarios almacenUsuarios(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+            return new ListasAuxiliaresSharePoint.Usuarios(cliente, permitirVacias);
         }
 
         @Bean
-        public AlmacenRecursos almacenRecursos(ClienteSharePoint cliente, Colaboracion colaboracion) {
-            return new ListasAuxiliaresSharePoint.Recursos(cliente, colaboracion);
+        public AlmacenRecursos almacenRecursos(ClienteSharePoint cliente, Colaboracion colaboracion,
+                                               @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+            return new ListasAuxiliaresSharePoint.Recursos(cliente, colaboracion, permitirVacias);
         }
     }
 }
