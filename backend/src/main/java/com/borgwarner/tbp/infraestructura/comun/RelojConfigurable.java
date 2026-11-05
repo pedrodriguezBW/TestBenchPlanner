@@ -25,8 +25,8 @@ import java.time.LocalTime;
 public class RelojConfigurable implements Reloj {
 
     private final Clock base;
-    private final Instant arranqueReal;
-    private final Instant arranqueSimulado;
+    private volatile Instant arranqueReal;
+    private volatile Instant arranqueSimulado;
 
     public RelojConfigurable(String fechaFija) {
         this(fechaFija, Clock.systemUTC());
@@ -42,6 +42,16 @@ public class RelojConfigurable implements Reloj {
             this.arranqueSimulado = LocalDate.parse(fechaFija.trim()).atTime(LocalTime.of(10, 0))
                     .atZone(Fechas.ZONA).toInstant();
         }
+    }
+
+    /**
+     * Cambia la fecha simulada (solo lo usa el reinicio del modo local para las
+     * pruebas de paridad; vacío = volver a la fecha real).
+     */
+    public void fijarFecha(String fechaFija) {
+        this.arranqueReal = base.instant();
+        this.arranqueSimulado = (fechaFija == null || fechaFija.isBlank()) ? null
+                : LocalDate.parse(fechaFija.trim()).atTime(LocalTime.of(10, 0)).atZone(Fechas.ZONA).toInstant();
     }
 
     @Override

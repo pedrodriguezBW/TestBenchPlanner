@@ -1,0 +1,12 @@
+/* Estilos propios de la interfaz React (lo que en la 4.9.4 se generaba con estilos en línea). */
+.tbp-sin-marco { border: 0; padding: 0; margin: 0; min-width: 0; }
+.tbp-avisos { position: fixed; right: 22px; bottom: 22px; z-index: 500; display: flex; flex-direction: column; gap: 8px; }
+.tbp-aviso { background: var(--panel); border: 1px solid var(--turq); border-radius: 10px; padding: 10px 14px; font-size: 13px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .5); max-width: 380px; }
+.tbp-aviso.error { border-color: var(--danger); color: #ffe3e3; }
+.tbp-cierre { display: grid; grid-template-columns: 150px 1fr; gap: 8px 12px; align-items: center; margin-top: 10px; }
+.tbp-cierre label { color: var(--muted); font-size: 13px; }
+.tbp-conflicto { margin: 8px 0; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.cal-foot { display: flex; justify-content: space-between; margin-top: 6px; }
+.modal-bg.show { display: flex; }

@@ -9,8 +9,8 @@ conservando el comportamiento funcional y el uso de las listas de SharePoint.
 | Hito | Contenido | Estado |
 |---|---|---|
 | H1 | Caracterización de la 4.9.4 y laboratorio de paridad | **Terminado** |
-| H2 | Backend Java: dominio, casos de uso, persistencia local y SharePoint | Escrito; pendiente de `mvn verify` en el PC de desarrollo |
-| H3 | Interfaz React por bloques (A operativa · B dashboard · C KPI · D recursos · E configuración · F exportaciones) | Pendiente |
+| H2 | Backend Java: dominio, casos de uso, persistencia local y SharePoint | **Terminado** (validado en el PC: pruebas verdes, SharePoint en solo lectura) |
+| H3 | Interfaz React por bloques (A operativa · B dashboard · C KPI · D recursos · E configuración · F exportaciones) | **En curso:** bloque A hecho |
 | H4 | Validación integral en la oficina, empaquetado con Java incluido, retirada de la 4.9.4 | Pendiente |
 
 ## Estructura

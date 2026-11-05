@@ -75,6 +75,12 @@ public class ServicioSesion {
         return usuario;
     }
 
+    /** Olvida al usuario identificado (reinicio del modo local para pruebas). */
+    public synchronized void olvidar() {
+        actual = null;
+        ultimaLista = null;
+    }
+
     /** Lista de usuarios leída en la última identificación. */
     public ArrayNode usuarios() {
         if (ultimaLista == null) {

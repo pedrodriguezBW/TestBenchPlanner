@@ -59,6 +59,11 @@
                 </includes>
                 <targetPath>clasico</targetPath>
             </resource>
+            <!-- Interfaz React compilada (frontend/dist), si existe: se sirve en «/» -->
+            <resource>
+                <directory>${project.basedir}/../frontend/dist</directory>
+                <targetPath>static</targetPath>
+            </resource>
         </resources>
         <plugins>
             <plugin>
@@ -79,4 +84,49 @@
             </plugin>
         </plugins>
     </build>
+    <!--
+      Recompilar la interfaz React desde Maven SIN instalar Node en el PC:
+        mvnw.cmd -Pinterfaz clean verify
+      Descarga un Node portátil dentro de backend/target (necesita acceso a
+      nodejs.org y al registro de npm). Sin -Pinterfaz se usa frontend/dist tal
+      cual viene en el zip, que es lo normal.
+    -->
+    <profiles>
+        <profile>
+            <id>interfaz</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.15.1</version>
+                        <configuration>
+                            <workingDirectory>${project.basedir}/../frontend</workingDirectory>
+                            <installDirectory>${project.build.directory}/node</installDirectory>
+                            <nodeVersion>v22.12.0</nodeVersion>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>node-portatil</id>
+                                <phase>generate-resources</phase>
+                                <goals><goal>install-node-and-npm</goal></goals>
+                            </execution>
+                            <execution>
+                                <id>dependencias-interfaz</id>
+                                <phase>generate-resources</phase>
+                                <goals><goal>npm</goal></goals>
+                                <configuration><arguments>install</arguments></configuration>
+                            </execution>
+                            <execution>
+                                <id>compilar-interfaz</id>
+                                <phase>generate-resources</phase>
+                                <goals><goal>npm</goal></goals>
+                                <configuration><arguments>run build</arguments></configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

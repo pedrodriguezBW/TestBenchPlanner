@@ -94,3 +94,56 @@ El perfil de Edge se crea en `%USERPROFILE%\.testbenchplanner\.edge_profile`
 el último que guarda gana. El aviso de conflicto (409) y la comprobación de
 ETag solo existen en `/api/v1` (interfaz React). Usa `/clasico` solo como
 respaldo, no a la vez que la interfaz nueva sobre los mismos ensayos.
+
+---
+
+## Interfaz React (Hito 3)
+
+### Usarla en el PC (sin Node)
+
+1. `cd backend` y `mvnw.cmd clean verify` (como siempre). El jar ya incluye la
+   interfaz que viene compilada en `frontend/dist`.
+2. Arrancar igual que en H2 (local o SharePoint en solo lectura).
+3. Abrir `http://127.0.0.1:5001/`. La clásica sigue en `/clasico`.
+
+Si `frontend/dist` no existe, «/» muestra la interfaz clásica como antes.
+
+### Recompilar la interfaz (solo si se cambia `frontend/src`)
+
+- Sin instalar nada: `mvnw.cmd -Pinterfaz clean verify` (necesita salida a
+  nodejs.org y al registro de npm).
+- Con Node disponible: `cd frontend`, `npm install`, `npm run build`.
+  Para desarrollar con recarga automática: `npm run dev` (puerto 5173, reenvía
+  `/api` al backend en 5001).
+
+### Pruebas de la interfaz (laboratorio)
+
+Necesitan Node y Playwright; se han pasado en el entorno de desarrollo contra el
+backend simulado (que ejecuta el HTML de la 4.9.4 por detrás):
+
+```
+node herramientas/laboratorio/backend-simulado-4.9.4.cjs 5001
+TZ=Europe/Madrid node herramientas/laboratorio/comparar-interfaz.cjs     # paridad: 65 casos F, E, S, C, Q, K, R
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs      # conflicto, sin conexión, solo lectura, D17
+```
+
+`comparar-interfaz.cjs` pulsa, escribe, elige en el calendario y arrastra como
+un usuario, y compara planificación, orden, DataJson guardado y ventana de
+cierre con las referencias de la 4.9.4. Admite `--url` para lanzarlo contra el
+backend Java en modo local (usa `/api/v1/local/reinicio`, que **solo existe con
+`planner.almacen=local`**).
+
+### Prueba manual en el PC (bloque A)
+
+Con el backend en modo local y `http://127.0.0.1:5001/`:
+
+1. Cambiar de banco en el menú lateral; la dirección cambia a `#/<banco>`.
+2. Editar comentario, duración, fechas (calendario con CW, Today, Clear), casillas.
+   El indicador pasa a «Saving…» y vuelve a «● Synced».
+3. Arrastrar filas por ⠿ (una y varias seleccionadas); duplicar, mover a otro banco, borrar.
+4. 📌 por fila, ↩ deshacer, Confirm all.
+5. ✔ cerrar un ensayo; lista «Completed»: Reuse, ✎ Corregir, Restore.
+6. Conflicto: abrir dos pestañas, cambiar el mismo comentario en las dos en
+   menos de 20 s → aparece «Otra persona ha cambiado este ensayo».
+7. Comparar visualmente con `/clasico` (mismos datos, mismos colores y textos).
+

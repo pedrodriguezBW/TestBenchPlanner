@@ -41,7 +41,7 @@ public class ConfiguracionAlmacenes {
     private static final Logger LOG = LoggerFactory.getLogger(ConfiguracionAlmacenes.class);
 
     @Bean
-    public Reloj reloj(PropiedadesPlanner propiedades) {
+    public RelojConfigurable reloj(PropiedadesPlanner propiedades) {
         return new RelojConfigurable(propiedades.fechaFija());
     }
 
@@ -83,7 +83,7 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenUsuarios almacenUsuarios(DatosLocales datos, PropiedadesPlanner p,
+        public AlmacenesAuxiliaresLocales.Usuarios almacenUsuarios(DatosLocales datos, PropiedadesPlanner p,
                                                @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
             return new AlmacenesAuxiliaresLocales.Usuarios(datos,
                     new AlmacenUsuarios.Identidad(p.local().usuarioEmail(), p.local().usuarioNombre()), permitirVacias);

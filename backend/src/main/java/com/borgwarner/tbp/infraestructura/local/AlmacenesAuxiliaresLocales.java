@@ -146,8 +146,13 @@ public final class AlmacenesAuxiliaresLocales {
     /** Usuarios en usuarios.json; la identidad es la configurada para este PC. */
     public static class Usuarios implements AlmacenUsuarios {
         private final DatosLocales datos;
-        private final Identidad identidad;
+        private volatile Identidad identidad;
         private final boolean permitirVacias;
+
+        /** Cambia el usuario simulado (reinicio del modo local para pruebas). */
+        public void cambiarIdentidad(Identidad nueva) {
+            this.identidad = nueva;
+        }
 
         public Usuarios(DatosLocales datos, Identidad identidad, boolean permitirVacias) {
             this.datos = datos;

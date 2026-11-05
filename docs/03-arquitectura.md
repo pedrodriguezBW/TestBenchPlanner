@@ -57,3 +57,63 @@ com.borgwarner.tbp
 - **Calendario por PC** (D6): fichero `calendario.json` en `planner.carpeta-usuario`.
 - **API compatible**: permite servir la 4.9.4 original desde Java en `/clasico` como respaldo; su guardado mantiene «el último gana» (contrato de la 4.9.4).
 - **Facturación**: fuera de alcance. No hay ningún modelo, campo ni servicio de facturación; «días facturables» de la ventana de cierre es comportamiento actual que se conserva tal cual.
+
+---
+
+# Interfaz React (Hito 3)
+
+## Bloques
+
+| Bloque | Contenido | Estado |
+|---|---|---|
+| A | Vista de banco: tabla de ensayos (30 columnas), Gantt, cierre, lista de cerrados, selección, mover, ordenar, aprobaciones | **Hecho** |
+| B | Dashboard | Pendiente (el menú lleva a /clasico) |
+| C | KPI y estadísticas | Pendiente |
+| D | Recursos | Pendiente |
+| E | Configuración | Pendiente |
+| F | Exportaciones (incluida la del Gantt a Excel) | Pendiente |
+
+Mientras un bloque no está migrado, su entrada del menú lo indica y enlaza a la
+interfaz clásica (`/clasico`); no se ha inventado nada en su lugar.
+
+## Estructura (`frontend/src`)
+
+```
+api/          tipos.ts (contrato /api/v1) · cliente.ts (errores tipados: 409, 422, sin conexión)
+estado/       Planificador.tsx: carga, cola de guardado, conflictos, relectura de 20 s, latido
+componentes/  Dialogo, SelectorFecha (calendario propio con CW), Avisos (toasts, mensajes, conflicto)
+utilidades/   fechas, textos (etiquetas y colores de la 4.9.4), preferencias (localStorage)
+bloques/banco TablaEnsayos, columnas, Celdas, Gantt, VentanaCierre, ListaCerrados,
+              BuscadorAprobaciones, BarraSeleccion, VistaBanco
+estilos/      base-4.9.4.css (el CSS original, sin cambios) · aplicacion.css (lo nuevo)
+```
+
+## Reparto de responsabilidades
+
+- **Toda la lógica de negocio está en el backend.** La interfaz no calcula
+  fechas, estados, sugerencias ni validaciones: pinta `calculo` de cada fila y
+  envía cambios (`/campos`, `/operaciones`, `/cierre`). Así hay una sola
+  implementación de las reglas, la que ya pasó la paridad en H2.
+- La interfaz conserva el comportamiento de sincronización de la 4.9.4:
+  - espera de 1,2 s antes de guardar una edición; los cambios van de uno en uno;
+  - relectura cada 20 s (sin pisar lo que se está escribiendo);
+  - al arrancar: 3 intentos separados 1,5 s y, si fallan, bloqueo en solo lectura con aviso;
+  - sin conexión al guardar: la edición se queda en cola y se reintenta cada 5 s.
+- **Conflictos (D12):** cada cambio lleva la versión de la fila. Si el backend
+  responde 409, se muestra «Otra persona ha cambiado este ensayo» con
+  «Ver su versión» (se descarta lo mío y se relee) o «Guardar la mía encima»
+  (se reenvía con `forzar`).
+- **Reglas (422):** el mensaje del backend se muestra tal cual, como hacía el
+  `alert` de la 4.9.4.
+- Las preferencias de pantalla (orden y ancho de columnas, zoom del Gantt,
+  reparto tabla/Gantt) se guardan en el navegador, como antes.
+
+## Cómo llega al usuario
+
+`npm run build` genera `frontend/dist`; Maven lo mete dentro del jar como
+recursos estáticos y el backend lo sirve en `http://127.0.0.1:5001/`. La
+interfaz clásica sigue disponible en `/clasico` como respaldo. El zip ya trae
+`frontend/dist` compilado, así que en el PC **no hace falta Node**. Para
+recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
+(descarga un Node portátil dentro de `backend/target`).
+
