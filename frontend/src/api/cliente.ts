@@ -1,6 +1,6 @@
 import type {
-  Aprobacion, FilaEnConflicto, PropuestaCierre, RespuestaOperacion, Sesion, TipoOperacion,
-  ValidacionCierre, ValoresCierre, Vista,
+  Aprobacion, BloquesKpi, FilaEnConflicto, FotoSemanal, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
+  Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
 
 /*
@@ -93,4 +93,14 @@ export const api = {
   aprobaciones: () => peticion<Aprobacion[]>('GET', '/api/v1/aprobaciones'),
   estadosAprobacion: (ids: string[]) =>
     peticion<Record<string, { status: string }>>('POST', '/api/v1/aprobaciones/estados', { ids }),
+
+  // Dashboard (bloque B)
+  bloquesKpi: (lunes: string, org: string, responsable?: string | null) =>
+    peticion<BloquesKpi>('GET', `/api/v1/indicadores/bloques?lunes=${lunes}&org=${enc(org)}`
+      + (responsable == null ? '' : `&responsable=${enc(responsable)}`)),
+  tablaOcupacion: (desde: string, hasta: string, org: string) =>
+    peticion<TablaOcupacion>('GET', `/api/v1/indicadores/tabla-ocupacion?desde=${desde}&hasta=${hasta}&org=${enc(org)}`),
+  tendencia: (cwDesde: number, cwHasta: number, org: string) =>
+    peticion<Tendencia>('GET', `/api/v1/indicadores/tendencia?cwDesde=${cwDesde}&cwHasta=${cwHasta}&org=${enc(org)}`),
+  fotoSemanal: () => peticion<FotoSemanal[]>('POST', '/api/v1/indicadores/foto-semanal'),
 };

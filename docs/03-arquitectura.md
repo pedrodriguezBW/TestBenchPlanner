@@ -67,7 +67,7 @@ com.borgwarner.tbp
 | Bloque | Contenido | Estado |
 |---|---|---|
 | A | Vista de banco: tabla de ensayos (30 columnas), Gantt, cierre, lista de cerrados, selección, mover, ordenar, aprobaciones | **Hecho** |
-| B | Dashboard | Pendiente (el menú lleva a /clasico) |
+| B | Dashboard y «By Responsible» | **Hecho** |
 | C | KPI y estadísticas | Pendiente |
 | D | Recursos | Pendiente |
 | E | Configuración | Pendiente |
@@ -85,6 +85,8 @@ componentes/  Dialogo, SelectorFecha (calendario propio con CW), Avisos (toasts,
 utilidades/   fechas, textos (etiquetas y colores de la 4.9.4), preferencias (localStorage)
 bloques/banco TablaEnsayos, columnas, Celdas, Gantt, VentanaCierre, ListaCerrados,
               BuscadorAprobaciones, BarraSeleccion, VistaBanco
+bloques/panel VistaDashboard, VistaResponsable, BloquesKpi, GanttGeneral,
+              GraficaOcupacion, TablaOcupacion, NavegacionSemana, comunes
 estilos/      base-4.9.4.css (el CSS original, sin cambios) · aplicacion.css (lo nuevo)
 ```
 
@@ -116,4 +118,31 @@ interfaz clásica sigue disponible en `/clasico` como respaldo. El zip ya trae
 `frontend/dist` compilado, así que en el PC **no hace falta Node**. Para
 recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
 (descarga un Node portátil dentro de `backend/target`).
+
+## Bloque B: Dashboard y «By Responsible»
+
+- **Cálculos en el backend** (`/api/v1/indicadores`):
+  - `bloques?lunes&org&responsable`: «Esta semana» / «Semana que viene»
+    (blockKPIs); con `responsable` solo cuentan sus ensayos.
+  - `tabla-ocupacion?desde&hasta&org`: por tipo de banco, bancos, trabajando,
+    horas ocupadas/disponibles, % e inicios/fines (utilCardHTML). Dominio:
+    `PanelDashboard.tabla`.
+  - `tendencia?cwDesde&cwHasta&org`: ocupación semana a semana del año, en % y
+    en horas (trendData). Dominio: `PanelDashboard.tendencia`.
+  - `foto-semanal`: 📊 Update Yearly Status (sin cambios desde H2; D21 sigue
+    pendiente de decidir en el bloque C).
+- **En la interfaz** solo se agrupa lo que ya trae la vista: el Gantt de todos los
+  bancos, la carga del equipo (activos / corriendo / en retraso por persona) y el
+  aviso de ensayos sin Approval ID aprobado.
+- **Estado compartido** (`estado/Panel.tsx`): semana que se mira, zoom, filtro
+  Org, ancho de día, responsable elegido y rango de la gráfica, comunes a las dos
+  pantallas y vigentes mientras la pestaña está abierta, como las variables
+  globales de la 4.9.4. Las preferencias de las tarjetas (`bw_tbp_viewprefs_v1`)
+  se guardan en el navegador con la misma clave que la 4.9.4; el alto de las
+  tarjetas, en `tbp_alturas_tarjetas`.
+- Ajustes hechos en el Gantt del banco al construir el general: la línea de HOY
+  empieza al principio del día (antes, medio día más a la derecha), las cabeceras
+  quedan fijas al hacer scroll vertical, el proyecto en foco se resalta (`g-foc`)
+  y, sin ensayos con fechas, no se muestra la barra de herramientas. Todo como en
+  la 4.9.4.
 

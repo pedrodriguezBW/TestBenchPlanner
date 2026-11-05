@@ -186,6 +186,65 @@ async function ventanaCierre(banco, id, correccion, valores) {
   }, [banco, id, correccion, valores || null]);
 }
 
+/** Indicadores del Dashboard calculados con las funciones de la 4.9.4. */
+async function indicadores(que, q, metodo) {
+  const org = q.get('org') || 'ALL';
+  if (que === 'foto-semanal' && metodo === 'POST') {
+    const fotos = await sesion.evaluar(() => { const s = snapshotKPIs(); updateYearlyStatus(true); return s; });
+    return { estado: 200, cuerpo: fotos };
+  }
+  if (que === 'bloques') {
+    const cuerpo = await sesion.evaluar(([lunes, o, resp]) => {
+      recomputeAll();
+      const ff = o === 'ALL' ? null : (bn) => benchOrg(bn) === o;
+      const filas = resp === null ? null : (r) => (r.resp || '') === resp;
+      const l = lunes ? weekStart(d0(lunes)) : weekStart(TODAY);
+      return { estaSemana: blockKPIs(l, filas, ff), siguiente: blockKPIs(addDays(l, 7), filas, ff) };
+    }, [q.get('lunes'), org, q.has('responsable') ? q.get('responsable') : null]);
+    return { estado: 200, cuerpo };
+  }
+  if (que === 'tabla-ocupacion') {
+    const cuerpo = await sesion.evaluar(([desde, hasta, o]) => {
+      recomputeAll();
+      const a = d0(desde), b = d0(hasta);
+      const ff = o === 'ALL' ? null : (bn) => benchOrg(bn) === o;
+      let TB = 0, TC = 0;
+      const grupos = [];
+      GROUPS.forEach((g) => {
+        const gb = g.benches.filter((bn) => !ff || ff(bn));
+        if (!gb.length) return;
+        let bw = 0, s2 = 0, e2 = 0;
+        gb.forEach((bn) => {
+          const rs = activeRows(bn);
+          if (rs.some((r) => overlaps(r, a, b))) bw++;
+          rs.forEach((r) => { if (inWeek(r._start, a, b)) s2++; if (inWeek(r._end, a, b)) e2++; });
+        });
+        const oc = occupancyOf(gb, a, b);
+        TB += oc.busy; TC += oc.cap;
+        grupos.push({ clave: g.key, nombre: g.name, color: g.dot, bancos: gb.length, trabajando: bw, inicia: s2, acaba: e2, busy: oc.busy, cap: oc.cap, pct: oc.pct });
+      });
+      return { grupos, busy: TB, cap: TC, pct: TC ? Math.round(100 * TB / TC) : 0 };
+    }, [q.get('desde'), q.get('hasta'), org]);
+    return { estado: 200, cuerpo };
+  }
+  if (que === 'tendencia') {
+    const cuerpo = await sesion.evaluar(([desde, hasta, o]) => {
+      recomputeAll();
+      const prefs = Object.assign({}, VIEWPREF), trend = Object.assign({}, TREND);
+      VIEWPREF.trendOrg = o; TREND.cwFrom = desde; TREND.cwTo = hasta;
+      VIEWPREF.trendMode = 'pct'; const pct = trendData();
+      VIEWPREF.trendMode = 'hours'; const horas = trendData();
+      Object.assign(VIEWPREF, prefs); Object.assign(TREND, trend);
+      return {
+        anio: pct.yr, semanasDelAnio: pct.nW, desde: pct.cf, hasta: pct.ct, lunes: pct.weeks.map(iso), cw: pct.weeks.map(cw),
+        series: pct.series.map((s, i) => ({ clave: s.key, nombre: s.name, color: s.color, bancos: s.n, busy: horas.series[i].data, pct: s.data })),
+      };
+    }, [Number(q.get('cwDesde') || 0), Number(q.get('cwHasta') || 0), org]);
+    return { estado: 200, cuerpo };
+  }
+  return { estado: 404, cuerpo: { error: 'sin ruta' } };
+}
+
 async function atender(metodo, ruta, cuerpo) {
   const url = new URL(ruta, 'http://local');
   const p = url.pathname;
@@ -199,6 +258,7 @@ async function atender(metodo, ruta, cuerpo) {
   if (p === '/api/v1/planificacion') return { estado: 200, cuerpo: (await vista()).vista };
   if (p === '/api/v1/catalogos') return { estado: 200, cuerpo: escenario.configuracion };
   if (p === '/api/v1/usuarios') return { estado: 200, cuerpo: escenario.usuarios };
+  if (p.startsWith('/api/v1/indicadores/')) return indicadores(p.slice('/api/v1/indicadores/'.length), url.searchParams, metodo);
   if (p === '/api/v1/aprobaciones') return { estado: 200, cuerpo: escenario.aprobaciones };
   if (p === '/api/v1/aprobaciones/estados') {
     const salida = {};

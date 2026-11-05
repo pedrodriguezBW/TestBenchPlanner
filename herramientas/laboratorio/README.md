@@ -20,6 +20,10 @@ parado en la fecha del caso.
 | `generar-referencias.cjs` | Ejecuta los casos y guarda el resultado en `referencias/`. |
 | `casos/*.json` | Casos de caracterización, independientes de la implementación. |
 | `referencias/*.json` | Resultado de la 4.9.4 para cada caso: la verdad contra la que se compara la versión nueva. |
+| `backend-simulado-4.9.4.cjs` | Backend `/api/v1` que calcula con la 4.9.4 por detrás, para probar la interfaz React sin Java. |
+| `controlador-react.cjs` · `comparar-interfaz.cjs` | Ejecutan los casos sobre la interfaz React como un usuario y comparan con las referencias (bloque A). |
+| `casos-interfaz/panel.json` · `comparar-panel.cjs` | Dashboard y «By Responsible»: mismos gestos en las dos interfaces y comparación de lo que se ve (bloque B). |
+| `cambios-aprobados.json` · `cambios-aprobados-interfaz.json` | Diferencias admitidas, cada una ligada a una discrepancia o a un bloque pendiente. |
 
 ## Qué contiene una foto
 
@@ -29,6 +33,7 @@ parado en la fecha del caso.
 - `otrasEscrituras`: cualquier otra escritura (fotos KPI, configuración…), con su cuerpo.
 - `dialogos`: avisos y confirmaciones mostrados.
 - `kpi`, `estadisticas`, `historicoKpi`, `cierre`, `persistido`: según pida el caso.
+- `panel` (casos B01–B05): tabla de ocupación (semana, año y CW10–CW14), gráfica por CW (% y horas) y bloques KPI por responsable, leídos de las tarjetas del Dashboard de la 4.9.4.
 - `erroresJs`: errores de JavaScript (deben ser cero).
 
 ## Requisitos y ejecución

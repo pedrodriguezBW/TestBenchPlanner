@@ -9,9 +9,10 @@ listas actuales de SharePoint mientras la interfaz se sustituye por bloques. La
 versión 4.9.4 se mantiene sin modificar como oráculo de paridad y como respaldo
 durante la transición.
 
-> **Estado actual: H3A.** H1 y H2 están terminados. En H3 está migrado el bloque
-> A (operativa diaria de bancos); dashboard, KPI, recursos, configuración y
-> exportaciones siguen disponibles mediante la interfaz clásica en `/clasico`.
+> **Estado actual: H3B.** H1 y H2 están terminados. En H3 están migrados el
+> bloque A (operativa diaria de bancos) y el bloque B (Dashboard y «By
+> Responsible»); KPI History, recursos, configuración y exportaciones siguen
+> disponibles mediante la interfaz clásica en `/clasico`.
 
 ## Índice
 
@@ -34,10 +35,11 @@ durante la transición.
 | **H2 · Backend Java** | Monolito modular Spring Boot, dominio y casos de uso, persistencia local y SharePoint, API nueva y API compatible con la 4.9.4. | **Terminado**; pruebas verdes y SharePoint validado en solo lectura |
 | **H2b · Protección de datos** | Protección frente a lecturas ausentes, fallidas o vacías; reconciliación bloqueada para evitar sobrescrituras destructivas de listas compartidas. | **Integrado en H2** |
 | **H3A · React, bloque A** | Vista de banco: tabla de 30 columnas, Gantt, edición, selección, operaciones de cola, aprobaciones, cierre y lista de ensayos cerrados. | **Terminado** |
-| **H3B–H3F · React** | Dashboard, KPI/estadísticas, recursos, configuración y exportaciones. Hasta su migración, el menú deriva estas áreas a `/clasico`. | Pendiente |
+| **H3B · React, bloque B** | Dashboard (bloques KPI, plan anual por banco, gráfica de ocupación por CW, tabla de ocupación por tipo de banco, 📊 Update Yearly Status) y «By Responsible» (Manager View, carga del equipo, aviso de IDs sin aprobar). | **Entregado**; pendiente de validar en el PC |
+| **H3C–H3F · React** | KPI History/estadísticas, recursos, configuración y exportaciones. Hasta su migración, el menú deriva estas áreas a `/clasico`. | Pendiente |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
 
-### Funcionalidad disponible en H3A
+### Funcionalidad disponible en H3B
 
 - Planificación y edición diaria por banco.
 - Cálculo de fechas, estados, sugerencias, cierres, KPI, ocupación y calendario
@@ -48,6 +50,13 @@ duplicar, mover, borrar y añadir ensayos.
 - Concurrencia optimista en la API React: ante un cambio ajeno se puede ver la
 versión remota o forzar la versión local.
 - Relectura periódica, cola de guardado y recuperación ante pérdida de conexión.
+- Dashboard: navegación por semanas, filtro Org, bloques «Esta semana» / «Semana
+que viene», Gantt de todos los bancos (año o semana, zoom y foco de proyecto),
+gráfica de ocupación por CW (% u horas, rango de CW, series ocultables), tabla de
+ocupación por tipo de banco (semana o acumulado) y foto semanal del histórico.
+- «By Responsible»: planificación de una persona o del equipo (Manager View),
+carga por responsable y aviso de ensayos sin Approval ID aprobado.
+- La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` para los bloques todavía no migrados.
 
 ## Arquitectura
@@ -134,8 +143,9 @@ TestBenchPlanner/
 │   └── src/
 │       ├── api/                           Cliente y tipos de /api/v1
 │       ├── bloques/banco/                 Bloque A: tabla, Gantt, cierre y operaciones
+│       ├── bloques/panel/                 Bloque B: Dashboard y «By Responsible»
 │       ├── componentes/                   Diálogos, avisos y selector de fecha
-│       ├── estado/                        Carga, guardado, conflictos y relectura
+│       ├── estado/                        Carga, guardado, conflictos, relectura y estado del Dashboard
 │       ├── estilos/                       CSS original y estilos de la nueva interfaz
 │       └── utilidades/                    Fechas, textos y preferencias locales
 │
@@ -151,9 +161,11 @@ TestBenchPlanner/
 │   ├── importar-sharepoint/              Generación de escenarios anonimizados
 │   └── laboratorio/
 │       ├── casos/                         Entradas del laboratorio
+│       ├── casos-interfaz/                Casos de pantalla (Dashboard y «By Responsible»)
 │       ├── referencias/                   Resultados esperados de la 4.9.4
 │       ├── comparar.cjs                   Comparador backend/paridad
-│       ├── comparar-interfaz.cjs          Paridad funcional de React
+│       ├── comparar-interfaz.cjs          Paridad funcional de React (bloque A)
+│       ├── comparar-panel.cjs             Paridad visual del Dashboard (bloque B)
 │       ├── pruebas-interfaz.cjs           Conflicto, conexión y solo lectura
 │       └── backend-simulado-4.9.4.cjs     Backend de apoyo para pruebas React
 │
@@ -187,7 +199,7 @@ instalarlo en el sistema.
 - Conexión a Internet en la primera ejecución de Maven para descargar el wrapper
 y las dependencias.
 - **Node.js solo es necesario si se modifica el frontend** o se ejecutan las
-pruebas web. Las entregas H3A incluyen `frontend/dist` compilado; si falta en un
+pruebas web. Las entregas de H3 incluyen `frontend/dist` compilado; si falta en un
 clon limpio, se puede generar con npm o con el perfil Maven `interfaz`.
 
 En Windows, si se usa un JDK portable:
@@ -289,7 +301,7 @@ desactivados presencia, registro de actividad y publicación de versión.
 
 | Suite | Cobertura principal |
 |---|---|
-| `ParidadLaboratorioTest` | 67 casos de planificación, `DataJson`, orden, KPI, ocupación, histórico y cierre frente a la 4.9.4. |
+| `ParidadLaboratorioTest` | 72 casos de planificación, `DataJson`, orden, KPI, ocupación, histórico, cierre y Dashboard (tabla de ocupación, gráfica por CW y KPI por responsable) frente a la 4.9.4. |
 | `ValoresYJsonTest` | Valores, JSON, festivos y semanas ISO compatibles con JavaScript/Python. |
 | `ApiLocalTest` | API compatible y API v1, conflicto 409, forzado, reglas 422 y `/clasico`. |
 | `RelojTest` | Cambio de día en la zona `Europe/Madrid` y fecha fija. |
@@ -312,11 +324,15 @@ Las pruebas web requieren Node.js y Playwright:
 node herramientas/laboratorio/backend-simulado-4.9.4.cjs 5001
 TZ=Europe/Madrid node herramientas/laboratorio/comparar-interfaz.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 ```
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
 cierre y roles. `pruebas-interfaz.cjs` cubre además conflicto, desconexión, modo
-solo lectura y el flujo de reinicio local.
+solo lectura y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 22 casos
+de Dashboard y «By Responsible» en la 4.9.4 y en React con los mismos gestos y
+compara lo que se ve: KPI, barras del Gantt (posición, color, texto), puntos de
+la gráfica, tablas de ocupación y de equipo, avisos y mensajes.
 
 ## Configuración
 
@@ -344,7 +360,8 @@ Propiedades principales de Spring Boot:
 sirve la interfaz clásica.
 - **`/clasico`**: HTML 4.9.4 original sobre el backend Java.
 - **`/api/v1/*`**: API usada por React para sesión, planificación, campos,
-operaciones, cierre, configuración, aprobaciones, recursos e indicadores.
+operaciones, cierre, configuración, aprobaciones, recursos e indicadores
+(`/api/v1/indicadores/bloques`, `tabla-ocupacion`, `tendencia`, `foto-semanal`…).
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa
 la interfaz 4.9.4.
 - **`/api/v1/local/reinicio`**: reinicio del escenario para el laboratorio;
@@ -367,7 +384,8 @@ protección `planner.sharepoint.escritura-habilitada`.
 - Una funcionalidad solo se considera migrada cuando no presenta diferencias
 sin clasificar frente al laboratorio.
 - Las diferencias aprobadas se registran en
-`herramientas/laboratorio/cambios-aprobados.json`.
+`herramientas/laboratorio/cambios-aprobados.json` (datos) y
+`herramientas/laboratorio/cambios-aprobados-interfaz.json` (pantallas).
 - Facturación queda fuera del alcance de esta migración.
 
 ## Documentación

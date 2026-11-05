@@ -35,6 +35,15 @@ public final class IndicadoresSemana {
     }
 
     public static Bloque bloque(Planificacion planificacion, ResultadoPlan plan, LocalDate lunes, Predicate<String> filtroBancos) {
+        return bloque(planificacion, plan, lunes, filtroBancos, e -> true);
+    }
+
+    /**
+     * Con filtro de filas (vista «By Responsible»: solo los ensayos de una
+     * persona). El total de bancos no depende del filtro de filas.
+     */
+    public static Bloque bloque(Planificacion planificacion, ResultadoPlan plan, LocalDate lunes, Predicate<String> filtroBancos,
+                                Predicate<Ensayo> filtroFilas) {
         LocalDate domingo = lunes.plusDays(6);
         int total = 0;
         Set<String> bancosConCarga = new HashSet<>();
@@ -45,6 +54,9 @@ public final class IndicadoresSemana {
             }
             total++;
             for (Ensayo e : planificacion.activos(banco)) {
+                if (!filtroFilas.test(e)) {
+                    continue;
+                }
                 boolean especial = e.esTipoEspecial();
                 PlanEnsayo p = plan.de(e);
                 boolean solapa = solapa(p, lunes, domingo);

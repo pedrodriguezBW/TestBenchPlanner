@@ -105,6 +105,7 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const [sincronizacion, setSincronizacion] = useState<EstadoSincronizacion>('conectando');
   const [proyectos, setProyectos] = useState<string[]>([]);
   const [usuariosResp, setUsuariosResp] = useState<string[]>([]);
+  const [responsablesCatalogo, setResponsablesCatalogo] = useState<string[]>([]);
   const [estadosAprobacion, setEstadosAprobacion] = useState<Record<string, string>>({});
   const [avisos, setAvisos] = useState<Aviso[]>([]);
   const [conflicto, setConflicto] = useState<Conflicto | null>(null);
@@ -352,7 +353,7 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
       }
       recibirVista(vista);
       setSincronizacion('ok');
-      api.catalogos().then((c) => setProyectos(c.projects ?? [])).catch(() => undefined);
+      api.catalogos().then((c) => { setProyectos(c.projects ?? []); setResponsablesCatalogo(c.responsibles ?? []); }).catch(() => undefined);
       api.usuarios().then((u) => setUsuariosResp(u.map((x) => (x.responsibleName ?? '').trim()).filter(Boolean)))
         .catch(() => undefined);
     })();
@@ -399,12 +400,14 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     return () => window.clearInterval(t);
   }, [idsAprobacion]);
 
-  // Personas del desplegable: usuarios + responsables ya usados (respPool).
+  // Personas (respPool): usuarios + responsables del catálogo + los ya usados en
+  // algún ensayo. No se incluye la lista fija de nombres de la 4.9.4 (D24).
   const personas = useMemo(() => {
     const nombres = new Set(usuariosResp);
+    responsablesCatalogo.forEach((n) => nombres.add(n));
     if (vistaServidor) Object.values(vistaServidor.bancos).forEach((fs) => fs.forEach((f) => { if (f.datos.resp) nombres.add(String(f.datos.resp)); }));
     return [...nombres].filter(Boolean).sort((a, b) => a.localeCompare(b));
-  }, [usuariosResp, vistaServidor]);
+  }, [usuariosResp, responsablesCatalogo, vistaServidor]);
 
   // Lo que se ve = lo del servidor + lo escrito y aún no guardado.
   const vista = useMemo(

@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 class ParidadLaboratorioTest {
 
     private static final List<String> APARTADOS = List.of("planificacion", "persistido", "orden", "cambiosPersistidos",
-            "kpi", "estadisticas", "historicoKpi");
+            "kpi", "estadisticas", "historicoKpi", "panel");
 
     private static Path laboratorio() {
         return Path.of(System.getProperty("laboratorio.dir", "../herramientas/laboratorio"));

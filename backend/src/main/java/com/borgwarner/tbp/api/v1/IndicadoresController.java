@@ -35,9 +35,25 @@ public class IndicadoresController {
     }
 
     @GetMapping("/bloques")
-    public JsonNode bloques(@RequestParam(required = false) String lunes, @RequestParam(defaultValue = "ALL") String org) {
+    public JsonNode bloques(@RequestParam(required = false) String lunes, @RequestParam(defaultValue = "ALL") String org,
+                            @RequestParam(required = false) String responsable) {
         Vista vista = planificacion.vista();
-        return JsonJs.mapper().valueToTree(indicadores.bloques(vista, fecha(lunes, vista.contexto().hoy()), org));
+        return JsonJs.mapper().valueToTree(indicadores.bloques(vista, fecha(lunes, vista.contexto().hoy()), org, responsable));
+    }
+
+    /** Tabla «Ocupación por tipo de banco» (una semana o el acumulado de un rango). */
+    @GetMapping("/tabla-ocupacion")
+    public JsonNode tablaOcupacion(@RequestParam String desde, @RequestParam String hasta, @RequestParam(defaultValue = "ALL") String org) {
+        Vista vista = planificacion.vista();
+        return JsonJs.mapper().valueToTree(indicadores.tablaOcupacion(vista, LocalDate.parse(desde), LocalDate.parse(hasta), org));
+    }
+
+    /** Gráfica «% Ocupación por CW»: cwDesde/cwHasta = 0 significa «todo el año». */
+    @GetMapping("/tendencia")
+    public JsonNode tendencia(@RequestParam(defaultValue = "0") int cwDesde, @RequestParam(defaultValue = "0") int cwHasta,
+                              @RequestParam(defaultValue = "ALL") String org) {
+        Vista vista = planificacion.vista();
+        return JsonJs.mapper().valueToTree(indicadores.tendencia(vista, cwDesde, cwHasta, org));
     }
 
     @GetMapping("/ocupacion")

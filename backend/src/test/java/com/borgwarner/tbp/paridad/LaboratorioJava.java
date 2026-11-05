@@ -10,6 +10,7 @@ import com.borgwarner.tbp.dominio.kpi.FotoSemanal;
 import com.borgwarner.tbp.dominio.kpi.HistoricoKpi;
 import com.borgwarner.tbp.dominio.kpi.IndicadoresSemana;
 import com.borgwarner.tbp.dominio.kpi.Ocupacion;
+import com.borgwarner.tbp.dominio.kpi.PanelDashboard;
 import com.borgwarner.tbp.dominio.operaciones.Cierre;
 import com.borgwarner.tbp.dominio.operaciones.EdicionEnsayo;
 import com.borgwarner.tbp.dominio.operaciones.GeneradorIds;
@@ -300,6 +301,9 @@ final class LaboratorioJava {
         if (apartados.contains("kpi")) {
             foto.set("kpi", kpi(plan));
         }
+        if (apartados.contains("panel")) {
+            foto.set("panel", panel(plan));
+        }
         if (apartados.contains("estadisticas")) {
             int anio = contexto.hoy().getYear();
             ArrayNode lista = foto.putArray("estadisticas");
@@ -346,6 +350,63 @@ final class LaboratorioJava {
         f.put("arranqueEfectivo", EstadosEnsayo.arranqueEfectivo(e, contexto.hoy()));
         f.put("diasSinAvance", MotorFechas.diasSinAvance(e, contexto.hoy()));
         return f;
+    }
+
+    /** Dashboard (bloque B): lo mismo que lee la 4.9.4 de utilCardHTML, trendData y blockKPIs. */
+    private ObjectNode panel(ResultadoPlan plan) {
+        LocalDate lunes = Fechas.lunesDe(contexto.hoy());
+        int anio = contexto.calendario().anio();
+        LocalDate semanaUno = PanelDashboard.lunesSemanaUno(anio);
+        int semanas = PanelDashboard.semanasDelAnio(anio);
+        ObjectNode panel = JsonJs.objetoVacio();
+        ObjectNode tablas = panel.putObject("tabla");
+        ObjectNode tendencias = panel.putObject("tendencia");
+        for (String org : FiltroOrganizacion.ORGANIZACIONES) {
+            var filtro = FiltroOrganizacion.de(org, planificacion.configuracion());
+            ObjectNode t = tablas.putObject(org);
+            t.set("semana", tablaComoLa494(PanelDashboard.tabla(planificacion, plan, lunes, lunes.plusDays(6), filtro)));
+            t.set("anual", tablaComoLa494(PanelDashboard.tabla(planificacion, plan, semanaUno,
+                    semanaUno.plusDays(7L * (semanas - 1) + 6), filtro)));
+            t.set("rango", tablaComoLa494(PanelDashboard.tabla(planificacion, plan, semanaUno.plusDays(7L * 9),
+                    semanaUno.plusDays(7L * 13 + 6), filtro)));
+            PanelDashboard.Tendencia tendencia = PanelDashboard.tendencia(planificacion, plan, anio, 1, 53, filtro);
+            ObjectNode g = tendencias.putObject(org);
+            g.put("desde", tendencia.desde()).put("hasta", tendencia.hasta()).put("semanas", tendencia.semanasDelAnio());
+            g.set("lunes", JsonJs.mapper().valueToTree(tendencia.lunes()));
+            ArrayNode series = g.putArray("series");
+            for (PanelDashboard.Serie serie : tendencia.series()) {
+                ObjectNode sr = series.addObject();
+                sr.put("clave", serie.clave()).put("bancos", serie.bancos());
+                sr.set("pct", JsonJs.mapper().valueToTree(serie.pct()));
+                sr.set("busy", JsonJs.mapper().valueToTree(serie.busy()));
+            }
+        }
+        ObjectNode responsables = panel.putObject("responsables");
+        java.util.TreeSet<String> nombres = new java.util.TreeSet<>();
+        for (String banco : planificacion.bancos()) {
+            planificacion.activos(banco).forEach(e -> nombres.add(e.texto("resp")));
+        }
+        nombres.remove("");
+        for (String nombre : nombres) {
+            ObjectNode r = responsables.putObject(nombre);
+            r.set("estaSemana", JsonJs.mapper().valueToTree(IndicadoresSemana.bloque(planificacion, plan, lunes, b -> true,
+                    e -> e.texto("resp").equals(nombre))));
+            r.set("siguiente", JsonJs.mapper().valueToTree(IndicadoresSemana.bloque(planificacion, plan, lunes.plusDays(7), b -> true,
+                    e -> e.texto("resp").equals(nombre))));
+        }
+        return panel;
+    }
+
+    /** La tabla con los mismos campos que se leen de la tarjeta de la 4.9.4. */
+    private static ObjectNode tablaComoLa494(PanelDashboard.TablaOcupacion tabla) {
+        ObjectNode t = JsonJs.objetoVacio();
+        ArrayNode grupos = t.putArray("grupos");
+        for (PanelDashboard.FilaOcupacion f : tabla.grupos()) {
+            grupos.addObject().put("nombre", f.nombre()).put("bancos", f.bancos()).put("trabajando", f.trabajando())
+                    .put("busy", f.busy()).put("cap", f.cap()).put("pct", f.pct()).put("inicia", f.inicia()).put("acaba", f.acaba());
+        }
+        t.put("busy", tabla.busy()).put("cap", tabla.cap()).put("pct", tabla.pct());
+        return t;
     }
 
     private ObjectNode kpi(ResultadoPlan plan) {

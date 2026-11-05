@@ -1,0 +1,7 @@
+[
+ { "id": "B01-panel-2026-11-05", "titulo": "Dashboard: ocupación, gráfica por CW y KPI por responsable (hoy)", "funcionalidad": "B1-DASH,B2-RESP", "escenario": "sharepoint-2026-11-05", "fecha": "2026-11-05", "pasos": [], "observar": ["panel"] },
+ { "id": "B02-panel-2026-03-30", "titulo": "Dashboard a final de marzo (rango CW10-CW14 con datos)", "funcionalidad": "B1-DASH", "escenario": "sharepoint-2026-11-05", "fecha": "2026-03-30", "pasos": [], "observar": ["panel"] },
+ { "id": "B03-panel-2026-12-31", "titulo": "Dashboard el 31-dic (semana que cruza de año)", "funcionalidad": "B1-DASH", "escenario": "sharepoint-2026-11-05", "fecha": "2026-12-31", "pasos": [], "observar": ["panel"] },
+ { "id": "B04-panel-2027-01-01", "titulo": "Dashboard el 1-ene-2027 (año nuevo, 53 semanas en 2026)", "funcionalidad": "B1-DASH,D6", "escenario": "sharepoint-2026-11-05", "fecha": "2027-01-01", "pasos": [], "observar": ["panel"] },
+ { "id": "B05-panel-tras-cierre", "titulo": "Dashboard tras cerrar un ensayo (cuenta como completado en la ocupación)", "funcionalidad": "B1-DASH,A11-CLOSE", "escenario": "sharepoint-2026-11-05", "fecha": "2026-11-05", "pasos": [{ "op": "cerrar", "banco": "Turismos", "ensayo": "rd8wnobn" }], "observar": ["panel"] }
+]

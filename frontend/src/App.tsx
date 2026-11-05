@@ -1,5 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { VistaBanco } from './bloques/banco/VistaBanco';
+import { VistaDashboard } from './bloques/panel/VistaDashboard';
+import { VistaResponsable } from './bloques/panel/VistaResponsable';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
@@ -23,8 +25,6 @@ const SINCRONIZACION: Record<EstadoSincronizacion, [string, string]> = {
 
 /** Secciones que aún no están migradas (se indican, pero no se inventan). */
 const PENDIENTES: Record<string, [string, string]> = {
-  __dash__: ['\u{1F4CA} Dashboard', 'bloque B'],
-  __resp__: ['\u{1F464} By Responsible', 'bloque B'],
   __kpihist__: ['\u{1F4C8} KPI History', 'bloque C'],
   __resources__: ['\u{1F4CB} List of Equipments', 'bloque D'],
   __benches__: ['\u{1F527} Test Benches', 'bloque E'],
@@ -50,8 +50,8 @@ export function App() {
 
   const ir = (destino: string) => { window.location.hash = '/' + encodeURIComponent(destino); };
   const bancos = vista ? vista.grupos.flatMap((g) => g.bancos.map((b) => b.nombre)) : [];
-  // Sin ruta, se abre el primer banco mientras el dashboard no esté migrado.
-  const pantalla = actual || bancos[0] || '';
+  // Sin ruta se abre el Dashboard, como en la 4.9.4.
+  const pantalla = actual || '__dash__';
   const esAdmin = !!sesion?.esAdmin;
   const esEditor = sesion?.rol === 'editor';
   const [textoSync, colorSync] = SINCRONIZACION[sincronizacion];
@@ -104,6 +104,8 @@ export function App() {
           {vista && bancos.includes(pantalla) && (
             <fieldset disabled={soloLectura} className="tbp-sin-marco"><VistaBanco banco={pantalla} onIrABanco={ir} /></fieldset>
           )}
+          {vista && pantalla === '__dash__' && <VistaDashboard />}
+          {vista && pantalla === '__resp__' && <VistaResponsable />}
           {vista && PENDIENTES[pantalla] && (
             <div className="sec">
               <h2>{PENDIENTES[pantalla][0]}</h2>

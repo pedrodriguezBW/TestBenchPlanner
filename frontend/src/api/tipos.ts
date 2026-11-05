@@ -172,3 +172,65 @@ export type TipoOperacion =
   | 'comprometer' | 'deshacerCompromiso' | 'comprometerTodos' | 'estado' | 'aplicarSugerencia'
   | 'reordenar' | 'duplicar' | 'borrarSeleccion' | 'borrar' | 'mover' | 'anadir'
   | 'alternarRecurso' | 'restaurar' | 'reutilizar';
+
+/* ===== Dashboard (bloque B) ============================================ */
+
+/** Un bloque KPI («Esta semana» / «Semana que viene»), nombres de la 4.9.4. */
+export interface BloqueKpi {
+  total: number;
+  benches: number;
+  accr: number;
+  delayed: number;
+  sug: number;
+}
+
+export interface BloquesKpi {
+  estaSemana: BloqueKpi;
+  siguiente: BloqueKpi;
+}
+
+export interface FilaOcupacion {
+  clave: string;
+  nombre: string;
+  color: string;
+  bancos: number;
+  trabajando: number;
+  inicia: number;
+  acaba: number;
+  busy: number;
+  cap: number;
+  pct: number;
+}
+
+export interface TablaOcupacion {
+  grupos: FilaOcupacion[];
+  busy: number;
+  cap: number;
+  pct: number;
+}
+
+export interface SerieTendencia {
+  clave: string;
+  nombre: string;
+  color: string;
+  bancos: number;
+  busy: number[];
+  pct: number[];
+}
+
+export interface Tendencia {
+  anio: number;
+  semanasDelAnio: number;
+  desde: number;
+  hasta: number;
+  lunes: string[];
+  cw: number[];
+  series: SerieTendencia[];
+}
+
+/** Una fila de la foto semanal (📊 Update Yearly Status). */
+export interface FotoSemanal {
+  year: number;
+  cw: number;
+  org: string;
+}

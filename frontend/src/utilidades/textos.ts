@@ -113,3 +113,6 @@ export function estiloPildoraAprobacion(clase: string): CSSProperties {
   if (clase === 'idbad') return { background: 'rgba(255,107,107,.20)', border: '1px solid var(--danger)', color: '#ffe3e3' };
   return { color: 'var(--muted)' };
 }
+
+/** Formulario de tickets de aprobación (TICKETS_URL de la 4.9.4). */
+export const URL_TICKETS_APROBACION = 'https://borgwarner.sharepoint.com/sites/5001274/processautomation';

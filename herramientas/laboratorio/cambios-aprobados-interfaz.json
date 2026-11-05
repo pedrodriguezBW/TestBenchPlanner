@@ -1,0 +1,3 @@
+[
+ { "caso": ".*", "ruta": "^/tarjetas/\\d+/botones/\\d+$", "referencia": "📊 Excel", "motivo": "Exportar el Gantt a Excel pertenece al bloque F (exportaciones); hasta entonces el botón no aparece." }
+]

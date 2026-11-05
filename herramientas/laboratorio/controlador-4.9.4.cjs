@@ -159,6 +159,52 @@ async function fotografiar(sesion, apartados) {
         foto.kpi.ocupacion[g.key] = { semana: occupancyOf(g.benches, lunes, addDays(lunes, 6)), anio: occupancyOf(g.benches, ini, fin) };
       });
     }
+    if (quiere('panel')) {
+      // Dashboard (bloque B): tabla de ocupación y gráfica por CW tal y como las
+      // pinta la 4.9.4, y los bloques KPI filtrados por responsable.
+      const lunes = weekStart(TODAY), domingo = addDays(lunes, 6);
+      const anio = state.settings.year, nW = cw(new Date(anio, 11, 28));
+      const prefs = Object.assign({}, VIEWPREF), trend = Object.assign({}, TREND);
+      const numero = (t) => Number(String(t).replace(/[^0-9-]/g, ''));
+      const leerTabla = () => {
+        const caja = document.createElement('div');
+        caja.innerHTML = utilCardHTML(lunes, domingo);
+        const filas = [...caja.querySelectorAll('table.util-full tbody tr')].map((tr) => [...tr.children].map((td) => td.textContent.trim()));
+        const total = filas.pop();
+        return {
+          grupos: filas.map((c) => ({ nombre: c[0], bancos: numero(c[1]), trabajando: numero(c[2]), busy: numero(c[3].split('/')[0]),
+            cap: numero(c[3].split('/')[1]), pct: numero(c[4]), inicia: numero(c[5]), acaba: numero(c[6]) })),
+          busy: numero(total[3].split('/')[0]), cap: numero(total[3].split('/')[1]), pct: numero(total[4]),
+        };
+      };
+      foto.panel = { tabla: {}, tendencia: {}, responsables: {} };
+      ['ALL', 'BW', 'CTAG'].forEach((org) => {
+        VIEWPREF.utilOrg = org; VIEWPREF.utilMode = 'pct';
+        VIEWPREF.utilFrom = null; VIEWPREF.utilTo = null;
+        const semana = leerTabla();
+        VIEWPREF.utilFrom = 1; VIEWPREF.utilTo = nW;
+        const anual = leerTabla();
+        VIEWPREF.utilFrom = 10; VIEWPREF.utilTo = 14;
+        const rango = leerTabla();
+        foto.panel.tabla[org] = { semana, anual, rango };
+        VIEWPREF.trendOrg = org;
+        TREND.cwFrom = 1; TREND.cwTo = 53;
+        VIEWPREF.trendMode = 'pct';
+        const pct = trendData();
+        VIEWPREF.trendMode = 'hours';
+        const horas = trendData();
+        foto.panel.tendencia[org] = {
+          desde: pct.cf, hasta: pct.ct, semanas: pct.nW, lunes: pct.weeks.map(iso),
+          series: pct.series.map((s, i) => ({ clave: s.key, bancos: s.n, pct: s.data, busy: horas.series[i].data })),
+        };
+      });
+      Object.assign(VIEWPREF, prefs); Object.assign(TREND, trend);
+      const resps = [...new Set(GROUPS.flatMap((g) => g.benches.flatMap((bn) => activeRows(bn).map((r) => r.resp || ''))))].filter(Boolean).sort();
+      resps.forEach((rp) => {
+        const ff = (r) => (r.resp || '') === rp;
+        foto.panel.responsables[rp] = { estaSemana: blockKPIs(lunes, ff, null), siguiente: blockKPIs(addDays(lunes, 7), ff, null) };
+      });
+    }
     if (quiere('estadisticas')) {
       STAT_FROM = iso(new Date(TODAY.getFullYear(), 0, 1)); STAT_TO = iso(new Date(TODAY.getFullYear(), 11, 31));
       foto.estadisticas = statRows().map((x) => ({ banco: x.bn, id: x.r.id, fecha: iso(x.dt), estadoFinal: x.fin, motivo: x.reason, confirmado: x.conf }));

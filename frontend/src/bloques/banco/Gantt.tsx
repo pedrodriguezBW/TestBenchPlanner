@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, type MouseEvent as EventoRaton } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, type MouseEvent as EventoRaton } from 'react';
 import type { FilaEnsayo, Vista } from '../../api/tipos';
 import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias } from '../../utilidades/fechas';
 import { usePreferencia } from '../../utilidades/preferencias';
+import { fijarCabeceras } from '../panel/GanttGeneral';
 import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../utilidades/textos';
 
 /*
@@ -46,6 +47,9 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rango?.min.getTime(), W]);
 
+  // Cabeceras (meses, CW, días) fijas al hacer scroll vertical, como en la 4.9.4.
+  useLayoutEffect(() => fijarCabeceras(caja.current));
+
   const zoom = (direccion: number) => {
     const paso = Math.max(2, Math.round(W * 0.2));
     setAnchoDia(Math.max(6, Math.min(90, W + direccion * paso)));
@@ -70,7 +74,8 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
   );
 
   if (!rango) {
-    return <>{barra}<div className="empty">No scheduled tests. Add a duration to see the Gantt.</div></>;
+    // Como en la 4.9.4: sin ensayos con fechas no hay Gantt ni barra de herramientas.
+    return <div className="empty">No scheduled tests. Add a duration to see the Gantt.</div>;
   }
 
   const { min, n, dias } = rango;
@@ -127,6 +132,7 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
             const comprometido = !!f.datos.confirmedStart && !especial;
             const pct = Math.round(c.fraccionAvance * 100);
             const atenuada = !!foco && f.datos.project !== foco;
+            const resaltada = !!foco && f.datos.project === foco;
             const titulo = `${especial ? `${f.datos.type} (bench blocked)` : etiquetaEstado(c.estado)} \u00b7 ${f.datos.type ?? ''} \u00b7 ${fmt(c.inicio)}\u2192${fmt(c.fin)}`
               + (especial ? '' : ` \u00b7 ${pct}%${comprometido ? ` \u00b7 confirmed ${fmt(f.datos.confirmedStart)}\u2192${f.datos.confirmedEnd ? fmt(f.datos.confirmedEnd) : '?'}` : ''}`);
             const texto = [f.datos.type || '', f.datos.comments || ''].filter(Boolean).join(' \u00b7 ') + (comprometido ? ` \u00b7 ${pct}%` : '');
@@ -139,7 +145,7 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
                 </div>
                 <div className="g-track" style={{ width: n * W }}>
                   {celdas}
-                  <div className={`g-bar ${especial ? 'striped' : 'solid'}${comprometido ? ' haloq' : ''}${atenuada ? ' g-dim' : ''}`} data-proj={f.datos.project ?? ''}
+                  <div className={`g-bar ${especial ? 'striped' : 'solid'}${comprometido ? ' haloq' : ''}${atenuada ? ' g-dim' : ''}${resaltada ? ' g-foc' : ''}`} data-proj={f.datos.project ?? ''}
                     title={titulo}
                     style={{
                       left: desplazamiento * W, width: Math.max(largo * W - 4, 20),
@@ -154,7 +160,8 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
               </div>
             );
           })}
-          <div className="g-todayline" style={{ left: LW + diasEntre(min, hoy) * W + W / 2 }} />
+          {/* positionTodayLine: al principio del día de hoy */}
+          <div className="g-todayline" style={{ left: LW + diasEntre(min, hoy) * W }} />
         </div>
       </div>
     </>

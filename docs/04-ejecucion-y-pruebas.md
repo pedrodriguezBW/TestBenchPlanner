@@ -147,3 +147,18 @@ Con el backend en modo local y `http://127.0.0.1:5001/`:
    menos de 20 s → aparece «Otra persona ha cambiado este ensayo».
 7. Comparar visualmente con `/clasico` (mismos datos, mismos colores y textos).
 
+### Prueba manual en el PC (bloque B)
+
+Con el backend en modo local y `http://127.0.0.1:5001/` (se abre en el Dashboard):
+
+1. Comparar con `/clasico` los dos bloques KPI, el plan anual, la gráfica y la tabla de ocupación.
+2. ◀ Prev / Next ▶ / Today y el filtro Org. Prev/Next pasan el plan a la semana; «Full year» vuelve.
+3. Zoom −/+/100 % y «Focus proyecto» en el plan anual.
+4. Gráfica: % / Horas, Org de la tarjeta, CW desde–hasta, Full year y ocultar una serie desde la leyenda.
+5. Tabla de ocupación: % / Horas, Org, rango de CW (acumulado), «Año» y «Semana del dashboard».
+6. Arrastrar el tirador inferior de una tarjeta (doble clic lo restablece).
+7. «By Responsible»: una persona, Manager View (tabla del equipo), Org y zoom.
+8. 📊 Update Yearly Status (en modo local escribe en el histórico local) y mensaje de confirmación.
+
+Paridad automática del bloque B (con Node): `TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs`.
+
