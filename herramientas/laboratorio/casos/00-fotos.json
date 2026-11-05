@@ -1,0 +1,100 @@
+[
+ {
+  "id": "F01-foto-2026-10-26",
+  "titulo": "Foto completa (plan, DataJson, KPI, estadísticas) el lunes 26-oct-2026",
+  "funcionalidad": "PLAN,KPI,OCU,EST,HIST",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-10-26",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "persistido",
+   "kpi",
+   "estadisticas",
+   "historicoKpi"
+  ]
+ },
+ {
+  "id": "F02-foto-2026-11-05",
+  "titulo": "Foto completa el jueves 5-nov-2026 (día de la lectura)",
+  "funcionalidad": "PLAN,KPI,OCU,EST,HIST",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "persistido",
+   "kpi",
+   "estadisticas",
+   "historicoKpi"
+  ]
+ },
+ {
+  "id": "F03-foto-2026-11-09",
+  "titulo": "Foto completa el lunes 9-nov-2026",
+  "funcionalidad": "PLAN,KPI,OCU,EST,HIST",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-09",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "persistido",
+   "kpi",
+   "estadisticas",
+   "historicoKpi"
+  ]
+ },
+ {
+  "id": "F04-foto-2026-12-31",
+  "titulo": "Foto completa el 31-dic-2026 (fin de año)",
+  "funcionalidad": "PLAN,KPI,OCU,EST,HIST,CAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-12-31",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "persistido",
+   "kpi",
+   "estadisticas",
+   "historicoKpi"
+  ]
+ },
+ {
+  "id": "F05-foto-2027-01-01",
+  "titulo": "Foto completa el 1-ene-2027: festivo y semana ISO 53 de 2026 (D6, D8)",
+  "funcionalidad": "PLAN,KPI,CAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2027-01-01",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "persistido",
+   "kpi",
+   "estadisticas",
+   "historicoKpi"
+  ]
+ },
+ {
+  "id": "F06-foto-2029-12-31",
+  "titulo": "Foto el 31-dic-2029: semana ISO 1 de 2030 (D8)",
+  "funcionalidad": "KPI,CAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2029-12-31",
+  "pasos": [],
+  "observar": [
+   "kpi"
+  ]
+ },
+ {
+  "id": "F07-foto-2026-03-30",
+  "titulo": "Foto en semana de cambio de hora (29-mar-2026)",
+  "funcionalidad": "PLAN,CAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-03-30",
+  "pasos": [],
+  "observar": [
+   "planificacion",
+   "kpi"
+  ]
+ }
+]

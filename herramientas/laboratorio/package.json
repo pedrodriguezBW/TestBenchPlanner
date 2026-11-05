@@ -1,0 +1,11 @@
+{
+  "name": "tbp-laboratorio-paridad",
+  "private": true,
+  "description": "Laboratorio de paridad con TestBenchPlanner 4.9.4",
+  "scripts": {
+    "referencias": "node generar-referencias.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.58.2"
+  }
+}

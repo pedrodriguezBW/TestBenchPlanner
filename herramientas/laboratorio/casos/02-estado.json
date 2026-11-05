@@ -1,0 +1,57 @@
+[
+ {
+  "id": "S01-estado-ok-borra-motivo",
+  "titulo": "Motivo y luego estado En plazo: se borra el motivo",
+  "funcionalidad": "A2-STATE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "delayReason",
+    "valor": "Averia"
+   },
+   {
+    "op": "estado",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "valor": "ok"
+   }
+  ]
+ },
+ {
+  "id": "S02-sugerencia",
+  "titulo": "Aplicar la sugerencia «¿En retraso?»",
+  "funcionalidad": "A2-STATE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "aplicarSugerencia",
+    "banco": "MD4",
+    "ensayo": "r6n3nyyn"
+   }
+  ]
+ },
+ {
+  "id": "S03-retraso-manual",
+  "titulo": "Declarar En retraso a mano",
+  "funcionalidad": "A2-STATE,KPI",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "estado",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valor": "delayed"
+   }
+  ],
+  "observar": [
+   "planificacion",
+   "kpi"
+  ]
+ }
+]

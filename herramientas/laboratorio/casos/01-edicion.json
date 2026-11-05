@@ -1,0 +1,436 @@
+[
+ {
+  "id": "E01-comentario",
+  "titulo": "Editar el comentario de un ensayo",
+  "funcionalidad": "A1-EDIT",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r3rtxond",
+    "campo": "comments",
+    "valor": "Comentario de prueba"
+   }
+  ]
+ },
+ {
+  "id": "E02-duracion",
+  "titulo": "Cambiar la duración 3 → 6 días: se desplaza la cola",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r3rtxond",
+    "campo": "durManual",
+    "valor": 6
+   }
+  ]
+ },
+ {
+  "id": "E03-candado-inicio",
+  "titulo": "Marcar el candado de inicio en un ensayo de cola (fecha forzada = inicio calculado)",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "startLock",
+    "valor": true
+   }
+  ]
+ },
+ {
+  "id": "E04-fecha-forzada",
+  "titulo": "Cambiar la fecha forzada de inicio",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r3rtxond",
+    "campo": "startOverride",
+    "valor": "2026-11-16"
+   }
+  ]
+ },
+ {
+  "id": "E05-candado-fin",
+  "titulo": "Marcar el candado de fin",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "endLock",
+    "valor": true
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "endOverride",
+    "valor": "2026-11-27"
+   }
+  ]
+ },
+ {
+  "id": "E06-fin-real-anterior",
+  "titulo": "Fin real anterior al arranque real: aviso y no se guarda",
+  "funcionalidad": "A1-EDIT,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "trueEnd",
+    "valor": "2026-10-15"
+   }
+  ]
+ },
+ {
+  "id": "E07-fin-real",
+  "titulo": "Fin real válido en un ensayo arrancado: la cola se recalcula",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "trueEnd",
+    "valor": "2026-11-03"
+   }
+  ]
+ },
+ {
+  "id": "E08-fin-real-sin-arranque",
+  "titulo": "Fin real en un ensayo NO arrancado: se guarda pero no ancla la barra (D4)",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "trueEnd",
+    "valor": "2026-11-20"
+   }
+  ]
+ },
+ {
+  "id": "E09-arranque-real",
+  "titulo": "Escribir el arranque real",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r3rtxond",
+    "campo": "actualStart",
+    "valor": "2026-11-04"
+   }
+  ]
+ },
+ {
+  "id": "E10-avance-parcial",
+  "titulo": "Reportar avance parcial: fin elástico y último reporte = hoy",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "campo": "progressActual",
+    "valor": 2
+   }
+  ]
+ },
+ {
+  "id": "E11-avance-100",
+  "titulo": "Avance al 100 %: progress100Date = hoy y fin congelado",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "progressActual",
+    "valor": 12500
+   }
+  ]
+ },
+ {
+  "id": "E12-avance-vuelve",
+  "titulo": "Avance al 100 % y luego por debajo: se borra progress100Date",
+  "funcionalidad": "A1-EDIT",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "progressActual",
+    "valor": 12500
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "progressActual",
+    "valor": 9000
+   }
+  ]
+ },
+ {
+  "id": "E13-fin-de-semana",
+  "titulo": "Weekend = Sí en un ensayo de cola",
+  "funcionalidad": "A1-EDIT,PLAN,CAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r2pw5wzb",
+    "campo": "weekend",
+    "valor": "yes"
+   }
+  ]
+ },
+ {
+  "id": "E14-modo-ciclos",
+  "titulo": "Cambiar a modo ciclos y unidad Hz",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "durMode",
+    "valor": "cycles"
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "cycles",
+    "valor": 100000
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "cycleVal",
+    "valor": 2
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "cycleUnit",
+    "valor": "hz"
+   }
+  ]
+ },
+ {
+  "id": "E15-horas",
+  "titulo": "Duración en horas (menos de un día)",
+  "funcionalidad": "A1-EDIT,PLAN,OCU",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "manualUnit",
+    "valor": "hours"
+   },
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "rq6evds7",
+    "campo": "durManual",
+    "valor": 6
+   }
+  ],
+  "observar": [
+   "planificacion",
+   "kpi"
+  ]
+ },
+ {
+  "id": "E16-cf",
+  "titulo": "Cambiar el factor de contingencia a 1",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r2pw5wzb",
+    "campo": "cf",
+    "valor": 1
+   }
+  ]
+ },
+ {
+  "id": "E17-cf-invalido",
+  "titulo": "CF vacío: se planifica con 1,2",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r2pw5wzb",
+    "campo": "cf",
+    "valor": null
+   }
+  ]
+ },
+ {
+  "id": "E18-muestras",
+  "titulo": "Fecha de muestras posterior: criterio M",
+  "funcionalidad": "A1-EDIT,PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "avail",
+    "valor": "2026-11-25"
+   }
+  ]
+ },
+ {
+  "id": "E19-tipo-especial",
+  "titulo": "Cambiar el tipo a Calibration: banco bloqueado, sin carga en KPI",
+  "funcionalidad": "A1-EDIT,STATE,KPI",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "type",
+    "valor": "Calibration"
+   }
+  ],
+  "observar": [
+   "planificacion",
+   "kpi"
+  ]
+ },
+ {
+  "id": "E20-parada",
+  "titulo": "Anotar días de parada (lista downtime[])",
+  "funcionalidad": "A1-EDIT",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "downtimeDays",
+    "valor": 2.25
+   }
+  ]
+ },
+ {
+  "id": "E21-parada-negativa",
+  "titulo": "Días de parada negativos: se guardan como 0",
+  "funcionalidad": "A1-EDIT",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "downtimeDays",
+    "valor": -3
+   }
+  ]
+ },
+ {
+  "id": "E22-inputs",
+  "titulo": "Inputs = No",
+  "funcionalidad": "A1-EDIT",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4",
+    "campo": "inputs",
+    "valor": "no"
+   }
+  ]
+ },
+ {
+  "id": "E23-motivo",
+  "titulo": "Elegir motivo de retraso",
+  "funcionalidad": "A1-EDIT,STATE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "campo": "delayReason",
+    "valor": "Piezas con retraso"
+   }
+  ]
+ },
+ {
+  "id": "E24-sin-duracion",
+  "titulo": "Ensayo sin duración: ocupa un día de cola (D3)",
+  "funcionalidad": "PLAN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "editar",
+    "banco": "1500 WC",
+    "ensayo": "rls0abrv",
+    "campo": "durManual",
+    "valor": 3
+   }
+  ]
+ }
+]

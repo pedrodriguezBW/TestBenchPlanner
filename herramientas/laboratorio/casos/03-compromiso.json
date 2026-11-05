@@ -1,0 +1,72 @@
+[
+ {
+  "id": "C01-comprometer",
+  "titulo": "📌 en un ensayo de cola",
+  "funcionalidad": "A3-PIN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "comprometer",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4"
+   }
+  ]
+ },
+ {
+  "id": "C02-deshacer",
+  "titulo": "↩ quitar compromiso (aceptando)",
+  "funcionalidad": "A3-PIN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "deshacerCompromiso",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay"
+   }
+  ]
+ },
+ {
+  "id": "C03-deshacer-cancelado",
+  "titulo": "↩ quitar compromiso (cancelando)",
+  "funcionalidad": "A3-PIN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "deshacerCompromiso",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay"
+   }
+  ],
+  "aceptarDialogos": false
+ },
+ {
+  "id": "C04-comprometer-sin-duracion",
+  "titulo": "📌 en un ensayo sin duración: aviso y sin cambios",
+  "funcionalidad": "A3-PIN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "comprometer",
+    "banco": "1500 WC",
+    "ensayo": "rls0abrv"
+   }
+  ]
+ },
+ {
+  "id": "C05-confirmar-todas",
+  "titulo": "Confirmar todas las fechas del banco",
+  "funcionalidad": "A3-PIN",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "confirmarTodas",
+    "banco": "MD2"
+   }
+  ]
+ }
+]

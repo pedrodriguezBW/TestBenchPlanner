@@ -1,0 +1,34 @@
+# Discrepancias, comportamientos implícitos y decisiones
+
+Para cada punto: lo que **hace el código** de la 4.9.4, lo que **dice la
+documentación**, la **evidencia** (caso del laboratorio que lo demuestra contra la
+4.9.4 original) y la **decisión** para la migración.
+
+Decisiones de Pedro del 5-nov-2026: D1 corregir; D2 conservar y documentar;
+D8 corregir a criterio técnico; D9 imitar por ahora; D12 a criterio técnico,
+con aviso de conflicto al usuario; festivos (D6) e importar JSON (D10) igual que hoy.
+
+Cuando una decisión cambia el comportamiento, la referencia de la 4.9.4 **no se
+modifica**: el comparador marcará la diferencia como «mejora aprobada» con el
+número de discrepancia, para que quede trazada.
+
+| # | Código 4.9.4 | Documentación | Evidencia | Decisión |
+|---|---|---|---|---|
+| D1 | ✎ Corregir no rellena `finalConfirmedAt`/`finalConfirmedBy`: un cierre antiguo sigue «sin confirmar» tras corregirlo (solo añade `finalEdits`). | Guía 6.1: un Admin «puede completarlos con ✎ Corregir». | K11: sin `finalConfirmedAt`, estadística `confirmado: false`. | **Corregir.** Al corregir un cierre sin confirmar se rellenan `finalConfirmedBy/At`; si ya estaba confirmado se conserva el original y se añade `finalEdits`. |
+| D2 | Restaurar borra la foto final pero conserva `actualStart`, `trueEnd`, `manualState`, `closeComment`, `downtime*` y `finalEdits`; la barra queda anclada al fin real antiguo. No pide rol Admin. | «Borra sus datos de cierre». | K13. | **Conservar y documentar** (guía de la versión nueva). |
+| D3 | Mover a otro banco limpia arranque real, fecha forzada, estado, avance y 100 %, pero conserva `confirmedStart/End`, `startLock`, `endLock/endOverride`, `trueEnd` y la parada. El aviso dice «reset to Queued». | Caso 16 del Excel: «sin arranque, avance ni estado». | Q04, Q05. | Conservar (réplica exacta). |
+| D4 | El fin real solo ancla la barra si el ensayo ha arrancado; en uno no arrancado se guarda y se ignora. | Guía 4: «la barra se ancla al fin real». | E08. | Conservar. |
+| D5 | La sugerencia de retraso de la ventana de cierre usa Conf. end + 1 día laborable. | Guía 6: «si supera el comprometido». | K02. | Conservar (coincide con la regla 5.1 de la guía). |
+| D6 | Festivos por usuario en la caché del navegador y de **un solo año** (el de la primera vez que se abrió la app en ese PC). La planificación que cruza al año siguiente no salta sus festivos. | «Calendario de Vigo». Manual 11: deuda técnica. | F02: en 2000 CTAG, ensayos que empiezan el 1-ene-2027 y el 6-ene-2027 (festivos). F05: en un PC nuevo en 2027 los festivos son los de 2027. | **Igual que hoy** (por usuario, un año, en el navegador). |
+| D7 | `TODAY` se fija al abrir la página; si se deja abierta de un día para otro, calcula con el día anterior. | No se menciona. | Diseño del laboratorio (reloj fijo). | Conservar: el «hoy» de React se fija al cargar. |
+| D8 | La foto semanal usa el **año natural** con la **semana ISO**: el 1-ene-2027 genera «2027-CW53» y el 31-dic-2029 «2029-CW01», que **sobrescribe** la semana 1 real de 2029. | «Semana (ISO)». | P02, F05, F06. | **Corregir:** año = año ISO de la semana (2026-CW53, 2030-CW01). Afecta solo a fotos nuevas; el histórico no se toca. |
+| D9 | Presencia (Python): `mktime − time.timezone` ignora el horario de verano; en verano nadie aparece conectado durante 1 h. | TTL de 75 s. | Lectura del código (no se ejecuta en el laboratorio). | **Imitar por ahora**; se documenta como limitación conocida. |
+| D10 | Importar JSON sustituye todo el estado y se sincroniza: puede borrar ensayos compartidos. | «Importar/exportar». | Lectura del código (`importJSON`). | **Igual que hoy.** |
+| D11 | Guardar configuración o usuarios **reconcilia**: lo que no viene se manda a la papelera. Los usuarios se emparejan por `Title`. La configuración puede enviarse antes de la primera lectura correcta. | Identidad = Email. | Lectura del código (`_reconcile_list`, `pushConfig`). | Conservar el contrato. Se añade la guarda de «no escribir antes de leer» (no cambia lo que ve el usuario). |
+| D12 | «El último que guarda gana» por ensayo completo (`IF-MATCH: *`). Además: un sondeo puede pisar una edición en sus 1,2 s de espera, y un 404 al actualizar **vuelve a crear** un ensayo que otro había borrado. | Manual 6.3. | Pendiente de caso de concurrencia en H2. | **Aviso de conflicto** (aprobado): «Otra persona ha cambiado este ensayo» con «Ver su versión» / «Guardar la mía encima». No se resucitan ensayos borrados. |
+| D13 | La columna espejo `StatusText` se calcula con el campo legado `launchConfirmed` (casi siempre `queued`/`completed`). | Columna espejo. | Lectura del código (`_coarse_status`). | Conservar el valor (decorativo). |
+| D14 | Los roles solo se aplican en el navegador; un usuario de solo lectura puede cambiar el estado en pantalla (no se guarda). El backend no comprueba el rol. | Manual 3.2 (lo reconoce). | R01: cambia la pantalla, 0 guardados. | Conservar el comportamiento visible. |
+| D15 | El cierre muestra y exporta «Días facturables». | Guía 6. | K02. | Conservar tal cual, sin ampliarlo (no es facturación nueva). |
+| D16 | El Excel de pruebas manuales describe filas y fechas de otro escenario. | — | — | Sus 32 pruebas se han trasladado a casos sobre el escenario real anonimizado (ver inventario, apartado 5). |
+| D17 | **Nueva.** En un PC sin caché, la primera lectura descarta los ensayos de bancos que aún no conoce (los que no están en la lista de serie: XXL CTAG, Urna Burst RT, BC1/BC2, 1000 CTAG, Manual Cylinder). Reaparecen con la relectura de los 20 s, cuando ya han llegado los catálogos. No se pierden datos. | No se menciona. | Arranque del laboratorio: 239 de 281 ensayos tras la primera lectura y 281 tras la relectura. | La versión nueva carga catálogos y ensayos juntos, así que no hay hueco. No cambia los datos ni el resultado final, solo elimina un parpadeo de 20 s. **Pendiente de tu visto bueno** (es visible). |
+| D18 | **Nueva.** La celda «Fin real» rechaza una fecha anterior al arranque real, pero no comprueba fechas futuras; la ventana de cierre sí. | Guía 6. | E06. | Conservar. |

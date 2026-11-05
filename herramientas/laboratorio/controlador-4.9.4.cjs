@@ -1,0 +1,183 @@
+'use strict';
+/*
+ * Traduce los PASOS NEUTROS de un caso de prueba a acciones sobre la 4.9.4.
+ *
+ * Los casos (carpeta casos/) no saben nada de la implementación: hablan de
+ * «editar el campo X del ensayo Y», «comprometer», «cerrar con estos valores»…
+ * Este controlador los ejecuta en la versión original; el de la versión nueva
+ * hará lo mismo contra React/Java, y las dos FOTOS resultantes deben coincidir.
+ *
+ * Criterio: las ediciones de celda se hacen escribiendo en el DOM real (así se
+ * ejecutan los manejadores originales, con sus avisos y efectos secundarios).
+ * Los botones se invocan llamando a la misma función que su onclick.
+ */
+
+/** Acciones de fila: nombre neutro -> función global de la 4.9.4 que llama el botón. */
+const BOTONES_DE_FILA = {
+  comprometer: 'confirmDatesRow',
+  deshacerCompromiso: 'unconfirmDatesRow',
+  borrar: 'delRow',
+  aplicarSugerencia: 'applySuggestion',
+  restaurar: 'restoreDone',
+  reutilizar: 'reuseDone',
+};
+
+async function abrirBanco(sesion, banco) {
+  await sesion.evaluar((bn) => {
+    if (current !== bn) { current = bn; SEL.clear(); render(); }
+  }, banco);
+}
+
+async function ejecutarPaso(sesion, paso) {
+  const { op } = paso;
+  if (paso.banco) await abrirBanco(sesion, paso.banco);
+  switch (op) {
+    case 'editar': {
+      // Celda de la tabla: input / select / checkbox con data-f="campo".
+      const celda = sesion.pagina.locator(`#tb tr[data-id="${paso.ensayo}"] [data-f="${paso.campo}"]`).first();
+      if (await celda.count() === 0) throw new Error(`No hay celda ${paso.campo} para ${paso.ensayo} en ${paso.banco}`);
+      const etiqueta = await celda.evaluate((el) => el.tagName + ':' + (el.type || '') + ':' + el.className);
+      if (etiqueta.includes('datecal')) {
+        // Fecha: la 4.9.4 usa su propio calendario (solo lectura + calPick/calClear).
+        await sesion.evaluar(([bn, id, campo, valor]) => {
+          const el = document.querySelector(`#tb tr[data-id="${id}"] [data-f="${campo}"]`);
+          openDateCal(el);
+          if (valor) calPick(valor); else calClear();
+        }, [paso.banco, paso.ensayo, paso.campo, paso.valor]);
+      } else if (etiqueta.startsWith('SELECT')) await celda.selectOption(String(paso.valor));
+      else if (etiqueta.includes(':checkbox:')) await celda.setChecked(!!paso.valor);
+      else await celda.fill(paso.valor === null ? '' : String(paso.valor));
+      break;
+    }
+    case 'estado':
+      await sesion.evaluar(([bn, id, v]) => setManualState(bn, id, v), [paso.banco, paso.ensayo, paso.valor]);
+      break;
+    case 'confirmarTodas':
+      await sesion.evaluar((bn) => confirmAll(bn), paso.banco);
+      break;
+    case 'anadir':
+      await sesion.evaluar((bn) => addRow(bn), paso.banco);
+      break;
+    case 'seleccionar':
+      await sesion.evaluar(([bn, ids]) => { SEL.clear(); ids.forEach((i) => SEL.add(i)); renderBench(bn); }, [paso.banco, paso.ensayos]);
+      break;
+    case 'duplicar':
+      await sesion.evaluar((bn) => duplicateSel(bn), paso.banco);
+      break;
+    case 'borrarSeleccion':
+      await sesion.evaluar((bn) => deleteSel(bn), paso.banco);
+      break;
+    case 'mover':
+      // El panel de selección tiene un desplegable de destino y la prioridad.
+      await sesion.evaluar(([bn, destino, posicion]) => {
+        const sel = document.getElementById('move-target'); const pos = document.getElementById('move-pos');
+        if (!sel) throw new Error('No aparece el panel de mover (¿no hay selección?)');
+        sel.value = destino; if (pos) pos.value = String(posicion);
+        moveSel(bn);
+      }, [paso.banco, paso.destino, paso.posicion]);
+      break;
+    case 'arrastrar': {
+      // Soltar `origen` encima de `destino` (con la selección actual si la hay).
+      const origen = sesion.pagina.locator(`#tb tr[data-id="${paso.origen}"] [data-drag]`);
+      const destino = sesion.pagina.locator(`#tb tr[data-id="${paso.destino}"]`);
+      await origen.dragTo(destino);
+      break;
+    }
+    case 'cerrar':
+    case 'corregir': {
+      const modoCorreccion = op === 'corregir';
+      await sesion.evaluar(([bn, id, ed]) => openCloseModal(bn, id, ed), [paso.banco, paso.ensayo, modoCorreccion]);
+      const v = paso.valores || {};
+      const pagina = sesion.pagina;
+      const visible = await pagina.evaluate(() => document.getElementById('closem') && document.getElementById('closem').classList.contains('show'));
+      if (!visible) break; // p. ej. un Editor intentando corregir: la 4.9.4 avisa y no abre
+      const campos = { arranqueReal: 'cl-ts', finReal: 'cl-te', diasParada: 'cl-dd', notaParada: 'cl-dn', explicacion: 'cl-cm' };
+      for (const [clave, idCampo] of Object.entries(campos)) {
+        if (v[clave] !== undefined) await pagina.locator('#' + idCampo).fill(v[clave] === null ? '' : String(v[clave]));
+      }
+      if (v.estadoFinal !== undefined) await pagina.locator('#cl-st').selectOption(v.estadoFinal);
+      if (v.motivo !== undefined) await pagina.locator('#cl-rs').selectOption(v.motivo);
+      if (paso.confirmar !== false) await pagina.locator('#cl-ok').click();
+      break;
+    }
+    case 'fotoKpi':
+      await sesion.evaluar(() => updateYearlyStatus(true));
+      break;
+    case 'esperar':
+      await sesion.avanzar(paso.ms);
+      break;
+    default: {
+      const funcion = BOTONES_DE_FILA[op];
+      if (!funcion) throw new Error('Paso desconocido: ' + op);
+      await sesion.evaluar(([f, bn, id]) => window[f](bn, id), [funcion, paso.banco, paso.ensayo]);
+    }
+  }
+  // Tras cada paso dejamos pasar el guardado diferido (1,2 s) para capturar lo enviado.
+  await sesion.avanzar(1500);
+}
+
+/**
+ * FOTO del estado observable, en un formato neutro y estable.
+ * Es lo que se compara entre la 4.9.4 y la versión nueva.
+ */
+async function fotografiar(sesion, apartados) {
+  return sesion.evaluar(async (ap) => {
+    const quiere = (k) => !ap || ap.includes(k);
+    if (quiere('historicoKpi') && KPIHIST === null) KPIHIST = (await loadKpiHistory()) || [];
+    recomputeAll();
+    const foto = {};
+    const todosLosBancos = []; GROUPS.forEach((g) => g.benches.forEach((b) => todosLosBancos.push(b)));
+    const fechaIso = (d) => (d ? iso(d) : null);
+    if (quiere('planificacion')) {
+      foto.planificacion = {};
+      todosLosBancos.forEach((bn) => {
+        foto.planificacion[bn] = (state.benches[bn] || []).filter((r) => !r.done).map((r) => ({
+          id: r.id,
+          inicio: fechaIso(r._start), fin: fechaIso(r._end), criterioInicio: r._startWhy || '',
+          estado: statusOf(r), sugerencias: suggestionsFor(r).map((s) => s.k), sugerenciaAbierta: suggestionOpen(r),
+          solapes: (r._ovl || []).map((o) => o.s + '..' + o.e), diasPlanificados: plannedDays(r),
+          finTolerado: fechaIso(tolEndOf(r)), finPlanificado: fechaIso(plannedEndOf(r)),
+          arranqueEfectivo: effStartOf(r) || '', diasSinAvance: idleDays(r),
+        }));
+      });
+    }
+    if (quiere('persistido')) {
+      // Exactamente lo que se escribiría en DataJson para cada ensayo.
+      foto.persistido = lbBuild();
+    }
+    if (quiere('kpi')) {
+      const lunes = weekStart(TODAY), siguiente = addDays(lunes, 7);
+      const filtros = { ALL: null, BW: (bn) => benchOrg(bn) === 'BW', CTAG: (bn) => benchOrg(bn) === 'CTAG' };
+      foto.kpi = { bloques: {}, semana: {}, ocupacion: {} };
+      Object.entries(filtros).forEach(([org, ff]) => {
+        foto.kpi.bloques[org] = { estaSemana: blockKPIs(lunes, null, ff), siguiente: blockKPIs(siguiente, null, ff) };
+        foto.kpi.semana[org] = weekKPIs(null, ff, lunes);
+      });
+      foto.kpi.fotoSemanal = snapshotKPIs();
+      const anio = TODAY.getFullYear(), ini = new Date(anio, 0, 1), fin = new Date(anio, 11, 31);
+      GROUPS.forEach((g) => {
+        foto.kpi.ocupacion[g.key] = { semana: occupancyOf(g.benches, lunes, addDays(lunes, 6)), anio: occupancyOf(g.benches, ini, fin) };
+      });
+    }
+    if (quiere('estadisticas')) {
+      STAT_FROM = iso(new Date(TODAY.getFullYear(), 0, 1)); STAT_TO = iso(new Date(TODAY.getFullYear(), 11, 31));
+      foto.estadisticas = statRows().map((x) => ({ banco: x.bn, id: x.r.id, fecha: iso(x.dt), estadoFinal: x.fin, motivo: x.reason, confirmado: x.conf }));
+    }
+    if (quiere('historicoKpi') && Array.isArray(KPIHIST)) {
+      foto.historicoKpi = kpiHistRows();
+    }
+    if (quiere('cierre')) {
+      const g = (k) => document.getElementById(k);
+      const abierta = g('closem') && g('closem').classList.contains('show');
+      foto.cierre = abierta ? {
+        abierta: true, arranqueReal: g('cl-ts').value, finReal: g('cl-te').value, estadoFinal: g('cl-st').value,
+        motivo: g('cl-rs').value, diasParada: g('cl-dd').value, error: g('cl-err').textContent,
+        desviacion: g('cl-dev').textContent, sugerencia: g('cl-sug').textContent, facturables: g('cl-bill').textContent,
+      } : { abierta: false };
+    }
+    foto.orden = {}; todosLosBancos.forEach((bn) => { foto.orden[bn] = (state.benches[bn] || []).map((r) => r.id); });
+    return foto;
+  }, apartados || null);
+}
+
+module.exports = { ejecutarPaso, fotografiar };

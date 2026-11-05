@@ -1,0 +1,92 @@
+[
+ {
+  "title": "Persona 01",
+  "email": "usuario01@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 01"
+ },
+ {
+  "title": "Persona 03",
+  "email": "usuario02@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 03"
+ },
+ {
+  "title": "Persona 05",
+  "email": "usuario03@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 05"
+ },
+ {
+  "title": "Persona 07",
+  "email": "usuario04@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 07"
+ },
+ {
+  "title": "Persona 09",
+  "email": "usuario05@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 09"
+ },
+ {
+  "title": "Persona 11",
+  "email": "usuario06@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 11"
+ },
+ {
+  "title": "Persona 13",
+  "email": "usuario07@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 13"
+ },
+ {
+  "title": "Persona 15",
+  "email": "usuario08@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 15"
+ },
+ {
+  "title": "Persona 17",
+  "email": "usuario09@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 17"
+ },
+ {
+  "title": "Persona 19",
+  "email": "usuario10@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 19"
+ },
+ {
+  "title": "Persona 21",
+  "email": "usuario11@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 21"
+ },
+ {
+  "title": "Persona 23",
+  "email": "usuario12@ejemplo.local",
+  "role": "Admin",
+  "responsibleName": "Responsable 23"
+ },
+ {
+  "title": "Persona 25",
+  "email": "usuario13@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 25"
+ },
+ {
+  "title": "Persona 27",
+  "email": "usuario14@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 27"
+ },
+ {
+  "title": "Persona 29",
+  "email": "usuario15@ejemplo.local",
+  "role": "Editor",
+  "responsibleName": "Responsable 29"
+ }
+]

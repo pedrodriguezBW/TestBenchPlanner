@@ -1,0 +1,32 @@
+[
+ {
+  "id": "P01-foto-semanal",
+  "titulo": "📊 Update Yearly Status: foto ALL/BW/CTAG enviada al histórico",
+  "funcionalidad": "KPI-SNAP",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "fotoKpi"
+   }
+  ],
+  "observar": [
+   "kpi"
+  ]
+ },
+ {
+  "id": "P02-foto-semanal-2027-01-01",
+  "titulo": "Foto semanal el 1-ene-2027 (clave 2027-CW53, D8)",
+  "funcionalidad": "KPI-SNAP,D8",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2027-01-01",
+  "pasos": [
+   {
+    "op": "fotoKpi"
+   }
+  ],
+  "observar": [
+   "kpi"
+  ]
+ }
+]

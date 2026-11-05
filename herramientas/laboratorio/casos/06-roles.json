@@ -1,0 +1,31 @@
+[
+ {
+  "id": "R01-solo-lectura",
+  "titulo": "Usuario de solo lectura: editar no guarda nada",
+  "funcionalidad": "ROL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "confirmarTodas",
+    "banco": "MD2"
+   }
+  ],
+  "rol": "readonly"
+ },
+ {
+  "id": "R02-editor",
+  "titulo": "Editor: puede comprometer",
+  "funcionalidad": "ROL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "comprometer",
+    "banco": "MD2",
+    "ensayo": "r0v8hmq4"
+   }
+  ],
+  "rol": "editor"
+ }
+]

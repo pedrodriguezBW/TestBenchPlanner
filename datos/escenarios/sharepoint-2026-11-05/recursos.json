@@ -1,0 +1,68 @@
+{
+ "resources": [
+  {
+   "name": "Hydraulic Cylinder 1",
+   "groupKey": "hydraulic_cylinder_1_gys",
+   "groupName": "Hydraulic Cylinder",
+   "dot": "#f2a64b",
+   "code": null,
+   "org": "CTAG",
+   "seq": 1
+  },
+  {
+   "name": "Hydraulic Cylinder 2",
+   "groupKey": "hydraulic_cylinder_1_gys",
+   "groupName": "Hydraulic Cylinder",
+   "dot": "#f2a64b",
+   "code": null,
+   "org": "CTAG",
+   "seq": 2
+  },
+  {
+   "name": "Coolant Pulse Generator 1",
+   "groupKey": "coolant_pulse_generator_ulz",
+   "groupName": "Coolant Pulse Generator",
+   "dot": "#4a7cf2",
+   "code": null,
+   "org": "CTAG",
+   "seq": 3
+  },
+  {
+   "name": "Coolant Pulse Generator 2",
+   "groupKey": "coolant_pulse_generator_ulz",
+   "groupName": "Coolant Pulse Generator",
+   "dot": "#4a7cf2",
+   "code": null,
+   "org": "CTAG",
+   "seq": 4
+  },
+  {
+   "name": "Coolant Pulse Generator 3",
+   "groupKey": "coolant_pulse_generator_ulz",
+   "groupName": "Coolant Pulse Generator",
+   "dot": "#4a7cf2",
+   "code": null,
+   "org": "CTAG",
+   "seq": 5
+  },
+  {
+   "name": "Bomba Manual",
+   "groupKey": "hydraulic_cylinder_1_gys",
+   "groupName": "Hydraulic Cylinder",
+   "dot": "#f2a64b",
+   "code": null,
+   "org": "CTAG",
+   "seq": 6
+  },
+  {
+   "name": "Hydraulic Cylinder 3",
+   "groupKey": "hydraulic_cylinder_1_gys",
+   "groupName": "Hydraulic Cylinder",
+   "dot": "#f2a64b",
+   "code": null,
+   "org": "CTAG",
+   "seq": 7
+  }
+ ],
+ "blocks": []
+}

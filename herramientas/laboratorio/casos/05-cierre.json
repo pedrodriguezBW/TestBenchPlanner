@@ -1,0 +1,285 @@
+[
+ {
+  "id": "K01-cierre-por-defecto",
+  "titulo": "Cerrar con los valores propuestos",
+  "funcionalidad": "A11-CLOSE,EST",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Turismos",
+    "ensayo": "rd8wnobn"
+   }
+  ],
+  "observar": [
+   "planificacion",
+   "estadisticas",
+   "cierre"
+  ]
+ },
+ {
+  "id": "K02-cierre-propuesta",
+  "titulo": "Abrir la ventana de cierre sin confirmar: valores propuestos y cálculos",
+  "funcionalidad": "A11-CLOSE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "confirmar": false
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K03-cierre-retraso-sin-motivo",
+  "titulo": "Cerrar En retraso sin motivo: error",
+  "funcionalidad": "A11-CLOSE,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "estadoFinal": "delayed",
+     "motivo": ""
+    }
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K04-cierre-otro-sin-explicacion",
+  "titulo": "Motivo «Otro» sin explicación: error",
+  "funcionalidad": "A11-CLOSE,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "estadoFinal": "delayed",
+     "motivo": "Otro"
+    }
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K05-cierre-fin-futuro",
+  "titulo": "Fin real futuro: error",
+  "funcionalidad": "A11-CLOSE,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "finReal": "2026-11-20"
+    }
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K06-cierre-fin-anterior",
+  "titulo": "Fin real anterior al arranque: error",
+  "funcionalidad": "A11-CLOSE,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "finReal": "2026-10-20"
+    }
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K07-cierre-parada-excesiva",
+  "titulo": "Parada mayor que la duración real: error",
+  "funcionalidad": "A11-CLOSE,VAL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "diasParada": 10
+    }
+   }
+  ],
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K08-cierre-con-parada",
+  "titulo": "Cerrar En retraso con motivo, parada y nota",
+  "funcionalidad": "A11-CLOSE,EST",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "MD2",
+    "ensayo": "royo929a",
+    "valores": {
+     "finReal": "2026-11-04",
+     "estadoFinal": "delayed",
+     "motivo": "Averia",
+     "diasParada": 1.5,
+     "notaParada": "Fuga"
+    }
+   }
+  ],
+  "observar": [
+   "planificacion",
+   "estadisticas",
+   "cierre"
+  ]
+ },
+ {
+  "id": "K09-cierre-otro-con-explicacion",
+  "titulo": "Cerrar con «Otro» y explicación",
+  "funcionalidad": "A11-CLOSE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "cerrar",
+    "banco": "Camiones",
+    "ensayo": "rtejyzay",
+    "valores": {
+     "estadoFinal": "delayed",
+     "motivo": "Otro",
+     "explicacion": "Cambio de cliente"
+    }
+   }
+  ]
+ },
+ {
+  "id": "K10-corregir-confirmado",
+  "titulo": "✎ Corregir un cierre confirmado (Admin)",
+  "funcionalidad": "A8-DONE,A11-CLOSE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "corregir",
+    "banco": "MD1",
+    "ensayo": "rn7noxcj",
+    "valores": {
+     "finReal": "2026-10-14"
+    }
+   }
+  ],
+  "observar": [
+   "estadisticas",
+   "cierre"
+  ]
+ },
+ {
+  "id": "K11-corregir-antiguo",
+  "titulo": "✎ Corregir un cierre antiguo sin confirmar (D1: hoy sigue «sin confirmar»)",
+  "funcionalidad": "A8-DONE,A11-CLOSE,D1",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "corregir",
+    "banco": "MD3",
+    "ensayo": "ramz6496"
+   }
+  ],
+  "observar": [
+   "estadisticas",
+   "cierre"
+  ]
+ },
+ {
+  "id": "K12-corregir-editor",
+  "titulo": "✎ Corregir siendo Editor: no se permite",
+  "funcionalidad": "A8-DONE,ROL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "corregir",
+    "banco": "MD1",
+    "ensayo": "rn7noxcj"
+   }
+  ],
+  "rol": "editor",
+  "observar": [
+   "cierre"
+  ]
+ },
+ {
+  "id": "K13-restaurar",
+  "titulo": "Restaurar un cerrado: vuelve al final de la cola (D2)",
+  "funcionalidad": "A8-DONE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "restaurar",
+    "banco": "MD1",
+    "ensayo": "rn7noxcj"
+   }
+  ]
+ },
+ {
+  "id": "K14-reutilizar",
+  "titulo": "Reutilizar un cerrado: ensayo nuevo el primero de la cola",
+  "funcionalidad": "A8-DONE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "reutilizar",
+    "banco": "MD1",
+    "ensayo": "rn7noxcj"
+   }
+  ]
+ },
+ {
+  "id": "K15-reutilizar-ciclos",
+  "titulo": "Reutilizar un cerrado en modo ciclos",
+  "funcionalidad": "A8-DONE",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "reutilizar",
+    "banco": "MD3",
+    "ensayo": "ramz6496"
+   }
+  ]
+ }
+]

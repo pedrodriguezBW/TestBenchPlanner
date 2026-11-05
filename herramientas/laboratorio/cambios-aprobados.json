@@ -1,0 +1,4 @@
+[
+ { "discrepancia": "D1", "caso": "^K11-", "ruta": "^/(cambiosPersistidos/ramz6496|estadisticas/)", "explicacion": "Corregir un cierre sin confirmar lo confirma (finalConfirmedBy/At)." },
+ { "discrepancia": "D8", "caso": "^(F05|F06|P02)-", "ruta": "^/(kpi/fotoSemanal|otrasEscrituras)/", "explicacion": "La foto semanal usa el año ISO de la semana." }
+]

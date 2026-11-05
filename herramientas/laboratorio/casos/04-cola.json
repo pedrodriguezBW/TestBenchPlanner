@@ -1,0 +1,169 @@
+[
+ {
+  "id": "Q01-arrastrar",
+  "titulo": "Arrastrar la prioridad 6 encima de la 2",
+  "funcionalidad": "A4-ORDER",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "arrastrar",
+    "banco": "MD2",
+    "origen": "rr4nahfo",
+    "destino": "r3rtxond"
+   }
+  ]
+ },
+ {
+  "id": "Q02-arrastrar-varios",
+  "titulo": "Seleccionar 3 y 8 y arrastrar la 3 encima de la 2",
+  "funcionalidad": "A4-ORDER",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "seleccionar",
+    "banco": "MD2",
+    "ensayos": [
+     "r0v8hmq4",
+     "rmtkbkqe"
+    ]
+   },
+   {
+    "op": "arrastrar",
+    "banco": "MD2",
+    "origen": "r0v8hmq4",
+    "destino": "r3rtxond"
+   }
+  ]
+ },
+ {
+  "id": "Q03-duplicar",
+  "titulo": "Duplicar las prioridades 2 y 5",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "seleccionar",
+    "banco": "MD2",
+    "ensayos": [
+     "r3rtxond",
+     "r2pw5wzb"
+    ]
+   },
+   {
+    "op": "duplicar",
+    "banco": "MD2"
+   }
+  ]
+ },
+ {
+  "id": "Q04-mover",
+  "titulo": "Mover las prioridades 1 y 3 a MD4 en la posición 1 (D3)",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "seleccionar",
+    "banco": "MD2",
+    "ensayos": [
+     "royo929a",
+     "r0v8hmq4"
+    ]
+   },
+   {
+    "op": "mover",
+    "banco": "MD2",
+    "destino": "MD4",
+    "posicion": 1
+   }
+  ]
+ },
+ {
+  "id": "Q05-mover-posicion-alta",
+  "titulo": "Mover a una posición mayor que la cola",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "seleccionar",
+    "banco": "MD2",
+    "ensayos": [
+     "r0v8hmq4"
+    ]
+   },
+   {
+    "op": "mover",
+    "banco": "MD2",
+    "destino": "MD4",
+    "posicion": 99
+   }
+  ]
+ },
+ {
+  "id": "Q06-borrar-seleccion",
+  "titulo": "Borrar las prioridades 6 y 7",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "seleccionar",
+    "banco": "MD2",
+    "ensayos": [
+     "rr4nahfo",
+     "ry4i5ovt"
+    ]
+   },
+   {
+    "op": "borrarSeleccion",
+    "banco": "MD2"
+   }
+  ]
+ },
+ {
+  "id": "Q07-borrar-fila",
+  "titulo": "🗑 borrar un ensayo",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "borrar",
+    "banco": "MD2",
+    "ensayo": "rgszzdvf"
+   }
+  ]
+ },
+ {
+  "id": "Q08-borrar-cancelado",
+  "titulo": "🗑 borrar cancelando: no cambia nada",
+  "funcionalidad": "A5-SEL",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "borrar",
+    "banco": "MD2",
+    "ensayo": "rgszzdvf"
+   }
+  ],
+  "aceptarDialogos": false
+ },
+ {
+  "id": "Q09-anadir",
+  "titulo": "Añadir ensayo al final de los activos (responsable por defecto)",
+  "funcionalidad": "A6-ADD",
+  "escenario": "sharepoint-2026-11-05",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "anadir",
+    "banco": "MD1"
+   }
+  ]
+ }
+]

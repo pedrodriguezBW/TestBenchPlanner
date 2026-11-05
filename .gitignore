@@ -1,0 +1,10 @@
+# Datos leídos de SharePoint SIN anonimizar: nunca se versionan.
+datos/privado/
+# Perfil de Edge con las cookies de la sesión corporativa.
+.edge_profile/
+**/.edge_profile/
+# Dependencias y compilados
+node_modules/
+target/
+dist/
+*.log
