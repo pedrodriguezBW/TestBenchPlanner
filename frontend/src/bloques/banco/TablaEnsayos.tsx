@@ -21,6 +21,7 @@ export interface AccionesFila {
   declararEstado: (fila: FilaEnsayo, estado: string) => void;
   aplicarSugerencia: (fila: FilaEnsayo) => void;
   abrirBuscadorAprobaciones: (fila: FilaEnsayo) => void;
+  abrirRecursos: (fila: FilaEnsayo) => void;
   soltar: (origen: string, destino: string) => void;
 }
 
@@ -130,6 +131,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
             declararEstado: (estado) => acciones.declararEstado(fila, estado),
             aplicarSugerencia: () => acciones.aplicarSugerencia(fila),
             abrirBuscadorAprobaciones: () => acciones.abrirBuscadorAprobaciones(fila),
+            abrirRecursos: () => acciones.abrirRecursos(fila),
           };
           return (
             <tr key={fila.id} data-id={fila.id} className={clases}

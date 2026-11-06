@@ -100,6 +100,22 @@ async function ejecutarPaso(sesion, paso) {
       if (paso.confirmar !== false) await pagina.locator('#cl-ok').click();
       break;
     }
+    case 'recurso':
+      // ✚ / ✓ Quitar en el selector de recursos de la fila (toggleResource).
+      await sesion.evaluar(async ([bn, id, nombre]) => {
+        if (!RES_LOADED) await resLoad();
+        RES_PICK = { bn, id, tab: 'free', q: '' };
+        ensureResModals();
+        toggleResource(nombre);
+      }, [paso.banco, paso.ensayo, paso.recurso]);
+      break;
+    case 'renombrarRecurso':
+      // Equipments List: cambiar el nombre de un equipo (renameResource).
+      await sesion.evaluar(async ([anterior, nuevo]) => {
+        if (!RES_LOADED) await resLoad();
+        renameResource(anterior, nuevo);
+      }, [paso.anterior, paso.nuevo]);
+      break;
     case 'fotoKpi':
       await sesion.evaluar(() => updateYearlyStatus(true));
       break;

@@ -275,3 +275,33 @@ export interface FilaEstadistica {
   confirmado: boolean;
   datos: DatosEnsayo;
 }
+
+/* ===== Recursos auxiliares (bloque D) ================================== */
+
+/** Un equipo del catálogo (TestBenchResources). */
+export interface Recurso {
+  name: string;
+  groupKey?: string;
+  groupName?: string;
+  dot?: string;
+  code?: string | null;
+  org?: string;
+  seq?: number;
+  [campo: string]: unknown;
+}
+
+/** Bloqueo manual de un equipo (calibración, avería…). */
+export interface Bloqueo {
+  id: string | number;
+  resource: string;
+  start: string;
+  end: string;
+  reason?: string;
+  note?: string;
+  [campo: string]: unknown;
+}
+
+export interface Recursos {
+  resources: Recurso[];
+  blocks?: Bloqueo[];
+}

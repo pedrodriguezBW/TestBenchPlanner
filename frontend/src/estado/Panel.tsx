@@ -41,6 +41,11 @@ interface EstadoPanel {
   setResponsable: (r: string) => void;
   tendencia: { ocultas: Record<string, boolean>; desde: number; hasta: number };
   setTendencia: (t: { ocultas: Record<string, boolean>; desde: number; hasta: number }) => void;
+  /** List of Equipments: zoom a la semana (RES_ZOOM) y ancho de día con −/+ (RES_GW, 0 = de serie). */
+  zoomRecursos: boolean;
+  setZoomRecursos: (z: boolean) => void;
+  anchoRecursos: number;
+  setAnchoRecursos: (w: number) => void;
   /** KPI History: Org (KPIHIST_ORG) y filtros de las estadísticas (STAT_*). */
   kpiOrg: Organizacion;
   setKpiOrg: (o: Organizacion) => void;
@@ -67,6 +72,8 @@ export function ProveedorPanel({ children }: { children: ReactNode }) {
   const [anchoDia, setAnchoDia] = useState(0);
   const [responsable, setResponsable] = useState('');
   const [tendencia, setTendencia] = useState({ ocultas: {} as Record<string, boolean>, desde: 1, hasta: 53 });
+  const [zoomRecursos, setZoomRecursos] = useState(false);
+  const [anchoRecursos, setAnchoRecursos] = useState(0);
   const [kpiOrg, setKpiOrg] = useState<Organizacion>('ALL');
   // Vacíos = el año del calendario (statDefaults); se rellenan al abrir la pantalla.
   const [estadisticas, setEstadisticas] = useState({ desde: '', hasta: '', responsable: '' });
@@ -78,7 +85,7 @@ export function ProveedorPanel({ children }: { children: ReactNode }) {
 
   const valor: EstadoPanel = {
     semana, setSemana, zoom, setZoom, organizacion, setOrganizacion, anchoDia, setAnchoDia,
-    responsable, setResponsable, tendencia, setTendencia, kpiOrg, setKpiOrg, estadisticas, setEstadisticas, preferencias,
+    responsable, setResponsable, tendencia, setTendencia, kpiOrg, setKpiOrg, estadisticas, setEstadisticas, zoomRecursos, setZoomRecursos, anchoRecursos, setAnchoRecursos, preferencias,
     cambiarPreferencia: (clave, v) => setGuardadas({ ...preferencias, [clave]: v }),
     ponerPreferencias: (p) => setGuardadas({ ...preferencias, ...p }),
   };

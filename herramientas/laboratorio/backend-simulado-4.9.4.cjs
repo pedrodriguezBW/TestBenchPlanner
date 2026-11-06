@@ -128,6 +128,7 @@ async function operacion(banco, cuerpo) {
     reordenar: [...(ids.length ? [sel] : []), { op: 'arrastrar', banco, origen: cuerpo.id, destino: cuerpo.destino }],
     duplicar: [sel, { op: 'duplicar', banco }],
     borrarSeleccion: [sel, { op: 'borrarSeleccion', banco }],
+    alternarRecurso: [{ op: 'recurso', banco, ensayo: cuerpo.id, recurso: cuerpo.recurso }],
     borrar: [{ op: 'borrar', banco, ensayo: cuerpo.id }],
     mover: [sel, { op: 'mover', banco, destino: cuerpo.bancoDestino, posicion: cuerpo.posicion ?? 99999 }],
     anadir: [{ op: 'anadir', banco }],
@@ -283,6 +284,40 @@ async function atender(metodo, ruta, cuerpo) {
     return { estado: 200, cuerpo: { email: CORREO_POR_ROL[rol], nombre: 'Laboratorio', responsable: rol === 'admin' ? 'Laboratorio' : (u.responsibleName || ''), rol, esAdmin: rol === 'admin', soloLectura: rol === 'readonly' } };
   }
   if (p === '/api/v1/planificacion') return { estado: 200, cuerpo: (await vista()).vista };
+  // Recursos (bloque D): el catálogo y los bloqueos viven en RES_CACHE de la 4.9.4.
+  if (p === '/api/v1/recursos' && metodo === 'GET') {
+    return { estado: 200, cuerpo: await sesion.evaluar(async () => { if (!RES_LOADED) await resLoad(); return JSON.parse(JSON.stringify(RES_CACHE)); }) };
+  }
+  if (p === '/api/v1/recursos' && metodo === 'PUT') {
+    if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
+    await sesion.evaluar((r) => { RES_CACHE.resources = r; resSaveLocal(); }, cuerpo.resources || []);
+    return { estado: 200, cuerpo: { ok: true } };
+  }
+  if (p === '/api/v1/recursos/renombrar' && metodo === 'POST') {
+    if (rol !== 'admin') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Solo un Admin puede cambiar el catálogo de equipos.' } };
+    const antes = (await vista()).textos;
+    await sesion.evaluar(([a, n]) => {
+      // Solo la parte de los ensayos de renameResource; el catálogo llega luego con PUT /recursos.
+      GROUPS.forEach((g) => g.benches.forEach((bn) => (state.benches[bn] || []).forEach((t) => {
+        if (Array.isArray(t.resources)) { const i = t.resources.indexOf(a); if (i >= 0) t.resources[i] = n; }
+      })));
+      save();
+    }, [cuerpo.anterior, String(cuerpo.nuevo || '').trim()]);
+    await sesion.avanzar(1500);
+    const nueva = await vista();
+    const cambiadas = Object.keys(nueva.textos).filter((k) => nueva.textos[k] !== antes[k]).length;
+    return { estado: 200, cuerpo: { resultado: String(cambiadas), filasGuardadas: cambiadas, vista: nueva.vista } };
+  }
+  if (p === '/api/v1/recursos/bloqueos' && metodo === 'POST') {
+    if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
+    const id = 'b' + Date.now().toString(36);
+    await sesion.evaluar(([b, i]) => { RES_CACHE.blocks = RES_CACHE.blocks || []; RES_CACHE.blocks.push({ id: i, resource: b.resource, start: b.start, end: b.end, reason: b.reason, note: b.note }); resSaveLocal(); }, [cuerpo, id]);
+    return { estado: 200, cuerpo: { ok: true, id } };
+  }
+  if (p === '/api/v1/recursos/bloqueos/borrar' && metodo === 'POST') {
+    await sesion.evaluar((i) => { RES_CACHE.blocks = (RES_CACHE.blocks || []).filter((b) => String(b.id) !== String(i)); resSaveLocal(); }, cuerpo.id);
+    return { estado: 200, cuerpo: { ok: true } };
+  }
   if (p === '/api/v1/catalogos') return { estado: 200, cuerpo: escenario.configuracion };
   if (p === '/api/v1/usuarios') return { estado: 200, cuerpo: escenario.usuarios };
   if (p.startsWith('/api/v1/indicadores/')) return indicadores(p.slice('/api/v1/indicadores/'.length), url.searchParams, metodo);

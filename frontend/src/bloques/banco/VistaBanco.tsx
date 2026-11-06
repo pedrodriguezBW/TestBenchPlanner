@@ -4,6 +4,7 @@ import { usePlanificador } from '../../estado/Planificador';
 import { usePreferencia } from '../../utilidades/preferencias';
 import { BarraSeleccion } from './BarraSeleccion';
 import { BuscadorAprobaciones } from './BuscadorAprobaciones';
+import { SelectorRecursos } from '../recursos/SelectorRecursos';
 import { Gantt } from './Gantt';
 import { ListaCerrados } from './ListaCerrados';
 import { TablaEnsayos, type AccionesFila } from './TablaEnsayos';
@@ -15,11 +16,12 @@ import { VentanaCierre, type DatosCierre } from './VentanaCierre';
  * que reparte el espacio (se recuerda en este navegador).
  */
 export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (banco: string) => void }) {
-  const { vista, operar, editarCampo, estadosAprobacion, proyectos, mostrarMensaje } = usePlanificador();
+  const { vista, operar, editarCampo, estadosAprobacion, proyectos, mostrarMensaje, soloLectura } = usePlanificador();
   const [seleccion, setSeleccion] = useState<Set<string>>(new Set());
   const [cierre, setCierre] = useState<DatosCierre | null>(null);
   const [verCerrados, setVerCerrados] = useState(false);
   const [buscadorPara, setBuscadorPara] = useState<FilaEnsayo | null>(null);
+  const [recursosPara, setRecursosPara] = useState<string | null>(null);
   const [reparto, setReparto] = usePreferencia<number>('tbp_reparto_banco', 1);
   const contenedor = useRef<HTMLDivElement>(null);
 
@@ -54,6 +56,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
     declararEstado: (f, estado) => void operar(banco, 'estado', { id: f.id, estado }, [f.id]),
     aplicarSugerencia: (f) => void operar(banco, 'aplicarSugerencia', { id: f.id }, [f.id]),
     abrirBuscadorAprobaciones: (f) => setBuscadorPara(f),
+    abrirRecursos: (f) => { if (!soloLectura) setRecursosPara(f.id); },
     soltar: (origen, destino) => {
       const mueve = seleccion.size && seleccion.has(origen) ? seleccionActiva : [origen];
       if (mueve.length === 1 && mueve[0] === destino) return;
@@ -154,6 +157,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
         onReutilizado={(b) => onIrABanco(b)} />
       {/* Va después de la lista de cerrados: «✎ Corregir» se abre encima de ella, como en la 4.9.4. */}
       <VentanaCierre datos={cierre} onCerrar={() => setCierre(null)} />
+      <SelectorRecursos banco={banco} id={recursosPara} onCerrar={() => setRecursosPara(null)} />
       <BuscadorAprobaciones abierto={!!buscadorPara} onCerrar={() => setBuscadorPara(null)}
         onElegir={(id) => { if (buscadorPara) editarCampo(banco, buscadorPara.id, 'approvalId', id); setBuscadorPara(null); }} />
     </>

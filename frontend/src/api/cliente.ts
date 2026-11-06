@@ -1,5 +1,5 @@
 import type {
-  Aprobacion, BloquesKpi, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
+  Aprobacion, BloquesKpi, Recurso, Recursos, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
   Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
 
@@ -103,6 +103,15 @@ export const api = {
   tendencia: (cwDesde: number, cwHasta: number, org: string) =>
     peticion<Tendencia>('GET', `/api/v1/indicadores/tendencia?cwDesde=${cwDesde}&cwHasta=${cwHasta}&org=${enc(org)}`),
   fotoSemanal: () => peticion<FotoSemanal[]>('POST', '/api/v1/indicadores/foto-semanal'),
+
+  // Recursos auxiliares (bloque D)
+  recursos: () => peticion<Recursos>('GET', '/api/v1/recursos'),
+  guardarRecursos: (resources: Recurso[]) => peticion<{ ok: boolean }>('PUT', '/api/v1/recursos', { resources }),
+  renombrarRecurso: (anterior: string, nuevo: string) =>
+    peticion<RespuestaOperacion>('POST', '/api/v1/recursos/renombrar', { anterior, nuevo }),
+  guardarBloqueo: (b: { resource: string; start: string; end: string; reason: string; note: string }) =>
+    peticion<{ ok: boolean; id?: string | number }>('POST', '/api/v1/recursos/bloqueos', b),
+  borrarBloqueo: (id: string | number) => peticion<{ ok: boolean }>('POST', '/api/v1/recursos/bloqueos/borrar', { id }),
 
   // KPI History (bloque C)
   historico: (org: string) => peticion<Historico>('GET', `/api/v1/indicadores/historico?org=${enc(org)}`),

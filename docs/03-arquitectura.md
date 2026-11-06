@@ -69,7 +69,7 @@ com.borgwarner.tbp
 | A | Vista de banco: tabla de ensayos (30 columnas), Gantt, cierre, lista de cerrados, selección, mover, ordenar, aprobaciones | **Hecho** |
 | B | Dashboard y «By Responsible» | **Hecho** |
 | C | KPI History y estadísticas | **Hecho** (salvo «Exportar CSV», que va con el bloque F) |
-| D | Recursos | Pendiente |
+| D | Equipos auxiliares (columna y selector en bancos, List of Equipments, Equipments List) | **Hecho** |
 | E | Configuración | Pendiente |
 | F | Exportaciones (incluida la del Gantt a Excel) | Pendiente |
 
@@ -86,6 +86,7 @@ utilidades/   fechas, textos (etiquetas y colores de la 4.9.4), preferencias (lo
 bloques/banco TablaEnsayos, columnas, Celdas, Gantt, VentanaCierre, ListaCerrados,
               BuscadorAprobaciones, BarraSeleccion, VistaBanco
 bloques/kpi   VistaKpiHistorico, Estadisticas
+bloques/recursos CeldaRecursos, SelectorRecursos, VistaRecursos, ListaEquipos
 bloques/panel VistaDashboard, VistaResponsable, BloquesKpi, GanttGeneral,
               GraficaOcupacion, TablaOcupacion, NavegacionSemana, comunes
 estilos/      base-4.9.4.css (el CSS original, sin cambios) · aplicacion.css (lo nuevo)
@@ -164,4 +165,22 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
 - Org y filtros de estadísticas se conservan al cambiar de pantalla mientras la
   pestaña está abierta (KPIHIST_ORG, STAT_FROM/TO/RESP de la 4.9.4).
 - Pendiente del bloque F: «⬇️ Exportar CSV».
+
+## Bloque D: equipos auxiliares
+
+- **Catálogo y bloqueos** (`estado/Recursos.tsx`): se leen con `GET /api/v1/recursos`
+  al arrancar y después de cada cambio; si la lectura falla se mantiene la última
+  copia buena. Cada cambio del catálogo guarda la lista completa (`PUT /recursos`),
+  igual que `resSaveCatalog`, protegido por D11 (no se guarda sin una lectura
+  correcta previa ni se vacía la lista).
+- **Asignar o quitar un equipo** usa la operación `alternarRecurso` del banco, con
+  versión de fila y aviso de conflicto como el resto de operaciones.
+- **Renombrar un equipo** (`POST /api/v1/recursos/renombrar`, solo Admin): cambia el
+  nombre en todos los ensayos que lo usan, activos y cerrados, y después se guarda
+  el catálogo, en el mismo orden que la 4.9.4.
+- **Ocupación de un equipo** (quién lo usa entre dos fechas, solapes, «!» de la
+  fila): se calcula en la interfaz con las fechas que ya da el backend para cada
+  ensayo y con los bloqueos; es un cruce de fechas para mostrar, no una regla que
+  cambie datos.
+- Bloquear un equipo y borrar bloqueos: botones solo para Admin, como en la 4.9.4.
 

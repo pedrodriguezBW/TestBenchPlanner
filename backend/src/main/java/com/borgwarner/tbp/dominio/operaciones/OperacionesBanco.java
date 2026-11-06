@@ -8,7 +8,9 @@ import com.borgwarner.tbp.dominio.planificacion.Planificacion;
 import com.borgwarner.tbp.dominio.planificacion.ResultadoPlan;
 import com.borgwarner.tbp.dominio.planificacion.Sugerencias;
 import com.borgwarner.tbp.dominio.usuarios.Usuario;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -245,5 +247,29 @@ public final class OperacionesBanco {
     /** Asigna o quita un equipo auxiliar. */
     public static void alternarRecurso(Planificacion p, String banco, String id, String recurso) {
         EdicionEnsayo.alternarRecurso(buscar(p, banco, id), recurso);
+    }
+
+    /**
+     * Renombrar un equipo del catálogo (renameResource): el nombre cambia en
+     * todos los ensayos que lo usan, activos y cerrados, de todos los bancos.
+     *
+     * @return número de ensayos afectados
+     */
+    public static int renombrarRecurso(Planificacion p, String anterior, String nuevo) {
+        int afectados = 0;
+        for (String banco : p.bancos()) {
+            for (Ensayo e : p.ensayos(banco)) {
+                if (e.campo("resources") instanceof ArrayNode lista) {
+                    for (int i = 0; i < lista.size(); i++) {
+                        if (anterior.equals(lista.get(i).asText())) {
+                            lista.set(i, TextNode.valueOf(nuevo));
+                            afectados++;
+                            break; // como indexOf de la 4.9.4: solo la primera aparición
+                        }
+                    }
+                }
+            }
+        }
+        return afectados;
     }
 }

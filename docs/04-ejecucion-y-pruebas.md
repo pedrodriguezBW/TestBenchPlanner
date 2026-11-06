@@ -174,3 +174,24 @@ Con el backend en modo local, menú «📈 KPI History», comparando con `/clasi
 6. 📊 Update Yearly Status en el Dashboard y volver: la semana aparece en la foto semanal.
 7. Con SharePoint en solo lectura: mismos números que `/clasico`.
 
+### Prueba manual del ciclo de vida (corrección del 6-nov)
+
+1. Abrir la app, minimizar Edge 2-3 minutos y volver: el backend sigue vivo y no hay aviso «Sin backend».
+2. Dejar la pestaña en segundo plano (otra pestaña delante) varios minutos y volver: igual.
+3. Abrir dos pestañas y cerrar una: el backend sigue.
+4. Recargar (F5): el backend sigue.
+5. Cerrar la última pestaña: a los ~8 s el log muestra «Sin pestañas abiertas: se cierra el backend».
+
+### Prueba manual en el PC (bloque D)
+
+En modo local, comparando con `/clasico`:
+
+1. Banco MD2: columna «Resources» al final de la tabla; 🔍 abre el selector («Disponibles» / «En uso», búsqueda).
+2. Añadir un equipo libre y uno ocupado: con el ocupado aparece el aviso ámbar y la fila muestra «!».
+3. Quitar un equipo con «✓ Quitar».
+4. «📋 List of Equipments»: Gantt por equipo, Prev/Next/Today, zoom a la semana, foco de proyecto.
+5. Admin: «🔒 Bloquear recurso», guardar, ver la barra rayada y la fila en «Bloqueos manuales»; borrarla.
+6. Admin: «🔧 Equipments List»: nuevo tipo, nuevo equipo, código (y código repetido), Org, renombrar
+   (el nombre cambia en los ensayos) y borrar.
+7. Con SharePoint en solo lectura: mismos datos que `/clasico` y ningún cambio se guarda.
+

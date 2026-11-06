@@ -1,5 +1,14 @@
 [
- { "caso": ".*", "ruta": "^/tarjetas/\\d+/botones/\\d+$", "referencia": "📊 Excel", "motivo": "Exportar el Gantt a Excel pertenece al bloque F (exportaciones); hasta entonces el botón no aparece." },
- { "caso": "^UC", "ruta": "^/botones/\\d+$", "referencia": "⬇️ Exportar CSV", "motivo": "El CSV de estadísticas pertenece al bloque F (exportaciones); hasta entonces el botón no aparece." },
- { "caso": "^UC", "ruta": "^/tablas/\\d+/cabecera/0$", "referencia": "Mes", "motivo": "D25: la tabla por trimestre de la 4.9.4 titula su primera columna «Mes»; la nueva pone «Trimestre»." }
+ {
+  "caso": ".*",
+  "ruta": "(botones)",
+  "referencia": "(ninguna)",
+  "motivo": "Los botones 📊 Excel y ⬇️ Exportar CSV pertenecen al bloque F (exportaciones). Hasta entonces comparar-panel.cjs los quita de la foto de la 4.9.4 (quitarBotonesDeExportar)."
+ },
+ {
+  "caso": "^UC",
+  "ruta": "^/tablas/\\d+/cabecera/0$",
+  "referencia": "Mes",
+  "motivo": "D25: la tabla por trimestre de la 4.9.4 titula su primera columna «Mes»; la nueva pone «Trimestre»."
+ }
 ]

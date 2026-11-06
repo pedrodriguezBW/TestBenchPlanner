@@ -106,17 +106,18 @@ function extraer() {
 function extraerSeccion() {
   const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
   const main = document.getElementById('main');
-  const fuera = (el) => !el.closest('#kpi-fresh');
+  // Las ventanas se leen aparte (en la 4.9.4 cuelgan de <body>, no de #main).
+  const fuera = (el) => !el.closest('#kpi-fresh') && !el.closest('.modal-bg');
   return {
-    titulos: [...main.querySelectorAll('h2, h3')].map(t),
-    org: [...main.querySelectorAll('select')].map((s) => s.value),
+    titulos: [...main.querySelectorAll('h2, h3')].filter(fuera).map(t),
+    org: [...main.querySelectorAll('select')].filter(fuera).map((s) => s.value),
     opcionesResponsable: [...main.querySelectorAll('select')].filter((s) => [...s.options].some((o) => o.text === 'Todos')).map((s) => [...s.options].map((o) => o.text)),
-    fechas: [...main.querySelectorAll('input[type=date]')].map((i) => i.value),
-    botones: [...main.querySelectorAll('button')].map(t),
+    fechas: [...main.querySelectorAll('input[type=date]')].filter(fuera).map((i) => i.value),
+    botones: [...main.querySelectorAll('button')].filter(fuera).map(t),
     hints: [...main.querySelectorAll('.hint')].filter(fuera).map(t),
-    vacios: [...main.querySelectorAll('.empty')].map(t),
+    vacios: [...main.querySelectorAll('.empty')].filter(fuera).map(t),
     kpis: [...main.querySelectorAll('.kpi')].map((k) => [t(k.querySelector('.n')), t(k.querySelector('.l')), k.className]),
-    tablas: [...main.querySelectorAll('table')].map((tb) => ({
+    tablas: [...main.querySelectorAll('table')].filter(fuera).map((tb) => ({
       clase: tb.className,
       cabecera: [...tb.querySelectorAll('thead th')].map(t),
       filas: [...tb.querySelectorAll('tbody tr')].map((tr) => [...tr.children].map((td) => {
@@ -126,6 +127,55 @@ function extraerSeccion() {
       })),
     })),
   };
+}
+
+/** Ventanas abiertas y aviso flotante de recursos. */
+function extraerVentanas() {
+  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
+  return {
+    ventanas: [...document.querySelectorAll('.modal-bg.show .modal')].map((m) => ({
+      titulo: t(m.querySelector('h3')),
+      sub: t(m.querySelector('#resm-sub')),
+      filas: [...m.querySelectorAll('tbody tr')].map((tr) => [...tr.children].map(t)),
+      grupos: [...m.querySelectorAll('#resm-list > div > div, #resm-list > div[style]')].map(t).filter(Boolean),
+      vacio: t(m.querySelector('.empty')),
+      campos: [...m.querySelectorAll('select, input')].filter((i) => i.id).map((i) => [i.id, i.value]),
+    })),
+    aviso: document.querySelector('#res-toast.show') ? t(document.querySelector('#res-toast')) : null,
+  };
+}
+
+/** Celda «Resources» de cada fila del banco abierto (texto y aviso «!»). */
+function extraerCeldasRecursos() {
+  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
+  return [...document.querySelectorAll('#tb tr[data-id]')].map((tr) => {
+    const b = tr.querySelector('button[title="Elegir recursos"]');
+    const td = b && b.closest('td');
+    const alerta = td && td.querySelector('.res-alert-badge');
+    return [tr.dataset.id, td ? t(td) : null, alerta ? alerta.title : null];
+  });
+}
+
+const BOTONES_DE_EXPORTAR = ['\u{1F4CA} Excel', '\u2B07\uFE0F Exportar CSV'];
+function quitarBotonesDeExportar(nodo) {
+  if (Array.isArray(nodo)) { nodo.forEach(quitarBotonesDeExportar); return; }
+  if (!nodo || typeof nodo !== 'object') return;
+  for (const [k, v] of Object.entries(nodo)) {
+    if (k === 'botones' && Array.isArray(v)) nodo[k] = v.filter((b) => !BOTONES_DE_EXPORTAR.includes(b));
+    else quitarBotonesDeExportar(v);
+  }
+}
+
+/** Lo que se lee en cada tipo de pantalla (se envía a la página como texto). */
+function guionFoto(pantalla) {
+  const f = { extraer, extraerSeccion, extraerVentanas, extraerCeldasRecursos };
+  const defs = Object.entries(f).map(([n, fn]) => `const ${n} = ${fn.toString()};`).join('\n');
+  const cuerpo = {
+    kpi: 'return extraerSeccion();',
+    recursos: 'return Object.assign({}, extraer(), { seccion: extraerSeccion() }, extraerVentanas());',
+    ventana: 'return Object.assign({ celdas: extraerCeldasRecursos() }, extraerVentanas());',
+  }[pantalla] || 'return extraer();';
+  return `(() => { ${defs}\n${cuerpo} })()`;
 }
 
 async function pasoComun(pagina, paso, esOriginal, avanzar) {
@@ -180,6 +230,58 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     case 'responsable':
       await main.locator('.view-head select').filter({ has: pagina.locator('option[value="__manager__"]') }).selectOption(paso.valor);
       break;
+    case 'abrirRecursos':
+      await pagina.locator(`#tb tr[data-id="${paso.ensayo}"] button[title="Elegir recursos"]`).click();
+      break;
+    case 'pestanaRecursos':
+      await pagina.locator(paso.valor === 'busy' ? '#resm-tab-busy' : '#resm-tab-free').click();
+      break;
+    case 'buscarRecurso':
+      await pagina.locator('#resm-search').fill(paso.valor);
+      break;
+    case 'alternarRecurso':
+      await pagina.locator('#resm-list tr').filter({ has: pagina.locator('td:first-child b', { hasText: new RegExp(`^${paso.recurso}$`) }) })
+        .locator('td:last-child button').click();
+      break;
+    case 'cerrarVentana':
+      await pagina.locator('.modal-bg.show .modal').getByRole('button', { name: paso.boton || 'Cerrar', exact: true }).last().click();
+      break;
+    case 'bloquear':
+      await main.getByRole('button', { name: /Bloquear recurso/ }).click();
+      await avanzar();
+      if (paso.recurso) await pagina.locator('#blk-res').selectOption(paso.recurso);
+      if (paso.desde) await pagina.locator('#blk-start').fill(paso.desde);
+      if (paso.hasta) await pagina.locator('#blk-end').fill(paso.hasta);
+      if (paso.motivo) await pagina.locator('#blk-reason').selectOption(paso.motivo);
+      if (paso.nota) await pagina.locator('#blk-note').fill(paso.nota);
+      if (paso.guardar !== false) await pagina.getByRole('button', { name: 'Guardar bloqueo' }).click();
+      break;
+    case 'borrarBloqueo':
+      await main.locator('table.lst tbody tr').nth(paso.indice || 0).locator('button.del').click();
+      break;
+    case 'zoomRecursos':
+      await main.locator('.week-nav button', { hasText: /Zoom to week|Full year/ }).click();
+      break;
+    case 'equipo': {
+      // Equipments List: cajas de la fila del equipo (nombre, código) y Org.
+      const fila = main.locator('table.lst tbody tr').filter({ has: pagina.locator(`input[value="${paso.nombre}"]`) }).first();
+      const cajas = fila.locator('input');
+      if (paso.nuevoNombre !== undefined) { await cajas.nth(0).fill(paso.nuevoNombre); await cajas.nth(0).press('Tab'); }
+      if (paso.codigo !== undefined) { await cajas.nth(1).fill(paso.codigo); await cajas.nth(1).press('Tab'); }
+      if (paso.org !== undefined) await fila.locator('select').selectOption(paso.org);
+      if (paso.borrar) await fila.locator('button.del').click();
+      break;
+    }
+    case 'nuevoEquipo': {
+      const caja = main.locator(`input[placeholder="Nuevo equipo en ${paso.tipo}..."]`);
+      await caja.fill(paso.nombre);
+      await caja.locator('xpath=following-sibling::button').click();
+      break;
+    }
+    case 'nuevoTipo':
+      await main.locator('#newrestype').fill(paso.nombre);
+      await main.getByRole('button', { name: /Añadir tipo/ }).click();
+      break;
     case 'kpiOrg':
       await main.locator('select').first().selectOption(paso.valor);
       break;
@@ -213,6 +315,14 @@ async function ejecutarOriginal(caso, escenario) {
   try {
     const avanzar = async () => { await sesion.avanzar(400); };
     await avanzar();
+    if (/^UD/.test(caso.id)) {
+      // La 4.9.4 lee el catálogo de equipos a los 6,5 s de arrancar (v45Init): se deja
+      // pasar ese tiempo, como un usuario que lleva un rato con la app abierta.
+      await sesion.avanzar(7000);
+      await sesion.pagina.waitForFunction(() => RES_LOADED, null, { timeout: 5000 });
+      await sesion.evaluar(() => render());
+      await avanzar();
+    }
     for (const paso of caso.pasos) await pasoComun(sesion.pagina, paso, true, avanzar);
     // La relectura de la 4.9.4 puede redibujar justo ahora: se deja que termine
     // (sus herramientas del Gantt se añaden en un temporizador).
@@ -222,7 +332,10 @@ async function ejecutarOriginal(caso, escenario) {
       const listo = await sesion.pagina.evaluate(() => !document.getElementById('ganttbox') || !!document.querySelector('.g-toolbar'));
       if (listo && i >= 2) break;
     }
-    const foto = await sesion.pagina.evaluate(caso.pantalla === 'kpi' ? extraerSeccion : extraer);
+    const foto = await sesion.pagina.evaluate(guionFoto(caso.pantalla));
+    // Bloque F pendiente: los botones de exportar (📊 Excel, ⬇️ Exportar CSV) aún no
+    // existen en la versión nueva; se quitan de la foto de la 4.9.4 (ver cambios-aprobados-interfaz.json).
+    quitarBotonesDeExportar(foto);
     // D24: la 4.9.4 añade a la lista de responsables diez nombres fijos de su código.
     (foto.opcionesResponsable || []).forEach((l, i) => { foto.opcionesResponsable[i] = l.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n)); });
     if (foto.responsable) foto.responsable.opciones = foto.responsable.opciones.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n));
@@ -243,7 +356,10 @@ async function ejecutarNueva(navegador, caso) {
   const contexto = await navegador.newContext({ timezoneId: 'Europe/Madrid', locale: 'es-ES', viewport: { width: 1600, height: 900 } });
   const pagina = await contexto.newPage();
   const errores = [];
+  const dialogos = [];
   pagina.on('pageerror', (e) => errores.push(String(e.message || e)));
+  // Igual que el oráculo de la 4.9.4: se aceptan confirmaciones y avisos y se anotan.
+  pagina.on('dialog', (d) => { dialogos.push(d.message()); void d.accept(); });
   try {
     // Espera a que lleguen los indicadores (peticiones aparte de la vista). No basta
     // con networkidle: con el equipo cargado, una respuesta lenta del backend llega
@@ -267,8 +383,8 @@ async function ejecutarNueva(navegador, caso) {
     await asentar();
     for (const paso of caso.pasos) await pasoComun(pagina, paso, false, asentar);
     await asentar();
-    const foto = await pagina.evaluate(caso.pantalla === 'kpi' ? extraerSeccion : extraer);
-    foto.mensajes = await pagina.locator('.tbp-mensaje').allTextContents();
+    const foto = await pagina.evaluate(guionFoto(caso.pantalla));
+    foto.mensajes = [...dialogos, ...await pagina.locator('.tbp-mensaje').allTextContents()];
     foto.erroresJs = errores;
     return foto;
   } finally {
@@ -290,8 +406,8 @@ async function main() {
   const fallos = [];
   for (const caso of casos) {
     try {
-      const original = await ejecutarOriginal(caso, escenario);
-      const nueva = await ejecutarNueva(navegador, caso);
+      const original = await ejecutarOriginal(caso, escenario).catch((e) => { throw new Error('[4.9.4] ' + e.message); });
+      const nueva = await ejecutarNueva(navegador, caso).catch((e) => { throw new Error('[nueva] ' + e.message); });
       fs.writeFileSync(path.join(salida, caso.id + '.json'), JSON.stringify({ original, nueva }, null, 1));
       const difs = diferencias(original, nueva, '').filter((d) => !aprobados.some((a) => new RegExp(a.caso).test(caso.id) && new RegExp(a.ruta).test(d.ruta)
         && (a.referencia === undefined || JSON.stringify(a.referencia) === JSON.stringify(d.referencia))));

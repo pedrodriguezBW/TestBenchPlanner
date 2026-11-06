@@ -238,6 +238,16 @@ final class LaboratorioJava {
                 }
             }
             case "cerrar", "corregir" -> cerrar(paso, op.equals("corregir"), banco, id);
+            case "recurso" -> {
+                if (puedeEscribir()) {
+                    OperacionesBanco.alternarRecurso(planificacion, banco, id, paso.path("recurso").asText());
+                }
+            }
+            case "renombrarRecurso" -> {
+                if (puedeEscribir()) {
+                    OperacionesBanco.renombrarRecurso(planificacion, paso.path("anterior").asText(), paso.path("nuevo").asText());
+                }
+            }
             case "fotoKpi", "esperar" -> {
                 // La foto semanal no cambia el estado: se observa en el apartado kpi.
             }

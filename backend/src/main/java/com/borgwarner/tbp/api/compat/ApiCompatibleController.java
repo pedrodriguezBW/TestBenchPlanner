@@ -88,7 +88,7 @@ public class ApiCompatibleController {
 
     @PostMapping("/load")
     public ArrayNode cargar() {
-        cicloDeVida.latido();
+        cicloDeVida.latido(null); // /api/load y /api/save solo los usa la interfaz clásica
         ArrayNode salida = JsonJs.mapper().createArrayNode();
         for (FilaGuardada fila : ensayos.leer()) {
             salida.addObject().put("uid", fila.uid()).put("data", fila.texto());
@@ -98,7 +98,7 @@ public class ApiCompatibleController {
 
     @PostMapping("/save")
     public ObjectNode guardar(@RequestBody(required = false) JsonNode entrada) {
-        cicloDeVida.latido();
+        cicloDeVida.latido(null);
         JsonNode p = cuerpo(entrada);
         List<CambioFila> cambios = new ArrayList<>();
         for (JsonNode u : p.path("upserts")) {
@@ -284,16 +284,34 @@ public class ApiCompatibleController {
         return JsonJs.objetoVacio().put("ok", false).put("error", "RELEASE_FOLDER no configurado en el backend.");
     }
 
+    /** Latido. La interfaz React envía {"pestana": código}; la clásica, «{}». */
     @PostMapping("/heartbeat")
-    public ObjectNode latido() {
-        cicloDeVida.latido();
+    public ObjectNode latido(@RequestBody(required = false) String cuerpo) {
+        cicloDeVida.latido(codigoPestana(cuerpo));
+        return JsonJs.objetoVacio().put("ok", true).put("pestanas", cicloDeVida.pestanasAbiertas());
+    }
+
+    /** Cierre de una pestaña (sendBeacon al cerrarla de verdad, no al minimizar). */
+    @PostMapping("/shutdown")
+    public ObjectNode apagar(@RequestBody(required = false) String cuerpo) {
+        cicloDeVida.solicitarApagado(codigoPestana(cuerpo));
         return JsonJs.objetoVacio().put("ok", true);
     }
 
-    @PostMapping("/shutdown")
-    public ObjectNode apagar() {
-        cicloDeVida.solicitarApagado();
-        return JsonJs.objetoVacio().put("ok", true);
+    /**
+     * Código de pestaña del cuerpo. Se lee como texto porque sendBeacon puede
+     * llegar sin tipo de contenido; un cuerpo vacío o ilegible es la clásica.
+     */
+    private static String codigoPestana(String cuerpo) {
+        if (cuerpo == null || cuerpo.isBlank()) {
+            return null;
+        }
+        try {
+            String codigo = JsonJs.mapper().readTree(cuerpo).path("pestana").asText("");
+            return codigo.isBlank() ? null : codigo;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @GetMapping("/diag")

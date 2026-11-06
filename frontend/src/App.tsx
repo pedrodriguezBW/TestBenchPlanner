@@ -3,6 +3,8 @@ import { VistaBanco } from './bloques/banco/VistaBanco';
 import { VistaDashboard } from './bloques/panel/VistaDashboard';
 import { VistaResponsable } from './bloques/panel/VistaResponsable';
 import { VistaKpiHistorico } from './bloques/kpi/VistaKpiHistorico';
+import { ListaEquipos } from './bloques/recursos/ListaEquipos';
+import { VistaRecursos } from './bloques/recursos/VistaRecursos';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
@@ -26,7 +28,6 @@ const SINCRONIZACION: Record<EstadoSincronizacion, [string, string]> = {
 
 /** Secciones que aún no están migradas (se indican, pero no se inventan). */
 const PENDIENTES: Record<string, [string, string]> = {
-  __resources__: ['\u{1F4CB} List of Equipments', 'bloque D'],
   __benches__: ['\u{1F527} Test Benches', 'bloque E'],
   __projects__: ['\u{1F4C1} Projects', 'bloque E'],
   __users__: ['\u{1F464} Users/Rights Management', 'bloque E'],
@@ -94,6 +95,7 @@ export function App() {
           {pestana('__resources__', <>&#128203; List of Equipments</>)}
           <div className="grp-title">Configuration</div>
           {esAdmin && pestana('__benches__', <>&#128296; Test Benches</>)}
+          {esAdmin && pestana('__rescfg__', <>&#128296; Equipments List</>)}
           {(esAdmin || esEditor) && pestana('__projects__', <>&#128193; Projects</>)}
           {esAdmin && pestana('__users__', <>&#128100; Users/Rights Management</>)}
           {esAdmin && pestana('__tools__', <>&#128295; Tools</>)}
@@ -107,6 +109,8 @@ export function App() {
           {vista && pantalla === '__dash__' && <VistaDashboard />}
           {vista && pantalla === '__resp__' && <VistaResponsable />}
           {vista && pantalla === '__kpihist__' && <VistaKpiHistorico />}
+          {vista && pantalla === '__resources__' && <VistaRecursos />}
+          {vista && pantalla === '__rescfg__' && (esAdmin ? <ListaEquipos /> : <VistaDashboard />)}
           {vista && PENDIENTES[pantalla] && (
             <div className="sec">
               <h2>{PENDIENTES[pantalla][0]}</h2>

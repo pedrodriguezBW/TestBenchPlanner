@@ -13,7 +13,7 @@
  },
  {
   "discrepancia": "D14",
-  "caso": "^R01-",
+  "caso": "^(R01|D05)-",
   "ruta": "^/(planificacion|cambiosPersistidos|persistido)",
   "explicacion": "Usuario de solo lectura: la 4.9.4 cambiaba la pantalla (sin guardar) si se llamaba a la función por dentro; en la interfaz no tiene botones. La versión nueva rechaza la operación en el servidor. No es observable desde la interfaz."
  }

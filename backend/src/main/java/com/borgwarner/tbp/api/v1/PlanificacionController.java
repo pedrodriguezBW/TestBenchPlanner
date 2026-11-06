@@ -130,6 +130,25 @@ public class PlanificacionController {
         return respuesta(resultado.vista(), resultado.valor(), resultado.cambios().size());
     }
 
+    /**
+     * Renombrar un equipo auxiliar en todos los ensayos que lo usan. El catálogo
+     * se guarda aparte (PUT /recursos), igual que en la 4.9.4: primero los
+     * ensayos y después el catálogo. Cuerpo: {"anterior": "...", "nuevo": "..."}.
+     */
+    @PostMapping("/recursos/renombrar")
+    public ObjectNode renombrarRecurso(@RequestBody JsonNode cuerpo) {
+        Usuario usuario = sesion.usuarioActual();
+        sesion.exigirAdmin(usuario);
+        String anterior = cuerpo.path("anterior").asText("");
+        String nuevo = cuerpo.path("nuevo").asText("").trim();
+        if (anterior.isEmpty() || nuevo.isEmpty()) {
+            throw new IllegalArgumentException("Faltan el nombre anterior o el nuevo");
+        }
+        var resultado = servicio.ejecutar(usuario, Map.of(), true,
+                (p, plan) -> OperacionesBanco.renombrarRecurso(p, anterior, nuevo));
+        return respuesta(resultado.vista(), String.valueOf(resultado.valor()), resultado.cambios().size());
+    }
+
     // ---- ventana de cierre ---------------------------------------------------
 
     /** Valores con los que se abre la ventana de cierre y su validación inicial. */

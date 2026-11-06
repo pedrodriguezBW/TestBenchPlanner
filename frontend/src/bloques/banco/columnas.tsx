@@ -7,6 +7,7 @@ import {
   MOTIVOS_RETRASO, objetivoAvance, unidadDuracion,
 } from '../../utilidades/textos';
 import { Entrada, Selector, texto } from './Celdas';
+import { CeldaRecursos } from '../recursos/CeldaRecursos';
 
 /*
  * Columnas de la tabla de un banco: mismas claves, cabeceras, controles y
@@ -29,6 +30,7 @@ export interface ContextoCelda {
   declararEstado: (estado: string) => void;
   aplicarSugerencia: () => void;
   abrirBuscadorAprobaciones: () => void;
+  abrirRecursos: () => void;
 }
 
 export interface Columna {
@@ -269,12 +271,17 @@ export const COLUMNAS: Record<string, Columna> = {
       </span>
     ),
   },
+  // v4.5 de la 4.9.4: equipos auxiliares asignados, con aviso si alguno está ocupado en esas fechas.
+  resources: {
+    cabecera: 'Resources', clase: 'wideproj',
+    celda: ({ fila, abrirRecursos }) => <CeldaRecursos fila={fila} onAbrir={abrirRecursos} />,
+  },
 };
 
 /** Orden por defecto de las columnas (DEFAULT_COLS de la 4.9.4). */
 export const COLUMNAS_POR_DEFECTO = ['actions', 'prio', 'responsible', 'project', 'comments', 'approvalId', 'type', 'weekend', 'inputs',
   'avail', 'confirmedStart', 'confirmedEnd', 'actualStart', 'trueEnd', 'start', 'end', 'planned', 'progressActual', 'progPct', 'status',
-  'reason', 'lastUpdate', 'durMode', 'cycles', 'cycleVal', 'cycleUnit', 'durManual', 'manualUnit', 'cf', 'downtime'];
+  'reason', 'lastUpdate', 'durMode', 'cycles', 'cycleVal', 'cycleUnit', 'durManual', 'manualUnit', 'cf', 'downtime', 'resources'];
 
 /** Orden guardado, completado con las columnas nuevas y sin las que ya no existen (colOrder). */
 export function ordenColumnas(guardado: string[] | null): string[] {

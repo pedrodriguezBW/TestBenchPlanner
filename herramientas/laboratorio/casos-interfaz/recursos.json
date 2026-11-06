@@ -1,0 +1,365 @@
+[
+ {
+  "id": "UD01-equipos",
+  "pantalla": "recursos",
+  "titulo": "List of Equipments al abrir",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   }
+  ]
+ },
+ {
+  "id": "UD02-equipos-semana",
+  "pantalla": "recursos",
+  "titulo": "List of Equipments con zoom a la semana y Next",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "zoomRecursos"
+   },
+   {
+    "op": "semana",
+    "n": 1
+   }
+  ]
+ },
+ {
+  "id": "UD03-equipos-foco",
+  "pantalla": "recursos",
+  "titulo": "List of Equipments con foco de proyecto",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "foco",
+    "indice": 3
+   }
+  ]
+ },
+ {
+  "id": "UD04-bloquear",
+  "pantalla": "recursos",
+  "titulo": "Bloquear un equipo (Admin)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "bloquear",
+    "recurso": "Hydraulic Cylinder 2",
+    "desde": "2026-11-04",
+    "hasta": "2026-11-12",
+    "motivo": "Avería",
+    "nota": "fuga"
+   }
+  ]
+ },
+ {
+  "id": "UD05-bloquear-y-borrar",
+  "pantalla": "recursos",
+  "titulo": "Bloquear y borrar el bloqueo",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "bloquear",
+    "recurso": "Bomba Manual",
+    "motivo": "Calibración"
+   },
+   {
+    "op": "borrarBloqueo",
+    "indice": 0
+   }
+  ]
+ },
+ {
+  "id": "UD06-ventana-bloqueo",
+  "pantalla": "recursos",
+  "titulo": "Ventana de bloqueo abierta con sus valores por defecto",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "bloquear",
+    "guardar": false
+   }
+  ]
+ },
+ {
+  "id": "UD07-equipos-editor",
+  "pantalla": "recursos",
+  "titulo": "List of Equipments como Editor (sin bloquear)",
+  "fecha": "2026-11-05",
+  "rol": "editor",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   }
+  ]
+ },
+ {
+  "id": "UD08-selector",
+  "pantalla": "ventana",
+  "titulo": "Selector de recursos: disponibles",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "r3rtxond"
+   }
+  ]
+ },
+ {
+  "id": "UD09-selector-en-uso",
+  "pantalla": "ventana",
+  "titulo": "Selector de recursos: en uso",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "r3rtxond"
+   },
+   {
+    "op": "pestanaRecursos",
+    "valor": "busy"
+   }
+  ]
+ },
+ {
+  "id": "UD10-selector-buscar",
+  "pantalla": "ventana",
+  "titulo": "Selector de recursos: buscar «pulse»",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "r3rtxond"
+   },
+   {
+    "op": "buscarRecurso",
+    "valor": "pulse"
+   }
+  ]
+ },
+ {
+  "id": "UD11-asignar",
+  "pantalla": "ventana",
+  "titulo": "Asignar un equipo libre",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "r3rtxond"
+   },
+   {
+    "op": "alternarRecurso",
+    "recurso": "Coolant Pulse Generator 3"
+   }
+  ]
+ },
+ {
+  "id": "UD12-asignar-ocupado",
+  "pantalla": "ventana",
+  "titulo": "Asignar un equipo en uso: aviso y «!» en la fila",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "r3rtxond"
+   },
+   {
+    "op": "pestanaRecursos",
+    "valor": "busy"
+   },
+   {
+    "op": "alternarRecurso",
+    "recurso": "Hydraulic Cylinder 2"
+   }
+  ]
+ },
+ {
+  "id": "UD13-quitar",
+  "pantalla": "ventana",
+  "titulo": "Quitar el equipo asignado y cerrar",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Fatiga"
+   },
+   {
+    "op": "abrirRecursos",
+    "ensayo": "rv9z09xg"
+   },
+   {
+    "op": "alternarRecurso",
+    "recurso": "Hydraulic Cylinder 3"
+   },
+   {
+    "op": "cerrarVentana"
+   }
+  ]
+ },
+ {
+  "id": "UD14-celdas-banco",
+  "pantalla": "ventana",
+  "titulo": "Columna Resources de un banco con equipos en conflicto",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "1500 Aire"
+   }
+  ]
+ },
+ {
+  "id": "UD15-catalogo",
+  "pantalla": "kpi",
+  "titulo": "Equipments List (Admin)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   }
+  ]
+ },
+ {
+  "id": "UD16-catalogo-codigo-org",
+  "pantalla": "kpi",
+  "titulo": "Equipments List: código y Org",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   },
+   {
+    "op": "equipo",
+    "nombre": "Bomba Manual",
+    "codigo": "EQ-777",
+    "org": "BW"
+   }
+  ]
+ },
+ {
+  "id": "UD17-catalogo-codigo-repetido",
+  "pantalla": "kpi",
+  "titulo": "Equipments List: código repetido",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   },
+   {
+    "op": "equipo",
+    "nombre": "Bomba Manual",
+    "codigo": "EQ-1"
+   },
+   {
+    "op": "equipo",
+    "nombre": "Hydraulic Cylinder 1",
+    "codigo": "EQ-1"
+   }
+  ]
+ },
+ {
+  "id": "UD18-catalogo-nuevo",
+  "pantalla": "kpi",
+  "titulo": "Equipments List: nuevo equipo y nuevo tipo",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   },
+   {
+    "op": "nuevoEquipo",
+    "tipo": "Coolant Pulse Generator",
+    "nombre": "Coolant Pulse Generator 4"
+   },
+   {
+    "op": "nuevoTipo",
+    "nombre": "Osciloscopio"
+   }
+  ]
+ },
+ {
+  "id": "UD19-catalogo-renombrar",
+  "pantalla": "kpi",
+  "titulo": "Equipments List: renombrar y ver el cambio en los ensayos",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   },
+   {
+    "op": "equipo",
+    "nombre": "Hydraulic Cylinder 3",
+    "nuevoNombre": "HC-3 Nuevo"
+   },
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   }
+  ]
+ },
+ {
+  "id": "UD20-catalogo-borrar",
+  "pantalla": "kpi",
+  "titulo": "Equipments List: borrar un equipo",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Equipments List"
+   },
+   {
+    "op": "equipo",
+    "nombre": "Bomba Manual",
+    "borrar": true
+   }
+  ]
+ }
+]

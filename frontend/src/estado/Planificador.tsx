@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { iniciarCicloDeVida } from './cicloDeVida';
 import { api, ErrorApi, ErrorConflicto, ErrorRegla, ErrorSinConexion, type CambioCampo } from '../api/cliente';
 import type { FilaEnConflicto, FilaEnsayo, RespuestaOperacion, Sesion, TipoOperacion, ValoresCierre, Vista } from '../api/tipos';
 
@@ -372,13 +373,8 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     return () => window.clearInterval(t);
   }, [recargarSilencioso]);
 
-  // Latido y cierre del backend al cerrar la pestaña (como la 4.9.4).
-  useEffect(() => {
-    const latido = window.setInterval(() => { void fetch('/api/heartbeat', { method: 'POST' }).catch(() => undefined); }, 5000);
-    const alSalir = () => navigator.sendBeacon?.('/api/shutdown');
-    window.addEventListener('pagehide', alSalir);
-    return () => { window.clearInterval(latido); window.removeEventListener('pagehide', alSalir); };
-  }, []);
+  // Presencia de la pestaña: el backend se apaga solo al CERRAR la última (no al minimizar).
+  useEffect(() => iniciarCicloDeVida(), []);
 
   // Estado global de los Approval ID que aparecen en la planificación (cada 60 s).
   const idsAprobacion = useMemo(() => {
