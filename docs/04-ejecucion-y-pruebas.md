@@ -162,3 +162,15 @@ Con el backend en modo local y `http://127.0.0.1:5001/` (se abre en el Dashboard
 
 Paridad automática del bloque B (con Node): `TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs`.
 
+### Prueba manual en el PC (bloque C)
+
+Con el backend en modo local, menú «📈 KPI History», comparando con `/clasico`:
+
+1. Org ALL / BW / CTAG: tarjetas de la foto semanal, tabla por semana y motivos acumulados.
+2. Estadísticas: Año, Año hasta hoy, Trimestre, Mes y un rango con Desde/Hasta.
+3. Responsable: una persona y «Todos».
+4. «Reload from SharePoint»: el indicador pasa a «Actualizando…» y vuelve a «Actualizado hh:mm».
+5. Cerrar un ensayo en un banco y volver: aparece en las estadísticas.
+6. 📊 Update Yearly Status en el Dashboard y volver: la semana aparece en la foto semanal.
+7. Con SharePoint en solo lectura: mismos números que `/clasico`.
+

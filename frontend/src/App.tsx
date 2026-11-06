@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { VistaBanco } from './bloques/banco/VistaBanco';
 import { VistaDashboard } from './bloques/panel/VistaDashboard';
 import { VistaResponsable } from './bloques/panel/VistaResponsable';
+import { VistaKpiHistorico } from './bloques/kpi/VistaKpiHistorico';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
@@ -25,7 +26,6 @@ const SINCRONIZACION: Record<EstadoSincronizacion, [string, string]> = {
 
 /** Secciones que aún no están migradas (se indican, pero no se inventan). */
 const PENDIENTES: Record<string, [string, string]> = {
-  __kpihist__: ['\u{1F4C8} KPI History', 'bloque C'],
   __resources__: ['\u{1F4CB} List of Equipments', 'bloque D'],
   __benches__: ['\u{1F527} Test Benches', 'bloque E'],
   __projects__: ['\u{1F4C1} Projects', 'bloque E'],
@@ -106,6 +106,7 @@ export function App() {
           )}
           {vista && pantalla === '__dash__' && <VistaDashboard />}
           {vista && pantalla === '__resp__' && <VistaResponsable />}
+          {vista && pantalla === '__kpihist__' && <VistaKpiHistorico />}
           {vista && PENDIENTES[pantalla] && (
             <div className="sec">
               <h2>{PENDIENTES[pantalla][0]}</h2>

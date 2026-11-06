@@ -301,6 +301,9 @@ final class LaboratorioJava {
         if (apartados.contains("kpi")) {
             foto.set("kpi", kpi(plan));
         }
+        if (apartados.contains("kpiHistorico")) {
+            foto.set("kpiHistorico", kpiHistorico());
+        }
         if (apartados.contains("panel")) {
             foto.set("panel", panel(plan));
         }
@@ -350,6 +353,32 @@ final class LaboratorioJava {
         f.put("arranqueEfectivo", EstadosEnsayo.arranqueEfectivo(e, contexto.hoy()));
         f.put("diasSinAvance", MotorFechas.diasSinAvance(e, contexto.hoy()));
         return f;
+    }
+
+    /** KPI History (bloque C): fotos por organización y estadísticas con los mismos filtros que la 4.9.4. */
+    private ObjectNode kpiHistorico() {
+        ObjectNode salida = JsonJs.objetoVacio();
+        List<JsonNode> filas = new ArrayList<>();
+        escenario.path("kpis").forEach(filas::add);
+        ObjectNode historico = salida.putObject("historico");
+        for (String org : FiltroOrganizacion.ORGANIZACIONES) {
+            historico.set(org, JsonJs.mapper().valueToTree(HistoricoKpi.semanas(filas, org)));
+        }
+        int anio = contexto.calendario().anio();
+        String[][] filtros = {
+                {"ALL", "", anio + "-01-01", anio + "-12-31"}, {"BW", "", anio + "-01-01", anio + "-12-31"},
+                {"CTAG", "", anio + "-01-01", anio + "-12-31"}, {"ALL", "Responsable 27", anio + "-01-01", anio + "-12-31"},
+                {"ALL", "", anio + "-09-01", anio + "-10-15"},
+        };
+        ObjectNode estadisticas = salida.putObject("estadisticas");
+        for (String[] f : filtros) {
+            ArrayNode lista = estadisticas.putArray(String.join("|", f));
+            for (Estadisticas.Fila fila : Estadisticas.filas(planificacion, LocalDate.parse(f[2]), LocalDate.parse(f[3]), f[0], f[1])) {
+                lista.addObject().put("banco", fila.banco()).put("id", fila.ensayo().id()).put("fecha", Fechas.iso(fila.fecha()))
+                        .put("estadoFinal", fila.estadoFinal()).put("motivo", fila.motivo()).put("confirmado", fila.confirmado());
+            }
+        }
+        return salida;
     }
 
     /** Dashboard (bloque B): lo mismo que lee la 4.9.4 de utilCardHTML, trendData y blockKPIs. */

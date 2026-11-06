@@ -1,0 +1,16 @@
+[
+ { "id": "UC01-kpi", "pantalla": "kpi", "titulo": "KPI History al abrir", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }] },
+ { "id": "UC02-kpi-bw", "pantalla": "kpi", "titulo": "KPI History, Org BW", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "kpiOrg", "valor": "BW" }] },
+ { "id": "UC03-kpi-ctag", "pantalla": "kpi", "titulo": "KPI History, Org CTAG", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "kpiOrg", "valor": "CTAG" }] },
+ { "id": "UC04-trimestre", "pantalla": "kpi", "titulo": "Estadísticas: trimestre actual", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estRapido", "boton": "Trimestre" }] },
+ { "id": "UC05-mes", "pantalla": "kpi", "titulo": "Estadísticas: mes actual", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estRapido", "boton": "Mes" }] },
+ { "id": "UC06-anio-hasta-hoy", "pantalla": "kpi", "titulo": "Estadísticas: año hasta hoy y luego año", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estRapido", "boton": "Año hasta hoy" }, { "op": "estRapido", "boton": "Año" }] },
+ { "id": "UC07-rango", "pantalla": "kpi", "titulo": "Estadísticas: 1-sep a 15-oct", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estDesde", "valor": "2026-09-01" }, { "op": "estHasta", "valor": "2026-10-15" }] },
+ { "id": "UC08-sin-cerrados", "pantalla": "kpi", "titulo": "Estadísticas: periodo sin cerrados", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estDesde", "valor": "2026-01-01" }, { "op": "estHasta", "valor": "2026-01-31" }] },
+ { "id": "UC09-responsable", "pantalla": "kpi", "titulo": "Estadísticas por responsable", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estResponsable", "valor": "Responsable 27" }] },
+ { "id": "UC10-responsable-ctag", "pantalla": "kpi", "titulo": "Estadísticas por responsable con Org CTAG", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "estResponsable", "valor": "Responsable 05" }, { "op": "kpiOrg", "valor": "CTAG" }] },
+ { "id": "UC11-recargar", "pantalla": "kpi", "titulo": "Reload from SharePoint", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "kpiOrg", "valor": "BW" }, { "op": "recargar" }] },
+ { "id": "UC12-anio-siguiente", "pantalla": "kpi", "titulo": "KPI History el 1-ene-2027", "fecha": "2027-01-01", "pasos": [{ "op": "ir", "vista": "KPI History" }] },
+ { "id": "UC13-solo-lectura", "pantalla": "kpi", "titulo": "KPI History con usuario de solo lectura", "fecha": "2026-11-05", "rol": "readonly", "pasos": [{ "op": "ir", "vista": "KPI History" }] },
+ { "id": "UC14-tras-dashboard", "pantalla": "kpi", "titulo": "Volver al Dashboard y otra vez a KPI History (se conservan los filtros)", "fecha": "2026-11-05", "pasos": [{ "op": "ir", "vista": "KPI History" }, { "op": "kpiOrg", "valor": "CTAG" }, { "op": "estRapido", "boton": "Mes" }, { "op": "ir", "vista": "Dashboard" }, { "op": "ir", "vista": "KPI History" }] }
+]

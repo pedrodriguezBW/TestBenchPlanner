@@ -1,0 +1,5 @@
+[
+ { "id": "C10-kpi-historico", "titulo": "KPI History: fotos por organización y estadísticas con filtros", "funcionalidad": "C1-KPIHIST,C2-STATS", "escenario": "sharepoint-2026-11-05", "fecha": "2026-11-05", "pasos": [], "observar": ["kpiHistorico"] },
+ { "id": "C11-kpi-historico-tras-cierres", "titulo": "KPI History tras cerrar un ensayo y corregir otro", "funcionalidad": "C2-STATS,A11-CLOSE", "escenario": "sharepoint-2026-11-05", "fecha": "2026-11-05", "pasos": [{ "op": "cerrar", "banco": "Turismos", "ensayo": "rd8wnobn" }, { "op": "corregir", "banco": "MD1", "ensayo": "rn7noxcj", "valores": { "finReal": "2026-10-14" } }], "observar": ["kpiHistorico"] },
+ { "id": "C12-kpi-historico-2027", "titulo": "KPI History el 1-ene-2027", "funcionalidad": "C1-KPIHIST,C2-STATS", "escenario": "sharepoint-2026-11-05", "fecha": "2027-01-01", "pasos": [], "observar": ["kpiHistorico"] }
+]

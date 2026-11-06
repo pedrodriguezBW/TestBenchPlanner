@@ -242,6 +242,33 @@ async function indicadores(que, q, metodo) {
     }, [Number(q.get('cwDesde') || 0), Number(q.get('cwHasta') || 0), org]);
     return { estado: 200, cuerpo };
   }
+  if (que === 'historico') {
+    const cuerpo = await sesion.evaluar(([o, filasEscenario]) => {
+      if (KPIHIST === null) KPIHIST = filasEscenario;
+      const antes = KPIHIST_ORG;
+      KPIHIST_ORG = o;
+      const semanas = kpiHistRows();
+      KPIHIST_ORG = antes;
+      return { filas: KPIHIST.length, semanas };
+    }, [org, escenario.kpis]);
+    return { estado: 200, cuerpo };
+  }
+  if (que === 'estadisticas') {
+    const cuerpo = await sesion.evaluar(([desde, hasta, o, resp]) => {
+      recomputeAll();
+      const guardado = [STAT_FROM, STAT_TO, STAT_RESP, KPIHIST_ORG];
+      statDefaults();
+      if (desde) STAT_FROM = desde;
+      if (hasta) STAT_TO = hasta;
+      STAT_RESP = resp || '';
+      KPIHIST_ORG = o;
+      const filas = statRows().map((x) => ({ banco: x.bn, id: x.r.id, fecha: iso(x.dt), estadoFinal: x.fin, motivo: x.reason, confirmado: x.conf,
+        datos: JSON.parse(JSON.stringify(stripRT(x.r))) }));
+      [STAT_FROM, STAT_TO, STAT_RESP, KPIHIST_ORG] = guardado;
+      return filas;
+    }, [q.get('desde'), q.get('hasta'), org, q.get('responsable')]);
+    return { estado: 200, cuerpo };
+  }
   return { estado: 404, cuerpo: { error: 'sin ruta' } };
 }
 

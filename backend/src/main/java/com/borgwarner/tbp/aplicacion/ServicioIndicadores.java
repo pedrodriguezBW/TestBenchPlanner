@@ -11,6 +11,7 @@ import com.borgwarner.tbp.dominio.kpi.IndicadoresSemana;
 import com.borgwarner.tbp.dominio.kpi.Ocupacion;
 import com.borgwarner.tbp.dominio.kpi.PanelDashboard;
 import com.borgwarner.tbp.dominio.planificacion.Grupo;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +97,15 @@ public class ServicioIndicadores {
 
     public List<HistoricoKpi.Semana> historico(String organizacion) {
         return HistoricoKpi.semanas(historico.leer(), organizacion);
+    }
+
+    /** Fotos de una organización y número total de filas leídas (una sola lectura). */
+    public record Historico(int filas, List<HistoricoKpi.Semana> semanas) {
+    }
+
+    public Historico historicoCompleto(String organizacion) {
+        List<JsonNode> filas = historico.leer();
+        return new Historico(filas.size(), HistoricoKpi.semanas(filas, organizacion));
     }
 
     public List<Estadisticas.Fila> estadisticas(Vista vista, LocalDate desde, LocalDate hasta, String organizacion, String responsable) {

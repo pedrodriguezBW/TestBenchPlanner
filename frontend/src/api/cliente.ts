@@ -1,5 +1,5 @@
 import type {
-  Aprobacion, BloquesKpi, FilaEnConflicto, FotoSemanal, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
+  Aprobacion, BloquesKpi, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
   Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
 
@@ -103,4 +103,10 @@ export const api = {
   tendencia: (cwDesde: number, cwHasta: number, org: string) =>
     peticion<Tendencia>('GET', `/api/v1/indicadores/tendencia?cwDesde=${cwDesde}&cwHasta=${cwHasta}&org=${enc(org)}`),
   fotoSemanal: () => peticion<FotoSemanal[]>('POST', '/api/v1/indicadores/foto-semanal'),
+
+  // KPI History (bloque C)
+  historico: (org: string) => peticion<Historico>('GET', `/api/v1/indicadores/historico?org=${enc(org)}`),
+  estadisticas: (desde: string, hasta: string, org: string, responsable: string) =>
+    peticion<FilaEstadistica[]>('GET', `/api/v1/indicadores/estadisticas?desde=${desde}&hasta=${hasta}&org=${enc(org)}`
+      + `&responsable=${enc(responsable)}`),
 };

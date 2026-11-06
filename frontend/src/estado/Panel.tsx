@@ -41,6 +41,11 @@ interface EstadoPanel {
   setResponsable: (r: string) => void;
   tendencia: { ocultas: Record<string, boolean>; desde: number; hasta: number };
   setTendencia: (t: { ocultas: Record<string, boolean>; desde: number; hasta: number }) => void;
+  /** KPI History: Org (KPIHIST_ORG) y filtros de las estadísticas (STAT_*). */
+  kpiOrg: Organizacion;
+  setKpiOrg: (o: Organizacion) => void;
+  estadisticas: { desde: string; hasta: string; responsable: string };
+  setEstadisticas: (e: { desde: string; hasta: string; responsable: string }) => void;
   preferencias: PreferenciasVista;
   cambiarPreferencia: <K extends keyof PreferenciasVista>(clave: K, valor: PreferenciasVista[K]) => void;
   ponerPreferencias: (p: Partial<PreferenciasVista>) => void;
@@ -62,6 +67,9 @@ export function ProveedorPanel({ children }: { children: ReactNode }) {
   const [anchoDia, setAnchoDia] = useState(0);
   const [responsable, setResponsable] = useState('');
   const [tendencia, setTendencia] = useState({ ocultas: {} as Record<string, boolean>, desde: 1, hasta: 53 });
+  const [kpiOrg, setKpiOrg] = useState<Organizacion>('ALL');
+  // Vacíos = el año del calendario (statDefaults); se rellenan al abrir la pantalla.
+  const [estadisticas, setEstadisticas] = useState({ desde: '', hasta: '', responsable: '' });
   const [guardadas, setGuardadas] = usePreferencia<Partial<PreferenciasVista>>('bw_tbp_viewprefs_v1', {});
   const preferencias = useMemo(() => ({ ...PREFERENCIAS_DE_SERIE, ...guardadas }), [guardadas]);
 
@@ -70,7 +78,7 @@ export function ProveedorPanel({ children }: { children: ReactNode }) {
 
   const valor: EstadoPanel = {
     semana, setSemana, zoom, setZoom, organizacion, setOrganizacion, anchoDia, setAnchoDia,
-    responsable, setResponsable, tendencia, setTendencia, preferencias,
+    responsable, setResponsable, tendencia, setTendencia, kpiOrg, setKpiOrg, estadisticas, setEstadisticas, preferencias,
     cambiarPreferencia: (clave, v) => setGuardadas({ ...preferencias, [clave]: v }),
     ponerPreferencias: (p) => setGuardadas({ ...preferencias, ...p }),
   };

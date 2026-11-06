@@ -68,7 +68,7 @@ com.borgwarner.tbp
 |---|---|---|
 | A | Vista de banco: tabla de ensayos (30 columnas), Gantt, cierre, lista de cerrados, selección, mover, ordenar, aprobaciones | **Hecho** |
 | B | Dashboard y «By Responsible» | **Hecho** |
-| C | KPI y estadísticas | Pendiente |
+| C | KPI History y estadísticas | **Hecho** (salvo «Exportar CSV», que va con el bloque F) |
 | D | Recursos | Pendiente |
 | E | Configuración | Pendiente |
 | F | Exportaciones (incluida la del Gantt a Excel) | Pendiente |
@@ -85,6 +85,7 @@ componentes/  Dialogo, SelectorFecha (calendario propio con CW), Avisos (toasts,
 utilidades/   fechas, textos (etiquetas y colores de la 4.9.4), preferencias (localStorage)
 bloques/banco TablaEnsayos, columnas, Celdas, Gantt, VentanaCierre, ListaCerrados,
               BuscadorAprobaciones, BarraSeleccion, VistaBanco
+bloques/kpi   VistaKpiHistorico, Estadisticas
 bloques/panel VistaDashboard, VistaResponsable, BloquesKpi, GanttGeneral,
               GraficaOcupacion, TablaOcupacion, NavegacionSemana, comunes
 estilos/      base-4.9.4.css (el CSS original, sin cambios) · aplicacion.css (lo nuevo)
@@ -145,4 +146,22 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
   quedan fijas al hacer scroll vertical, el proyecto en foco se resalta (`g-foc`)
   y, sin ensayos con fechas, no se muestra la barra de herramientas. Todo como en
   la 4.9.4.
+
+## Bloque C: KPI History
+
+- `GET /api/v1/indicadores/historico?org` devuelve `{filas, semanas}`: las fotos
+  semanales de la organización ordenadas por año y CW (kpiHistRows, con la
+  lectura antigua de «en retraso» para semanas anteriores a la 4.9.3) y el
+  número total de filas leídas, para el texto «Source: SharePoint (N rows)».
+- `GET /api/v1/indicadores/estadisticas?desde&hasta&org&responsable` devuelve los
+  ensayos cerrados del periodo (statRows) con su estado final, motivo, si el
+  cierre está confirmado y su DataJson.
+- La pantalla agrupa esos datos para mostrarlos (medias de la foto semanal,
+  ensayos por mes y por trimestre, motivos); no recalcula estados ni fechas.
+- El histórico se lee al abrir la pantalla, al cambiar Org y con «Reload from
+  SharePoint». Solo el bloqueo por falta de conexión impide leerlo; el rol de
+  solo lectura sí lo ve, como en la 4.9.4.
+- Org y filtros de estadísticas se conservan al cambiar de pantalla mientras la
+  pestaña está abierta (KPIHIST_ORG, STAT_FROM/TO/RESP de la 4.9.4).
+- Pendiente del bloque F: «⬇️ Exportar CSV».
 

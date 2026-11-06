@@ -62,9 +62,18 @@ public class IndicadoresController {
         return JsonJs.mapper().valueToTree(indicadores.ocupacion(vista, LocalDate.parse(desde), LocalDate.parse(hasta), org));
     }
 
+    /**
+     * Fotos semanales de una organización, ordenadas por año y CW. {@code filas}
+     * es el número total de filas leídas de la lista (todas las organizaciones),
+     * que la pantalla muestra como «Source: SharePoint (N rows)».
+     */
     @GetMapping("/historico")
-    public JsonNode historico(@RequestParam(defaultValue = "ALL") String org) {
-        return JsonJs.mapper().valueToTree(indicadores.historico(org));
+    public ObjectNode historico(@RequestParam(defaultValue = "ALL") String org) {
+        ServicioIndicadores.Historico h = indicadores.historicoCompleto(org);
+        ObjectNode salida = JsonJs.objetoVacio();
+        salida.put("filas", h.filas());
+        salida.set("semanas", JsonJs.mapper().valueToTree(h.semanas()));
+        return salida;
     }
 
     @GetMapping("/estadisticas")

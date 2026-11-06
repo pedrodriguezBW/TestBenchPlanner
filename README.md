@@ -9,10 +9,11 @@ listas actuales de SharePoint mientras la interfaz se sustituye por bloques. La
 versión 4.9.4 se mantiene sin modificar como oráculo de paridad y como respaldo
 durante la transición.
 
-> **Estado actual: H3B.** H1 y H2 están terminados. En H3 están migrados el
-> bloque A (operativa diaria de bancos) y el bloque B (Dashboard y «By
-> Responsible»); KPI History, recursos, configuración y exportaciones siguen
-> disponibles mediante la interfaz clásica en `/clasico`.
+> **Estado actual: H3C.** H1 y H2 están terminados. En H3 están migrados el
+> bloque A (operativa diaria de bancos), el bloque B (Dashboard y «By
+> Responsible») y el bloque C (KPI History y estadísticas); recursos,
+> configuración y exportaciones siguen disponibles mediante la interfaz clásica
+> en `/clasico`.
 
 ## Índice
 
@@ -35,11 +36,12 @@ durante la transición.
 | **H2 · Backend Java** | Monolito modular Spring Boot, dominio y casos de uso, persistencia local y SharePoint, API nueva y API compatible con la 4.9.4. | **Terminado**; pruebas verdes y SharePoint validado en solo lectura |
 | **H2b · Protección de datos** | Protección frente a lecturas ausentes, fallidas o vacías; reconciliación bloqueada para evitar sobrescrituras destructivas de listas compartidas. | **Integrado en H2** |
 | **H3A · React, bloque A** | Vista de banco: tabla de 30 columnas, Gantt, edición, selección, operaciones de cola, aprobaciones, cierre y lista de ensayos cerrados. | **Terminado** |
-| **H3B · React, bloque B** | Dashboard (bloques KPI, plan anual por banco, gráfica de ocupación por CW, tabla de ocupación por tipo de banco, 📊 Update Yearly Status) y «By Responsible» (Manager View, carga del equipo, aviso de IDs sin aprobar). | **Entregado**; pendiente de validar en el PC |
-| **H3C–H3F · React** | KPI History/estadísticas, recursos, configuración y exportaciones. Hasta su migración, el menú deriva estas áreas a `/clasico`. | Pendiente |
+| **H3B · React, bloque B** | Dashboard (bloques KPI, plan anual por banco, gráfica de ocupación por CW, tabla de ocupación por tipo de banco, 📊 Update Yearly Status) y «By Responsible» (Manager View, carga del equipo, aviso de IDs sin aprobar). | **Terminado** |
+| **H3C · React, bloque C** | KPI History: estadísticas de ensayos cerrados (periodo, responsable, por mes, trimestre y motivo, detalle) y foto semanal (medias, tabla por semana, motivos acumulados) por organización. | **Entregado**; pendiente de validar en el PC |
+| **H3D–H3F · React** | Recursos, configuración y exportaciones. Hasta su migración, el menú deriva estas áreas a `/clasico`. | Pendiente |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
 
-### Funcionalidad disponible en H3B
+### Funcionalidad disponible en H3C
 
 - Planificación y edición diaria por banco.
 - Cálculo de fechas, estados, sugerencias, cierres, KPI, ocupación y calendario
@@ -56,6 +58,10 @@ gráfica de ocupación por CW (% u horas, rango de CW, series ocultables), tabla
 ocupación por tipo de banco (semana o acumulado) y foto semanal del histórico.
 - «By Responsible»: planificación de una persona o del equipo (Manager View),
 carga por responsable y aviso de ensayos sin Approval ID aprobado.
+- KPI History: estadísticas de ensayos cerrados con periodo (año, año hasta hoy,
+trimestre, mes o fechas), responsable y Org, y foto semanal del histórico con
+medias, tabla por semana y motivos acumulados. «Exportar CSV» llega con el
+bloque F.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` para los bloques todavía no migrados.
 
@@ -144,6 +150,7 @@ TestBenchPlanner/
 │       ├── api/                           Cliente y tipos de /api/v1
 │       ├── bloques/banco/                 Bloque A: tabla, Gantt, cierre y operaciones
 │       ├── bloques/panel/                 Bloque B: Dashboard y «By Responsible»
+│       ├── bloques/kpi/                   Bloque C: KPI History y estadísticas
 │       ├── componentes/                   Diálogos, avisos y selector de fecha
 │       ├── estado/                        Carga, guardado, conflictos, relectura y estado del Dashboard
 │       ├── estilos/                       CSS original y estilos de la nueva interfaz
@@ -161,11 +168,11 @@ TestBenchPlanner/
 │   ├── importar-sharepoint/              Generación de escenarios anonimizados
 │   └── laboratorio/
 │       ├── casos/                         Entradas del laboratorio
-│       ├── casos-interfaz/                Casos de pantalla (Dashboard y «By Responsible»)
+│       ├── casos-interfaz/                Casos de pantalla (Dashboard, «By Responsible» y KPI History)
 │       ├── referencias/                   Resultados esperados de la 4.9.4
 │       ├── comparar.cjs                   Comparador backend/paridad
 │       ├── comparar-interfaz.cjs          Paridad funcional de React (bloque A)
-│       ├── comparar-panel.cjs             Paridad visual del Dashboard (bloque B)
+│       ├── comparar-panel.cjs             Paridad visual de pantallas (bloques B y C)
 │       ├── pruebas-interfaz.cjs           Conflicto, conexión y solo lectura
 │       └── backend-simulado-4.9.4.cjs     Backend de apoyo para pruebas React
 │
@@ -301,7 +308,7 @@ desactivados presencia, registro de actividad y publicación de versión.
 
 | Suite | Cobertura principal |
 |---|---|
-| `ParidadLaboratorioTest` | 72 casos de planificación, `DataJson`, orden, KPI, ocupación, histórico, cierre y Dashboard (tabla de ocupación, gráfica por CW y KPI por responsable) frente a la 4.9.4. |
+| `ParidadLaboratorioTest` | 75 casos de planificación, `DataJson`, orden, KPI, ocupación, histórico, cierre, Dashboard (tabla de ocupación, gráfica por CW y KPI por responsable) y KPI History (fotos por organización y estadísticas con filtros) frente a la 4.9.4. |
 | `ValoresYJsonTest` | Valores, JSON, festivos y semanas ISO compatibles con JavaScript/Python. |
 | `ApiLocalTest` | API compatible y API v1, conflicto 409, forzado, reglas 422 y `/clasico`. |
 | `RelojTest` | Cambio de día en la zona `Europe/Madrid` y fecha fija. |
@@ -329,10 +336,11 @@ TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
 cierre y roles. `pruebas-interfaz.cjs` cubre además conflicto, desconexión, modo
-solo lectura y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 22 casos
-de Dashboard y «By Responsible» en la 4.9.4 y en React con los mismos gestos y
-compara lo que se ve: KPI, barras del Gantt (posición, color, texto), puntos de
-la gráfica, tablas de ocupación y de equipo, avisos y mensajes.
+solo lectura y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 36 casos
+de Dashboard, «By Responsible» y KPI History en la 4.9.4 y en React con los
+mismos gestos y compara lo que se ve: KPI, barras del Gantt (posición, color,
+texto), puntos de la gráfica, tablas de ocupación, de equipo y de estadísticas,
+avisos y mensajes.
 
 ## Configuración
 
@@ -361,7 +369,8 @@ sirve la interfaz clásica.
 - **`/clasico`**: HTML 4.9.4 original sobre el backend Java.
 - **`/api/v1/*`**: API usada por React para sesión, planificación, campos,
 operaciones, cierre, configuración, aprobaciones, recursos e indicadores
-(`/api/v1/indicadores/bloques`, `tabla-ocupacion`, `tendencia`, `foto-semanal`…).
+(`/api/v1/indicadores/bloques`, `tabla-ocupacion`, `tendencia`, `foto-semanal`,
+`historico`, `estadisticas`).
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa
 la interfaz 4.9.4.
 - **`/api/v1/local/reinicio`**: reinicio del escenario para el laboratorio;

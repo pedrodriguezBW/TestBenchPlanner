@@ -234,3 +234,44 @@ export interface FotoSemanal {
   cw: number;
   org: string;
 }
+
+/* ===== KPI History (bloque C) ========================================== */
+
+/** Una semana del histórico (kpiHistRows de la 4.9.4). */
+export interface SemanaHistorico {
+  year: number;
+  cw: number;
+  org: string;
+  benches: number;
+  total: number | null;
+  starts: number;
+  ends: number;
+  running: number;
+  noid: number;
+  behind: number;
+  delayed: number;
+  risk: number;
+  occPct: number | null;
+  occBusy: number | null;
+  occCap: number | null;
+  isNew: boolean;
+  unplanned: number;
+  reasons: Record<string, number>;
+}
+
+export interface Historico {
+  /** Filas leídas de la lista (todas las organizaciones). */
+  filas: number;
+  semanas: SemanaHistorico[];
+}
+
+/** Un ensayo cerrado de las estadísticas (statRows). */
+export interface FilaEstadistica {
+  banco: string;
+  id: string;
+  fecha: string;
+  estadoFinal: string;
+  motivo: string;
+  confirmado: boolean;
+  datos: DatosEnsayo;
+}

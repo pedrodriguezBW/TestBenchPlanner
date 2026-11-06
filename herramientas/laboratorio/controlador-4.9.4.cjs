@@ -123,7 +123,7 @@ async function ejecutarPaso(sesion, paso) {
 async function fotografiar(sesion, apartados) {
   return sesion.evaluar(async (ap) => {
     const quiere = (k) => !ap || ap.includes(k);
-    if (quiere('historicoKpi') && KPIHIST === null) KPIHIST = (await loadKpiHistory()) || [];
+    if ((quiere('historicoKpi') || quiere('kpiHistorico')) && KPIHIST === null) KPIHIST = (await loadKpiHistory()) || [];
     recomputeAll();
     const foto = {};
     const todosLosBancos = []; GROUPS.forEach((g) => g.benches.forEach((b) => todosLosBancos.push(b)));
@@ -204,6 +204,23 @@ async function fotografiar(sesion, apartados) {
         const ff = (r) => (r.resp || '') === rp;
         foto.panel.responsables[rp] = { estaSemana: blockKPIs(lunes, ff, null), siguiente: blockKPIs(addDays(lunes, 7), ff, null) };
       });
+    }
+    if (quiere('kpiHistorico')) {
+      // KPI History (bloque C): fotos por organización y estadísticas con filtros.
+      const guardado = [KPIHIST_ORG, STAT_FROM, STAT_TO, STAT_RESP];
+      foto.kpiHistorico = { historico: {}, estadisticas: {} };
+      ['ALL', 'BW', 'CTAG'].forEach((o) => { KPIHIST_ORG = o; foto.kpiHistorico.historico[o] = Array.isArray(KPIHIST) ? kpiHistRows() : []; });
+      const anioCal = state.settings.year;
+      const filtros = [
+        ['ALL', '', `${anioCal}-01-01`, `${anioCal}-12-31`], ['BW', '', `${anioCal}-01-01`, `${anioCal}-12-31`],
+        ['CTAG', '', `${anioCal}-01-01`, `${anioCal}-12-31`], ['ALL', 'Responsable 27', `${anioCal}-01-01`, `${anioCal}-12-31`],
+        ['ALL', '', `${anioCal}-09-01`, `${anioCal}-10-15`],
+      ];
+      filtros.forEach(([o, rp, a, b]) => {
+        KPIHIST_ORG = o; STAT_RESP = rp; STAT_FROM = a; STAT_TO = b;
+        foto.kpiHistorico.estadisticas[[o, rp, a, b].join('|')] = statRows().map((x) => ({ banco: x.bn, id: x.r.id, fecha: iso(x.dt), estadoFinal: x.fin, motivo: x.reason, confirmado: x.conf }));
+      });
+      [KPIHIST_ORG, STAT_FROM, STAT_TO, STAT_RESP] = guardado;
     }
     if (quiere('estadisticas')) {
       STAT_FROM = iso(new Date(TODAY.getFullYear(), 0, 1)); STAT_TO = iso(new Date(TODAY.getFullYear(), 11, 31));
