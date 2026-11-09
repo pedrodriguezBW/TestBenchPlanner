@@ -1,0 +1,390 @@
+[
+ {
+  "id": "UE01-bancos",
+  "pantalla": "config",
+  "titulo": "Test Benches al abrir",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   }
+  ]
+ },
+ {
+  "id": "UE02-banco-nuevo",
+  "pantalla": "config",
+  "titulo": "Añadir un banco y una categoría",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgBancoNuevo",
+    "categoria": "Corrosion",
+    "banco": "BC3"
+   },
+   {
+    "op": "cfgCategoriaNueva",
+    "nombre": "Nueva categoría"
+   }
+  ]
+ },
+ {
+  "id": "UE03-banco-repetido",
+  "pantalla": "config",
+  "titulo": "Añadir un banco que ya existe",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgBancoNuevo",
+    "categoria": "Corrosion",
+    "banco": "MD1"
+   }
+  ]
+ },
+ {
+  "id": "UE04-banco-renombrar",
+  "pantalla": "config",
+  "titulo": "Renombrar un banco (conserva sus ensayos: la columna Active tests no cambia)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgBanco",
+    "banco": "MD2",
+    "nuevo": "MD2-B"
+   }
+  ]
+ },
+ {
+  "id": "UE05-banco-org-mover",
+  "pantalla": "config",
+  "titulo": "Cambiar Org, subir y mover a otra categoría",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgBanco",
+    "banco": "MD3",
+    "org": "CTAG"
+   },
+   {
+    "op": "cfgBanco",
+    "banco": "MD3",
+    "subir": true
+   },
+   {
+    "op": "cfgBanco",
+    "banco": "Gasolina",
+    "categoria": "Corrosion"
+   }
+  ]
+ },
+ {
+  "id": "UE06-banco-borrar",
+  "pantalla": "config",
+  "titulo": "Borrar un banco con ensayos",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgBanco",
+    "banco": "Camiones",
+    "borrar": true
+   }
+  ]
+ },
+ {
+  "id": "UE07-categoria",
+  "pantalla": "config",
+  "titulo": "Renombrar y subir una categoría",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgCategoria",
+    "indice": 2,
+    "nuevo": "Corrosión"
+   },
+   {
+    "op": "cfgCategoria",
+    "indice": 2,
+    "subir": true
+   }
+  ]
+ },
+ {
+  "id": "UE08-categoria-borrar",
+  "pantalla": "config",
+  "titulo": "Borrar una categoría con bancos y ensayos",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Test Benches"
+   },
+   {
+    "op": "cfgCategoria",
+    "categoria": "Coolant Carts",
+    "borrar": true
+   },
+   {
+    "op": "ir",
+    "vista": "Dashboard"
+   }
+  ]
+ },
+ {
+  "id": "UE09-proyectos",
+  "pantalla": "config",
+  "titulo": "Projects al abrir y búsqueda",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Projects"
+   },
+   {
+    "op": "proyBuscar",
+    "valor": "bmw"
+   }
+  ]
+ },
+ {
+  "id": "UE10-proyectos-alta",
+  "pantalla": "config",
+  "titulo": "Projects: añadir uno y pegar una columna",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Projects"
+   },
+   {
+    "op": "proyNuevo",
+    "valor": "99999 - Proyecto de prueba"
+   },
+   {
+    "op": "proyPegar",
+    "valor": "Project\nA1 - Nuevo;x\n99999 - Proyecto de prueba\nB2 - Otro"
+   }
+  ]
+ },
+ {
+  "id": "UE11-proyectos-borrar",
+  "pantalla": "config",
+  "titulo": "Projects: borrar uno",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Projects"
+   },
+   {
+    "op": "proyBuscar",
+    "valor": "Rimac"
+   },
+   {
+    "op": "proyBorrar",
+    "valor": "80001755 - Rimac - eCooler - Ampere Ceremony"
+   },
+   {
+    "op": "proyBuscar",
+    "valor": ""
+   }
+  ]
+ },
+ {
+  "id": "UE12-proyectos-editor",
+  "pantalla": "config",
+  "titulo": "Projects como Editor",
+  "fecha": "2026-11-05",
+  "rol": "editor",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Projects"
+   }
+  ]
+ },
+ {
+  "id": "UE13-usuarios",
+  "pantalla": "config",
+  "titulo": "Users/Rights Management al abrir",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Users/Rights"
+   }
+  ]
+ },
+ {
+  "id": "UE14-usuarios-alta",
+  "pantalla": "config",
+  "titulo": "Añadir un usuario y editar otro",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Users/Rights"
+   },
+   {
+    "op": "usuario",
+    "nombre": "Persona Nueva",
+    "email": "Nueva@Ejemplo.local",
+    "rol": "ReadOnly",
+    "responsable": "Responsable 99",
+    "guardar": true
+   },
+   {
+    "op": "usuarioFila",
+    "email": "usuario07@ejemplo.local",
+    "accion": "editar"
+   },
+   {
+    "op": "usuario",
+    "rol": "Admin",
+    "guardar": true
+   }
+  ]
+ },
+ {
+  "id": "UE15-usuarios-borrar",
+  "pantalla": "config",
+  "titulo": "Quitar un usuario",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Users/Rights"
+   },
+   {
+    "op": "usuarioFila",
+    "email": "usuario07@ejemplo.local",
+    "accion": "borrar"
+   }
+  ]
+ },
+ {
+  "id": "UE16-herramientas",
+  "pantalla": "config",
+  "titulo": "Tools y calendario",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "abrirCalendario"
+   }
+  ]
+ },
+ {
+  "id": "UE17-calendario",
+  "pantalla": "config",
+  "titulo": "Calendario: festivo nuevo, quitar uno y no saltar festivos",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "abrirCalendario"
+   },
+   {
+    "op": "calendario",
+    "fecha": "2026-11-20",
+    "nombre": "Fiesta local"
+   },
+   {
+    "op": "calendario",
+    "borrar": 0
+   },
+   {
+    "op": "calendario",
+    "saltar": false
+   }
+  ]
+ },
+ {
+  "id": "UE18-calendario-anio",
+  "pantalla": "config",
+  "titulo": "Calendario: cambiar de año",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "abrirCalendario"
+   },
+   {
+    "op": "calendario",
+    "anio": 2027
+   }
+  ]
+ },
+ {
+  "id": "UE19-menu-editor",
+  "pantalla": "config",
+  "titulo": "Menú de Configuration como Editor",
+  "fecha": "2026-11-05",
+  "rol": "editor",
+  "pasos": []
+ },
+ {
+  "id": "UE20-menu-solo-lectura",
+  "pantalla": "config",
+  "titulo": "Menú de Configuration en solo lectura",
+  "fecha": "2026-11-05",
+  "rol": "readonly",
+  "pasos": []
+ },
+ {
+  "id": "UE21-acerca-de",
+  "pantalla": "config",
+  "titulo": "About",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "About"
+   }
+  ]
+ },
+ {
+  "id": "UE22-actividad",
+  "pantalla": "config",
+  "titulo": "Activity log (Admin)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Activity log"
+   }
+  ]
+ }
+]

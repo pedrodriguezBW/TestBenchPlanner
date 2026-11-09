@@ -1,5 +1,6 @@
 package com.borgwarner.tbp.api.v1;
 
+import com.borgwarner.tbp.aplicacion.ServicioConfiguracionBancos;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
 import com.borgwarner.tbp.aplicacion.Vista;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,12 +50,15 @@ public class PlanificacionController {
     private final ServicioPlanificacion servicio;
     private final ServicioSesion sesion;
     private final Reloj reloj;
+    private final ServicioConfiguracionBancos configuracionBancos;
     private final GeneradorIds ids = GeneradorIds.aleatorio();
 
-    public PlanificacionController(ServicioPlanificacion servicio, ServicioSesion sesion, Reloj reloj) {
+    public PlanificacionController(ServicioPlanificacion servicio, ServicioSesion sesion, Reloj reloj,
+                                   ServicioConfiguracionBancos configuracionBancos) {
         this.servicio = servicio;
         this.sesion = sesion;
         this.reloj = reloj;
+        this.configuracionBancos = configuracionBancos;
     }
 
     @GetMapping("/sesion")
@@ -147,6 +152,26 @@ public class PlanificacionController {
         var resultado = servicio.ejecutar(usuario, Map.of(), true,
                 (p, plan) -> OperacionesBanco.renombrarRecurso(p, anterior, nuevo));
         return respuesta(resultado.vista(), String.valueOf(resultado.valor()), resultado.cambios().size());
+    }
+
+    /**
+     * Configuration → Test Benches (solo Admin). Cuerpo:
+     * {"projects": [...], "benches": [{name, groupKey, groupName, dot, org, seq}],
+     *  "renombrados": {"anterior": "nuevo"}}.
+     * Guarda la lista de bancos y, si hace falta, los ensayos de los bancos
+     * renombrados o borrados.
+     */
+    @PutMapping("/configuracion/bancos")
+    public ObjectNode guardarBancos(@RequestBody JsonNode cuerpo) {
+        Map<String, String> renombrados = new HashMap<>();
+        cuerpo.path("renombrados").fields().forEachRemaining(e -> renombrados.put(e.getKey(), e.getValue().asText()));
+        ObjectNode catalogo = JsonJs.objetoVacio();
+        catalogo.set("projects", cuerpo.path("projects"));
+        catalogo.set("benches", cuerpo.path("benches"));
+        var r = configuracionBancos.guardar(sesion.usuarioActual(), catalogo, renombrados);
+        ObjectNode salida = respuesta(r.vista(), null, r.ensayosGuardados() + r.ensayosBorrados());
+        salida.put("ensayosBorrados", r.ensayosBorrados());
+        return salida;
     }
 
     // ---- ventana de cierre ---------------------------------------------------

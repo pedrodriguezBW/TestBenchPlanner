@@ -70,7 +70,7 @@ com.borgwarner.tbp
 | B | Dashboard y «By Responsible» | **Hecho** |
 | C | KPI History y estadísticas | **Hecho** (salvo «Exportar CSV», que va con el bloque F) |
 | D | Equipos auxiliares (columna y selector en bancos, List of Equipments, Equipments List) | **Hecho** |
-| E | Configuración | Pendiente |
+| E | Configuración (Test Benches, Projects, Users, Tools, About, Activity log) | **Hecho** (Export/Import JSON con el bloque F) |
 | F | Exportaciones (incluida la del Gantt a Excel) | Pendiente |
 
 Mientras un bloque no está migrado, su entrada del menú lo indica y enlaza a la
@@ -87,6 +87,8 @@ bloques/banco TablaEnsayos, columnas, Celdas, Gantt, VentanaCierre, ListaCerrado
               BuscadorAprobaciones, BarraSeleccion, VistaBanco
 bloques/kpi   VistaKpiHistorico, Estadisticas
 bloques/recursos CeldaRecursos, SelectorRecursos, VistaRecursos, ListaEquipos
+bloques/configuracion ConfigBancos, ConfigProyectos, ConfigUsuarios, ConfigHerramientas
+              (+ VentanaCalendario), AcercaDe, RegistroActividad
 bloques/panel VistaDashboard, VistaResponsable, BloquesKpi, GanttGeneral,
               GraficaOcupacion, TablaOcupacion, NavegacionSemana, comunes
 estilos/      base-4.9.4.css (el CSS original, sin cambios) · aplicacion.css (lo nuevo)
@@ -183,4 +185,26 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
   ensayo y con los bloqueos; es un cruce de fechas para mostrar, no una regla que
   cambie datos.
 - Bloquear un equipo y borrar bloqueos: botones solo para Admin, como en la 4.9.4.
+
+## Bloque E: configuración
+
+- **Test Benches** (`PUT /api/v1/configuracion/bancos`, solo Admin): la interfaz
+  envía la lista completa de bancos (como `cfgSnapshot`), los proyectos tal como
+  están y los bancos renombrados. `ServicioConfiguracionBancos` calcula con
+  `Planificacion.reconfigurar` qué ensayos cambian, guarda primero la lista de
+  bancos (con la protección D11: si la rechaza no se escribe nada) y después solo
+  los ensayos renombrados o borrados (D28). No se puede renombrar a un banco que
+  ya existe (400). Las categorías nuevas sin bancos viven solo en la pantalla
+  hasta que se les añade un banco, como en la 4.9.4.
+- **Projects** (`PUT /api/v1/catalogos`, Admin y Editor): guarda la lista de
+  proyectos con la de bancos tal como se leyó. «Clear all» lo bloquea D11 (412).
+- **Users/Rights Management** (`PUT /api/v1/usuarios`, solo Admin). Orden de la
+  tabla como en la 4.9.4 (D29) y estado del guardado visible (D30).
+- **Tools**: calendario de festivos de este PC (`/api/v1/calendario`), IDs live
+  (consulta inmediata de estados de aprobación) y Reset local (D27). Export/Import
+  JSON abren `/clasico` hasta el bloque F.
+- **About**: versión nueva y el histórico de la 4.9.4 sin cambios (D26).
+- **Activity log** (solo Admin): `GET /api/v1/actividad`, solo consulta.
+- En solo lectura, búsquedas y consultas de estas pantallas siguen activas; solo
+  se desactivan los controles que guardan.
 

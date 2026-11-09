@@ -305,3 +305,40 @@ export interface Recursos {
   resources: Recurso[];
   blocks?: Bloqueo[];
 }
+
+/* ===== Configuración (bloque E) ======================================== */
+
+/** Una fila de la lista compartida de bancos (cfgSnapshot de la 4.9.4). */
+export interface BancoCatalogo {
+  name: string;
+  groupKey: string;
+  groupName: string;
+  dot: string;
+  org: string;
+  seq: number;
+  [campo: string]: unknown;
+}
+
+/** Un usuario de TestBenchUsers. */
+export interface UsuarioLista {
+  title: string;
+  email: string;
+  role: string;
+  responsibleName: string;
+}
+
+/** Calendario de festivos de este PC (D6). */
+export interface CalendarioPc {
+  anio: number;
+  saltarFestivos: boolean;
+  festivos: { fecha: string; nombre: string }[];
+}
+
+/** Una fila del registro de actividad. */
+export interface FilaActividad {
+  when?: string;
+  name?: string;
+  email?: string;
+  action?: string;
+  detail?: string;
+}

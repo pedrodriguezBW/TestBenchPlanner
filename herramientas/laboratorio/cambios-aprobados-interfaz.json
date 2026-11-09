@@ -10,5 +10,16 @@
   "ruta": "^/tablas/\\d+/cabecera/0$",
   "referencia": "Mes",
   "motivo": "D25: la tabla por trimestre de la 4.9.4 titula su primera columna «Mes»; la nueva pone «Trimestre»."
+ },
+ {
+  "caso": "^UE1[45]-",
+  "ruta": "^/hints/1$",
+  "referencia": "",
+  "motivo": "D30: en la 4.9.4 el texto de estado de Users («Guardando… / Guardado en SharePoint.») nunca llega a verse porque la pantalla se vuelve a pintar antes; la versión nueva lo muestra."
+ },
+ {
+  "caso": "^UE21-",
+  "ruta": "^/hints/0$",
+  "motivo": "D26: la cabecera de About muestra la versión nueva (5.0.0) en lugar de 4.9.4 (build 494)."
  }
 ]

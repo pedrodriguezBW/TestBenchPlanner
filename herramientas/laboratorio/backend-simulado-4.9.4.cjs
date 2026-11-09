@@ -318,8 +318,69 @@ async function atender(metodo, ruta, cuerpo) {
     await sesion.evaluar((i) => { RES_CACHE.blocks = (RES_CACHE.blocks || []).filter((b) => String(b.id) !== String(i)); resSaveLocal(); }, cuerpo.id);
     return { estado: 200, cuerpo: { ok: true } };
   }
-  if (p === '/api/v1/catalogos') return { estado: 200, cuerpo: escenario.configuracion };
-  if (p === '/api/v1/usuarios') return { estado: 200, cuerpo: escenario.usuarios };
+  // Configuración (bloque E): se lee y se cambia el estado de la 4.9.4.
+  const protegida = (lista) => ({ estado: 412, cuerpo: { error: 'lista-protegida', mensaje: `No se guarda: la lista ${lista} quedaría vacía (protección de listas, D11).` } });
+  if (p === '/api/v1/catalogos' && metodo === 'GET') {
+    // Responsables: los de la lista compartida (como el backend), no la lista fija de la 4.9.4 (D24).
+    return { estado: 200, cuerpo: await sesion.evaluar((r) => Object.assign({ responsibles: r }, JSON.parse(JSON.stringify(cfgSnapshot()))), escenario.configuracion.responsibles || []) };
+  }
+  if (p === '/api/v1/catalogos' && metodo === 'PUT') {
+    if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
+    if (!(cuerpo.projects || []).length) return protegida('TestBenchProjects');
+    await sesion.evaluar((pr) => { state.projects = pr; save(); refreshDL(); }, cuerpo.projects);
+    await sesion.avanzar(1500);
+    return { estado: 200, cuerpo: { ok: true } };
+  }
+  if (p === '/api/v1/configuracion/bancos' && metodo === 'PUT') {
+    if (rol !== 'admin') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Solo un Admin puede hacer esta operación.' } };
+    if (!(cuerpo.benches || []).length) return protegida('TestBenchBenches');
+    const antes = (await vista()).textos;
+    await sesion.evaluar(([cfg, ren]) => {
+      // Lo mismo que renameBench / delBench / delCategory de la 4.9.4 sobre state.benches.
+      Object.entries(ren || {}).forEach(([a, n]) => {
+        state.benches[n] = state.benches[a] || [];
+        delete state.benches[a];
+        if (state.benchOrg && state.benchOrg[a]) { state.benchOrg[n] = state.benchOrg[a]; delete state.benchOrg[a]; }
+        if (current === a) current = n;
+      });
+      const nombres = new Set(cfg.benches.map((b) => b.name));
+      GROUPS.forEach((g) => g.benches.forEach((b) => { if (!nombres.has(b) && !Object.values(ren || {}).includes(b)) { delete state.benches[b]; if (state.benchOrg) delete state.benchOrg[b]; } }));
+      state.projects = cfg.projects;
+      applyConfig({ projects: cfg.projects, benches: cfg.benches });
+      cfg.benches.forEach((b) => { state.benchOrg[b.name] = b.org; });
+      persistGroups();
+    }, [cuerpo, cuerpo.renombrados]);
+    await sesion.avanzar(1500);
+    const nueva = await vista();
+    const cambiadas = new Set([...Object.keys(nueva.textos), ...Object.keys(antes)]);
+    const filas = [...cambiadas].filter((k) => nueva.textos[k] !== antes[k]);
+    const borradas = filas.filter((k) => nueva.textos[k] === undefined).length;
+    return { estado: 200, cuerpo: { filasGuardadas: filas.length, ensayosBorrados: borradas, vista: nueva.vista } };
+  }
+  if (p === '/api/v1/usuarios' && metodo === 'GET') {
+    return { estado: 200, cuerpo: await sesion.evaluar((u0) => (Array.isArray(USERS_CACHE) && USERS_CACHE.length ? USERS_CACHE : u0)
+      .map((u) => ({ title: u.title, email: u.email, role: u.role, responsibleName: u.responsibleName || '' })), escenario.usuarios) };
+  }
+  if (p === '/api/v1/usuarios' && metodo === 'PUT') {
+    if (rol !== 'admin') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Solo un Admin puede hacer esta operación.' } };
+    if (!(cuerpo.users || []).length) return protegida('TestBenchUsers');
+    await sesion.evaluar((us) => { USERS_CACHE = us.map((u) => ({ title: u.title, email: u.email, role: String(u.role).toLowerCase().replace(' ', ''), responsibleName: u.responsibleName })); mergeRespsFromUsers(); }, cuerpo.users);
+    return { estado: 200, cuerpo: { ok: true } };
+  }
+  const calendario = () => sesion.evaluar(() => ({ anio: state.settings.year, saltarFestivos: !!state.settings.skipHolidays, festivos: state.holidays.map((h) => ({ fecha: h.date, nombre: h.name })) }));
+  if (p === '/api/v1/calendario' && metodo === 'GET') return { estado: 200, cuerpo: await calendario() };
+  if (p === '/api/v1/calendario' && metodo === 'PUT') {
+    await sesion.evaluar((c) => {
+      state.settings.year = c.anio; state.settings.skipHolidays = !!c.saltarFestivos;
+      state.holidays = c.festivos.map((f) => ({ date: f.fecha, name: f.nombre })); HOLSET = new Set(state.holidays.map((h) => h.date)); save();
+    }, cuerpo);
+    return { estado: 200, cuerpo: await calendario() };
+  }
+  if (p === '/api/v1/calendario/anio' && metodo === 'POST') {
+    await sesion.evaluar((y) => { state.settings.year = y; state.holidays = computeHolidays(y); HOLSET = new Set(state.holidays.map((h) => h.date)); save(); }, cuerpo.anio);
+    return { estado: 200, cuerpo: await calendario() };
+  }
+  if (p === '/api/v1/actividad') return { estado: 200, cuerpo: { rows: [], columns: [] } };
   if (p.startsWith('/api/v1/indicadores/')) return indicadores(p.slice('/api/v1/indicadores/'.length), url.searchParams, metodo);
   if (p === '/api/v1/aprobaciones') return { estado: 200, cuerpo: escenario.aprobaciones };
   if (p === '/api/v1/aprobaciones/estados') {

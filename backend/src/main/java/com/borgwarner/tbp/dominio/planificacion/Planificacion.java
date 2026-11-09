@@ -74,6 +74,36 @@ public final class Planificacion {
         return plan;
     }
 
+    /**
+     * La misma planificación con otra configuración de bancos (Test Benches de la
+     * 4.9.4). Cada banco nuevo se queda con los ensayos de su nombre o, si se ha
+     * renombrado, con los del nombre anterior (renameBench conserva los ensayos).
+     * Los ensayos de un banco que ya no existe desaparecen y se borrarán al
+     * guardar (delBench / delCategory). Lo leído y las filas sin banco se
+     * conservan, así que solo cambia lo que de verdad cambia.
+     *
+     * @param renombrados nombre anterior → nombre nuevo
+     */
+    public Planificacion reconfigurar(ConfiguracionBancos nueva, Map<String, String> renombrados) {
+        Map<String, String> anteriorDe = new LinkedHashMap<>();
+        renombrados.forEach((anterior, nuevo) -> anteriorDe.put(nuevo, anterior));
+        Planificacion otra = new Planificacion(nueva);
+        for (String banco : nueva.bancos()) {
+            if (renombrados.containsKey(banco) && !anteriorDe.containsKey(banco)) {
+                // Su nombre lo usa ahora un banco nuevo: sus ensayos se fueron con el renombrado.
+                continue;
+            }
+            String origen = anteriorDe.getOrDefault(banco, banco);
+            List<Ensayo> lista = porBanco.get(origen);
+            if (lista != null) {
+                otra.porBanco.get(banco).addAll(lista);
+            }
+        }
+        otra.textoLeido.putAll(textoLeido);
+        otra.filasSinBanco.addAll(filasSinBanco);
+        return otra;
+    }
+
     public ConfiguracionBancos configuracion() {
         return configuracion;
     }

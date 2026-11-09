@@ -1,5 +1,5 @@
 import type {
-  Aprobacion, BloquesKpi, Recurso, Recursos, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
+  Aprobacion, BancoCatalogo, BloquesKpi, CalendarioPc, FilaActividad, Recurso, Recursos, UsuarioLista, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
   Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
 
@@ -68,8 +68,8 @@ export interface CambioCampo {
 export const api = {
   sesion: () => peticion<Sesion>('GET', '/api/v1/sesion'),
   planificacion: () => peticion<Vista>('GET', '/api/v1/planificacion'),
-  catalogos: () => peticion<{ projects: string[]; responsibles: string[] }>('GET', '/api/v1/catalogos'),
-  usuarios: () => peticion<{ responsibleName: string }[]>('GET', '/api/v1/usuarios'),
+  catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[] }>('GET', '/api/v1/catalogos'),
+  usuarios: () => peticion<UsuarioLista[]>('GET', '/api/v1/usuarios'),
 
   editarCampos: (banco: string, id: string, cambios: CambioCampo[], version: string | null, forzar = false) =>
     peticion<RespuestaOperacion>('POST', `/api/v1/bancos/${enc(banco)}/ensayos/${enc(id)}/campos`,
@@ -103,6 +103,17 @@ export const api = {
   tendencia: (cwDesde: number, cwHasta: number, org: string) =>
     peticion<Tendencia>('GET', `/api/v1/indicadores/tendencia?cwDesde=${cwDesde}&cwHasta=${cwHasta}&org=${enc(org)}`),
   fotoSemanal: () => peticion<FotoSemanal[]>('POST', '/api/v1/indicadores/foto-semanal'),
+
+  // Configuración (bloque E)
+  guardarBancos: (projects: string[], benches: BancoCatalogo[], renombrados: Record<string, string>) =>
+    peticion<RespuestaOperacion & { ensayosBorrados: number }>('PUT', '/api/v1/configuracion/bancos', { projects, benches, renombrados }),
+  guardarCatalogos: (projects: string[], benches: BancoCatalogo[]) =>
+    peticion<{ ok: boolean }>('PUT', '/api/v1/catalogos', { projects, benches }),
+  guardarUsuarios: (users: UsuarioLista[]) => peticion<{ ok: boolean }>('PUT', '/api/v1/usuarios', { users }),
+  calendario: () => peticion<CalendarioPc>('GET', '/api/v1/calendario'),
+  guardarCalendario: (c: CalendarioPc) => peticion<CalendarioPc>('PUT', '/api/v1/calendario', c),
+  cambiarAnioCalendario: (anio: number) => peticion<CalendarioPc>('POST', '/api/v1/calendario/anio', { anio }),
+  actividad: () => peticion<{ rows: FilaActividad[] }>('GET', '/api/v1/actividad'),
 
   // Recursos auxiliares (bloque D)
   recursos: () => peticion<Recursos>('GET', '/api/v1/recursos'),

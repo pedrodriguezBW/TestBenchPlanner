@@ -166,14 +166,22 @@ function quitarBotonesDeExportar(nodo) {
   }
 }
 
+/** Valores de las cajas de texto y casillas de #main (pantallas de configuración). */
+function extraerEntradas() {
+  const main = document.getElementById('main');
+  return [...main.querySelectorAll('input:not([type=date]):not([type=file]), textarea')].filter((i) => !i.closest('.modal-bg'))
+    .map((i) => (i.type === 'checkbox' ? i.checked : i.type === 'color' ? i.value.toLowerCase() : i.value));
+}
+
 /** Lo que se lee en cada tipo de pantalla (se envía a la página como texto). */
 function guionFoto(pantalla) {
-  const f = { extraer, extraerSeccion, extraerVentanas, extraerCeldasRecursos };
+  const f = { extraer, extraerSeccion, extraerVentanas, extraerCeldasRecursos, extraerEntradas };
   const defs = Object.entries(f).map(([n, fn]) => `const ${n} = ${fn.toString()};`).join('\n');
   const cuerpo = {
     kpi: 'return extraerSeccion();',
     recursos: 'return Object.assign({}, extraer(), { seccion: extraerSeccion() }, extraerVentanas());',
     ventana: 'return Object.assign({ celdas: extraerCeldasRecursos() }, extraerVentanas());',
+    config: 'return Object.assign({ entradas: extraerEntradas(), menu: [...document.querySelectorAll("#side .tab")].map((t) => t.textContent.trim()) }, extraerSeccion(), extraerVentanas());',
   }[pantalla] || 'return extraer();';
   return `(() => { ${defs}\n${cuerpo} })()`;
 }
@@ -282,6 +290,80 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
       await main.locator('#newrestype').fill(paso.nombre);
       await main.getByRole('button', { name: /Añadir tipo/ }).click();
       break;
+    // ---- Configuración (bloque E) ----
+    case 'cfgCategoriaNueva':
+      await main.locator('#newcat').fill(paso.nombre);
+      await main.getByRole('button', { name: /Add category/ }).click();
+      break;
+    case 'cfgBanco': {
+      const fila = main.locator('table.lst tbody tr').filter({ has: pagina.locator(`input[value="${paso.banco}"]`) }).first();
+      if (paso.nuevo !== undefined) { const c = fila.locator('input').first(); await c.fill(paso.nuevo); await c.press('Tab'); }
+      if (paso.org !== undefined) await fila.locator('select').first().selectOption(paso.org);
+      if (paso.categoria !== undefined) await fila.locator('select').nth(1).selectOption({ label: paso.categoria });
+      if (paso.subir) await fila.getByRole('button', { name: '\u25B2' }).click();
+      if (paso.bajar) await fila.getByRole('button', { name: '\u25BC' }).click();
+      if (paso.borrar) await fila.locator('button.del').click();
+      break;
+    }
+    case 'cfgBancoNuevo': {
+      const caja = main.locator(`input[placeholder="New bench in ${paso.categoria}..."]`);
+      await caja.fill(paso.banco);
+      await caja.locator('xpath=following-sibling::button').click();
+      break;
+    }
+    case 'cfgCategoria': {
+      const cat = paso.indice !== undefined ? main.locator('.cfg-cat').nth(paso.indice)
+        : main.locator('.cfg-cat').filter({ has: pagina.locator(`.catrow input.f[value="${paso.categoria}"]`) }).first();
+      if (paso.nuevo !== undefined) { const c = cat.locator('.catrow input.f'); await c.fill(paso.nuevo); await c.press('Tab'); }
+      if (paso.subir) await cat.locator('.catrow').getByRole('button', { name: '\u25B2' }).click();
+      if (paso.borrar) await cat.locator('.catrow').getByRole('button', { name: /Delete/ }).click();
+      break;
+    }
+    case 'proyNuevo':
+      await main.locator('#proj-new').fill(paso.valor);
+      await main.getByRole('button', { name: /^\uFF0B Add$/ }).click();
+      break;
+    case 'proyBuscar':
+      await main.locator('#proj-search').fill(paso.valor);
+      break;
+    case 'proyPegar':
+      await main.locator('#proj-paste').fill(paso.valor);
+      await main.getByRole('button', { name: /Add pasted/ }).click();
+      break;
+    case 'proyBorrar':
+      await main.locator('table.lst tbody tr').filter({ has: pagina.locator('td', { hasText: new RegExp(`^${paso.valor.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`) }) })
+        .first().locator('button.del').click();
+      break;
+    case 'proyLimpiar':
+      await main.getByRole('button', { name: /Clear all/ }).click();
+      break;
+    case 'usuario':
+      if (paso.nombre !== undefined) await main.locator('#u-name').fill(paso.nombre);
+      if (paso.email !== undefined) await main.locator('#u-email').fill(paso.email);
+      if (paso.rol !== undefined) await main.locator('#u-role').selectOption(paso.rol);
+      if (paso.responsable !== undefined) await main.locator('#u-resp').fill(paso.responsable);
+      if (paso.guardar) await main.getByRole('button', { name: /Add \/ Update/ }).click();
+      break;
+    case 'usuarioFila': {
+      const fila = main.locator('table.users-tbl tbody tr').filter({ has: pagina.locator('td', { hasText: paso.email }) }).first();
+      await fila.locator(paso.accion === 'borrar' ? 'button.del' : 'button.btn').click();
+      break;
+    }
+    case 'abrirCalendario':
+      await main.getByRole('button', { name: /Calendar/ }).click();
+      break;
+    case 'calendario': {
+      const v = pagina.locator('.modal-bg.show .modal');
+      if (paso.anio !== undefined) await v.locator('#cfg-year').selectOption(String(paso.anio));
+      if (paso.saltar !== undefined) await v.locator('#cfg-skip').setChecked(paso.saltar);
+      if (paso.fecha !== undefined) {
+        await v.locator('#cfg-newd').fill(paso.fecha);
+        if (paso.nombre) await v.locator('#cfg-newn').fill(paso.nombre);
+        await v.getByRole('button', { name: /Add/ }).click();
+      }
+      if (paso.borrar !== undefined) await v.locator('#cfg-list .hol-item').nth(paso.borrar).locator('button').click();
+      break;
+    }
     case 'kpiOrg':
       await main.locator('select').first().selectOption(paso.valor);
       break;

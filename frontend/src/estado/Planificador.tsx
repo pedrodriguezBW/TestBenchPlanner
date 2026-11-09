@@ -60,6 +60,8 @@ interface Contexto {
   avisar: (texto: string, tipo?: 'info' | 'error') => void;
   mostrarMensaje: (texto: string) => void;
   recargar: () => Promise<void>;
+  recargarListas: () => Promise<void>;
+  refrescarAprobaciones: () => void;
   versionDe: (id: string) => string | null;
 }
 
@@ -107,6 +109,14 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const [proyectos, setProyectos] = useState<string[]>([]);
   const [usuariosResp, setUsuariosResp] = useState<string[]>([]);
   const [responsablesCatalogo, setResponsablesCatalogo] = useState<string[]>([]);
+
+  /** Proyectos, responsables y personas (se vuelven a leer tras cambiarlos en Configuration). */
+  const recargarListas = useCallback(async () => {
+    await Promise.all([
+      api.catalogos().then((c) => { setProyectos(c.projects ?? []); setResponsablesCatalogo(c.responsibles ?? []); }).catch(() => undefined),
+      api.usuarios().then((u) => setUsuariosResp(u.map((x) => (x.responsibleName ?? '').trim()).filter(Boolean))).catch(() => undefined),
+    ]);
+  }, []);
   const [estadosAprobacion, setEstadosAprobacion] = useState<Record<string, string>>({});
   const [avisos, setAvisos] = useState<Aviso[]>([]);
   const [conflicto, setConflicto] = useState<Conflicto | null>(null);
@@ -354,12 +364,10 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
       }
       recibirVista(vista);
       setSincronizacion('ok');
-      api.catalogos().then((c) => { setProyectos(c.projects ?? []); setResponsablesCatalogo(c.responsibles ?? []); }).catch(() => undefined);
-      api.usuarios().then((u) => setUsuariosResp(u.map((x) => (x.responsibleName ?? '').trim()).filter(Boolean)))
-        .catch(() => undefined);
+      void recargarListas();
     })();
     return () => { cancelado = true; };
-  }, [recibirVista]);
+  }, [recibirVista, recargarListas]);
 
   // Relectura periódica (20 s) para ver los cambios de los demás.
   useEffect(() => {
@@ -386,6 +394,10 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     return [...ids].sort().join('\n');
   }, [vistaServidor]);
 
+  // «IDs live» (Tools) fuerza una consulta inmediata de los estados.
+  const [consultaAprobaciones, setConsultaAprobaciones] = useState(0);
+  const refrescarAprobaciones = useCallback(() => setConsultaAprobaciones((n) => n + 1), []);
+
   useEffect(() => {
     if (!idsAprobacion) return;
     const consultar = () => api.estadosAprobacion(idsAprobacion.split('\n'))
@@ -394,7 +406,7 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     void consultar();
     const t = window.setInterval(consultar, 60000);
     return () => window.clearInterval(t);
-  }, [idsAprobacion]);
+  }, [idsAprobacion, consultaAprobaciones]);
 
   // Personas (respPool): usuarios + responsables del catálogo + los ya usados en
   // algún ensayo. No se incluye la lista fija de nombres de la 4.9.4 (D24).
@@ -415,7 +427,7 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const valor: Contexto = {
     vista, sesion, soloLectura, sincronizacion, proyectos, personas, estadosAprobacion, avisos, conflicto,
     mensajeModal, cerrarMensajeModal: () => setMensajeModal(null),
-    editarCampo, operar, cerrarEnsayo, avisar, mostrarMensaje: setMensajeModal, recargar: recargarSilencioso, versionDe,
+    editarCampo, operar, cerrarEnsayo, avisar, mostrarMensaje: setMensajeModal, recargar: recargarSilencioso, recargarListas, refrescarAprobaciones, versionDe,
   };
   return <ContextoPlanificador.Provider value={valor}>{children}</ContextoPlanificador.Provider>;
 }

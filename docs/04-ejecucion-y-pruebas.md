@@ -195,3 +195,18 @@ En modo local, comparando con `/clasico`:
    (el nombre cambia en los ensayos) y borrar.
 7. Con SharePoint en solo lectura: mismos datos que `/clasico` y ningún cambio se guarda.
 
+### Prueba manual en el PC (bloque E)
+
+En modo local como Admin, comparando con `/clasico`:
+
+1. Test Benches: añadir categoría (aparece vacía) y añadirle un banco; cambiar color y nombre de categoría; subir/bajar.
+2. Renombrar un banco con ensayos: pide confirmación y sus ensayos aparecen en el banco con el nombre nuevo.
+3. Cambiar la Org de un banco y moverlo a otra categoría: los ensayos no cambian.
+4. Borrar un banco con ensayos: avisa «THIS DELETES DATA» y los ensayos desaparecen.
+5. Projects: añadir, pegar una columna, importar un .csv, buscar, borrar uno. «Clear all» debe quedar bloqueado (lista protegida).
+6. Users: añadir, editar (✎), quitar. Comprobar que el desplegable Responsible se actualiza.
+7. Tools → Calendar: añadir y quitar un festivo, cambiar de año, desmarcar «Skip holidays»; el plan se recalcula.
+8. About y Activity log.
+9. Como Editor: solo ve Projects en Configuration. Como solo lectura: ninguna pantalla de Configuration salvo About.
+10. Con SharePoint en solo lectura (`escritura-habilitada=false`): las pantallas cargan y cualquier guardado responde con el aviso de escritura desactivada sin cambiar nada.
+

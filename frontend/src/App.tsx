@@ -4,6 +4,12 @@ import { VistaDashboard } from './bloques/panel/VistaDashboard';
 import { VistaResponsable } from './bloques/panel/VistaResponsable';
 import { VistaKpiHistorico } from './bloques/kpi/VistaKpiHistorico';
 import { ListaEquipos } from './bloques/recursos/ListaEquipos';
+import { AcercaDe } from './bloques/configuracion/AcercaDe';
+import { ConfigBancos } from './bloques/configuracion/ConfigBancos';
+import { ConfigHerramientas } from './bloques/configuracion/ConfigHerramientas';
+import { ConfigProyectos } from './bloques/configuracion/ConfigProyectos';
+import { ConfigUsuarios } from './bloques/configuracion/ConfigUsuarios';
+import { RegistroActividad } from './bloques/configuracion/RegistroActividad';
 import { VistaRecursos } from './bloques/recursos/VistaRecursos';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
@@ -27,13 +33,7 @@ const SINCRONIZACION: Record<EstadoSincronizacion, [string, string]> = {
 };
 
 /** Secciones que aún no están migradas (se indican, pero no se inventan). */
-const PENDIENTES: Record<string, [string, string]> = {
-  __benches__: ['\u{1F527} Test Benches', 'bloque E'],
-  __projects__: ['\u{1F4C1} Projects', 'bloque E'],
-  __users__: ['\u{1F464} Users/Rights Management', 'bloque E'],
-  __tools__: ['\u{1F527} Tools', 'bloque E'],
-  __about__: ['\u2139\uFE0F About', 'bloque E'],
-};
+const PENDIENTES: Record<string, [string, string]> = {};
 
 function leerRuta(): string {
   return decodeURIComponent(window.location.hash.replace(/^#\/?/, '')) || '';
@@ -100,6 +100,7 @@ export function App() {
           {esAdmin && pestana('__users__', <>&#128100; Users/Rights Management</>)}
           {esAdmin && pestana('__tools__', <>&#128295; Tools</>)}
           {pestana('__about__', <>&#8505;&#65039; About</>)}
+          {esAdmin && pestana('__activity__', <>&#128220; Activity log</>)}
         </nav>
         <main id="main">
           {!vista && sincronizacion !== 'bloqueado' && <div className="empty">Conectando&hellip;</div>}
@@ -111,6 +112,13 @@ export function App() {
           {vista && pantalla === '__kpihist__' && <VistaKpiHistorico />}
           {vista && pantalla === '__resources__' && <VistaRecursos />}
           {vista && pantalla === '__rescfg__' && (esAdmin ? <ListaEquipos /> : <VistaDashboard />)}
+          {/* Configuración (bloque E): las pantallas de Admin llevan al Dashboard si no se es Admin, como en la 4.9.4. */}
+          {vista && pantalla === '__benches__' && (esAdmin ? <ConfigBancos /> : <VistaDashboard />)}
+          {vista && pantalla === '__projects__' && (esAdmin || esEditor ? <ConfigProyectos /> : <VistaDashboard />)}
+          {vista && pantalla === '__users__' && (esAdmin ? <ConfigUsuarios /> : <VistaDashboard />)}
+          {vista && pantalla === '__tools__' && (esAdmin ? <ConfigHerramientas /> : <VistaDashboard />)}
+          {vista && pantalla === '__activity__' && (esAdmin ? <RegistroActividad /> : <VistaDashboard />)}
+          {vista && pantalla === '__about__' && <AcercaDe version={VERSION} />}
           {vista && PENDIENTES[pantalla] && (
             <div className="sec">
               <h2>{PENDIENTES[pantalla][0]}</h2>

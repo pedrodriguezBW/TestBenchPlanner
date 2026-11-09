@@ -9,10 +9,10 @@ listas actuales de SharePoint mientras la interfaz se sustituye por bloques. La
 versión 4.9.4 se mantiene sin modificar como oráculo de paridad y como respaldo
 durante la transición.
 
-> **Estado actual: H3D.** H1 y H2 están terminados. En H3 están migrados el
-> bloque A (operativa diaria de bancos), el bloque B (Dashboard y «By
-> Responsible»), el bloque C (KPI History y estadísticas) y el bloque D (equipos
-> auxiliares); configuración y exportaciones siguen disponibles mediante la
+> **Estado actual: H3E.** H1 y H2 están terminados. En H3 están migrados los
+> bloques A (operativa diaria de bancos), B (Dashboard y «By Responsible»), C
+> (KPI History y estadísticas), D (equipos auxiliares) y E (configuración); las
+> exportaciones e importaciones (bloque F) siguen disponibles mediante la
 > interfaz clásica en `/clasico`.
 
 ## Índice
@@ -38,11 +38,12 @@ durante la transición.
 | **H3A · React, bloque A** | Vista de banco: tabla de 30 columnas, Gantt, edición, selección, operaciones de cola, aprobaciones, cierre y lista de ensayos cerrados. | **Terminado** |
 | **H3B · React, bloque B** | Dashboard (bloques KPI, plan anual por banco, gráfica de ocupación por CW, tabla de ocupación por tipo de banco, 📊 Update Yearly Status) y «By Responsible» (Manager View, carga del equipo, aviso de IDs sin aprobar). | **Terminado** |
 | **H3C · React, bloque C** | KPI History: estadísticas de ensayos cerrados (periodo, responsable, por mes, trimestre y motivo, detalle) y foto semanal (medias, tabla por semana, motivos acumulados) por organización. Incluye la corrección del ciclo de vida (minimizar ya no cierra el backend). | **Terminado** |
-| **H3D · React, bloque D** | Equipos auxiliares: columna «Resources» y selector de equipos en los bancos, «List of Equipments» (Gantt por equipo, bloqueos manuales) y «Equipments List» (catálogo, solo Admin). | **Entregado**; pendiente de validar en el PC |
-| **H3E–H3F · React** | Configuración y exportaciones. Hasta su migración, el menú deriva estas áreas a `/clasico`. | Pendiente |
+| **H3D · React, bloque D** | Equipos auxiliares: columna «Resources» y selector de equipos en los bancos, «List of Equipments» (Gantt por equipo, bloqueos manuales) y «Equipments List» (catálogo, solo Admin). Incluye la separación entre controles de consulta y de escritura en solo lectura. | **Terminado** |
+| **H3E · React, bloque E** | Configuración: Test Benches (categorías y bancos; renombrar conserva ensayos, borrar los borra), Projects, Users/Rights Management, Tools (calendario de festivos, IDs live, Reset local), About y Activity log. | **Entregado**; pendiente de validar en el PC |
+| **H3F · React** | Exportaciones e importaciones (Gantt a Excel, CSV de estadísticas, copia JSON). Hasta su migración se hacen desde `/clasico`. | Pendiente |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
 
-### Funcionalidad disponible en H3D
+### Funcionalidad disponible en H3E
 
 - Planificación y edición diaria por banco.
 - Cálculo de fechas, estados, sugerencias, cierres, KPI, ocupación y calendario
@@ -70,6 +71,13 @@ equipo asignado está ocupado en esas fechas, selector «Disponibles / En uso»
 con búsqueda, Gantt de ocupación por equipo con bloqueos y solapes, bloqueos
 manuales (Admin) y catálogo «Equipments List» (Admin; renombrar un equipo lo
 cambia en todos los ensayos).
+- Configuración: Test Benches (solo Admin; cada cambio se guarda en el acto y
+renombrar o borrar un banco actualiza sus ensayos en el mismo paso), Projects
+(Admin y Editor; alta, pegar, importar CSV/TXT, borrar), Users/Rights
+Management, Tools (calendario de festivos de este PC, IDs live, Reset local),
+About y Activity log.
+- Solo lectura: se bloquean únicamente las acciones que modifican datos; filtros,
+búsquedas, navegación y consultas siguen disponibles en todas las pantallas.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` para los bloques todavía no migrados.
 
@@ -160,6 +168,7 @@ TestBenchPlanner/
 │       ├── bloques/panel/                 Bloque B: Dashboard y «By Responsible»
 │       ├── bloques/kpi/                   Bloque C: KPI History y estadísticas
 │       ├── bloques/recursos/              Bloque D: equipos auxiliares
+│       ├── bloques/configuracion/         Bloque E: Test Benches, Projects, Users, Tools, About y Activity log
 │       ├── componentes/                   Diálogos, avisos y selector de fecha
 │       ├── estado/                        Carga, guardado, conflictos, relectura, Dashboard, equipos y ciclo de vida
 │       ├── estilos/                       CSS original y estilos de la nueva interfaz
@@ -181,7 +190,7 @@ TestBenchPlanner/
 │       ├── referencias/                   Resultados esperados de la 4.9.4
 │       ├── comparar.cjs                   Comparador backend/paridad
 │       ├── comparar-interfaz.cjs          Paridad funcional de React (bloque A)
-│       ├── comparar-panel.cjs             Paridad visual de pantallas (bloques B, C y D)
+│       ├── comparar-panel.cjs             Paridad visual de pantallas (bloques B, C, D y E)
 │       ├── pruebas-ciclo-de-vida.cjs      Minimizar u ocultar no da de baja la pestaña
 │       ├── pruebas-interfaz.cjs           Conflicto, conexión y solo lectura
 │       └── backend-simulado-4.9.4.cjs     Backend de apoyo para pruebas React
@@ -326,6 +335,8 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `ListasProtegidasTest` | Protección de punta a punta sin alterar los ficheros locales. |
 | `ReinicioLocalTest` | Reinicio controlado del escenario local usado por las pruebas web. |
 | `CicloDeVidaTest` | Apagado solo al cerrar la última pestaña: minimizar u ocultar no la da de baja; recargar no apaga. |
+| `SoloLecturaIntegracionTest` | Como usuario de solo lectura: las consultas de todas las pantallas responden y los filtros cambian el resultado; las escrituras devuelven 403 sin tocar datos. |
+| `ConfiguracionBancosTest` | Test Benches: renombrar conserva ensayos, borrar los borra, mover u Org no tocan ensayos, solo Admin, no se renombra a un banco existente ni se vacía la lista. |
 
 Las salidas de paridad quedan en `backend/target/paridad` y pueden volver a
 compararse con:
@@ -348,8 +359,8 @@ TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
 cierre y roles. `pruebas-interfaz.cjs` cubre además conflicto, desconexión, modo
-solo lectura, filtros de consulta en todas las pantallas migradas y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 56 casos
-de Dashboard, «By Responsible», KPI History y equipos auxiliares en la 4.9.4 y
+solo lectura, filtros de consulta en todas las pantallas migradas y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 78 casos
+de Dashboard, «By Responsible», KPI History, equipos auxiliares y configuración en la 4.9.4 y
 en React con los mismos gestos y compara lo que se ve: KPI, barras del Gantt
 (posición, color, texto), puntos de la gráfica, tablas, selector y ventanas,
 avisos y mensajes. `pruebas-ciclo-de-vida.cjs` comprueba que ocultar o
@@ -409,6 +420,11 @@ sin clasificar frente al laboratorio.
 - Las diferencias aprobadas se registran en
 `herramientas/laboratorio/cambios-aprobados.json` (datos) y
 `herramientas/laboratorio/cambios-aprobados-interfaz.json` (pantallas).
+- **Solo lectura en la interfaz:** `soloLectura` se aplica solo a las acciones
+que modifican datos (editar, ordenar, añadir, borrar, cerrar, asignar, guardar
+catálogos…). Nunca se deshabilitan contenedores completos ni controles de
+consulta (filtros, búsquedas, semanas, rangos, zoom, foco, recargar). Toda
+escritura se comprueba también en el backend (403).
 - Facturación queda fuera del alcance de esta migración.
 
 ## Documentación

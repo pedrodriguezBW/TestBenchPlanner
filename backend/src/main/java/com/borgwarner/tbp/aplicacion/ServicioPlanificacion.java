@@ -76,7 +76,11 @@ public class ServicioPlanificacion {
     }
 
     public ConfiguracionBancos configuracion() {
-        JsonNode lista = catalogos.leer().path("benches");
+        return configuracionDe(catalogos.leer().path("benches"));
+    }
+
+    /** Configuración de bancos a partir de la lista compartida (filas de TestBenchBenches). */
+    public static ConfiguracionBancos configuracionDe(JsonNode lista) {
         List<BancoConfigurado> bancos = new ArrayList<>();
         for (JsonNode b : lista) {
             JsonNode seq = b.get("seq");

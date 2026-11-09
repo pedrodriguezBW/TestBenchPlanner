@@ -22,7 +22,7 @@ parado en la fecha del caso.
 | `referencias/*.json` | Resultado de la 4.9.4 para cada caso: la verdad contra la que se compara la versión nueva. |
 | `backend-simulado-4.9.4.cjs` | Backend `/api/v1` que calcula con la 4.9.4 por detrás, para probar la interfaz React sin Java. |
 | `controlador-react.cjs` · `comparar-interfaz.cjs` | Ejecutan los casos sobre la interfaz React como un usuario y comparan con las referencias (bloque A). |
-| `casos-interfaz/*.json` · `comparar-panel.cjs` | Dashboard, «By Responsible» (bloque B), KPI History (bloque C) y equipos auxiliares (bloque D): mismos gestos en las dos interfaces y comparación de lo que se ve. |
+| `casos-interfaz/*.json` · `comparar-panel.cjs` | Dashboard, «By Responsible» (bloque B), KPI History (bloque C), equipos auxiliares (bloque D) y configuración (bloque E): mismos gestos en las dos interfaces y comparación de lo que se ve. |
 | `pruebas-ciclo-de-vida.cjs` | Presencia de la pestaña: ocultar o minimizar no avisa de cierre; salir de la página sí. |
 | `cambios-aprobados.json` · `cambios-aprobados-interfaz.json` | Diferencias admitidas, cada una ligada a una discrepancia o a un bloque pendiente. |
 
