@@ -5,6 +5,7 @@ import { usePlanificador } from '../../estado/Planificador';
 import { dia, fmt, iso } from '../../utilidades/fechas';
 import { colorEstado, etiquetaDeclarado, etiquetaMotivo } from '../../utilidades/textos';
 import { useConsulta } from '../panel/comunes';
+import { descargar } from '../exportaciones/descargas';
 
 /*
  * «📊 Estadísticas de ensayos» (statsSectionHTML de la 4.9.4): ensayos ya
@@ -29,6 +30,37 @@ function agrupar(filas: FilaEstadistica[], clave: (d: Date) => string): Grupo[] 
     if (f.estadoFinal === 'delayed') m[k].delayed++;
   });
   return Object.values(m).sort((x, y) => x.clave.localeCompare(y.clave));
+}
+
+/** Días de calendario entre dos fechas, ambas incluidas (spanDays); 0 si falta alguna. */
+function diasDeCalendario(a: unknown, b: unknown): number {
+  const da = a ? dia(String(a)) : null, db = b ? dia(String(b)) : null;
+  return da && db ? Math.round((db.getTime() - da.getTime()) / 86400000) + 1 : 0;
+}
+
+/**
+ * ⬇️ Exportar CSV (statExportCSV de la 4.9.4): un ensayo cerrado por línea, con
+ * «;» como separador y BOM para que Excel lo abra bien. Base para validar la
+ * futura facturación: días facturables = días de calendario − días de parada.
+ */
+function exportarCsv(filas: FilaEstadistica[], desde: string, hasta: string) {
+  const cabecera = ['Fecha arranque', 'Banco', 'Proyecto', 'Tipo', 'Responsable', 'Estado final', 'Motivo', 'Explicacion',
+    'Comprometido inicio', 'Comprometido fin', 'Arranque real', 'Fin real', 'Desviacion (d)', 'Dias calendario', 'Dias parada', 'Nota parada',
+    'Dias facturables', 'Cierre confirmado', 'Confirmado por', 'Confirmado el'];
+  const lineas = [cabecera.join(';')];
+  filas.forEach((f) => {
+    const d = f.datos;
+    const inicio = d.finalTrueStart || d.finalActualStart || d.histStart || '';
+    const fin = d.finalTrueEnd || d.histEnd || '';
+    const dias = diasDeCalendario(inicio, fin), parada = Number(d.finalDowntimeDays) || 0;
+    lineas.push([f.fecha, f.banco, d.project || '', d.type || '', d.resp || '', etiquetaDeclarado(f.estadoFinal),
+      f.motivo ? etiquetaMotivo(f.motivo) : '', String(d.finalComment || '').replace(/\r?\n/g, ' '),
+      d.confirmedStart || '', d.finalCommittedEnd || d.confirmedEnd || '', inicio, fin,
+      d.finalDelayDays != null ? d.finalDelayDays : '', dias || '', parada, d.finalDowntimeNote || '', dias ? Math.max(0, dias - parada) : '',
+      f.confirmado ? 'SI' : 'NO', d.finalConfirmedBy || '', d.finalConfirmedAt || '']
+      .map((x) => String(x).replace(/;/g, ',')).join(';'));
+  });
+  descargar(new Blob(['\ufeff' + lineas.join('\n')], { type: 'text/csv;charset=utf-8' }), `BW_Estadisticas_${desde}_${hasta}.csv`);
 }
 
 export function Estadisticas() {
@@ -75,6 +107,7 @@ export function Estadisticas() {
           <option value="">Todos</option>
           {personas.map((p) => <option key={p} value={p}>{p}</option>)}
         </select>
+        <button className="btn sm" style={{ marginLeft: 'auto' }} onClick={() => exportarCsv(filas, desde, hasta)}>&#11015;&#65039; Exportar CSV</button>
       </div>
       <div className="hint" style={{ margin: '8px 0 0' }}>
         Ensayos <b>ya cerrados</b>, contados por el <b>estado final que declaraste</b>. La fecha de referencia es la de <b>arranque</b> (real

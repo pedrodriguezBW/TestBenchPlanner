@@ -104,6 +104,12 @@ export const api = {
     peticion<Tendencia>('GET', `/api/v1/indicadores/tendencia?cwDesde=${cwDesde}&cwHasta=${cwHasta}&org=${enc(org)}`),
   fotoSemanal: () => peticion<FotoSemanal[]>('POST', '/api/v1/indicadores/foto-semanal'),
 
+  // Exportaciones e importación (bloque F)
+  exportarGantt: (matriz: unknown) => peticion<{ ok: boolean; b64?: string; filename?: string; error?: string }>('POST', '/api/v1/exportaciones/gantt', matriz),
+  copiaSeguridad: () => peticion<Record<string, unknown>>('GET', '/api/v1/exportaciones/copia'),
+  importarCopia: (estado: unknown) =>
+    peticion<{ ok: boolean; ensayosGuardados: number; ensayosBorrados: number; vista: Vista }>('POST', '/api/v1/importaciones/copia', estado),
+
   // Configuración (bloque E)
   guardarBancos: (projects: string[], benches: BancoCatalogo[], renombrados: Record<string, string>) =>
     peticion<RespuestaOperacion & { ensayosBorrados: number }>('PUT', '/api/v1/configuracion/bancos', { projects, benches, renombrados }),

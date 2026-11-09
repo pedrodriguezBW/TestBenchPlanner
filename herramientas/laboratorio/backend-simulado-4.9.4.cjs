@@ -18,7 +18,7 @@ const fs = require('fs');
 const http = require('http');
 const path = require('path');
 const crypto = require('crypto');
-const { abrirVersionOriginal, cerrarNavegador, leerEscenario } = require('./oraculo-4.9.4.cjs');
+const { abrirVersionOriginal, cerrarNavegador, leerEscenario, nombreExcel } = require('./oraculo-4.9.4.cjs');
 const { ejecutarPaso } = require('./controlador-4.9.4.cjs');
 
 const RAIZ = path.resolve(__dirname, '../..');
@@ -33,12 +33,15 @@ let escenario = null;
 let rol = 'admin';
 let cola = Promise.resolve(); // las peticiones se atienden de una en una
 
+let ultimaMatrizExcel = null;
+let hoyLaboratorio = '2026-11-05';
 async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = '2026-11-05', email } = {}) {
   if (sesion) await sesion.cerrar();
   escenario = leerEscenario(path.join(RAIZ, 'datos/escenarios', nombre));
   const usuario = escenario.usuarios.find((u) => u.email === email);
   rol = usuario ? normalizarRol(usuario.role) : (email ? 'readonly' : 'admin');
   sesion = await abrirVersionOriginal({ escenario, fecha, rol, aceptarDialogos: true });
+  hoyLaboratorio = fecha;
   return { ok: true, hoy: fecha };
 }
 
@@ -357,6 +360,33 @@ async function atender(metodo, ruta, cuerpo) {
     const borradas = filas.filter((k) => nueva.textos[k] === undefined).length;
     return { estado: 200, cuerpo: { filasGuardadas: filas.length, ensayosBorrados: borradas, vista: nueva.vista } };
   }
+  // Exportaciones (bloque F). El Excel lo genera el backend Java (probado aparte con
+  // referencias-excel); aquí se guarda la matriz recibida para compararla con la de la 4.9.4.
+  if (p === '/api/v1/exportaciones/gantt' && metodo === 'POST') {
+    ultimaMatrizExcel = cuerpo;
+    return { estado: 200, cuerpo: { ok: true, b64: Buffer.from('simulado').toString('base64'), filename: nombreExcel(cuerpo.title, hoyLaboratorio) } };
+  }
+  if (p === '/api/v1/exportaciones/gantt-recibida' && metodo === 'GET') return { estado: 200, cuerpo: ultimaMatrizExcel };
+  if (p === '/api/v1/exportaciones/copia' && metodo === 'GET') {
+    return { estado: 200, cuerpo: await sesion.evaluar(() => stripState(state)) };
+  }
+  if (p === '/api/v1/importaciones/copia' && metodo === 'POST') {
+    if (rol !== 'admin') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Solo un Admin puede hacer esta operación.' } };
+    if (!cuerpo || !cuerpo.benches || typeof cuerpo.benches !== 'object') return { estado: 400, cuerpo: { error: 'fichero-no-valido', mensaje: 'Invalid file' } };
+    if (Array.isArray(cuerpo.projects) && !cuerpo.projects.length) return protegida('TestBenchProjects');
+    await sesion.evaluar((d) => {
+      // El cuerpo de importJSON de la 4.9.4, sin el FileReader ni el alert.
+      state = d; if (!state.settings) state.settings = { year: TODAY.getFullYear(), skipHolidays: true };
+      if (!state.holidays) state.holidays = computeHolidays(state.settings.year);
+      if (!Array.isArray(state.groups) || !state.groups.length) state.groups = GROUPS_SEED.map((g) => ({ key: g.key, name: g.name, dot: g.dot, benches: g.benches.slice() }));
+      GROUPS = state.groups; rebuildDotOf(); GROUPS.forEach((g) => g.benches.forEach((b) => { if (!state.benches[b]) state.benches[b] = []; }));
+      if (!Array.isArray(state.projects)) state.projects = PROJECTS_SEED.slice();
+      if (!Array.isArray(state.responsibles)) state.responsibles = RESPS_SEED.slice();
+      HOLSET = new Set(state.holidays.map((h) => h.date)); save(); render();
+    }, cuerpo);
+    await sesion.avanzar(1500);
+    return { estado: 200, cuerpo: { ok: true } };
+  }
   if (p === '/api/v1/usuarios' && metodo === 'GET') {
     return { estado: 200, cuerpo: await sesion.evaluar((u0) => (Array.isArray(USERS_CACHE) && USERS_CACHE.length ? USERS_CACHE : u0)
       .map((u) => ({ title: u.title, email: u.email, role: u.role, responsibleName: u.responsibleName || '' })), escenario.usuarios) };
@@ -426,6 +456,12 @@ const servidor = http.createServer((req, res) => {
   let datos = '';
   req.on('data', (t) => { datos += t; });
   req.on('end', () => {
+    if (req.url.split('?')[0] === '/clasico') {
+      // La interfaz 4.9.4 original, como InterfazClasicaController del backend Java.
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+      res.end(fs.readFileSync(path.join(RAIZ, 'legacy/BW_TestBench_Planner_31_Local.html')));
+      return;
+    }
     if (!req.url.startsWith('/api/')) {
       const ruta = path.join(DIST, req.url.split('?')[0] === '/' ? 'index.html' : decodeURIComponent(req.url.split('?')[0]));
       if (ruta.startsWith(DIST) && fs.existsSync(ruta) && fs.statSync(ruta).isFile()) {

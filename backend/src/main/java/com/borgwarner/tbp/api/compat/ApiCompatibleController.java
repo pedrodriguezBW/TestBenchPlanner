@@ -12,6 +12,8 @@ import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
+import com.borgwarner.tbp.aplicacion.puertos.Reloj;
+import com.borgwarner.tbp.api.v1.ExportacionesController;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
 import com.borgwarner.tbp.dominio.planificacion.CambioFila;
 import com.borgwarner.tbp.dominio.planificacion.FilaGuardada;
@@ -55,12 +57,14 @@ public class ApiCompatibleController {
     private final ServicioSesion sesion;
     private final CicloDeVida cicloDeVida;
     private final ServicioListas listas;
+    private final Reloj reloj;
 
     public ApiCompatibleController(AlmacenEnsayos ensayos, AlmacenCatalogos catalogos, AlmacenHistoricoKpi historico,
                                    AlmacenUsuarios usuarios, AlmacenRecursos recursos, ConsultaAprobaciones aprobaciones,
                                    Colaboracion colaboracion, ServicioSesion sesion, CicloDeVida cicloDeVida,
-                                   ServicioListas listas) {
+                                   ServicioListas listas, Reloj reloj) {
         this.listas = listas;
+        this.reloj = reloj;
         this.ensayos = ensayos;
         this.catalogos = catalogos;
         this.historico = historico;
@@ -244,10 +248,10 @@ public class ApiCompatibleController {
     }
 
     /** Exportación del Gantt a Excel: se migra en el bloque F de la interfaz (H3-F). */
+    /** Gantt a Excel para la interfaz clásica (mismo generador que /api/v1/exportaciones/gantt). */
     @PostMapping("/export_gantt")
-    public ResponseEntity<ObjectNode> exportarGantt() {
-        return ResponseEntity.status(501).body(JsonJs.objetoVacio().put("ok", false)
-                .put("error", "La exportación a Excel aún no está migrada (bloque F)."));
+    public ObjectNode exportarGantt(@RequestBody(required = false) JsonNode matriz) {
+        return ExportacionesController.excel(matriz, reloj);
     }
 
     @PostMapping("/app_version")

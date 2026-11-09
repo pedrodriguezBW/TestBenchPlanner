@@ -4,6 +4,7 @@ import { usePanel } from '../../estado/Panel';
 import { usePlanificador } from '../../estado/Planificador';
 import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias } from '../../utilidades/fechas';
 import { usePreferencia } from '../../utilidades/preferencias';
+import { exportarGanttExcel, matrizGantt } from '../exportaciones/descargas';
 import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../utilidades/textos';
 
 /*
@@ -22,9 +23,11 @@ const ANCHO_ETIQUETA = 170;
 interface Props {
   /** null = todos los responsables. */
   responsable: string | null;
+  /** En «By Responsible» el Excel se titula «Team plan» (como la 4.9.4). */
+  enResponsable?: boolean;
 }
 
-export function GanttGeneral({ responsable }: Props) {
+export function GanttGeneral({ responsable, enResponsable = false }: Props) {
   const { vista, proyectos } = usePlanificador();
   const { semana, zoom, organizacion, anchoDia, setAnchoDia } = usePanel();
   const [foco, setFoco] = usePreferencia<string>('tbp_gantt_foco', '');
@@ -73,6 +76,7 @@ export function GanttGeneral({ responsable }: Props) {
         <option value="">Focus proyecto: (todos)</option>
         {proyectos.map((p) => <option key={p} value={p}>{p.length > 46 ? p.slice(0, 46) + '\u2026' : p}</option>)}
       </select>
+      <button className="xbtn" onClick={() => void exportarGanttExcel(vista ? matrizGantt(vista, { tipo: 'general', responsable: enResponsable, organizacion }, foco) : null)} title="Exportar este Gantt a un Excel editable">&#128202; Excel</button>
       <span className="hint" style={{ margin: '0 0 0 8px' }}>
         Elige un proyecto para resaltarlo (el resto se aten&uacute;a). Arrastra el borde de la 1&ordf; columna para ensancharla.
       </span>

@@ -1,12 +1,6 @@
 [
  {
-  "caso": ".*",
-  "ruta": "(botones)",
-  "referencia": "(ninguna)",
-  "motivo": "Los botones 📊 Excel y ⬇️ Exportar CSV pertenecen al bloque F (exportaciones). Hasta entonces comparar-panel.cjs los quita de la foto de la 4.9.4 (quitarBotonesDeExportar)."
- },
- {
-  "caso": "^UC",
+  "caso": "^U(C|F(08|09|10|11))",
   "ruta": "^/tablas/\\d+/cabecera/0$",
   "referencia": "Mes",
   "motivo": "D25: la tabla por trimestre de la 4.9.4 titula su primera columna «Mes»; la nueva pone «Trimestre»."
@@ -21,5 +15,10 @@
   "caso": "^UE21-",
   "ruta": "^/hints/0$",
   "motivo": "D26: la cabecera de About muestra la versión nueva (5.0.0) en lugar de 4.9.4 (build 494)."
+ },
+ {
+  "caso": "^UF16-",
+  "ruta": "^/capturas/0/incrustado/(idDb/|filasId$)",
+  "motivo": "D31: la foto de solo lectura incrusta el estado actual de todas las aprobaciones de SharePoint; la 4.9.4 incrustaba su base de IDs local (semilla del HTML más los IDs refrescados), que puede estar desfasada."
  }
 ]

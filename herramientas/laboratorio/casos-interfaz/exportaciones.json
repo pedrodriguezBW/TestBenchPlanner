@@ -1,0 +1,304 @@
+[
+ {
+  "id": "UF01-excel-dashboard",
+  "titulo": "Dashboard: 📊 Excel (plan anual)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF02-excel-dashboard-foco",
+  "titulo": "Dashboard: Excel con foco en un proyecto",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "foco",
+    "indice": 3
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF03-excel-dashboard-ctag",
+  "titulo": "Dashboard: Excel con Org CTAG",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "org",
+    "valor": "CTAG"
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF04-excel-responsable",
+  "titulo": "By Responsible: Excel (plan del equipo)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "By Responsible"
+   },
+   {
+    "op": "responsable",
+    "valor": "Responsable 27"
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF05-excel-banco",
+  "titulo": "Banco MD2: Excel",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "MD2"
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF06-excel-banco-foco",
+  "titulo": "Banco 1500 Aire: Excel con foco",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "1500 Aire"
+   },
+   {
+    "op": "foco",
+    "indice": 1
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF07-excel-recursos",
+  "pantalla": "recursos",
+  "titulo": "Equipos auxiliares: Excel",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "List of Equipments"
+   },
+   {
+    "op": "excel"
+   }
+  ],
+  "esperarRecursos": true,
+  "capturas": true
+ },
+ {
+  "id": "UF08-csv",
+  "pantalla": "kpi",
+  "titulo": "KPI History: ⬇️ Exportar CSV (año)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "KPI History"
+   },
+   {
+    "op": "csv"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF09-csv-rango",
+  "pantalla": "kpi",
+  "titulo": "CSV de un rango y un responsable",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "KPI History"
+   },
+   {
+    "op": "estDesde",
+    "valor": "2026-09-01"
+   },
+   {
+    "op": "estHasta",
+    "valor": "2026-10-15"
+   },
+   {
+    "op": "estResponsable",
+    "valor": "Responsable 27"
+   },
+   {
+    "op": "csv"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF10-csv-vacio",
+  "pantalla": "kpi",
+  "titulo": "CSV de un periodo sin cerrados",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "KPI History"
+   },
+   {
+    "op": "estDesde",
+    "valor": "2026-01-01"
+   },
+   {
+    "op": "estHasta",
+    "valor": "2026-01-31"
+   },
+   {
+    "op": "csv"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF11-csv-solo-lectura",
+  "pantalla": "kpi",
+  "titulo": "CSV con usuario de solo lectura",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "KPI History"
+   },
+   {
+    "op": "csv"
+   }
+  ],
+  "rol": "readonly",
+  "capturas": true
+ },
+ {
+  "id": "UF12-json-exportar",
+  "pantalla": "config",
+  "titulo": "Tools: Export (JSON backup)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "exportarJson"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF13-json-no-valido",
+  "pantalla": "config",
+  "titulo": "Tools: Import de un JSON sin «benches»",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "importarJson",
+    "contenido": {
+     "projects": [
+      "X"
+     ]
+    }
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF14-json-ilegible",
+  "pantalla": "config",
+  "titulo": "Tools: Import de un fichero que no es JSON",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "importarJson",
+    "contenido": "esto no es json"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF15-json-importar",
+  "titulo": "Tools: Import de una copia pequeña y vuelta al Dashboard",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "ir",
+    "vista": "Tools"
+   },
+   {
+    "op": "importarJson",
+    "contenido": {
+     "benches": {
+      "MD2": [
+       {
+        "id": "imp1",
+        "project": "PRJ-IMP",
+        "type": "Durability",
+        "resp": "Responsable 27",
+        "status": "Planned",
+        "plannedStart": "2026-11-09",
+        "duration": 10
+       }
+      ]
+     },
+     "projects": [
+      "PRJ-IMP"
+     ],
+     "settings": {
+      "year": 2026,
+      "skipHolidays": true
+     }
+    }
+   },
+   {
+    "op": "ir",
+    "vista": "Dashboard"
+   }
+  ],
+  "capturas": true
+ },
+ {
+  "id": "UF16-solo-lectura-html",
+  "titulo": "📤 Export read-only (Admin)",
+  "fecha": "2026-11-05",
+  "pasos": [
+   {
+    "op": "exportarSoloLectura"
+   }
+  ],
+  "capturas": true
+ }
+]

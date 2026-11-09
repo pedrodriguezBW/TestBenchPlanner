@@ -160,7 +160,9 @@ Con el backend en modo local y `http://127.0.0.1:5001/` (se abre en el Dashboard
 7. «By Responsible»: una persona, Manager View (tabla del equipo), Org y zoom.
 8. 📊 Update Yearly Status (en modo local escribe en el histórico local) y mensaje de confirmación.
 
-Paridad automática del bloque B (con Node): `TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs`.
+Paridad automática de los bloques B a F (con Node): `TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs` (94 casos: UB, UC, UD, UE y UF). Los casos UF interceptan las descargas en las dos interfaces y comparan la matriz del Excel, el CSV, la copia JSON y la foto de solo lectura.
+
+Contenido del Excel (con Python y openpyxl): `python herramientas/laboratorio/comparar_excel.py` compara el generador Python de la 4.9.4 con su espejo celda a celda; las referencias XML que usa `ExcelGanttTest` se regeneran con `excel_espejo.py` (ver `referencias-excel/LEEME.md`).
 
 ### Prueba manual en el PC (bloque C)
 

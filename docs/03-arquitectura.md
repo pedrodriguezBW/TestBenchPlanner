@@ -68,10 +68,10 @@ com.borgwarner.tbp
 |---|---|---|
 | A | Vista de banco: tabla de ensayos (30 columnas), Gantt, cierre, lista de cerrados, selección, mover, ordenar, aprobaciones | **Hecho** |
 | B | Dashboard y «By Responsible» | **Hecho** |
-| C | KPI History y estadísticas | **Hecho** (salvo «Exportar CSV», que va con el bloque F) |
+| C | KPI History y estadísticas | **Hecho** |
 | D | Equipos auxiliares (columna y selector en bancos, List of Equipments, Equipments List) | **Hecho** |
-| E | Configuración (Test Benches, Projects, Users, Tools, About, Activity log) | **Hecho** (Export/Import JSON con el bloque F) |
-| F | Exportaciones (incluida la del Gantt a Excel) | Pendiente |
+| E | Configuración (Test Benches, Projects, Users, Tools, About, Activity log) | **Hecho** |
+| F | Exportaciones e importaciones (Gantt a Excel, CSV, copia JSON, foto de solo lectura) | **Hecho** |
 
 Mientras un bloque no está migrado, su entrada del menú lo indica y enlaza a la
 interfaz clásica (`/clasico`); no se ha inventado nada en su lugar.
@@ -166,7 +166,8 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
   solo lectura sí lo ve, como en la 4.9.4.
 - Org y filtros de estadísticas se conservan al cambiar de pantalla mientras la
   pestaña está abierta (KPIHIST_ORG, STAT_FROM/TO/RESP de la 4.9.4).
-- Pendiente del bloque F: «⬇️ Exportar CSV».
+- «⬇️ Exportar CSV» (bloque F) se arma en la interfaz con las filas que ya da el
+  backend (statExportCSV): mismo orden, columnas, separador «;» y BOM.
 
 ## Bloque D: equipos auxiliares
 
@@ -202,9 +203,36 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
   tabla como en la 4.9.4 (D29) y estado del guardado visible (D30).
 - **Tools**: calendario de festivos de este PC (`/api/v1/calendario`), IDs live
   (consulta inmediata de estados de aprobación) y Reset local (D27). Export/Import
-  JSON abren `/clasico` hasta el bloque F.
+  JSON: ver bloque F.
 - **About**: versión nueva y el histórico de la 4.9.4 sin cambios (D26).
 - **Activity log** (solo Admin): `GET /api/v1/actividad`, solo consulta.
 - En solo lectura, búsquedas y consultas de estas pantallas siguen activas; solo
   se desactivan los controles que guardan.
 
+## Bloque F: exportaciones e importaciones
+
+- **Gantt a Excel** (📊 Excel en el banco, Dashboard, «By Responsible» y equipos):
+  la interfaz arma la misma matriz que `buildGanttMatrix` de la 4.9.4
+  (`bloques/exportaciones/descargas.ts`) y la envía a
+  `POST /api/v1/exportaciones/gantt`. El backend la convierte en `.xlsx` con
+  `infraestructura/excel/ExcelGantt`, que escribe el Office Open XML directamente
+  (sin librerías nuevas) con el mismo aspecto que `do_export_gantt` (openpyxl):
+  cabeceras de mes, semana y día, fines de semana y festivos sombreados, barras de
+  color de proyecto, foco atenuado y leyenda. La paridad se comprueba con el espejo
+  Python de `herramientas/laboratorio/excel_espejo.py` y las referencias XML de
+  `referencias-excel/`. El nombre lleva la fecha del reloj del backend (D7).
+  `/api/export_gantt` (para `/clasico`) usa el mismo generador.
+- **⬇️ Exportar CSV**: ver bloque C.
+- **Copia JSON** (Tools): `GET /api/v1/exportaciones/copia` devuelve el estado con
+  el formato de la 4.9.4 (`benches`, `holidays`, `settings`, `groups`, `projects`,
+  `responsibles`, `benchOrg`), sin los campos de cálculo (D32).
+  `POST /api/v1/importaciones/copia` (solo Admin) sustituye la planificación sin
+  confirmación, como hoy (D10): guarda primero la configuración (protección D11:
+  si la rechaza no se toca nada), después los ensayos y por último el calendario
+  de este PC. Un fichero sin `benches` devuelve 400 «Invalid file».
+- **📤 Export read-only** (Admin, barra superior): pregunta si se guarda antes la
+  foto semanal y descarga la página 4.9.4 (`/clasico`) con el estado y las
+  aprobaciones incrustados, como `exportReadOnly` (D31). El fichero se abre sin
+  backend y en solo lectura.
+- En solo lectura se pueden exportar Excel, CSV y copia JSON (son consultas);
+  importar está desactivado y el backend lo rechaza con 403.

@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, type MouseEvent as EventoR
 import type { FilaEnsayo, Vista } from '../../api/tipos';
 import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias } from '../../utilidades/fechas';
 import { usePreferencia } from '../../utilidades/preferencias';
+import { exportarGanttExcel, matrizGantt } from '../exportaciones/descargas';
 import { fijarCabeceras } from '../panel/GanttGeneral';
 import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../utilidades/textos';
 
@@ -15,7 +16,7 @@ import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../util
 
 const ANCHO_DIA_POR_DEFECTO = 30;
 
-export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista: Vista; proyectos: string[] }) {
+export function Gantt({ banco, filas, vista, proyectos }: { banco: string; filas: FilaEnsayo[]; vista: Vista; proyectos: string[] }) {
   const [anchoDia, setAnchoDia] = usePreferencia<number>('bw_bench_gw', ANCHO_DIA_POR_DEFECTO);
   const [anchoEtiqueta, setAnchoEtiqueta] = usePreferencia<number | null>('bw_gantt_lw', null);
   const [foco, setFoco] = usePreferencia<string>('tbp_gantt_foco', '');
@@ -67,6 +68,7 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
         <option value="">Focus proyecto: (todos)</option>
         {proyectos.map((p) => <option key={p} value={p}>{p.length > 46 ? p.slice(0, 46) + '…' : p}</option>)}
       </select>
+      <button className="xbtn" onClick={() => void exportarGanttExcel(matrizGantt(vista, { tipo: 'banco', banco, filas }, foco))} title="Exportar este Gantt a un Excel editable">&#128202; Excel</button>
       <span className="hint" style={{ margin: '0 0 0 8px' }}>
         Elige un proyecto para resaltarlo (el resto se aten&uacute;a). Arrastra el borde de la 1&ordf; columna para ensancharla.
       </span>
@@ -150,7 +152,7 @@ export function Gantt({ filas, vista, proyectos }: { filas: FilaEnsayo[]; vista:
                     style={{
                       left: desplazamiento * W, width: Math.max(largo * W - 4, 20),
                       ...(especial ? {} : { background: color }),
-                      ...(comprometido && !atenuada ? { boxShadow: `0 0 0 2px ${colorEstadoTransparente(c.estado, 0.9)},0 0 10px 3px ${colorEstadoTransparente(c.estado, 0.55)}` } : {}),
+                      ...(comprometido ? { boxShadow: `0 0 0 2px ${colorEstadoTransparente(c.estado, 0.9)},0 0 10px 3px ${colorEstadoTransparente(c.estado, 0.55)}` } : {}),
                     }}>
                     <span className="g-lab">{texto}</span>
                   </div>

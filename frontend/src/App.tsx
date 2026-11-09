@@ -1,5 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
+import { api } from './api/cliente';
 import { VistaBanco } from './bloques/banco/VistaBanco';
+import { exportarSoloLectura } from './bloques/exportaciones/descargas';
 import { VistaDashboard } from './bloques/panel/VistaDashboard';
 import { VistaResponsable } from './bloques/panel/VistaResponsable';
 import { VistaKpiHistorico } from './bloques/kpi/VistaKpiHistorico';
@@ -59,6 +61,19 @@ export function App() {
   const idsUsados = vista ? [...new Set(Object.values(vista.bancos).flatMap((fs) => fs.map((f) => String(f.datos.approvalId ?? ''))).filter(Boolean))] : [];
   const proyectosUsados = vista ? [...new Set([...proyectos, ...Object.values(vista.bancos).flatMap((fs) => fs.map((f) => String(f.datos.project ?? '')))].filter(Boolean))] : proyectos;
 
+  /** 📤 Export read-only: antes pregunta si se guarda la foto semanal, como la 4.9.4. */
+  const exportarFotoSoloLectura = async () => {
+    if (!vista) return;
+    try {
+      if (window.confirm('Before exporting: dump this week\u2019s KPIs into the annual total (Update Yearly Status)?\n\nOK = save the yearly snapshot now.  Cancel = just export.')) {
+        await api.fotoSemanal().catch(() => undefined);
+      }
+      await exportarSoloLectura(vista.hoy);
+    } catch (e) {
+      window.alert(`Could not export read-only snapshot: ${e instanceof Error ? e.message : String(e)}`);
+    }
+  };
+
   const pestana = (clave: string, contenido: ReactNode) => (
     <div key={clave} className={`tab ${pantalla === clave ? 'active' : ''}`} onClick={() => ir(clave)}>{contenido}</div>
   );
@@ -73,6 +88,9 @@ export function App() {
         </h1>
         <div className="spacer" />
         <a className="btn ghost sm no-print" href="/clasico" title="Interfaz 4.9.4 (respaldo)">Versión clásica</a>
+        {esAdmin && vista && (
+          <button onClick={() => void exportarFotoSoloLectura()} title="Exportar una foto HTML de solo lectura para el proveedor">&#128228; Export read-only</button>
+        )}
         <span id="sp-status" style={{ fontSize: 12, fontWeight: 600, color: colorSync, margin: '0 8px', whiteSpace: 'nowrap' }}>{textoSync}</span>
         <button onClick={() => window.print()}>&#128424; Print</button>
       </header>

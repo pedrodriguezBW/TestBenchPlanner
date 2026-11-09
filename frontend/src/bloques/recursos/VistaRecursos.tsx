@@ -8,6 +8,7 @@ import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias 
 import { usePreferencia } from '../../utilidades/preferencias';
 import { colorEstado } from '../../utilidades/textos';
 import { fijarCabeceras } from '../panel/GanttGeneral';
+import { exportarGanttExcel, matrizGantt } from '../exportaciones/descargas';
 
 /*
  * 📋 List of Equipments (renderResources de la 4.9.4): ocupación de cada equipo
@@ -223,6 +224,7 @@ function GanttRecursos() {
           <option value="">Focus proyecto: (todos)</option>
           {proyectos.map((p) => <option key={p} value={p}>{p.length > 46 ? p.slice(0, 46) + '\u2026' : p}</option>)}
         </select>
+        <button className="xbtn" onClick={() => void exportarGanttExcel(matrizGantt(vista!, { tipo: 'recursos', recursos, bloqueos }, foco))} title="Exportar este Gantt a un Excel editable">&#128202; Excel</button>
         <span className="hint" style={{ margin: '0 0 0 8px' }}>
           Elige un proyecto para resaltarlo (el resto se aten&uacute;a). Arrastra el borde de la 1&ordf; columna para ensancharla.
         </span>

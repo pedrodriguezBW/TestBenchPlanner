@@ -156,16 +156,6 @@ function extraerCeldasRecursos() {
   });
 }
 
-const BOTONES_DE_EXPORTAR = ['\u{1F4CA} Excel', '\u2B07\uFE0F Exportar CSV'];
-function quitarBotonesDeExportar(nodo) {
-  if (Array.isArray(nodo)) { nodo.forEach(quitarBotonesDeExportar); return; }
-  if (!nodo || typeof nodo !== 'object') return;
-  for (const [k, v] of Object.entries(nodo)) {
-    if (k === 'botones' && Array.isArray(v)) nodo[k] = v.filter((b) => !BOTONES_DE_EXPORTAR.includes(b));
-    else quitarBotonesDeExportar(v);
-  }
-}
-
 /** Valores de las cajas de texto y casillas de #main (pantallas de configuración). */
 function extraerEntradas() {
   const main = document.getElementById('main');
@@ -174,6 +164,73 @@ function extraerEntradas() {
 }
 
 /** Lo que se lee en cada tipo de pantalla (se envía a la página como texto). */
+/**
+ * Bloque F: se interceptan las descargas (enlace con «download» sobre un Blob) y
+ * la matriz que se envía para generar el Excel, igual en las dos interfaces.
+ */
+function instalarCapturas() {
+  if (window.__capturas) return;
+  window.__capturas = [];
+  const fetchOriginal = window.fetch;
+  window.fetch = function (url, opciones) {
+    if (/export_gantt|exportaciones\/gantt/.test(String(url)) && opciones && opciones.body) window.__capturas.push({ tipo: 'excel', matriz: JSON.parse(opciones.body) });
+    return fetchOriginal.apply(this, arguments);
+  };
+  const crearUrl = URL.createObjectURL.bind(URL);
+  const blobs = new Map();
+  URL.createObjectURL = (b) => { const u = crearUrl(b); blobs.set(u, b); return u; };
+  const clicOriginal = HTMLAnchorElement.prototype.click;
+  HTMLAnchorElement.prototype.click = function () {
+    if (this.download && blobs.has(this.href)) { window.__capturas.push({ tipo: 'descarga', nombre: this.download, blob: blobs.get(this.href) }); return; }
+    return clicOriginal.apply(this, arguments);
+  };
+}
+
+/** Lo descargado, legible para comparar (el contenido del Excel se prueba aparte). */
+async function leerCapturas() {
+  const salida = [];
+  for (const c of window.__capturas || []) {
+    if (c.tipo === 'excel') { salida.push(c); continue; }
+    const d = { tipo: 'descarga', nombre: c.nombre, mime: c.blob.type.split(';')[0] };
+    if (!/sheet/.test(c.blob.type)) {
+      const bytes = new Uint8Array(await c.blob.arrayBuffer());
+      d.bom = bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
+      d.texto = new TextDecoder().decode(bytes.subarray(d.bom ? 3 : 0));
+    }
+    salida.push(d);
+  }
+  return salida;
+}
+
+/**
+ * Normaliza lo descargado para compararlo:
+ *  - JSON de copia: se compara el objeto (D32: la nueva no guarda los campos de cálculo «_start»...).
+ *  - HTML de solo lectura: solo lo que se incrusta (estado, base de IDs, filas de IDs) y el
+ *    nombre; el resto es la propia página 4.9.4 (D31).
+ */
+const CAMPOS_DE_CALCULO = ['_ovl', '_start', '_end', '_planStart', '_planEnd', '_confirmed', '_startWhy', '_bench', '_seq'];
+function normalizarCapturas(capturas) {
+  const sinCalculo = (estado) => {
+    Object.values(estado.benches || {}).forEach((filas) => filas.forEach((f) => CAMPOS_DE_CALCULO.forEach((k) => delete f[k])));
+    return estado;
+  };
+  return capturas.map((c) => {
+    if (c.tipo !== 'descarga' || c.texto === undefined) return c;
+    const d = Object.assign({}, c);
+    if (/\.json$/.test(c.nombre)) {
+      // El nombre lleva la fecha del reloj del navegador (no la del escenario).
+      d.nombre = c.nombre.replace(/\d{4}-\d{2}-\d{2}/, 'AAAA-MM-DD'); d.objeto = sinCalculo(JSON.parse(c.texto)); d.formatoDosEspacios = /^\{\n  "/.test(c.texto); delete d.texto;
+    }
+    if (/\.html$/.test(c.nombre)) {
+      const m = c.texto.match(/<script>window\.__READONLY__=true;window\.__EMBEDDED_STATE__=(.*?);window\.__EMBEDDED_IDDB__=(.*?);window\.__EMBEDDED_IDROWS__=(.*?);<\/script>\n<!--BW_APP_MARKER-->/s);
+      d.incrustado = m ? { estado: sinCalculo(JSON.parse(m[1])), idDb: JSON.parse(m[2]), filasId: JSON.parse(m[3]).length } : null;
+      d.empiezaPorDoctype = c.texto.startsWith('<!DOCTYPE html>');
+      delete d.texto;
+    }
+    return d;
+  });
+}
+
 function guionFoto(pantalla) {
   const f = { extraer, extraerSeccion, extraerVentanas, extraerCeldasRecursos, extraerEntradas };
   const defs = Object.entries(f).map(([n, fn]) => `const ${n} = ${fn.toString()};`).join('\n');
@@ -383,6 +440,22 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     case 'recargar':
       await main.getByRole('button', { name: /Reload from SharePoint/ }).click();
       break;
+    case 'excel':
+      await pagina.locator('.g-toolbar button', { hasText: 'Excel' }).first().click();
+      break;
+    case 'csv':
+      await main.getByRole('button', { name: /Exportar CSV/ }).click();
+      break;
+    case 'exportarJson':
+      await main.getByRole('button', { name: /Export \(JSON backup\)/ }).click();
+      break;
+    case 'importarJson':
+      await pagina.locator('#imp').setInputFiles({ name: 'copia.json', mimeType: 'application/json',
+        buffer: Buffer.from(typeof paso.contenido === 'string' ? paso.contenido : JSON.stringify(paso.contenido)) });
+      break;
+    case 'exportarSoloLectura':
+      await pagina.getByRole('button', { name: /Export read-only/ }).click();
+      break;
     case 'fotoSemanal':
       await main.locator('.week-nav button', { hasText: 'Update Yearly Status' }).click();
       break;
@@ -397,7 +470,7 @@ async function ejecutarOriginal(caso, escenario) {
   try {
     const avanzar = async () => { await sesion.avanzar(400); };
     await avanzar();
-    if (/^UD/.test(caso.id)) {
+    if (/^UD/.test(caso.id) || caso.esperarRecursos) {
       // La 4.9.4 lee el catálogo de equipos a los 6,5 s de arrancar (v45Init): se deja
       // pasar ese tiempo, como un usuario que lleva un rato con la app abierta.
       await sesion.avanzar(7000);
@@ -405,6 +478,7 @@ async function ejecutarOriginal(caso, escenario) {
       await sesion.evaluar(() => render());
       await avanzar();
     }
+    if (caso.capturas) await sesion.pagina.evaluate(instalarCapturas);
     for (const paso of caso.pasos) await pasoComun(sesion.pagina, paso, true, avanzar);
     // La relectura de la 4.9.4 puede redibujar justo ahora: se deja que termine
     // (sus herramientas del Gantt se añaden en un temporizador).
@@ -415,9 +489,7 @@ async function ejecutarOriginal(caso, escenario) {
       if (listo && i >= 2) break;
     }
     const foto = await sesion.pagina.evaluate(guionFoto(caso.pantalla));
-    // Bloque F pendiente: los botones de exportar (📊 Excel, ⬇️ Exportar CSV) aún no
-    // existen en la versión nueva; se quitan de la foto de la 4.9.4 (ver cambios-aprobados-interfaz.json).
-    quitarBotonesDeExportar(foto);
+    if (caso.capturas) foto.capturas = normalizarCapturas(await sesion.pagina.evaluate(leerCapturas));
     // D24: la 4.9.4 añade a la lista de responsables diez nombres fijos de su código.
     (foto.opcionesResponsable || []).forEach((l, i) => { foto.opcionesResponsable[i] = l.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n)); });
     if (foto.responsable) foto.responsable.opciones = foto.responsable.opciones.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n));
@@ -463,9 +535,11 @@ async function ejecutarNueva(navegador, caso) {
     await pagina.goto(BASE + '/');
     await pagina.waitForFunction(() => /Synced|Solo lectura/.test(document.getElementById('sp-status')?.textContent || ''));
     await asentar();
+    if (caso.capturas) await pagina.evaluate(instalarCapturas);
     for (const paso of caso.pasos) await pasoComun(pagina, paso, false, asentar);
     await asentar();
     const foto = await pagina.evaluate(guionFoto(caso.pantalla));
+    if (caso.capturas) foto.capturas = normalizarCapturas(await pagina.evaluate(leerCapturas));
     foto.mensajes = [...dialogos, ...await pagina.locator('.tbp-mensaje').allTextContents()];
     foto.erroresJs = errores;
     return foto;

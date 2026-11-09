@@ -1,18 +1,42 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { api } from '../../api/cliente';
 import type { CalendarioPc } from '../../api/tipos';
 import { Dialogo } from '../../componentes/Dialogo';
 import { usePlanificador } from '../../estado/Planificador';
 import { dia } from '../../utilidades/fechas';
+import { exportarCopiaJson } from '../exportaciones/descargas';
 
 /*
  * 🔧 Tools (renderTools de la 4.9.4, solo Admin): calendario de festivos de
- * este PC, «IDs live» y «Reset (local)». La copia de seguridad JSON (Export /
- * Import) pertenece al bloque F; mientras tanto se hace desde /clasico.
+ * este PC, copia de seguridad JSON (Export / Import), «IDs live» y «Reset (local)».
  */
 export function ConfigHerramientas() {
-  const { vista, soloLectura, refrescarAprobaciones, recargar, avisar } = usePlanificador();
+  const { vista, soloLectura, refrescarAprobaciones, recargar, recargarListas, avisar, mostrarMensaje } = usePlanificador();
   const [calendarioAbierto, setCalendarioAbierto] = useState(false);
+  const fichero = useRef<HTMLInputElement>(null);
+
+  /**
+   * Import (JSON), igual que importJSON de la 4.9.4 (D10): la planificación se
+   * sustituye por la de la copia sin más confirmación. El backend mantiene las
+   * protecciones (solo Admin, listas que no se pueden vaciar).
+   */
+  const importar = async (f: File) => {
+    let d: { benches?: unknown };
+    try {
+      d = JSON.parse(await f.text());
+    } catch {
+      window.alert('Could not read file');
+      return;
+    }
+    if (!d || !d.benches) { window.alert('Invalid file'); return; }
+    try {
+      await api.importarCopia(d);
+      await Promise.all([recargar(), recargarListas()]);
+      window.alert('Data imported');
+    } catch (e) {
+      mostrarMensaje(e instanceof Error ? e.message : String(e));
+    }
+  };
 
   const reiniciarLocal = async () => {
     if (!window.confirm('Reset all LOCAL data to seed? (SharePoint no se toca)')) return;
@@ -35,9 +59,13 @@ export function ConfigHerramientas() {
       <div className="hint">Acciones movidas aqui desde la barra superior. Solo Admin.</div>
       <div className="cfg-tools">
         <button className="btn" onClick={() => setCalendarioAbierto(true)}>&#128197; Calendar</button>
-        {/* Copia de seguridad JSON: llega con el bloque F; mientras tanto se abre la versión clásica. */}
-        <button className="btn ghost" title="Por ahora en la versión clásica (bloque F)" onClick={() => { window.location.href = '/clasico'; }}>&#11015;&#65039; Export (JSON backup)</button>
-        <button className="btn ghost" title="Por ahora en la versión clásica (bloque F)" onClick={() => { window.location.href = '/clasico'; }}>&#11014;&#65039; Import (JSON)</button>
+        <button className="btn ghost" onClick={() => void exportarCopiaJson().catch((e: Error) => mostrarMensaje(e.message))}>&#11015;&#65039; Export (JSON backup)</button>
+        <button className="btn ghost" disabled={soloLectura} onClick={() => fichero.current?.click()}>&#11014;&#65039; Import (JSON)</button>
+        <input ref={fichero} id="imp" type="file" accept="application/json" style={{ display: 'none' }} onChange={(e) => {
+          const f = e.target.files?.[0];
+          e.target.value = '';
+          if (f) void importar(f);
+        }} />
         <button className="btn ghost" onClick={() => { refrescarAprobaciones(); avisar('Estados de aprobación actualizados.'); }}>&#128260; IDs live</button>
         <button className="btn" style={{ background: 'var(--danger)', color: '#2a0b0b' }} disabled={soloLectura} onClick={() => void reiniciarLocal()}>&#8635; Reset (local)</button>
       </div>

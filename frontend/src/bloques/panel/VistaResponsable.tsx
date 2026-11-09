@@ -107,7 +107,7 @@ export function VistaResponsable() {
             ? `All responsibles${organizacion !== 'ALL' ? ' \u00b7 ' + organizacion : ''}.`
             : <>Only tests where Responsible = <b>{elegido || '\u2014'}</b>.</>}
         </div>
-        <GanttGeneral responsable={manager ? null : elegido} />
+        <GanttGeneral responsable={manager ? null : elegido} enResponsable />
       </TarjetaRedimensionable>
     </div>
   );

@@ -104,6 +104,27 @@ public final class Planificacion {
         return otra;
     }
 
+    /**
+     * Planificación a partir de una copia de seguridad JSON (importJSON de la
+     * 4.9.4): los ensayos de cada banco de la copia sustituyen a los actuales.
+     * Lo leído de la planificación actual se conserva para saber qué filas
+     * cambian, cuáles son nuevas y cuáles desaparecen (se borrarán al guardar).
+     * Las filas que ya estaban sin banco no se tocan.
+     *
+     * @param ensayos banco → DataJson de sus ensayos, en orden (sin _bench ni _seq)
+     */
+    public static Planificacion desdeCopia(ConfiguracionBancos configuracion, Map<String, List<ObjectNode>> ensayos, Planificacion actual) {
+        Planificacion copia = new Planificacion(configuracion);
+        for (String banco : configuracion.bancos()) {
+            for (ObjectNode datos : ensayos.getOrDefault(banco, List.of())) {
+                copia.porBanco.get(banco).add(new Ensayo(datos));
+            }
+        }
+        copia.textoLeido.putAll(actual.textoLeido);
+        copia.filasSinBanco.addAll(actual.filasSinBanco);
+        return copia;
+    }
+
     public ConfiguracionBancos configuracion() {
         return configuracion;
     }

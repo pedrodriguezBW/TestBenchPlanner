@@ -71,7 +71,7 @@ async function abrirVersionOriginal(opciones) {
       let cuerpo = null;
       try { cuerpo = JSON.parse(ruta.request().postData() || 'null'); } catch (_) { cuerpo = ruta.request().postData(); }
       peticiones.push({ url: url.pathname, cuerpo });
-      const respuesta = responderComoBackend(escenario, url.pathname, cuerpo, rol);
+      const respuesta = responderComoBackend(Object.assign({ fechaLaboratorio: fecha }, escenario), url.pathname, cuerpo, rol);
       if (respuesta === undefined) return ruta.fulfill({ status: 404, contentType: 'application/json', body: '{"error":"sin ruta"}' });
       return ruta.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(respuesta) });
     }
@@ -117,6 +117,15 @@ async function esperarArranque(sesion, escenario) {
  * Responde como el backend Python 4.9.4 a partir de un escenario de datos.
  * Las escrituras no se aplican: solo se registran en `peticiones`.
  */
+/**
+ * Nombre del Excel como do_export_gantt (Python): título saneado + fecha. La fecha
+ * es la del laboratorio (el «hoy» del caso), igual que hace el backend Java (D7).
+ */
+function nombreExcel(titulo, fecha) {
+  const seguro = String(titulo || '').replace(/[^A-Za-z0-9]+/g, '_').slice(0, 40).replace(/^_+|_+$/g, '') || 'gantt';
+  return `${seguro}_${String(fecha || '').replace(/-/g, '')}.xlsx`;
+}
+
 function responderComoBackend(escenario, ruta, cuerpo, rol) {
   const usuario = escenario.usuarioActual || {
     email: 'laboratorio@ejemplo.local', displayName: 'Laboratorio', responsibleName: 'Laboratorio',
@@ -151,6 +160,9 @@ function responderComoBackend(escenario, ruta, cuerpo, rol) {
     case '/api/save_resources': case '/api/save_resource_block': case '/api/delete_resource_block':
       return { ok: true };
     case '/api/update_info': return { enabled: false };
+    // El Excel lo hace el backend Python; aquí basta con un fichero simulado (la matriz
+    // enviada es lo que se compara, y el generador se prueba aparte con referencias-excel).
+    case '/api/export_gantt': return { ok: true, b64: Buffer.from('simulado').toString('base64'), filename: nombreExcel(cuerpo && cuerpo.title, escenario.fechaLaboratorio) };
     default: return undefined;
   }
 }
@@ -183,4 +195,4 @@ function leerEscenario(carpeta) {
   };
 }
 
-module.exports = { abrirVersionOriginal, cerrarNavegador, leerEscenario, responderComoBackend };
+module.exports = { nombreExcel, abrirVersionOriginal, cerrarNavegador, leerEscenario, responderComoBackend };

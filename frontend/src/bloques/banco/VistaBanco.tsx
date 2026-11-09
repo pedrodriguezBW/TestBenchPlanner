@@ -148,7 +148,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
         <div className="bs-pane bot">
           <div className="card">
             <h3 style={{ margin: '0 0 10px' }}>Gantt &middot; daily resolution</h3>
-            <Gantt filas={activas} vista={vista} proyectos={proyectosBanco} />
+            <Gantt banco={banco} filas={activas} vista={vista} proyectos={proyectosBanco} />
           </div>
         </div>
       </div>
