@@ -7,6 +7,8 @@
  *   3. Sin backend al arrancar: tres intentos y bloqueo en solo lectura.
  *   4. Usuario de solo lectura: celdas desactivadas y nada se guarda.
  *   5. Primera carga completa: aparecen todos los ensayos a la primera (D17).
+ *   6. Solo lectura transversal: consultas activas en todas las pantallas y
+ *      acciones de escritura bloqueadas.
  *
  *   TZ=Europe/Madrid node pruebas-interfaz.cjs [--url http://127.0.0.1:5001]
  */
@@ -102,6 +104,83 @@ const PRUEBAS = {
     assert.ok((await anadir.count()) === 0 || !(await anadir.isVisible()) || !(await anadir.isEnabled()), '«Add test» no debe poder usarse');
     await p.waitForTimeout(1500);
     assert.strictEqual(JSON.stringify((await filaEnApi()).datos), antes);
+    await contexto.close();
+  },
+  async 'Solo lectura: filtros y navegación funcionan sin habilitar escrituras'(nav) {
+    await reiniciar('nadie@ejemplo.local');
+    const { contexto, p, ir } = await abrir(nav);
+    const escrituras = [];
+    p.on('request', (r) => {
+      const ruta = new URL(r.url()).pathname;
+      const mutacion = ruta.includes('/api/v1/bancos/') || ruta.endsWith('/foto-semanal')
+        || ruta.includes('/api/v1/recursos/bloqueos') || ruta.endsWith('/api/v1/recursos/renombrar')
+        || (ruta.endsWith('/api/v1/recursos') && r.method() === 'PUT');
+      if (mutacion) escrituras.push(`${r.method()} ${ruta}`);
+    });
+    await ir();
+
+    // Banco: las celdas siguen protegidas, pero búsqueda, cerrados y Gantt son consultas.
+    assert.ok(await p.locator(`#tb tr[data-id="${ENSAYO}"] [data-f="comments"]`).isDisabled());
+    const focoBanco = p.locator('#main .g-focsel').first();
+    assert.ok(await focoBanco.isEnabled());
+    await p.getByRole('button', { name: /Completed/ }).click();
+    const buscarCerrados = p.locator('.done-search').first();
+    assert.ok(await buscarCerrados.isEnabled());
+    await buscarCerrados.fill('Thermal');
+    await p.getByRole('button', { name: /Scope:/ }).click();
+    await p.getByRole('button', { name: 'Close', exact: true }).click();
+    await p.locator(`#tb tr[data-id="${ENSAYO}"] button[title="Search / pick approval ID"]`).click();
+    assert.ok(await p.locator('#id-search').isEnabled());
+    await p.locator('#id-search').fill('approved');
+    assert.ok(await p.getByRole('button', { name: /Reload live/ }).isEnabled());
+    assert.strictEqual(await p.locator('#id-list button.ru:visible').count(), 0, 'elegir un ID continúa siendo escritura');
+    await p.getByRole('button', { name: 'Close', exact: true }).click();
+
+    // Dashboard: semana, organización y zoom siguen activos; la foto anual no.
+    await p.locator('.tab', { hasText: 'Dashboard' }).click();
+    const semanaInicial = await p.locator('#main .week-nav b').textContent();
+    await p.locator('#main .week-nav button', { hasText: 'Prev' }).click();
+    assert.notStrictEqual(await p.locator('#main .week-nav b').textContent(), semanaInicial);
+    const orgDashboard = p.locator('#main .view-head select').first();
+    assert.ok(await orgDashboard.isEnabled());
+    await orgDashboard.selectOption('CTAG');
+    assert.ok(await p.getByRole('button', { name: /Update Yearly Status/ }).isDisabled());
+    assert.ok(await p.locator('#dash-zoom').isEnabled());
+
+    // By Responsible: responsable, organización, semana y zoom siguen siendo consulta.
+    await p.locator('.tab', { hasText: 'By Responsible' }).click();
+    const responsable = p.locator('#resp-sel');
+    assert.ok(await responsable.isEnabled());
+    await responsable.selectOption('__manager__');
+    const orgResponsable = p.locator('#main .view-head select').filter({ has: p.locator('option', { hasText: /^CTAG$/ }) }).last();
+    assert.ok(await orgResponsable.isEnabled());
+    await orgResponsable.selectOption('BW');
+    assert.ok(await p.locator('#main .week-nav button', { hasText: 'Next' }).isEnabled());
+
+    // KPI History: organización, responsable, fechas, periodos y recarga siguen activos.
+    await p.locator('.tab', { hasText: 'KPI History' }).click();
+    await p.locator('#st-desde').waitFor({ timeout: 10000 });
+    const selectsKpi = p.locator('#main .sec select');
+    for (let i = 0; i < await selectsKpi.count(); i++) assert.ok(await selectsKpi.nth(i).isEnabled());
+    assert.ok(await p.locator('#st-desde').isEnabled());
+    assert.ok(await p.locator('#st-hasta').isEnabled());
+    await p.locator('#st-desde').fill('2026-10-01');
+    await p.getByRole('button', { name: 'Mes', exact: true }).click();
+    assert.ok(await p.getByRole('button', { name: /Reload from SharePoint/ }).isEnabled());
+    await p.getByRole('button', { name: /Reload from SharePoint/ }).click();
+
+    // Recursos: semana, rango, zoom y foco siguen activos; bloquear y borrar no aparecen.
+    await p.locator('.tab', { hasText: 'List of Equipments' }).click();
+    assert.ok(await p.locator('#main .week-nav button', { hasText: 'Prev' }).isEnabled());
+    assert.ok(await p.locator('#main .week-nav button', { hasText: /Full year|Zoom to week/ }).isEnabled());
+    assert.ok(await p.locator('#main .g-focsel').isEnabled());
+    assert.strictEqual(await p.getByRole('button', { name: /Bloquear recurso/ }).count(), 0);
+    assert.strictEqual(await p.locator('#tabla-bloqueos button.del').count(), 0);
+
+    // El catálogo administrativo no se expone a un usuario de solo lectura.
+    assert.strictEqual(await p.locator('.tab', { hasText: 'Equipments List' }).count(), 0);
+    await p.waitForTimeout(1500);
+    assert.deepStrictEqual(escrituras, []);
     await contexto.close();
   },
   async 'Primera carga: todos los ensayos a la primera (D17)'(nav) {

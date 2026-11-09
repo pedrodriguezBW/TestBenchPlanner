@@ -15,7 +15,7 @@ export function CeldaRecursos({ fila, onAbrir }: { fila: FilaEnsayo; onAbrir: ()
         {lista.length ? lista.map((n) => <span key={n} className="res-badge">{n}</span>) : <span style={{ color: 'var(--muted)', fontSize: 12 }}>&mdash;</span>}
         {conflictos.length > 0 && <span className="res-alert-badge" title={aviso}>!</span>}
       </div>
-      <button className="icbtn" title="Elegir recursos" onClick={onAbrir}>&#128269;</button>
+      <button className="icbtn ed" title="Elegir recursos" onClick={onAbrir}>&#128269;</button>
     </div>
   );
 }

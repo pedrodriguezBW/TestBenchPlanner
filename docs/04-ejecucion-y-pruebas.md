@@ -124,7 +124,7 @@ backend simulado (que ejecuta el HTML de la 4.9.4 por detrás):
 ```
 node herramientas/laboratorio/backend-simulado-4.9.4.cjs 5001
 TZ=Europe/Madrid node herramientas/laboratorio/comparar-interfaz.cjs     # paridad: 65 casos F, E, S, C, Q, K, R
-TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs      # conflicto, sin conexión, solo lectura, D17
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs      # conflicto, sin conexión, consultas en solo lectura, D17
 ```
 
 `comparar-interfaz.cjs` pulsa, escribe, elige en el calendario y arrastra como

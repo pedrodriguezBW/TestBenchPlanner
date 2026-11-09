@@ -19,14 +19,16 @@ const MOTIVOS_BLOQUEO = ['Calibración', 'Mantenimiento', 'Avería', 'Otro'];
 const ANCHO_ETIQUETA = 200;
 
 export function VistaRecursos() {
-  const { vista, sesion, mostrarMensaje } = usePlanificador();
+  const { vista, sesion, mostrarMensaje, soloLectura } = usePlanificador();
   const { bloqueos, recargar } = useRecursos();
   const { semana, setSemana, zoomRecursos, setZoomRecursos } = usePanel();
   const [bloquear, setBloquear] = useState<string | null>(null);
   const esAdmin = !!sesion?.esAdmin;
+  const puedeEscribir = esAdmin && !soloLectura;
   if (!vista) return null;
 
   const borrar = async (id: string | number) => {
+    if (!puedeEscribir) return;
     if (!window.confirm('Eliminar este bloqueo?')) return;
     try { await api.borrarBloqueo(id); } catch { /* como la 4.9.4: se quita igualmente de la vista */ }
     await recargar();
@@ -43,7 +45,7 @@ export function VistaRecursos() {
           <button className="btn ghost sm" onClick={() => setSemana(sumarDias(semana, 7))}>Next &#9654;</button>
           <button className="btn ghost sm" onClick={() => setSemana(lunesDe(dia(vista.hoy)!))}>Today</button>
           <button className="btn ghost sm" onClick={() => setZoomRecursos(!zoomRecursos)}>{zoomRecursos ? '\u{1F5D3} Full year' : '\u{1F50D} Zoom to week'}</button>
-          {esAdmin && <button className="btn sm" onClick={() => setBloquear('')}>&#128274; Bloquear recurso</button>}
+          {puedeEscribir && <button className="btn sm" onClick={() => setBloquear('')}>&#128274; Bloquear recurso</button>}
         </div>
       </div>
       <div className="hint">
@@ -63,7 +65,7 @@ export function VistaRecursos() {
                   <tr key={String(b.id)}>
                     <td><b>{b.resource || ''}</b></td><td>{b.start ? fmt(b.start) : '\u2014'}</td><td>{b.end ? fmt(b.end) : '\u2014'}</td>
                     <td>{b.reason || ''}</td><td>{b.note || ''}</td>
-                    <td style={{ textAlign: 'right' }}>{esAdmin && <button className="icbtn del" onClick={() => void borrar(b.id)}>&#128465;</button>}</td>
+                    <td style={{ textAlign: 'right' }}>{puedeEscribir && <button className="icbtn del" onClick={() => void borrar(b.id)}>&#128465;</button>}</td>
                   </tr>
                 ))}
               </tbody>

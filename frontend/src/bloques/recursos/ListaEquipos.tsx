@@ -15,7 +15,7 @@ import { porTipo, useRecursos } from '../../estado/Recursos';
 const clave = (s: string) => `${(s || 'tipo').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')}_${Math.random().toString(36).slice(2, 5)}`;
 
 export function ListaEquipos() {
-  const { recargar: recargarPlan, mostrarMensaje } = usePlanificador();
+  const { recargar: recargarPlan, mostrarMensaje, soloLectura } = usePlanificador();
   const { recursos, guardarCatalogo } = useRecursos();
   const [nuevoTipo, setNuevoTipo] = useState('');
   const [colorTipo, setColorTipo] = useState('#F2A64B');
@@ -25,7 +25,7 @@ export function ListaEquipos() {
   const repintar = () => setVersion((v) => v + 1);
 
   const grupos = porTipo(recursos);
-  const guardar = (lista: Recurso[]) => void guardarCatalogo(lista);
+  const guardar = (lista: Recurso[]) => { if (!soloLectura) void guardarCatalogo(lista); };
   const busca = (nombre: string) => recursos.find((r) => r.name === nombre);
 
   const anadirTipo = () => {
@@ -55,6 +55,7 @@ export function ListaEquipos() {
     setNuevos({ ...nuevos, [k]: '' });
   };
   const renombrarEquipo = async (anterior: string, v: string) => {
+    if (soloLectura) { repintar(); return; }
     v = v.trim();
     if (!v || v === anterior) { repintar(); return; }
     if (busca(v)) { window.alert(`Ya existe "${v}".`); repintar(); return; }
@@ -91,21 +92,21 @@ export function ListaEquipos() {
         pertenece a <b>BW</b> o <b>CTAG</b>.
       </div>
       <div className="tools">
-        <input className="f" id="newrestype" placeholder="Nuevo tipo de equipo..." style={{ minWidth: 240 }} value={nuevoTipo} onChange={(e) => setNuevoTipo(e.target.value)} />
-        <input type="color" id="newrestypecol" value={colorTipo} onChange={(e) => setColorTipo(e.target.value)}
+        <input className="f" id="newrestype" disabled={soloLectura} placeholder="Nuevo tipo de equipo..." style={{ minWidth: 240 }} value={nuevoTipo} onChange={(e) => setNuevoTipo(e.target.value)} />
+        <input type="color" id="newrestypecol" disabled={soloLectura} value={colorTipo} onChange={(e) => setColorTipo(e.target.value)}
           style={{ width: 44, height: 36, padding: 0, border: '1px solid var(--line)', borderRadius: 6, background: 'var(--navy)' }} />
-        <button className="btn sm" onClick={anadirTipo}>&#65291; Añadir tipo</button>
+        <button className="btn sm" disabled={soloLectura} onClick={anadirTipo}>&#65291; Añadir tipo</button>
       </div>
       {!grupos.length && <div className="hint">Aún no hay tipos. Crea el primero (por ejemplo «Cilindros hidráulicos»).</div>}
       {grupos.map(({ tipo, equipos }) => (
         <div className="cfg-cat" key={tipo.key + version} data-tipo={tipo.name}>
           <div className="catrow">
-            <input type="color" defaultValue={tipo.dot} onChange={(e) => colorDeTipo(tipo.key, e.target.value)} />
-            <input className="f" defaultValue={tipo.name} style={{ minWidth: 240, fontWeight: 700 }} onBlur={(e) => { if (e.target.value !== tipo.name) renombrarTipo(tipo.key, e.target.value); }}
+            <input type="color" disabled={soloLectura} defaultValue={tipo.dot} onChange={(e) => colorDeTipo(tipo.key, e.target.value)} />
+            <input className="f" disabled={soloLectura} defaultValue={tipo.name} style={{ minWidth: 240, fontWeight: 700 }} onBlur={(e) => { if (e.target.value !== tipo.name) renombrarTipo(tipo.key, e.target.value); }}
               onKeyDown={(e) => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur(); }} />
             <span className="hint" style={{ margin: 0 }}>{equipos.length} equipo(s)</span>
             <span style={{ marginLeft: 'auto' }}>
-              <button className="btn sm" style={{ background: 'var(--danger)', color: '#2a0b0b' }} onClick={() => borrarTipo(tipo.key)}>&#128465; Borrar tipo</button>
+              <button className="btn sm" disabled={soloLectura} style={{ background: 'var(--danger)', color: '#2a0b0b' }} onClick={() => borrarTipo(tipo.key)}>&#128465; Borrar tipo</button>
             </span>
           </div>
           <table className="lst">
@@ -113,26 +114,26 @@ export function ListaEquipos() {
             <tbody>
               {equipos.map((it) => (
                 <tr key={it.name} data-recurso={it.name}>
-                  <td><input className="f nombre" defaultValue={it.name} style={{ minWidth: 180 }}
+                  <td><input className="f nombre" disabled={soloLectura} defaultValue={it.name} style={{ minWidth: 180 }}
                     onBlur={(e) => { if (e.target.value !== it.name) void renombrarEquipo(it.name, e.target.value); }}
                     onKeyDown={(e) => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur(); }} /></td>
-                  <td><input className="f codigo" defaultValue={it.code || ''} placeholder="EQ-000"
+                  <td><input className="f codigo" disabled={soloLectura} defaultValue={it.code || ''} placeholder="EQ-000"
                     onBlur={(e) => { if (e.target.value !== (it.code || '')) codigoEquipo(it.name, e.target.value); }}
                     onKeyDown={(e) => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur(); }} /></td>
                   <td>
-                    <select value={it.org || 'BW'} onChange={(e) => orgEquipo(it.name, e.target.value)}
+                    <select value={it.org || 'BW'} disabled={soloLectura} onChange={(e) => orgEquipo(it.name, e.target.value)}
                       style={{ padding: 6, borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)', fontSize: 12 }}>
                       <option>BW</option><option>CTAG</option>
                     </select>
                   </td>
-                  <td style={{ textAlign: 'right' }}><button className="icbtn del" onClick={() => borrarEquipo(it.name)}>&#128465;</button></td>
+                  <td style={{ textAlign: 'right' }}><button className="icbtn del" disabled={soloLectura} onClick={() => borrarEquipo(it.name)}>&#128465;</button></td>
                 </tr>
               ))}
               <tr>
                 <td colSpan={4}>
-                  <input className="f" placeholder={`Nuevo equipo en ${tipo.name}...`} style={{ minWidth: 220 }} value={nuevos[tipo.key] || ''}
+                  <input className="f" disabled={soloLectura} placeholder={`Nuevo equipo en ${tipo.name}...`} style={{ minWidth: 220 }} value={nuevos[tipo.key] || ''}
                     onChange={(e) => setNuevos({ ...nuevos, [tipo.key]: e.target.value })} />
-                  <button className="btn sm" style={{ marginLeft: 8 }} onClick={() => anadirEquipo(tipo.key)}>&#65291; Añadir equipo</button>
+                  <button className="btn sm" disabled={soloLectura} style={{ marginLeft: 8 }} onClick={() => anadirEquipo(tipo.key)}>&#65291; Añadir equipo</button>
                 </td>
               </tr>
             </tbody>

@@ -60,13 +60,13 @@ export function ListaCerrados({ banco, vista, abierto, onCerrar, onCorregir, onR
                     <td>{d.doneDate ? fmt(d.doneDate) : '\u2014'}</td>
                     <td>{d.approvalId || '\u2014'}</td>
                     <td style={{ textAlign: 'right', whiteSpace: 'nowrap' }}>
-                      <button className="ru" title="Reuse: new active test copying type, responsible, project, duration/cycles (no ID, dates or progress)"
+                      <button className="ru ed" title="Reuse: new active test copying type, responsible, project, duration/cycles (no ID, dates or progress)"
                         onClick={async () => { if (await operar(b, 'reutilizar', { id: fila.id }, [fila.id])) { onCerrar(); onReutilizado(b); } }}>
                         &#9851; Reuse</button>{' '}
-                      {sesion?.esAdmin && <><button className="btn ghost sm" title="Corregir fechas reales, estado, motivo o parada (queda registrado)"
+                      {sesion?.esAdmin && <><button className="btn ghost sm ed" title="Corregir fechas reales, estado, motivo o parada (queda registrado)"
                         onClick={() => onCorregir(b, fila)}>&#9998; Corregir</button>{' '}</>}
-                      <button className="btn ghost sm" onClick={() => void operar(b, 'restaurar', { id: fila.id }, [fila.id])}>&#8617; Restore</button>{' '}
-                      <button className="dl" title="Delete permanently"
+                      <button className="btn ghost sm ed" onClick={() => void operar(b, 'restaurar', { id: fila.id }, [fila.id])}>&#8617; Restore</button>{' '}
+                      <button className="dl ed" title="Delete permanently"
                         onClick={() => { if (window.confirm('Delete permanently?')) void operar(b, 'borrar', { id: fila.id }, [fila.id]); }}>&#128465;</button>
                     </td>
                   </tr>

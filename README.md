@@ -348,7 +348,7 @@ TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
 cierre y roles. `pruebas-interfaz.cjs` cubre además conflicto, desconexión, modo
-solo lectura y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 56 casos
+solo lectura, filtros de consulta en todas las pantallas migradas y el flujo de reinicio local. `comparar-panel.cjs` ejecuta 56 casos
 de Dashboard, «By Responsible», KPI History y equipos auxiliares en la 4.9.4 y
 en React con los mismos gestos y compara lo que se ve: KPI, barras del Gantt
 (posición, color, texto), puntos de la gráfica, tablas, selector y ventanas,

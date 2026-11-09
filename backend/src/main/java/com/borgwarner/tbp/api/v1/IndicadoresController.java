@@ -2,6 +2,7 @@ package com.borgwarner.tbp.api.v1;
 
 import com.borgwarner.tbp.aplicacion.ServicioIndicadores;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
+import com.borgwarner.tbp.aplicacion.ServicioSesion;
 import com.borgwarner.tbp.aplicacion.Vista;
 import com.borgwarner.tbp.dominio.calendario.Fechas;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
@@ -24,10 +25,12 @@ public class IndicadoresController {
 
     private final ServicioIndicadores indicadores;
     private final ServicioPlanificacion planificacion;
+    private final ServicioSesion sesion;
 
-    public IndicadoresController(ServicioIndicadores indicadores, ServicioPlanificacion planificacion) {
+    public IndicadoresController(ServicioIndicadores indicadores, ServicioPlanificacion planificacion, ServicioSesion sesion) {
         this.indicadores = indicadores;
         this.planificacion = planificacion;
+        this.sesion = sesion;
     }
 
     private static LocalDate fecha(String texto, LocalDate porDefecto) {
@@ -99,6 +102,7 @@ public class IndicadoresController {
     /** 📊 Update Yearly Status. */
     @PostMapping("/foto-semanal")
     public JsonNode fotoSemanal() {
+        sesion.exigirEscritura(sesion.usuarioActual());
         return JsonJs.mapper().valueToTree(indicadores.guardarFotoSemanal());
     }
 }

@@ -30,7 +30,7 @@ export function useRecursos(): ContextoRecursos {
 }
 
 export function ProveedorRecursos({ children }: { children: ReactNode }) {
-  const { sincronizacion, mostrarMensaje } = usePlanificador();
+  const { sincronizacion, mostrarMensaje, soloLectura } = usePlanificador();
   const [recursos, setRecursos] = useState<Recurso[]>([]);
   const [bloqueos, setBloqueos] = useState<Bloqueo[]>([]);
   const [cargado, setCargado] = useState(false);
@@ -54,6 +54,7 @@ export function ProveedorRecursos({ children }: { children: ReactNode }) {
   useEffect(() => { if (listo) void recargar(); }, [listo, recargar]);
 
   const guardarCatalogo = useCallback(async (lista: Recurso[]) => {
+    if (soloLectura) return false;
     setRecursos(lista);
     try {
       await api.guardarRecursos(lista);
@@ -63,7 +64,7 @@ export function ProveedorRecursos({ children }: { children: ReactNode }) {
       await recargar();
       return false;
     }
-  }, [mostrarMensaje, recargar]);
+  }, [mostrarMensaje, recargar, soloLectura]);
 
   return <Contexto.Provider value={{ recursos, bloqueos, cargado, recargar, guardarCatalogo }}>{children}</Contexto.Provider>;
 }

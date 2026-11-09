@@ -16,7 +16,7 @@ import { TablaOcupacionCard } from './TablaOcupacion';
  * gráfica de ocupación por CW y tabla de ocupación por tipo de banco.
  */
 export function VistaDashboard() {
-  const { vista, mostrarMensaje } = usePlanificador();
+  const { vista, mostrarMensaje, soloLectura } = usePlanificador();
   const { semana, zoom, setZoom, organizacion, setOrganizacion } = usePanel();
   if (!vista) return null;
 
@@ -41,7 +41,7 @@ export function VistaDashboard() {
       <div className="view-head">
         <NavegacionSemana activarZoom>
           <SelectorOrganizacion valor={organizacion} onCambiar={setOrganizacion} />
-          <button className="btn ghost sm" onClick={() => void fotoSemanal()} title="Freeze this week's KPIs (ALL / BW / CTAG) into the annual history">
+          <button className="btn ghost sm" disabled={soloLectura} onClick={() => void fotoSemanal()} title="Freeze this week's KPIs (ALL / BW / CTAG) into the annual history">
             &#128202; Update Yearly Status
           </button>
         </NavegacionSemana>

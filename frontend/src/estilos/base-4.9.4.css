@@ -294,8 +294,8 @@ table.work th.wideproj,table.work th.widecomm{min-width:300px}
 .g-circ.s{border:3px solid var(--navy)}
 .g-circ.e{border:3px solid var(--navy)}
 .g-mini .g-row{height:26px}.g-mini .g-track{height:26px}.g-mini .g-bar{top:4px;height:18px}.g-mini .g-circ{width:12px;height:12px}
-.ro .ed,.ro .act,.ro .selcol,.ro #selbar,.ro .icbtn,.ro .rowsel,.ro #selall,.ro .startlock,.ro .endlock{display:none!important}
-.ro table.work input,.ro table.work select,.ro .sec input,.ro .sec textarea,.ro .sec select{pointer-events:none;background:transparent;border:1px solid transparent;color:var(--text);-webkit-appearance:none;appearance:none}
+.ro .ed,.ro .act,.ro .selcol,.ro #selbar,.ro .rowsel,.ro #selall,.ro .startlock,.ro .endlock{display:none!important}
+.ro table.work input:disabled,.ro table.work select:disabled{background:transparent;border:1px solid transparent;color:var(--text);-webkit-appearance:none;appearance:none}
 .ro-banner{background:linear-gradient(90deg,var(--warn),#d98e12);color:#2a1e05;font-weight:700;text-align:center;padding:7px 12px;font-size:13px}
 .ro-banner b{font-weight:800}
 .cfg-cat{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:12px;background:var(--panel2)}

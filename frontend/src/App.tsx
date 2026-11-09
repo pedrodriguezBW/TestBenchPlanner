@@ -104,7 +104,7 @@ export function App() {
         <main id="main">
           {!vista && sincronizacion !== 'bloqueado' && <div className="empty">Conectando&hellip;</div>}
           {vista && bancos.includes(pantalla) && (
-            <fieldset disabled={soloLectura} className="tbp-sin-marco"><VistaBanco banco={pantalla} onIrABanco={ir} /></fieldset>
+            <div className="tbp-sin-marco"><VistaBanco banco={pantalla} onIrABanco={ir} /></div>
           )}
           {vista && pantalla === '__dash__' && <VistaDashboard />}
           {vista && pantalla === '__resp__' && <VistaResponsable />}

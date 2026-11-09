@@ -25,7 +25,7 @@ export interface AccionesFila {
   soltar: (origen: string, destino: string) => void;
 }
 
-export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, onSeleccion, acciones }: {
+export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, onSeleccion, acciones, soloLectura }: {
   banco: string;
   filas: FilaEnsayo[];
   hoy: string;
@@ -33,6 +33,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
   seleccion: Set<string>;
   onSeleccion: (s: Set<string>) => void;
   acciones: AccionesFila;
+  soloLectura: boolean;
 }) {
   const [prefs, setPrefs] = usePreferencia<{ version: string; orden: string[] | null; anchos: Record<string, number> }>(
     'tbp_columnas_v1', { version: VERSION_COLUMNAS, orden: null, anchos: {} });
@@ -122,7 +123,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
             filaDestino === fila.id && 'dragover',
           ].filter(Boolean).join(' ');
           const contexto: ContextoCelda = {
-            banco, fila, indice, hoy, estadosAprobacion,
+            banco, fila, indice, hoy, estadosAprobacion, soloLectura,
             editar: (campo, valor) => acciones.editar(fila, campo, valor),
             comprometer: () => acciones.comprometer(fila),
             deshacerCompromiso: () => acciones.deshacerCompromiso(fila),
@@ -157,10 +158,10 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
                 return (
                   <td key={clave} className={[esPrioridad ? 'prio' : col.clase, ['start', 'end', 'planned', 'progPct', 'confirmedStart', 'confirmedEnd'].includes(clave) && 'calc',
                     clave === 'reason' && c.estado !== 'delayed' && 'shaded'].filter(Boolean).join(' ')}
-                    data-drag={esPrioridad ? '1' : undefined} draggable={esPrioridad || undefined}
+                    data-drag={esPrioridad && !soloLectura ? '1' : undefined} draggable={(esPrioridad && !soloLectura) || undefined}
                     title={esPrioridad ? 'Drag to reorder row' : undefined}
-                    onDragStart={esPrioridad ? (e) => { filaArrastrada.current = fila.id; e.dataTransfer.setData('text/plain', fila.id); } : undefined}
-                    onDragEnd={esPrioridad ? () => setFilaDestino(null) : undefined}>
+                    onDragStart={esPrioridad && !soloLectura ? (e) => { filaArrastrada.current = fila.id; e.dataTransfer.setData('text/plain', fila.id); } : undefined}
+                    onDragEnd={esPrioridad && !soloLectura ? () => setFilaDestino(null) : undefined}>
                     {col.celda(contexto)}
                   </td>
                 );

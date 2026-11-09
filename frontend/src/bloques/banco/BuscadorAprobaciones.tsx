@@ -14,7 +14,7 @@ export function BuscadorAprobaciones({ abierto, onElegir, onCerrar }: {
   onElegir: (id: string) => void;
   onCerrar: () => void;
 }) {
-  const { sesion } = usePlanificador();
+  const { sesion, soloLectura } = usePlanificador();
   const [lista, setLista] = useState<Aprobacion[] | null>(null);
   const [busqueda, setBusqueda] = useState('');
   const [cargando, setCargando] = useState(false);
@@ -58,7 +58,7 @@ export function BuscadorAprobaciones({ abierto, onElegir, onCerrar }: {
                   <td>{a.requester || '\u2014'}</td>
                   <td>{a.service || '\u2014'}</td>
                   <td><span className="idpill" style={estiloPildoraAprobacion(clase(a))}>{a.raw || '\u2014'}</span></td>
-                  <td style={{ textAlign: 'right' }}><button className="ru" onClick={() => onElegir(String(a.id))}>Select</button></td>
+                  <td style={{ textAlign: 'right' }}><button className="ru ed" disabled={soloLectura} onClick={() => onElegir(String(a.id))}>Select</button></td>
                 </tr>
               ))}
             </tbody>

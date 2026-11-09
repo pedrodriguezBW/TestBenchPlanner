@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
+import { usePlanificador } from '../estado/Planificador';
 import { dia, esFinDeSemana, iso, lunesDe, semanaIso, sumarDias } from '../utilidades/fechas';
 
 /*
@@ -16,14 +17,16 @@ export function SelectorFecha({ valor, hoy, onCambio, desactivado, titulo, estil
   estilo?: CSSProperties;
   campo?: string;
 }) {
+  const { soloLectura } = usePlanificador();
+  const inactivo = soloLectura || desactivado;
   const [abierto, setAbierto] = useState(false);
   const caja = useRef<HTMLInputElement>(null);
   return (
     <>
       <input
         type="text" readOnly className="datecal" value={valor || ''} placeholder={'\u2014'} data-f={campo}
-        title={titulo ?? 'Click to pick a date (shows calendar week)'} disabled={desactivado} style={estilo}
-        ref={caja} onClick={() => !desactivado && setAbierto(true)}
+        title={titulo ?? 'Click to pick a date (shows calendar week)'} disabled={inactivo} style={estilo}
+        ref={caja} onClick={() => !inactivo && setAbierto(true)}
       />
       {abierto && caja.current && (
         <Calendario

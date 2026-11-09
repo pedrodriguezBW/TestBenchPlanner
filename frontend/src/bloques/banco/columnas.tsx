@@ -22,6 +22,7 @@ export interface ContextoCelda {
   indice: number;
   hoy: string;
   estadosAprobacion: Record<string, string>;
+  soloLectura: boolean;
   editar: (campo: string, valor: string | boolean | null) => void;
   comprometer: () => void;
   deshacerCompromiso: () => void;
@@ -127,11 +128,11 @@ export const COLUMNAS: Record<string, Columna> = {
   },
   start: {
     cabecera: 'Test start',
-    celda: ({ fila, editar, hoy }) => {
+    celda: ({ fila, editar, hoy, soloLectura }) => {
       const bloqueado = !!fila.datos.startLock;
       return (
         <div style={{ display: 'flex', gap: 5, alignItems: 'center', justifyContent: 'center' }}>
-          <input type="checkbox" className="startlock" data-f="startLock" checked={bloqueado} title="Force start on a fixed date"
+          <input type="checkbox" className="startlock" data-f="startLock" checked={bloqueado} disabled={soloLectura} title="Force start on a fixed date"
             onChange={(e) => editar('startLock', e.target.checked)} />
           {bloqueado
             ? <SelectorFecha campo="startOverride" valor={texto(fila.datos.startOverride) || texto(fila.calculo.inicio)} hoy={hoy}
@@ -145,11 +146,11 @@ export const COLUMNAS: Record<string, Columna> = {
   },
   end: {
     cabecera: 'Test end',
-    celda: ({ fila, editar, hoy }) => {
+    celda: ({ fila, editar, hoy, soloLectura }) => {
       const bloqueado = !!fila.datos.endLock;
       return (
         <div style={{ display: 'flex', gap: 5, alignItems: 'center', justifyContent: 'center' }}>
-          <input type="checkbox" className="endlock" data-f="endLock" checked={bloqueado} title="Force end on a fixed date"
+          <input type="checkbox" className="endlock" data-f="endLock" checked={bloqueado} disabled={soloLectura} title="Force end on a fixed date"
             onChange={(e) => editar('endLock', e.target.checked)} />
           {bloqueado
             ? <SelectorFecha campo="endOverride" valor={texto(fila.datos.endOverride) || texto(fila.calculo.fin)} hoy={hoy}
@@ -178,25 +179,25 @@ export const COLUMNAS: Record<string, Columna> = {
         <span data-c="prog">
           {Math.round(c.fraccionAvance * 100)}%
           {dias > 0 && <> <span className="np-warn" title={`${c.arranqueAsumido ? `Se da por arrancado el ${fmt(c.arranqueEfectivo)} (fecha comprometida). ` : ''}En marcha desde hace ${dias} dia(s) sin reportar avance. Es solo un recordatorio: el estado no cambia solo.`}>&#9888;{dias}d</span></>}
-          {c.fraccionAvance >= 1 && !fila.cerrado && <> <button className="icbtn done" title="Progreso al 100 %: cerrar el ensayo y guardar su estado final." onClick={cerrar}>&#10004;</button></>}
+          {c.fraccionAvance >= 1 && !fila.cerrado && <> <button className="icbtn done ed" title="Progreso al 100 %: cerrar el ensayo y guardar su estado final." onClick={cerrar}>&#10004;</button></>}
         </span>
       );
     },
   },
   status: {
     cabecera: 'Estado', clase: 'reasoncol',
-    celda: ({ fila, declararEstado, aplicarSugerencia }) => {
+    celda: ({ fila, declararEstado, aplicarSugerencia, soloLectura }) => {
       const c = fila.calculo;
       if (fila.cerrado || c.tipoEspecial || c.estado === 'queued') {
         return <span style={{ color: colorEstado(c.estado), fontWeight: 700 }}>{etiquetaEstado(c.estado)}</span>;
       }
       return (
         <>
-          <select data-mstate="1" value={c.estadoDeclarado} title="Lo decides tu. Compara el fin previsto con el comprometido."
+          <select data-mstate="1" value={c.estadoDeclarado} disabled={soloLectura} title="Lo decides tu. Compara el fin previsto con el comprometido."
             style={{ width: '100%', borderColor: colorEstado(c.estado) }} onChange={(e) => declararEstado(e.target.value)}>
             {ESTADOS_DECLARABLES.map((e) => <option key={e.valor} value={e.valor}>{e.etiqueta}</option>)}
           </select>
-          {c.sugerenciaAbierta && <> <button className="sug-badge" title={ayudaSugerencias(c)} onClick={aplicarSugerencia}>&#9888; En retraso?</button></>}
+          {c.sugerenciaAbierta && <> <button className="sug-badge ed" disabled={soloLectura} title={ayudaSugerencias(c)} onClick={aplicarSugerencia}>&#9888; En retraso?</button></>}
         </>
       );
     },

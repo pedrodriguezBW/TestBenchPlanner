@@ -137,7 +137,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
           <div className="card">
             <div className="tbl-wrap">
               <TablaEnsayos banco={banco} filas={activas} hoy={vista.hoy} estadosAprobacion={estadosAprobacion}
-                seleccion={seleccion} onSeleccion={setSeleccion} acciones={acciones} />
+                seleccion={seleccion} onSeleccion={setSeleccion} acciones={acciones} soloLectura={soloLectura} />
             </div>
           </div>
         </div>

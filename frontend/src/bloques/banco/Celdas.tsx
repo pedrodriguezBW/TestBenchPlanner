@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { usePlanificador } from '../../estado/Planificador';
 
 /*
  * Controles de celda. Cada uno conserva lo que el usuario está escribiendo
@@ -37,10 +38,11 @@ export function Entrada({ campo, valor, onCambio, tipo = 'text', lista, marcador
   paso?: string;
   estilo?: CSSProperties;
 }) {
+  const { soloLectura } = usePlanificador();
   const [local, setLocal, foco] = useValorLocal(texto(valor));
   return (
     <input
-      type={tipo} data-f={campo} list={lista} placeholder={marcador} title={titulo} disabled={desactivado}
+      type={tipo} data-f={campo} list={lista} placeholder={marcador} title={titulo} disabled={soloLectura || desactivado}
       className={clase} min={min} step={paso} style={estilo} value={local} {...foco}
       onChange={(e) => { setLocal(e.target.value); onCambio(e.target.value); }}
     />
@@ -56,8 +58,9 @@ export function Selector({ campo, valor, opciones, onCambio, desactivado, titulo
   titulo?: string;
   estilo?: CSSProperties;
 }) {
+  const { soloLectura } = usePlanificador();
   return (
-    <select data-f={campo} value={valor} disabled={desactivado} title={titulo} style={estilo}
+    <select data-f={campo} value={valor} disabled={soloLectura || desactivado} title={titulo} style={estilo}
       onChange={(e) => onCambio(e.target.value)}>
       {opciones.map(([v, etiqueta]) => <option key={v} value={v}>{etiqueta}</option>)}
     </select>
