@@ -162,6 +162,10 @@ Con el backend en modo local y `http://127.0.0.1:5001/` (se abre en el Dashboard
 
 Paridad automática de los bloques B a F (con Node): `TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs` (94 casos: UB, UC, UD, UE y UF). Los casos UF interceptan las descargas en las dos interfaces y comparan la matriz del Excel, el CSV, la copia JSON y la foto de solo lectura.
 
+Cierre de la migración (H3Z): `TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs` (8 pruebas: presencia, aviso de versión, bienvenida, sin conexión, calendario, sugerencias, tirador del Gantt y orden de Users). El simulado acepta `POST /api/v1/local/laboratorio` con `{publicada, conectados, copiaSinConexion}` para imitar esas situaciones.
+
+Prueba manual del modo sin conexión (con SharePoint en solo lectura): abrir una vez con conexión, cerrar, abrir sin red o sin sesión en Edge → se ve la planificación con el aviso «Modo offline · solo consulta» y la fecha de la copia; nada se puede guardar.
+
 Contenido del Excel (con Python y openpyxl): `python herramientas/laboratorio/comparar_excel.py` compara el generador Python de la 4.9.4 con su espejo celda a celda; las referencias XML que usa `ExcelGanttTest` se regeneran con `excel_espejo.py` (ver `referencias-excel/LEEME.md`).
 
 ### Prueba manual en el PC (bloque C)

@@ -64,12 +64,12 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
       th.style.width = th.style.minWidth = th.style.maxWidth = `${ancho}px`;
     };
     const soltar = () => {
-      document.removeEventListener('mousemove', mover);
-      document.removeEventListener('mouseup', soltar);
+      document.removeEventListener('pointermove', mover);
+      document.removeEventListener('pointerup', soltar);
       guardarPrefs({ anchos: { ...anchos, [clave]: ancho } });
     };
-    document.addEventListener('mousemove', mover);
-    document.addEventListener('mouseup', soltar);
+    document.addEventListener('pointermove', mover);
+    document.addEventListener('pointerup', soltar);
   };
 
   const quitarAncho = (clave: string) => {
@@ -102,7 +102,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
                   onDragStart={(e) => { e.dataTransfer.setData('text/x-columna', clave); setColumnaArrastrada(clave); }}
                   onDragEnd={() => { setColumnaArrastrada(null); setColumnaDestino(null); }}>{c.cabecera}</span>
                 <span className="colrz" title="Drag to resize (double-click to reset)"
-                  onMouseDown={(e) => empezarRedimension(clave, e)} onDoubleClick={() => quitarAncho(clave)} />
+                  onPointerDown={(e) => empezarRedimension(clave, e)} onDoubleClick={() => quitarAncho(clave)} />
               </th>
             );
           })}

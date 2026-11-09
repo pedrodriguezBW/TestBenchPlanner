@@ -40,10 +40,19 @@ export function Entrada({ campo, valor, onCambio, tipo = 'text', lista, marcador
 }) {
   const { soloLectura } = usePlanificador();
   const [local, setLocal, foco] = useValorLocal(texto(valor));
+  // Con lista de sugerencias, al entrar se vacía el campo y su valor pasa al texto
+  // de ayuda para que Edge enseñe TODAS las opciones; si se sale sin escribir,
+  // vuelve el valor (focusin/focusout de la 4.9.4, v3.6).
+  const [anterior, setAnterior] = useState<string | null>(null);
   return (
     <input
-      type={tipo} data-f={campo} list={lista} placeholder={marcador} title={titulo} disabled={soloLectura || desactivado}
-      className={clase} min={min} step={paso} style={estilo} value={local} {...foco}
+      type={tipo} data-f={campo} list={lista} placeholder={anterior ?? marcador} title={titulo} disabled={soloLectura || desactivado}
+      className={clase} min={min} step={paso} style={estilo} value={local}
+      onFocus={() => {
+        foco.onFocus();
+        if (lista && local !== '') { setAnterior(local); setLocal(''); }
+      }}
+      onBlur={() => { setAnterior(null); foco.onBlur(); }}
       onChange={(e) => { setLocal(e.target.value); onCambio(e.target.value); }}
     />
   );

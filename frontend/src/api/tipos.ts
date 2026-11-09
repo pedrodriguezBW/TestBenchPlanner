@@ -106,6 +106,17 @@ export interface Vista {
   calendario: { anio: number; saltarFestivos: boolean; festivos: { fecha: string; nombre: string }[] };
   grupos: Grupo[];
   bancos: Record<string, FilaEnsayo[]>;
+  /** Sin conexión: fecha (ISO) de la copia de este PC que se está mostrando. */
+  copiaSinConexion?: string;
+}
+
+/** Persona conectada (burbuja de presencia, /api/v1/presencia). */
+export interface Conectado {
+  email: string;
+  name: string;
+  initials: string;
+  color: string;
+  me: boolean;
 }
 
 export interface Sesion {
@@ -115,6 +126,7 @@ export interface Sesion {
   rol: 'admin' | 'editor' | 'readonly';
   esAdmin: boolean;
   soloLectura: boolean;
+  copiaSinConexion?: string;
 }
 
 export interface Aprobacion {

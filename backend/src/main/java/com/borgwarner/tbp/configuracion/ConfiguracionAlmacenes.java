@@ -1,6 +1,7 @@
 package com.borgwarner.tbp.configuracion;
 
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCalendario;
+import com.borgwarner.tbp.aplicacion.EstadoConexion;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenEnsayos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenHistoricoKpi;
@@ -11,6 +12,7 @@ import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
 import com.borgwarner.tbp.aplicacion.puertos.Reloj;
 import com.borgwarner.tbp.infraestructura.comun.AlmacenCalendarioArchivo;
 import com.borgwarner.tbp.infraestructura.comun.RelojConfigurable;
+import com.borgwarner.tbp.infraestructura.comun.CopiaSinConexion;
 import com.borgwarner.tbp.infraestructura.local.AlmacenEnsayosLocal;
 import com.borgwarner.tbp.infraestructura.local.AlmacenesAuxiliaresLocales;
 import com.borgwarner.tbp.infraestructura.local.DatosLocales;
@@ -144,14 +146,21 @@ public class ConfiguracionAlmacenes {
             return new ListasAuxiliaresSharePoint.ColaboracionSharePoint(cliente, p.sharepoint().publicarVersion());
         }
 
+        /** Última copia buena en este PC para consultar sin conexión (H-04). */
         @Bean
-        public AlmacenEnsayos almacenEnsayos(ClienteSharePoint cliente, Colaboracion colaboracion, EspejoSharePoint espejo) {
-            return new AlmacenEnsayosSharePoint(cliente, colaboracion, espejo);
+        public CopiaSinConexion copiaSinConexion(PropiedadesPlanner p, EstadoConexion estado) {
+            return new CopiaSinConexion(Path.of(p.carpetaUsuario()), estado);
         }
 
         @Bean
-        public AlmacenCatalogos almacenCatalogos(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
-            return new ListasAuxiliaresSharePoint.Catalogos(cliente, permitirVacias);
+        public AlmacenEnsayos almacenEnsayos(ClienteSharePoint cliente, Colaboracion colaboracion, EspejoSharePoint espejo, CopiaSinConexion copia) {
+            return copia.ensayos(new AlmacenEnsayosSharePoint(cliente, colaboracion, espejo));
+        }
+
+        @Bean
+        public AlmacenCatalogos almacenCatalogos(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias,
+                                                 CopiaSinConexion copia) {
+            return copia.catalogos(new ListasAuxiliaresSharePoint.Catalogos(cliente, permitirVacias));
         }
 
         @Bean
@@ -160,8 +169,9 @@ public class ConfiguracionAlmacenes {
         }
 
         @Bean
-        public AlmacenUsuarios almacenUsuarios(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
-            return new ListasAuxiliaresSharePoint.Usuarios(cliente, permitirVacias);
+        public AlmacenUsuarios almacenUsuarios(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias,
+                                               CopiaSinConexion copia) {
+            return copia.usuarios(new ListasAuxiliaresSharePoint.Usuarios(cliente, permitirVacias));
         }
 
         @Bean

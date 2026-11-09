@@ -1,5 +1,5 @@
 import type {
-  Aprobacion, BancoCatalogo, BloquesKpi, CalendarioPc, FilaActividad, Recurso, Recursos, UsuarioLista, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
+  Aprobacion, BancoCatalogo, Conectado, BloquesKpi, CalendarioPc, FilaActividad, Recurso, Recursos, UsuarioLista, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
   Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
 
@@ -67,6 +67,8 @@ export interface CambioCampo {
 
 export const api = {
   sesion: () => peticion<Sesion>('GET', '/api/v1/sesion'),
+  presencia: () => peticion<{ me: string; online: Conectado[] }>('POST', '/api/v1/presencia', {}),
+  version: () => peticion<{ backend: string; published: string }>('GET', '/api/v1/version'),
   planificacion: () => peticion<Vista>('GET', '/api/v1/planificacion'),
   catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[] }>('GET', '/api/v1/catalogos'),
   usuarios: () => peticion<UsuarioLista[]>('GET', '/api/v1/usuarios'),

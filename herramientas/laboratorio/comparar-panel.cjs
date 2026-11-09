@@ -493,6 +493,13 @@ async function ejecutarOriginal(caso, escenario) {
     // D24: la 4.9.4 añade a la lista de responsables diez nombres fijos de su código.
     (foto.opcionesResponsable || []).forEach((l, i) => { foto.opcionesResponsable[i] = l.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n)); });
     if (foto.responsable) foto.responsable.opciones = foto.responsable.opciones.filter((n) => !NOMBRES_FIJOS_4_9_4.includes(n));
+    // D29 (corregido por decisión de Pedro): la 4.9.4 pone a los Admin al final de
+    // Users. Se reordena su foto como lo hace la versión nueva (orden estable por rol).
+    (foto.tablas || []).forEach((t) => {
+      if (JSON.stringify(t.cabecera) !== JSON.stringify(['Name', 'Email', 'Role', 'ResponsibleName', ''])) return;
+      const orden = (f) => ({ admin: 0, editor: 1, readonly: 2 }[String(f[2] && f[2][0]).toLowerCase()] ?? 3);
+      t.filas = t.filas.map((f, i) => [f, i]).sort((x, y) => (orden(x[0]) - orden(y[0])) || (x[1] - y[1])).map(([f]) => f);
+    });
     foto.mensajes = sesion.dialogos.map((d) => d.texto);
     foto.erroresJs = sesion.erroresJs;
     return foto;

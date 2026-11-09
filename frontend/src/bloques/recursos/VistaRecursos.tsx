@@ -231,13 +231,13 @@ function GanttRecursos() {
       </div>
       <div className="gantt g-mini" id="ganttbox" ref={caja} style={{ ['--lw' as string]: `${LW}px`, position: 'relative' }}>
         <div className="g-lwgrip no-print" style={{ left: LW - 4 }} onDoubleClick={() => setAnchoEtiqueta(null)}
-          onMouseDown={(ev) => {
+          onPointerDown={(ev) => {
             ev.preventDefault();
             const x0 = ev.clientX, w0 = LW;
             const mover = (m: MouseEvent) => setAnchoEtiqueta(Math.max(110, Math.min(640, Math.round(w0 + m.clientX - x0))));
-            const soltar = () => { document.removeEventListener('mousemove', mover); document.removeEventListener('mouseup', soltar); };
-            document.addEventListener('mousemove', mover);
-            document.addEventListener('mouseup', soltar);
+            const soltar = () => { document.removeEventListener('pointermove', mover); document.removeEventListener('pointerup', soltar); };
+            document.addEventListener('pointermove', mover);
+            document.addEventListener('pointerup', soltar);
           }} />
         <div style={{ width: LW + n * W, position: 'relative' }}>
           <div className="g-months"><div className="g-label" />{meses.map((m, i) => <div key={i} className="g-month" style={{ width: m.dias * W, minWidth: m.dias * W }}>{m.etiqueta}</div>)}</div>

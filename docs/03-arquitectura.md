@@ -236,3 +236,26 @@ recompilar la interfaz sin instalar nada: `mvnw.cmd -Pinterfaz clean verify`
   backend y en solo lectura.
 - En solo lectura se pueden exportar Excel, CSV y copia JSON (son consultas);
   importar está desactivado y el backend lo rechaza con 403.
+
+## Cierre de la migración (H3Z)
+
+- **Presencia y aviso de versión** (`componentes/Colaboracion.tsx`): latido a los
+  2 s y cada 15 s (`POST /api/v1/presencia`); versión al arrancar y cada 2 min
+  (`GET /api/v1/version`), con comparación numérica por tramos: solo avisa si la
+  publicada es mayor. `aplicacion/PublicacionVersion` publica la versión al
+  arrancar solo con `planner.sharepoint.publicar-version=true` (y escritura
+  habilitada); nunca la rebaja.
+- **Consulta sin conexión** (`infraestructura/comun/CopiaSinConexion`): solo con
+  SharePoint. Envuelve los almacenes de ensayos, catálogos y usuarios; tras cada
+  lectura buena guarda una copia en `~/.testbenchplanner/copia-sin-conexion`
+  (escritura atómica; una lista vacía nunca pisa una copia buena). Si una lectura
+  falla y hay copia, devuelve la copia y lo anota en `aplicacion/EstadoConexion`:
+  la sesión pasa a solo lectura, `/sesion` y `/planificacion` llevan
+  `copiaSinConexion` (fecha de la copia) y `RegistroLecturas` no habilita ningún
+  guardado (D11). Escribir nunca pasa por la copia. React muestra el candado y el
+  aviso «Modo offline · solo consulta» y sigue en solo lectura hasta volver a abrir,
+  como la 4.9.4.
+- **Catálogos**: proyectos, responsables y usuarios se releen cada 60 s, salvo
+  mientras se escribe, hay una ventana abierta o un envío en curso.
+- **Tiradores**: Pointer Events (ratón, dedo y lápiz) con `touch-action: none`.
+

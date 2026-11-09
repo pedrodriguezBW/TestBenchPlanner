@@ -14,14 +14,13 @@ import { ConfigUsuarios } from './bloques/configuracion/ConfigUsuarios';
 import { RegistroActividad } from './bloques/configuracion/RegistroActividad';
 import { VistaRecursos } from './bloques/recursos/VistaRecursos';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
+import { AvisoSinConexion, AvisoVersion, Bienvenida, Presencia } from './componentes/Colaboracion';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
 
 /*
- * Estructura de la aplicación: barra superior, menú lateral y la pantalla
- * elegida. Las pantallas de los bloques B–F (dashboard, KPI, recursos,
- * configuración, exportaciones) se irán incorporando; mientras tanto se
- * indica que siguen disponibles en la interfaz clásica.
+ * Estructura de la aplicación: barra superior (presencia, avisos), menú
+ * lateral y la pantalla elegida.
  */
 
 const VERSION = '5.0.0';
@@ -34,15 +33,12 @@ const SINCRONIZACION: Record<EstadoSincronizacion, [string, string]> = {
   bloqueado: ['\uD83D\uDD12 Solo lectura (sin conexion)', 'var(--danger)'],
 };
 
-/** Secciones que aún no están migradas (se indican, pero no se inventan). */
-const PENDIENTES: Record<string, [string, string]> = {};
-
 function leerRuta(): string {
   return decodeURIComponent(window.location.hash.replace(/^#\/?/, '')) || '';
 }
 
 export function App() {
-  const { vista, sesion, soloLectura, sincronizacion, proyectos, personas } = usePlanificador();
+  const { vista, sesion, soloLectura, sincronizacion, copiaSinConexion, proyectos, personas } = usePlanificador();
   const [actual, setActual] = useState(leerRuta);
 
   useEffect(() => {
@@ -88,16 +84,20 @@ export function App() {
         </h1>
         <div className="spacer" />
         <a className="btn ghost sm no-print" href="/clasico" title="Interfaz 4.9.4 (respaldo)">Versión clásica</a>
+        <Presencia activa={!!sesion && !copiaSinConexion} />
         {esAdmin && vista && (
           <button onClick={() => void exportarFotoSoloLectura()} title="Exportar una foto HTML de solo lectura para el proveedor">&#128228; Export read-only</button>
         )}
         <span id="sp-status" style={{ fontSize: 12, fontWeight: 600, color: colorSync, margin: '0 8px', whiteSpace: 'nowrap' }}>{textoSync}</span>
         <button onClick={() => window.print()}>&#128424; Print</button>
       </header>
+      <AvisoVersion version={VERSION} />
       {sincronizacion === 'bloqueado' && (
         <div id="lock-banner" style={{ display: 'block' }}>&#128274; <b>SIN CONEXI&Oacute;N CON SHAREPOINT</b> &middot; no se ha podido leer el servidor,
           as&iacute; que la app est&aacute; en <b>solo lectura</b> para proteger los datos. <b>No se guardar&aacute; nada.</b> Cierra y vuelve a abrir cuando tengas sesi&oacute;n.</div>
       )}
+      <AvisoSinConexion copia={copiaSinConexion} />
+      <Bienvenida sesion={sesion} />
       <div className="layout">
         <nav className="side" id="side">
           {pestana('__dash__', <>&#128202; Dashboard</>)}
@@ -137,15 +137,6 @@ export function App() {
           {vista && pantalla === '__tools__' && (esAdmin ? <ConfigHerramientas /> : <VistaDashboard />)}
           {vista && pantalla === '__activity__' && (esAdmin ? <RegistroActividad /> : <VistaDashboard />)}
           {vista && pantalla === '__about__' && <AcercaDe version={VERSION} />}
-          {vista && PENDIENTES[pantalla] && (
-            <div className="sec">
-              <h2>{PENDIENTES[pantalla][0]}</h2>
-              <div className="hint">
-                Esta pantalla se incorpora en el {PENDIENTES[pantalla][1]} de la migración. Mientras tanto está disponible en
-                la <a href="/clasico">versión clásica</a>.
-              </div>
-            </div>
-          )}
         </main>
       </div>
       <datalist id="dl-types">{TIPOS_DE_ENSAYO.map((t) => <option key={t} value={t} />)}</datalist>

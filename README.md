@@ -9,11 +9,12 @@ listas actuales de SharePoint mientras la interfaz se sustituye por bloques. La
 versión 4.9.4 se mantiene sin modificar como oráculo de paridad y como respaldo
 durante la transición.
 
-> **Estado actual: H3F (H3 completo).** H1 y H2 están terminados. En H3 están
-> migrados los seis bloques: A (operativa diaria de bancos), B (Dashboard y «By
-> Responsible»), C (KPI History y estadísticas), D (equipos auxiliares), E
-> (configuración) y F (exportaciones e importaciones). `/clasico` sigue
-> disponible como respaldo hasta H4.
+> **Estado actual: H3Z, migración de funciones cerrada.** H1, H2 y H3 (bloques A–F)
+> están terminados. Una auditoría función a función de la 4.9.4
+> (`docs/05-auditoria-cierre.md`) confirma que todo está migrado, es código muerto
+> o tiene una decisión documentada; los últimos huecos (presencia, aviso de
+> versión, consulta sin conexión y detalles de interfaz) se cerraron en H3Z.
+> `/clasico` sigue disponible como respaldo.
 
 ## Índice
 
@@ -41,9 +42,10 @@ durante la transición.
 | **H3D · React, bloque D** | Equipos auxiliares: columna «Resources» y selector de equipos en los bancos, «List of Equipments» (Gantt por equipo, bloqueos manuales) y «Equipments List» (catálogo, solo Admin). Incluye la separación entre controles de consulta y de escritura en solo lectura. | **Terminado** |
 | **H3E · React, bloque E** | Configuración: Test Benches (categorías y bancos; renombrar conserva ensayos, borrar los borra), Projects, Users/Rights Management, Tools (calendario de festivos, IDs live, Reset local), About y Activity log. | **Terminado** |
 | **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Entregado**; pendiente de validar en el PC |
+| **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Entregado**; pendiente de validar en el PC |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
 
-### Funcionalidad disponible en H3F
+### Funcionalidad disponible en H3Z
 
 - Planificación y edición diaria por banco.
 - Cálculo de fechas, estados, sugerencias, cierres, KPI, ocupación y calendario
@@ -81,6 +83,11 @@ Responsible» y equipos), con el foco de proyecto aplicado; «⬇️ Export (JSO
 backup)» e «⬆️ Import (JSON)» en Tools (importar: solo Admin, sin confirmación
 como hoy, con la protección de listas del backend); «📤 Export read-only» (Admin)
 genera la foto HTML de solo lectura para el proveedor.
+- Colaboración: burbujas de quién está conectado, aviso de versión antigua
+(si la versión publicada es mayor) y bienvenida al entrar, como la 4.9.4.
+- Sin conexión: si SharePoint no responde se muestra la última copia buena de
+este PC en solo consulta, con el aviso «Modo offline · solo consulta» y el
+candado; no se guarda nada hasta volver a abrir con conexión.
 - Solo lectura: se bloquean únicamente las acciones que modifican datos; filtros,
 búsquedas, navegación y consultas siguen disponibles en todas las pantallas.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
@@ -343,6 +350,7 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `SoloLecturaIntegracionTest` | Como usuario de solo lectura: las consultas de todas las pantallas responden y los filtros cambian el resultado; las escrituras devuelven 403 sin tocar datos. |
 | `ExcelGanttTest` | El `.xlsx` generado en Java coincide, XML a XML, con las referencias sacadas del generador Python de la 4.9.4 (banco, Dashboard, responsable, equipos y foco); nombre del fichero y casos límite. |
 | `CopiaSeguridadTest` | Copia JSON: exportar devuelve el estado con el formato de la 4.9.4; importar exige Admin, rechaza ficheros sin `benches`, respeta la protección de listas y una ida y vuelta no cambia nada. |
+| `CopiaSinConexionTest` | Consulta sin conexión: se guarda la última lectura buena, se muestra si SharePoint falla, una lista vacía no pisa la copia y con la copia no se habilita ningún guardado (D11). |
 | `ConfiguracionBancosTest` | Test Benches: renombrar conserva ensayos, borrar los borra, mover u Org no tocan ensayos, solo Admin, no se renombra a un banco existente ni se vacía la lista. |
 
 Las salidas de paridad quedan en `backend/target/paridad` y pueden volver a
@@ -362,6 +370,7 @@ TZ=Europe/Madrid node herramientas/laboratorio/comparar-interfaz.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
 ```
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
@@ -375,7 +384,9 @@ además lo descargado: la matriz enviada para el Excel, el CSV byte a byte, la
 copia JSON y lo incrustado en la foto de solo lectura. El contenido del Excel se
 comprueba aparte con `herramientas/laboratorio/excel_espejo.py` y
 `comparar_excel.py` (ver `referencias-excel/LEEME.md`). `pruebas-ciclo-de-vida.cjs` comprueba que ocultar o
-minimizar no da de baja la pestaña y que cerrarla sí.
+minimizar no da de baja la pestaña y que cerrarla sí. `pruebas-cierre.cjs` cubre
+lo añadido en H3Z: presencia, aviso de versión, bienvenida, modo sin conexión,
+calendario, sugerencias, tirador del Gantt y orden de Users.
 
 ## Configuración
 
@@ -392,7 +403,7 @@ Propiedades principales de Spring Boot:
 | `planner.sharepoint.sitio` | vacío | Sitio principal; obligatorio con SharePoint. |
 | `planner.sharepoint.sitio-aprobaciones` | vacío | Sitio de la base de aprobaciones. |
 | `planner.sharepoint.escritura-habilitada` | `false` | Habilita las escrituras en las listas. |
-| `planner.sharepoint.publicar-version` | `false` | Publica la versión en `TestBenchAppConfig`. |
+| `planner.sharepoint.publicar-version` | `false` | Publica la versión en `TestBenchAppConfig` al arrancar. Mantener en `false` hasta distribuir la versión nueva: con `true`, los PCs con la 4.9.4 verán el aviso de versión antigua. |
 | `planner.sharepoint.espejo-habilitado` | `true` | Actualiza columnas espejo cuando se permite escribir. |
 | `planner.sharepoint.puerto-depuracion` | `9222` | Puerto CDP de Edge. |
 | `planner.listas.permitir-vacias` | `false` | Permite guardar sobre listas compartidas vacías solo en una instalación nueva. |
@@ -406,7 +417,8 @@ sirve la interfaz clásica.
 operaciones, cierre, configuración, aprobaciones, recursos e indicadores
 (`/api/v1/indicadores/bloques`, `tabla-ocupacion`, `tendencia`, `foto-semanal`,
 `historico`, `estadisticas`), equipos (`/api/v1/recursos`, `recursos/bloqueos`,
-`recursos/renombrar`) y exportaciones (`POST /api/v1/exportaciones/gantt`,
+`recursos/renombrar`), presencia y versión (`/api/v1/presencia`,
+`/api/v1/version`) y exportaciones (`POST /api/v1/exportaciones/gantt`,
 `GET /api/v1/exportaciones/copia`, `POST /api/v1/importaciones/copia`).
 `/api/export_gantt` (contrato 4.9.4) usa el mismo generador de Excel.
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa

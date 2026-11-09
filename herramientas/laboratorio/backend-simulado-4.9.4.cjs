@@ -34,6 +34,9 @@ let rol = 'admin';
 let cola = Promise.resolve(); // las peticiones se atienden de una en una
 
 let ultimaMatrizExcel = null;
+// Situaciones que el simulado puede imitar para las pruebas de cierre (H3Z):
+// versión publicada, conectados y modo sin conexión (copia de este PC).
+let laboratorio = { publicada: null, conectados: null, copiaSinConexion: null };
 let hoyLaboratorio = '2026-11-05';
 async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = '2026-11-05', email } = {}) {
   if (sesion) await sesion.cerrar();
@@ -42,6 +45,7 @@ async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = 
   rol = usuario ? normalizarRol(usuario.role) : (email ? 'readonly' : 'admin');
   sesion = await abrirVersionOriginal({ escenario, fecha, rol, aceptarDialogos: true });
   hoyLaboratorio = fecha;
+  laboratorio = { publicada: null, conectados: null, copiaSinConexion: null };
   return { ok: true, hoy: fecha };
 }
 
@@ -281,12 +285,20 @@ async function atender(metodo, ruta, cuerpo) {
   const p = url.pathname;
   let m;
   if (p === '/api/v1/local/reinicio' && metodo === 'POST') return { estado: 200, cuerpo: await reiniciar(cuerpo || {}) };
+  if (p === '/api/v1/local/laboratorio' && metodo === 'POST') { Object.assign(laboratorio, cuerpo || {}); return { estado: 200, cuerpo: laboratorio }; }
   if (!sesion) await reiniciar({});
+  const copia = laboratorio.copiaSinConexion;
   if (p === '/api/v1/sesion') {
     const u = escenario.usuarios.find((x) => normalizarRol(x.role) === rol) || {};
-    return { estado: 200, cuerpo: { email: CORREO_POR_ROL[rol], nombre: 'Laboratorio', responsable: rol === 'admin' ? 'Laboratorio' : (u.responsibleName || ''), rol, esAdmin: rol === 'admin', soloLectura: rol === 'readonly' } };
+    // Sin conexión el backend Java entra en solo lectura (H-04).
+    const r = copia ? 'readonly' : rol;
+    return { estado: 200, cuerpo: Object.assign({ email: CORREO_POR_ROL[rol], nombre: 'Laboratorio', responsable: rol === 'admin' ? 'Laboratorio' : (u.responsibleName || ''), rol: r, esAdmin: r === 'admin', soloLectura: r === 'readonly' }, copia ? { copiaSinConexion: copia } : {}) };
   }
-  if (p === '/api/v1/planificacion') return { estado: 200, cuerpo: (await vista()).vista };
+  if (p === '/api/v1/planificacion') return { estado: 200, cuerpo: Object.assign((await vista()).vista, copia ? { copiaSinConexion: copia } : {}) };
+  if (p === '/api/v1/version' && metodo === 'GET') return { estado: 200, cuerpo: { backend: '5.0.0', published: laboratorio.publicada || '5.0.0' } };
+  if (p === '/api/v1/presencia' && metodo === 'POST') {
+    return { estado: 200, cuerpo: { me: CORREO_POR_ROL[rol], online: laboratorio.conectados || [{ email: CORREO_POR_ROL[rol], name: 'Laboratorio', initials: 'LA', color: '#23BCA3', me: true }] } };
+  }
   // Recursos (bloque D): el catálogo y los bloqueos viven en RES_CACHE de la 4.9.4.
   if (p === '/api/v1/recursos' && metodo === 'GET') {
     return { estado: 200, cuerpo: await sesion.evaluar(async () => { if (!RES_LOADED) await resLoad(); return JSON.parse(JSON.stringify(RES_CACHE)); }) };
@@ -446,7 +458,7 @@ async function atender(metodo, ruta, cuerpo) {
     const { textos } = await vista();
     return { estado: 200, cuerpo: Object.entries(textos).map(([uid, data]) => ({ uid, data })) };
   }
-  if (p === '/api/heartbeat' || p === '/api/shutdown' || p === '/api/v1/presencia') return { estado: 200, cuerpo: { ok: true } };
+  if (p === '/api/heartbeat' || p === '/api/shutdown') return { estado: 200, cuerpo: { ok: true } };
   return { estado: 404, cuerpo: { error: 'sin ruta' } };
 }
 

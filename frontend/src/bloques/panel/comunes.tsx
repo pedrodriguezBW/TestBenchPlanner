@@ -69,14 +69,14 @@ export function TarjetaRedimensionable({ clave, children }: { clave: string; chi
     document.body.classList.add('bs-resizing');
     const mover = (ev: MouseEvent) => { ultimo = Math.max(140, Math.round(h0 + ev.clientY - y0)); setAlto(ultimo); };
     const soltar = () => {
-      document.removeEventListener('mousemove', mover);
-      document.removeEventListener('mouseup', soltar);
+      document.removeEventListener('pointermove', mover);
+      document.removeEventListener('pointerup', soltar);
       document.body.classList.remove('bs-resizing');
       setAlturas({ ...alturas, [clave]: ultimo });
       setAlto(null);
     };
-    document.addEventListener('mousemove', mover);
-    document.addEventListener('mouseup', soltar);
+    document.addEventListener('pointermove', mover);
+    document.addEventListener('pointerup', soltar);
   };
   const restablecer = () => {
     const resto = { ...alturas };
@@ -89,7 +89,7 @@ export function TarjetaRedimensionable({ clave, children }: { clave: string; chi
     <>
       <div ref={tarjeta} className="card rzcard" data-rzk={clave} style={actual ? { height: actual, overflow: 'auto' } : undefined}>{children}</div>
       <div className="card-rz no-print" data-rzk={clave} title="Drag to resize this card (double-click to reset)"
-        onMouseDown={empezar} onDoubleClick={restablecer}><div className="grip" /></div>
+        onPointerDown={empezar} onDoubleClick={restablecer}><div className="grip" /></div>
     </>
   );
 }

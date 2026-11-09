@@ -154,6 +154,14 @@ public class ConfiguracionController {
         return colaboracion.latidoPresencia(new AlmacenUsuarios.Identidad(u.email(), u.displayName()));
     }
 
+    /** Versión de esta aplicación y la publicada en TestBenchAppConfig (aviso de versión antigua). */
+    @GetMapping("/version")
+    public ObjectNode version() {
+        String publicada = colaboracion.versionPublicada();
+        return JsonJs.objetoVacio().put("backend", com.borgwarner.tbp.TestBenchPlannerApplication.VERSION)
+                .put("published", publicada == null ? com.borgwarner.tbp.TestBenchPlannerApplication.VERSION : publicada);
+    }
+
     @GetMapping("/actividad")
     public ObjectNode actividad() {
         return colaboracion.leerActividad(200);

@@ -103,14 +103,14 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
       contenedor.current?.style.setProperty('--split', String(actual));
     };
     const soltar = () => {
-      document.removeEventListener('mousemove', mover);
-      document.removeEventListener('mouseup', soltar);
+      document.removeEventListener('pointermove', mover);
+      document.removeEventListener('pointerup', soltar);
       document.body.classList.remove('bs-resizing');
       setReparto(actual);
     };
     document.body.classList.add('bs-resizing');
-    document.addEventListener('mousemove', mover);
-    document.addEventListener('mouseup', soltar);
+    document.addEventListener('pointermove', mover);
+    document.addEventListener('pointerup', soltar);
   };
 
   return (
@@ -142,7 +142,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
           </div>
         </div>
         <div className="bs-divider no-print" id="bsdiv" title="Drag to resize table / Gantt (double-click to reset)"
-          onMouseDown={empezarReparto} onDoubleClick={() => setReparto(1)}>
+          onPointerDown={empezarReparto} onDoubleClick={() => setReparto(1)}>
           <div className="grip" />
         </div>
         <div className="bs-pane bot">

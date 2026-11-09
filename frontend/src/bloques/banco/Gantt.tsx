@@ -108,16 +108,17 @@ export function Gantt({ banco, filas, vista, proyectos }: { banco: string; filas
     e.preventDefault();
     const x0 = e.clientX, w0 = LW;
     const mover = (ev: MouseEvent) => setAnchoEtiqueta(Math.max(110, Math.min(640, Math.round(w0 + ev.clientX - x0))));
-    const soltar = () => { document.removeEventListener('mousemove', mover); document.removeEventListener('mouseup', soltar); };
-    document.addEventListener('mousemove', mover);
-    document.addEventListener('mouseup', soltar);
+    const soltar = () => { document.removeEventListener('pointermove', mover); document.removeEventListener('pointerup', soltar); };
+    document.addEventListener('pointermove', mover);
+    document.addEventListener('pointerup', soltar);
   };
 
   return (
     <>
       {barra}
       <div className="gantt" id="ganttbox" ref={caja} style={{ ['--lw' as string]: `${LW}px`, position: 'relative' }}>
-        <div className="g-lwgrip no-print" style={{ left: LW - 4 }} onMouseDown={empezarAnchoEtiqueta} />
+        <div className="g-lwgrip no-print" style={{ left: LW - 4 }} onPointerDown={empezarAnchoEtiqueta}
+          onDoubleClick={() => setAnchoEtiqueta(null)} />
         <div style={{ width: LW + n * W, position: 'relative' }}>
           <div className="g-months"><div className="g-label" />{meses.map((m, i) => <div key={i} className="g-month" style={{ width: m.dias * W, minWidth: m.dias * W }}>{m.etiqueta}</div>)}</div>
           <div className="g-months"><div className="g-label" />{semanas.map((s, i) => <div key={i} className="g-month" style={{ width: s.dias * W, minWidth: s.dias * W }}>CW{s.cw}</div>)}</div>

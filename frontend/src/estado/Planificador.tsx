@@ -47,6 +47,7 @@ interface Contexto {
   sesion: Sesion | null;
   soloLectura: boolean;
   sincronizacion: EstadoSincronizacion;
+  copiaSinConexion: string | null;
   proyectos: string[];
   personas: string[];
   estadosAprobacion: Record<string, string>;
@@ -105,6 +106,8 @@ function valorEnPantalla(c: CambioCampo): unknown {
 export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const [vistaServidor, setVistaServidor] = useState<Vista | null>(null);
   const [sesion, setSesion] = useState<Sesion | null>(null);
+  // Sin conexión (H-04): fecha de la copia de este PC con la que se ha arrancado.
+  const [copiaSinConexion, setCopiaSinConexion] = useState<string | null>(null);
   const [sincronizacion, setSincronizacion] = useState<EstadoSincronizacion>('conectando');
   const [proyectos, setProyectos] = useState<string[]>([]);
   const [usuariosResp, setUsuariosResp] = useState<string[]>([]);
@@ -363,7 +366,13 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
         return;
       }
       recibirVista(vista);
-      setSincronizacion('ok');
+      // Con la copia de este PC se consulta en solo lectura (candado), como la 4.9.4.
+      if (vista.copiaSinConexion) {
+        setCopiaSinConexion(vista.copiaSinConexion);
+        setSincronizacion('bloqueado');
+      } else {
+        setSincronizacion('ok');
+      }
       void recargarListas();
     })();
     return () => { cancelado = true; };
@@ -380,6 +389,18 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     }, RELECTURA_MS);
     return () => window.clearInterval(t);
   }, [recargarSilencioso]);
+
+  // Proyectos, responsables y usuarios cada 60 s (pollConfig de la 4.9.4): así aparece
+  // lo que den de alta otros sin recargar. Mismas guardas que la relectura.
+  useEffect(() => {
+    const t = window.setInterval(() => {
+      const activo = document.activeElement?.tagName;
+      if (activo === 'INPUT' || activo === 'SELECT' || activo === 'TEXTAREA') return;
+      if (sincronizacionRef.current === 'conectando' || enEnvio.current || document.querySelector('.modal-bg.show')) return;
+      void recargarListas();
+    }, RELECTURA_MS * 3);
+    return () => window.clearInterval(t);
+  }, [recargarListas]);
 
   // Presencia de la pestaña: el backend se apaga solo al CERRAR la última (no al minimizar).
   useEffect(() => iniciarCicloDeVida(), []);
@@ -425,7 +446,7 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   );
 
   const valor: Contexto = {
-    vista, sesion, soloLectura, sincronizacion, proyectos, personas, estadosAprobacion, avisos, conflicto,
+    vista, sesion, soloLectura, sincronizacion, copiaSinConexion, proyectos, personas, estadosAprobacion, avisos, conflicto,
     mensajeModal, cerrarMensajeModal: () => setMensajeModal(null),
     editarCampo, operar, cerrarEnsayo, avisar, mostrarMensaje: setMensajeModal, recargar: recargarSilencioso, recargarListas, refrescarAprobaciones, versionDe,
   };

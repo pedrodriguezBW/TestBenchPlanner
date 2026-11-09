@@ -10,3 +10,6 @@
 .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
 .cal-foot { display: flex; justify-content: space-between; margin-top: 6px; }
 .modal-bg.show { display: flex; }
+
+/* Tiradores: también con el dedo (la 4.9.4 atendía touchstart/touchmove). */
+.card-rz, .bs-divider, .colrz, .g-lwgrip { touch-action: none; }

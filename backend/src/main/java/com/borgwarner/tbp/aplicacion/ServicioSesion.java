@@ -20,13 +20,15 @@ public class ServicioSesion {
     private final AlmacenUsuarios usuarios;
     private final Colaboracion colaboracion;
     private final RegistroLecturas lecturas;
+    private final EstadoConexion conexion;
     private volatile Usuario actual;
     private volatile ArrayNode ultimaLista;
 
-    public ServicioSesion(AlmacenUsuarios usuarios, Colaboracion colaboracion, RegistroLecturas lecturas) {
+    public ServicioSesion(AlmacenUsuarios usuarios, Colaboracion colaboracion, RegistroLecturas lecturas, EstadoConexion conexion) {
         this.usuarios = usuarios;
         this.colaboracion = colaboracion;
         this.lecturas = lecturas;
+        this.conexion = conexion;
     }
 
     /** Usuario actual; la primera vez lo identifica y anota la conexión en el registro. */
@@ -60,6 +62,10 @@ public class ServicioSesion {
             }
         }
         String rol = encontrado != null ? Usuario.normalizarRol(encontrado.path("role").asText("")) : Usuario.SOLO_LECTURA;
+        // Sin conexión (copia de este PC) se entra en solo lectura, como la 4.9.4 (H-04).
+        if (conexion.sinConexion()) {
+            rol = Usuario.SOLO_LECTURA;
+        }
         String responsable = encontrado != null ? encontrado.path("responsibleName").asText("") : "";
         String nombre = identidad.nombre() == null ? "" : identidad.nombre().trim();
         if (nombre.isEmpty()) {
@@ -67,7 +73,7 @@ public class ServicioSesion {
             nombre = !titulo.isEmpty() ? titulo : (!responsable.isEmpty() ? responsable : email);
         }
         Usuario usuario = new Usuario(email, nombre, responsable, rol);
-        if (actual == null) {
+        if (actual == null && !conexion.sinConexion()) {
             colaboracion.anotarActividad(email, nombre, "connect", "role=" + rol);
         }
         actual = usuario;

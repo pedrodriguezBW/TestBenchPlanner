@@ -1,6 +1,7 @@
 package com.borgwarner.tbp.api.v1;
 
 import com.borgwarner.tbp.aplicacion.ServicioConfiguracionBancos;
+import com.borgwarner.tbp.aplicacion.EstadoConexion;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
 import com.borgwarner.tbp.aplicacion.Vista;
@@ -53,8 +54,11 @@ public class PlanificacionController {
     private final ServicioConfiguracionBancos configuracionBancos;
     private final GeneradorIds ids = GeneradorIds.aleatorio();
 
+    private final EstadoConexion conexion;
+
     public PlanificacionController(ServicioPlanificacion servicio, ServicioSesion sesion, Reloj reloj,
-                                   ServicioConfiguracionBancos configuracionBancos) {
+                                   ServicioConfiguracionBancos configuracionBancos, EstadoConexion conexion) {
+        this.conexion = conexion;
         this.servicio = servicio;
         this.sesion = sesion;
         this.reloj = reloj;
@@ -67,12 +71,21 @@ public class PlanificacionController {
         ObjectNode salida = JsonJs.objetoVacio();
         salida.put("email", u.email()).put("nombre", u.displayName()).put("responsable", u.responsibleName())
                 .put("rol", u.rol()).put("esAdmin", u.esAdmin()).put("soloLectura", u.soloLectura());
-        return salida;
+        return conCopia(salida);
     }
 
     @GetMapping("/planificacion")
     public ObjectNode planificacion() {
-        return RepresentacionVista.de(servicio.vista());
+        return conCopia(RepresentacionVista.de(servicio.vista()));
+    }
+
+    /** Sin conexión (H-04): fecha de la copia de este PC que se está mostrando (ISO, UTC). */
+    private ObjectNode conCopia(ObjectNode salida) {
+        java.time.Instant copia = conexion.copiaDe();
+        if (copia != null) {
+            salida.put("copiaSinConexion", copia.toString());
+        }
+        return salida;
     }
 
     // ---- edición de campos --------------------------------------------------

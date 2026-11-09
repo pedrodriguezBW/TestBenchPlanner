@@ -13,10 +13,10 @@ const rolNormal = (r: string) => {
   const s = String(r || '').toLowerCase().replace(/\s/g, '');
   return s === 'admin' || s === 'administrator' ? 'admin' : (s === 'editor' || s === 'edit' || s === 'write' ? 'editor' : 'readonly');
 };
-// Orden de la tabla como en la 4.9.4: ({admin:0,editor:1,readonly:2}[rol] || 3), así que
-// los Admin (0, que cuenta como «falso») salen al final junto a los roles desconocidos (D29).
+// Orden de la tabla: Admin, Editor, Read only y después roles desconocidos. La 4.9.4
+// hacía «[rol] || 3» y el 0 de Admin contaba como falso: los Admin salían al final (D29, corregido).
 const ORDEN_ROL: Record<string, number> = { admin: 0, editor: 1, readonly: 2 };
-const orden = (r: string) => ORDEN_ROL[r] || 3;
+const orden = (r: string) => ORDEN_ROL[r] ?? 3;
 const rolGuardado = (r: string) => (r === 'admin' ? 'Admin' : r === 'editor' ? 'Editor' : 'ReadOnly');
 
 export function ConfigUsuarios() {

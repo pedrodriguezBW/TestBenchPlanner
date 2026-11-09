@@ -26,17 +26,26 @@ public class RegistroLecturas {
 
     private final Map<String, Boolean> correctas = new ConcurrentHashMap<>();
     private final boolean permitirVacias;
+    private final EstadoConexion conexion;
 
-    public RegistroLecturas(@Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias) {
+    public RegistroLecturas(@Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias, EstadoConexion conexion) {
         this.permitirVacias = permitirVacias;
+        this.conexion = conexion;
     }
 
-    /** Anota el resultado de una lectura: correcta y con elementos, o no. */
+    /**
+     * Anota el resultado de una lectura: correcta y con elementos, o no. Lo que
+     * llega de la copia sin conexión (H-04) nunca cuenta como lectura correcta.
+     */
     public void anotar(String lista, boolean correcta, int elementos) {
-        correctas.put(lista, correcta && (elementos > 0 || permitirVacias));
+        correctas.put(lista, correcta && !conexion.sinConexion() && (elementos > 0 || permitirVacias));
     }
 
     public void exigir(String lista) {
+        if (conexion.sinConexion()) {
+            throw new ReconciliacionBloqueada("No se ha guardado «" + lista + "»: no hay conexión con SharePoint y se está "
+                    + "mostrando la última copia de este PC (solo consulta).");
+        }
         if (!Boolean.TRUE.equals(correctas.get(lista))) {
             throw new ReconciliacionBloqueada("No se ha guardado «" + lista + "»: no hay una lectura correcta de la lista "
                     + "en esta sesión. Vuelve a abrir la aplicación e inténtalo de nuevo.");

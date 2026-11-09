@@ -51,8 +51,16 @@ function Calendario({ ancla, valor, hoy, onElegir, onCerrar }: {
     const fuera = (e: MouseEvent) => {
       if (panel.current && !panel.current.contains(e.target as Node) && e.target !== ancla) onCerrar();
     };
+    // Como la 4.9.4: también se cierra con Escape y al cambiar el tamaño de la ventana.
+    const tecla = (e: KeyboardEvent) => { if (e.key === 'Escape') onCerrar(); };
     document.addEventListener('mousedown', fuera);
-    return () => document.removeEventListener('mousedown', fuera);
+    document.addEventListener('keydown', tecla);
+    window.addEventListener('resize', onCerrar);
+    return () => {
+      document.removeEventListener('mousedown', fuera);
+      document.removeEventListener('keydown', tecla);
+      window.removeEventListener('resize', onCerrar);
+    };
   }, [ancla, onCerrar]);
 
   const mover = (d: number) => {
