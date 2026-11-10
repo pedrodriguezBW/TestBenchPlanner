@@ -9,12 +9,13 @@ listas actuales de SharePoint mientras la interfaz se sustituye por bloques. La
 versión 4.9.4 se mantiene sin modificar como oráculo de paridad y como respaldo
 durante la transición.
 
-> **Estado actual: H3Z, migración de funciones cerrada.** H1, H2 y H3 (bloques A–F)
-> están terminados. Una auditoría función a función de la 4.9.4
+> **Estado actual (10-nov-2026): migración cerrada y validada en el PC.** H1, H2,
+> H3 (bloques A–F), el cierre H3Z y la mejora de rendimiento con SharePoint H3R
+> están terminados y validados. Una auditoría función a función de la 4.9.4
 > (`docs/05-auditoria-cierre.md`) confirma que todo está migrado, es código muerto
-> o tiene una decisión documentada; los últimos huecos (presencia, aviso de
-> versión, consulta sin conexión y detalles de interfaz) se cerraron en H3Z.
-> `/clasico` sigue disponible como respaldo.
+> o tiene una decisión documentada. Solo queda H4 (entrega y retirada de la
+> 4.9.4), aparcado mientras se añade la facturación. `/clasico` sigue disponible
+> como respaldo hasta entonces.
 
 ## Índice
 
@@ -41,12 +42,12 @@ durante la transición.
 | **H3C · React, bloque C** | KPI History: estadísticas de ensayos cerrados (periodo, responsable, por mes, trimestre y motivo, detalle) y foto semanal (medias, tabla por semana, motivos acumulados) por organización. Incluye la corrección del ciclo de vida (minimizar ya no cierra el backend). | **Terminado** |
 | **H3D · React, bloque D** | Equipos auxiliares: columna «Resources» y selector de equipos en los bancos, «List of Equipments» (Gantt por equipo, bloqueos manuales) y «Equipments List» (catálogo, solo Admin). Incluye la separación entre controles de consulta y de escritura en solo lectura. | **Terminado** |
 | **H3E · React, bloque E** | Configuración: Test Benches (categorías y bancos; renombrar conserva ensayos, borrar los borra), Projects, Users/Rights Management, Tools (calendario de festivos, IDs live, Reset local), About y Activity log. | **Terminado** |
-| **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Entregado**; pendiente de validar en el PC |
-| **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Entregado**; pendiente de validar en el PC |
-| **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Entregado**; pendiente de validar en el PC |
-| **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
+| **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Terminado**; validado en el PC |
+| **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Terminado**; validado en el PC |
+| **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Terminado**; validado en el PC (10-nov-2026) |
+| **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente; aparcado hasta terminar la facturación |
 
-### Funcionalidad disponible en H3Z
+### Funcionalidad disponible
 
 - Planificación y edición diaria por banco.
 - Cálculo de fechas, estados, sugerencias, cierres, KPI, ocupación y calendario
@@ -91,8 +92,12 @@ este PC en solo consulta, con el aviso «Modo offline · solo consulta» y el
 candado; no se guarda nada hasta volver a abrir con conexión.
 - Solo lectura: se bloquean únicamente las acciones que modifican datos; filtros,
 búsquedas, navegación y consultas siguen disponibles en todas las pantallas.
+- Rendimiento con SharePoint: lecturas compartidas sin repeticiones, consultas
+en paralelo a los guardados, estados de aprobación por lotes, recarga (F5) sin
+avisos por peticiones abandonadas y altas o copias de ensayos visibles al momento.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
-- Interfaz clásica servida en `/clasico` para los bloques todavía no migrados.
+- Interfaz clásica servida en `/clasico` como respaldo hasta la retirada de la
+4.9.4 (H4).
 
 ## Arquitectura
 
@@ -478,5 +483,11 @@ y resolución adoptada.
 correspondencia con la 4.9.4 y diseño de React.
 - [`docs/04-ejecucion-y-pruebas.md`](docs/04-ejecucion-y-pruebas.md): comandos de
 ejecución, configuración y validación manual.
+- [`docs/05-auditoria-cierre.md`](docs/05-auditoria-cierre.md): auditoría función
+a función de la 4.9.4 y resolución de los huecos (H3Z).
+- [`docs/05-defectos-postmigracion.md`](docs/05-defectos-postmigracion.md):
+defectos heredados y mejoras no bloqueantes, con el seguimiento por hito.
+- [`docs/06-rendimiento-sharepoint.md`](docs/06-rendimiento-sharepoint.md):
+causas y correcciones de los retrasos con SharePoint (H3R).
 - [`herramientas/laboratorio/README.md`](herramientas/laboratorio/README.md): uso
 del laboratorio de paridad.

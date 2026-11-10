@@ -5,6 +5,13 @@ versión React + Java, que en la 4.9.4 no eran perceptibles. No cambia ninguna
 regla funcional, rol, permiso, el modo solo lectura, la protección de listas
 (D11), las ETag, el aviso de conflicto ni el guardado automático de 1,2 s.
 
+> **Estado: validado en el PC (10-nov-2026).** `mvnw.cmd clean verify` pasa y la
+> aplicación funciona correctamente contra SharePoint. La primera compilación
+> falló en `ListasAuxiliaresSharePoint.copiaLista`: `map(JsonNode::deepCopy)`
+> deducía `List<Object>` porque `JsonNode.deepCopy()` es genérico. Se corrigió
+> indicando el tipo (`.<JsonNode>map(JsonNode::deepCopy)`), sin cambio de
+> comportamiento.
+
 ## Síntomas y causas
 
 | # | Síntoma | Causa en el código | Corrección |
@@ -63,7 +70,7 @@ Interfaz: `frontend/test/operacionesOptimistas.test.mjs` (`npm test`, también e
 `-Pinterfaz`) y `herramientas/laboratorio/pruebas-rendimiento.cjs` contra el
 backend simulado con un guardado de 2,5 s.
 
-## Cómo comprobarlo en el PC
+## Cómo volver a comprobarlo en el PC
 
 1. `mvnw.cmd clean verify` (o `-Pinterfaz` para recompilar React y pasar `npm test`).
 2. Arrancar con SharePoint en solo lectura y recargar varias veces (F5): los

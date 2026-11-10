@@ -5,7 +5,9 @@ Alcanzabilidad: grafo de llamadas desde el código de nivel superior, los maneja
 
 ## Resumen
 
-**Veredicto: la migración NO se puede declarar cerrada todavía.** Quedan 10 huecos (0 de gravedad alta, 3 media, 7 baja). Todo lo demás está migrado, es código muerto, está decidido o lo cubre la arquitectura nueva.
+> **Actualización (10-nov-2026):** este resumen recoge el estado inicial de la auditoría. Los huecos se resolvieron en H3Z (ver «Resolución» al final) y la migración quedó cerrada y validada en el PC.
+
+**Veredicto inicial: la migración NO se podía declarar cerrada todavía.** Quedan 10 huecos (0 de gravedad alta, 3 media, 7 baja). Todo lo demás está migrado, es código muerto, está decidido o lo cubre la arquitectura nueva.
 
 | Categoría | función | método | ruta | semilla | temporizador | manejador | vista | Total |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -633,3 +635,5 @@ Pasan a **Hecho**: EST-CSV, A7-ID (sin caso de paridad: conviene añadir uno), A
 
 Diferencias sin documentar que encontró la auditoría: documentadas como D33–D35 (y D36).
 Con esto, todas las entradas de la 4.9.4 están migradas, son código muerto o tienen una decisión documentada.
+
+**Validación (10-nov-2026):** H3Z validado en el PC junto con H3F y H3R. Quedan para H4 la escritura controlada en SharePoint, el lanzador (H-03 y H-10, D36) y la retirada de la 4.9.4.

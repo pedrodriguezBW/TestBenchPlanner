@@ -33,3 +33,8 @@ Validación en la oficina (SharePoint primero en solo lectura y después
 escritura controlada), paquete con Java incluido y lanzador, documentación de
 instalación, trazabilidad final. La 4.9.4 sigue disponible como respaldo hasta
 que se valide la nueva.
+
+## Estado (10-nov-2026)
+- H1, H2 (con H2b), H3 bloques A–F, cierre H3Z y rendimiento con SharePoint
+  H3R: terminados y validados en el PC.
+- H4: pendiente. Se aparca para añadir antes la facturación.

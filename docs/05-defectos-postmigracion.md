@@ -57,6 +57,21 @@
 - Comparación con SharePoint en solo lectura correcta respecto a `/clasico`.
 - Registrados los riesgos de consulta silenciosamente fallida y doble pulsación en **Update Yearly Status**.
 
+### H3C a H3F
+
+- KPI History, equipos auxiliares, configuración y exportaciones validados en el PC.
+- Corrección del ciclo de vida (minimizar ya no cierra el backend) y del uso de solo lectura (solo en controles que modifican datos).
+
+### H3Z
+
+- Huecos de la auditoría de cierre resueltos (presencia, aviso de versión, consulta sin conexión y detalles de interfaz) y validados en el PC.
+- H-03 (diagnóstico `/api/diag*`) y H-10 (abrir el navegador) quedan para el lanzador de H4 (D36).
+
+### H3R
+
+- Retrasos con SharePoint corregidos sin cambiar reglas, roles, solo lectura, D11, ETag, conflictos ni guardado de 1,2 s (`06-rendimiento-sharepoint.md`).
+- Validado en el PC el 10-nov-2026, tras corregir un error de compilación de tipos genéricos en `ListasAuxiliaresSharePoint`.
+
 ## Plantilla para nuevos hallazgos
 
 Añadir una fila a la tabla principal con estos datos:

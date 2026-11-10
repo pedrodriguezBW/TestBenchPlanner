@@ -15,6 +15,9 @@ Estado:
 **Cierre (H3Z, 9-nov-2026):** ya no queda ninguna entrada pendiente. La
 auditoría función a función de la 4.9.4 está en `05-auditoria-cierre.md`.
 
+**Validación (10-nov-2026):** H3F, H3Z y H3R validados en el PC. La escritura
+controlada en SharePoint (SP) y el lanzador (APP) quedan para H4.
+
 ## 1. Motor de planificación y estados (dominio)
 
 | ID | Funcionalidad | Implementación 4.9.4 | Casos | Estado |
@@ -95,7 +98,7 @@ casos automáticos sobre el escenario real anonimizado:
 | 4 | E06 | 20 | K14, K15 |
 | 5 | S01 | 21 | K13 |
 | 6 | S02 | 22 | K10, K11 |
-| 7 | E11 | 23–26 | Solo React: se validarán en H3-A |
+| 7 | E11 | 23–26 | Solo React: validadas en H3A |
 | 8 | K01 | 27 | Concurrencia: H2 (aviso de conflicto aprobado) |
 | 9 | C01 | 28 | Sin conexión: H3Z (`pruebas-cierre.cjs`, `CopiaSinConexionTest`) |
 | 10 | C02 | 29 | R01 |
