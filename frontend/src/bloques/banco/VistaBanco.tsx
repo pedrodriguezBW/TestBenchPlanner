@@ -9,6 +9,8 @@ import { Gantt } from './Gantt';
 import { ListaCerrados } from './ListaCerrados';
 import { TablaEnsayos, type AccionesFila } from './TablaEnsayos';
 import { VentanaCierre, type DatosCierre } from './VentanaCierre';
+import { VentanaFacturacionEnsayo } from '../facturacion/FichaEnsayo';
+import { useEstadosFacturacion } from '../facturacion/estadosEnsayos';
 
 /*
  * Pantalla de un banco (renderBench): cabecera con Completed / Confirm all /
@@ -22,6 +24,8 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
   const [verCerrados, setVerCerrados] = useState(false);
   const [buscadorPara, setBuscadorPara] = useState<FilaEnsayo | null>(null);
   const [recursosPara, setRecursosPara] = useState<string | null>(null);
+  const [facturacionPara, setFacturacionPara] = useState<{ banco: string; id: string; titulo: string } | null>(null);
+  const estadosFacturacion = useEstadosFacturacion(vista);
   const [reparto, setReparto] = usePreferencia<number>('tbp_reparto_banco', 1);
   const contenedor = useRef<HTMLDivElement>(null);
 
@@ -57,6 +61,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
     aplicarSugerencia: (f) => void operar(banco, 'aplicarSugerencia', { id: f.id }, [f.id]),
     abrirBuscadorAprobaciones: (f) => setBuscadorPara(f),
     abrirRecursos: (f) => { if (!soloLectura) setRecursosPara(f.id); },
+    abrirFacturacion: (f) => setFacturacionPara({ banco, id: f.id, titulo: tituloEnsayo(f) }),
     soltar: (origen, destino) => {
       const mueve = seleccion.size && seleccion.has(origen) ? seleccionActiva : [origen];
       if (mueve.length === 1 && mueve[0] === destino) return;
@@ -137,7 +142,8 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
           <div className="card">
             <div className="tbl-wrap">
               <TablaEnsayos banco={banco} filas={activas} hoy={vista.hoy} estadosAprobacion={estadosAprobacion}
-                seleccion={seleccion} onSeleccion={setSeleccion} acciones={acciones} soloLectura={soloLectura} />
+                seleccion={seleccion} onSeleccion={setSeleccion} acciones={acciones} soloLectura={soloLectura}
+                estadosFacturacion={estadosFacturacion} />
             </div>
           </div>
         </div>
@@ -154,10 +160,13 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
       </div>
       <ListaCerrados banco={banco} vista={vista} abierto={verCerrados} onCerrar={() => setVerCerrados(false)}
         onCorregir={(b, f) => setCierre({ banco: b, id: f.id, correccion: true, titulo: tituloEnsayo(f) })}
-        onReutilizado={(b) => onIrABanco(b)} />
+        onReutilizado={(b) => onIrABanco(b)}
+        onFacturacion={(b, f) => setFacturacionPara({ banco: b, id: f.id, titulo: tituloEnsayo(f) })} />
       {/* Va después de la lista de cerrados: «✎ Corregir» se abre encima de ella, como en la 4.9.4. */}
       <VentanaCierre datos={cierre} onCerrar={() => setCierre(null)} />
       <SelectorRecursos banco={banco} id={recursosPara} onCerrar={() => setRecursosPara(null)} />
+      <VentanaFacturacionEnsayo banco={facturacionPara?.banco ?? banco} id={facturacionPara?.id ?? null} titulo={facturacionPara?.titulo ?? ''}
+        onCerrar={() => setFacturacionPara(null)} />
       <BuscadorAprobaciones abierto={!!buscadorPara} onCerrar={() => setBuscadorPara(null)}
         onElegir={(id) => { if (buscadorPara) editarCampo(banco, buscadorPara.id, 'approvalId', id); setBuscadorPara(null); }} />
     </>

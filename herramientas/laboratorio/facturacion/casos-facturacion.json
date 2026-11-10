@@ -1,0 +1,199 @@
+{
+  "descripcion": "Casos de facturación. Los genera y comprueba herramientas/laboratorio/facturacion/generar-referencias.cjs con el motor JavaScript; ParidadFacturacionTest (Java) repite los mismos pasos y compara.",
+  "maestrosComunes": [
+    {"anadir": "mapeos", "valores": [
+      {"id": "C-01", "banco": "MD1", "tipoEnsayo": "", "categoria": "R&D", "regla": "", "activo": true},
+      {"id": "C-02", "banco": "MD2", "tipoEnsayo": "", "categoria": "Heating Plates", "regla": "", "activo": true},
+      {"id": "C-03", "banco": "MD2", "tipoEnsayo": "Burst Test", "categoria": "Cámara choques térmicos", "regla": "", "activo": true},
+      {"id": "C-04", "banco": "Fatiga", "tipoEnsayo": "", "categoria": "HVCH L02", "regla": "", "activo": true},
+      {"id": "C-05", "banco": "MD3", "tipoEnsayo": "", "categoria": "RACS", "regla": "", "activo": true},
+      {"id": "C-06", "banco": "MD4", "tipoEnsayo": "", "categoria": "Caudal", "regla": "", "activo": true}
+    ]},
+    {"anadir": "setupRecomendado", "valores": [{"categoria": "R&D", "banco": "", "tipoEnsayo": "", "horas": 2}, {"categoria": "", "banco": "MD1", "tipoEnsayo": "Thermal Fatigue", "horas": 3.5}]}
+  ],
+  "casos": [
+    {
+      "nombre": "division-paradas-y-redondeo",
+      "explicacion": "Ensayo del 15-ene 08:00 al 10-feb 17:20 en una cámara climática sin fines de semana. Enero (jueves 15 a las 08:00 → miércoles 21 a las 00:00): 136 h − 48 h de fin de semana − 4 h de parada no facturable (la parte del sábado no se resta dos veces) = 84 h + 2 h de setup. Febrero: 497 h 20 min − 144 h − 4,5 h = 348 h 50 min → 348,75 h.",
+      "ahora": "2026-03-02T09:00",
+      "ensayos": [
+        {"id": "e1", "banco": "KK127", "tipoEnsayo": "Eff & dP", "proyecto": "11364 - R&D eHeater", "fechaInicio": "2026-01-15", "fechaFin": "2026-02-10",
+         "billing": {"startTime": "08:00", "endTime": "17:20", "hv": "no", "setupHours": 2, "setupConfirmed": true,
+           "stops": [
+             {"id": "p1", "from": "2026-01-16T20:00", "to": "2026-01-17T04:00", "reason": "Averia", "billable": false},
+             {"id": "p2", "from": "2026-02-03T10:15", "to": "2026-02-03T14:45", "reason": "Averia", "billable": false},
+             {"id": "p3", "from": "2026-02-05T08:00", "to": "2026-02-05T12:00", "reason": "Falta de recursos", "billable": true}]}}
+      ],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-01"},
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "ficha", "ensayo": "e1"}
+      ],
+      "esperado": [
+        {"paso": 0, "linea": "e1@2026-01", "horasNetas": 84, "horasSetup": 2, "tarifa": 3.72, "coste": 319.92, "estado": "READY", "minutosBrutos": 8160, "minutosFinDeSemana": 2880, "minutosParadas": 240},
+        {"paso": 1, "linea": "e1@2026-02", "horasNetas": 348.75, "horasSetup": 0, "tarifa": 3.72, "coste": 1297.35, "estado": "READY", "minutosBrutos": 29840, "minutosFinDeSemana": 8640, "minutosParadas": 270}
+      ]
+    },
+    {
+      "nombre": "abierto-y-periodo-en-curso",
+      "explicacion": "Ensayo abierto desde el 10-feb 06:00 que trabaja fines de semana (R&D, HV Sí, regla reductora /100). Febrero hasta el corte: 258 h + 2 h de setup. Marzo, consultado el 5-mar 12:00: 300 h hasta ahora.",
+      "ahora": "2026-03-05T12:00",
+      "ensayos": [
+        {"id": "e2", "banco": "MD1", "tipoEnsayo": "Thermal Fatigue", "cerrado": false, "proyecto": "11364 - R&D", "fechaInicio": "2026-02-10", "finDeSemana": true,
+         "billing": {"startTime": "06:00", "hv": "yes", "setupHours": 2, "setupConfirmed": true}}
+      ],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "crear", "periodo": "2026-03"},
+        {"tipo": "ficha", "ensayo": "e2"}
+      ],
+      "esperado": [
+        {"paso": 0, "linea": "e2@2026-02", "horasNetas": 258, "horasSetup": 2, "tarifa": 21.5, "estado": "WARNING"},
+        {"paso": 1, "linea": "e2@2026-03", "horasNetas": 300, "horasSetup": 0, "estado": "WARNING"}
+      ]
+    },
+    {
+      "nombre": "incidencias-y-seleccion",
+      "explicacion": "Un ensayo por cada situación de la tabla de selección y de incidencias.",
+      "ahora": "2026-03-02T09:00",
+      "ensayos": [
+        {"id": "sinhv", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "sinhora", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "varias", "banco": "KK127", "proyecto": "01155 - FCA - EGR Valve", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "conorden", "banco": "KK127", "proyecto": "01155 - FCA - EGR Valve", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0.5, "setupConfirmed": true, "order": "463B01155MS0"}},
+        {"id": "ordenmala", "banco": "KK127", "proyecto": "01155 - FCA - EGR Valve", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true, "order": "463B99999XX0"}},
+        {"id": "ordenexc", "banco": "KK127", "proyecto": "01155 - FCA - EGR Valve", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true, "order": "463B99999XX0", "orderException": {"justification": "Orden del cliente final", "by": "Admin", "at": "2026-02-05"}}},
+        {"id": "sinbanco", "banco": "Turismos", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "sinsetup", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no"}},
+        {"id": "planificado", "banco": "KK127", "cerrado": false, "proyecto": "11364 - R&D", "inicioPlan": "2026-02-16", "finPlan": "2026-03-10"},
+        {"id": "asumido", "banco": "KK127", "cerrado": false, "proyecto": "11364 - R&D", "inicioAsumido": true, "inicioPlan": "2026-02-01", "finPlan": "2026-02-28"},
+        {"id": "nofact", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"billable": false, "billableBy": "Editor", "billableAt": "2026-02-05"}},
+        {"id": "especial", "banco": "KK127", "tipoEspecial": true, "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04"},
+        {"id": "solapes", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true,
+           "stops": [{"from": "2026-02-02T10:00", "to": "2026-02-02T12:00", "reason": "Averia", "billable": false}, {"from": "2026-02-02T11:00", "to": "2026-02-02T13:00", "reason": "Averia", "billable": false}, {"from": "2026-02-05T10:00", "to": "2026-02-05T11:00", "reason": "Averia", "billable": false}]}},
+        {"id": "sinproyecto", "banco": "KK127", "proyecto": "99998 - Desconocido", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "sintarifa", "banco": "MD4", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "yes", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "racs", "banco": "MD3", "proyecto": "80000511 - Volvo GPA", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true, "pieces": 5}},
+        {"id": "tipoconcreto", "banco": "MD2", "tipoEnsayo": "Burst Test", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-04", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "yes", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "fuera", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-01-02", "fechaFin": "2026-01-20", "billing": {"startTime": "08:00", "endTime": "16:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}}
+      ],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "enviar", "periodo": "2026-02"},
+        {"tipo": "ficha", "ensayo": "varias"},
+        {"tipo": "ficha", "ensayo": "solapes"}
+      ],
+      "esperado": [
+        {"paso": 0, "linea": "sinhv@2026-02", "estado": "BLOCKED", "incidencia": "HV_SIN_SELECCIONAR"},
+        {"paso": 0, "linea": "sinhora@2026-02", "estado": "BLOCKED", "incidencia": "FALTA_HORA_INICIO"},
+        {"paso": 0, "linea": "varias@2026-02", "estado": "BLOCKED", "incidencia": "ORDEN_NO_SELECCIONADA"},
+        {"paso": 0, "linea": "conorden@2026-02", "estado": "READY", "horasNetas": 56, "horasSetup": 0.5},
+        {"paso": 0, "linea": "ordenmala@2026-02", "estado": "BLOCKED", "incidencia": "ORDEN_NO_VALIDA"},
+        {"paso": 0, "linea": "ordenexc@2026-02", "estado": "WARNING", "incidencia": "ORDEN_EXCEPCIONAL"},
+        {"paso": 0, "linea": "sinbanco@2026-02", "estado": "BLOCKED", "incidencia": "SIN_CATEGORIA"},
+        {"paso": 0, "linea": "sinsetup@2026-02", "estado": "BLOCKED", "incidencia": "SETUP_NO_CONFIRMADO"},
+        {"paso": 0, "linea": "planificado@2026-02", "estado": "PENDING"},
+        {"paso": 0, "linea": "asumido@2026-02", "estado": "BLOCKED", "incidencia": "FALTA_FECHA_REAL"},
+        {"paso": 0, "linea": "nofact@2026-02", "estado": "EXCLUDED"},
+        {"paso": 0, "linea": "especial@2026-02", "ausente": true},
+        {"paso": 0, "linea": "solapes@2026-02", "estado": "BLOCKED", "incidencia": "PARADAS_INVALIDAS"},
+        {"paso": 0, "linea": "sinproyecto@2026-02", "estado": "BLOCKED", "incidencia": "PROYECTO_SIN_ALTA"},
+        {"paso": 0, "linea": "sintarifa@2026-02", "estado": "BLOCKED", "incidencia": "TARIFA_NO_ENCONTRADA"},
+        {"paso": 0, "linea": "racs@2026-02", "estado": "READY", "coste": 634.6},
+        {"paso": 0, "linea": "tipoconcreto@2026-02", "estado": "READY", "tarifa": 10.19},
+        {"paso": 0, "linea": "fuera@2026-02", "ausente": true},
+        {"paso": 1, "error": true}
+      ]
+    },
+    {
+      "nombre": "flujo-revision-aprobacion-reapertura",
+      "explicacion": "Ajuste con y sin justificación, propuesta de tarifa, envío, aprobación bloqueada por propuestas, validación de Admin, aprobación, alerta tras aprobar, reapertura y conflicto de ajuste al recalcular.",
+      "ahora": "2026-03-02T09:00",
+      "ensayos": [
+        {"id": "f1", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-06", "billing": {"startTime": "08:00", "endTime": "08:00", "hv": "no", "setupHours": 1, "setupConfirmed": true}},
+        {"id": "f2", "banco": "MD2", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-09", "fechaFin": "2026-02-13", "billing": {"startTime": "06:00", "endTime": "18:00", "hv": "no", "setupHours": 4, "setupConfirmed": true}}
+      ],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "ajustar", "datos": {"campos": {"horasNetas": 90}}},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "ajustar", "datos": {"campos": {"horasNetas": 90}, "justificacion": "Arranque retrasado 6 h"}},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f2@2026-02", "accion": "proponerTarifa", "datos": {"tarifa": 14, "justificacion": "Acuerdo con el cliente"}},
+        {"tipo": "enviar", "periodo": "2026-02"},
+        {"tipo": "aprobar", "periodo": "2026-02", "usuario": "admin"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "validarAjuste", "usuario": "editor"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "validarAjuste", "usuario": "admin"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f2@2026-02", "accion": "resolverTarifa", "datos": {"decision": "aprobar", "alcance": "LINEA", "justificacion": "Ok"}, "usuario": "admin"},
+        {"tipo": "aprobar", "periodo": "2026-02", "usuario": "editor"},
+        {"tipo": "aprobar", "periodo": "2026-02", "usuario": "admin"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "excluir"},
+        {"tipo": "exportar", "periodo": "2026-02", "usuario": "admin"},
+        {"tipo": "cambiarEnsayo", "ensayo": "f1", "billing": {"endTime": "20:00"}},
+        {"tipo": "alertas", "periodo": "2026-02"},
+        {"tipo": "reabrir", "periodo": "2026-02", "usuario": "admin"},
+        {"tipo": "reabrir", "periodo": "2026-02", "usuario": "admin", "justificacion": "El ensayo f1 terminó más tarde"},
+        {"tipo": "recalcular", "periodo": "2026-02"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "f1@2026-02", "accion": "resolverCambio", "datos": {"campo": "horasNetas", "opcion": "recalculado", "justificacion": "Se usa el nuevo cálculo"}},
+        {"tipo": "aprobar", "periodo": "2026-02", "usuario": "admin"}
+      ],
+      "esperado": [
+        {"paso": 0, "linea": "f1@2026-02", "horasNetas": 96, "horasSetup": 1, "coste": 360.84, "estado": "READY"},
+        {"paso": 1, "error": true},
+        {"paso": 2, "linea": "f1@2026-02", "estado": "BLOCKED", "incidencia": "AJUSTE_SIN_VALIDAR"},
+        {"paso": 3, "linea": "f2@2026-02", "estado": "BLOCKED", "incidencia": "TARIFA_PENDIENTE"},
+        {"paso": 4, "estadoPeriodo": "EN_REVISION"},
+        {"paso": 5, "error": true},
+        {"paso": 6, "error": true},
+        {"paso": 7, "linea": "f1@2026-02", "estado": "ADJUSTED"},
+        {"paso": 9, "error": true},
+        {"paso": 10, "estadoPeriodo": "APROBADO"},
+        {"paso": 11, "error": true},
+        {"paso": 14, "alertas": ["f1@2026-02"]},
+        {"paso": 15, "error": true},
+        {"paso": 16, "estadoPeriodo": "EN_REVISION"},
+        {"paso": 17, "linea": "f1@2026-02", "incidencia": "CAMBIO_POSTERIOR"},
+        {"paso": 18, "linea": "f1@2026-02", "horasNetas": 108, "estado": "READY"},
+        {"paso": 19, "estadoPeriodo": "APROBADO"}
+      ]
+    },
+    {
+      "nombre": "aplazamiento-y-duplicados",
+      "explicacion": "Una línea de febrero se aplaza a marzo; marzo la recibe como «Pendiente del periodo anterior» con la tarifa de marzo y conserva el periodo de ejecución.",
+      "ahora": "2026-03-25T09:00",
+      "ensayos": [
+        {"id": "a1", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-03", "billing": {"startTime": "08:00", "endTime": "08:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "a2", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-04", "fechaFin": "2026-02-05", "billing": {"startTime": "08:00", "endTime": "08:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}}
+      ],
+      "maestros": [{"anadir": "tarifas", "valores": [{"id": "T-PRUEBA-MAR", "categoria": "Cámara climática", "proyecto": "", "planta": "", "lineaProducto": "", "hv": "no", "importe": 4, "unidad": "H", "desde": "2026-02-21", "hasta": "", "nota": "prueba"}]}],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "a2@2026-02", "accion": "aplazar"},
+        {"tipo": "enviar", "periodo": "2026-02"},
+        {"tipo": "aprobar", "periodo": "2026-02", "usuario": "admin"},
+        {"tipo": "crear", "periodo": "2026-03"}
+      ],
+      "esperado": [
+        {"paso": 1, "linea": "a2@2026-02", "estado": "DEFERRED"},
+        {"paso": 3, "estadoPeriodo": "APROBADO"},
+        {"paso": 4, "linea": "a2@2026-02", "estado": "WARNING", "incidencia": "DE_PERIODO_ANTERIOR", "tarifa": 4, "horasNetas": 24}
+      ]
+    },
+    {
+      "nombre": "tarifa-excepcional-maestra",
+      "explicacion": "Un Admin aprueba una tarifa propuesta como nueva tarifa maestra: se crea una versión desde el inicio del periodo y todas las líneas de la categoría la usan.",
+      "ahora": "2026-03-02T09:00",
+      "ensayos": [
+        {"id": "t1", "banco": "KK127", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-02", "fechaFin": "2026-02-03", "billing": {"startTime": "08:00", "endTime": "08:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}},
+        {"id": "t2", "banco": "KK129", "proyecto": "11364 - R&D", "fechaInicio": "2026-02-04", "fechaFin": "2026-02-05", "billing": {"startTime": "08:00", "endTime": "08:00", "hv": "no", "setupHours": 0, "setupConfirmed": true}}
+      ],
+      "pasos": [
+        {"tipo": "crear", "periodo": "2026-02"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "t1@2026-02", "accion": "proponerTarifa", "datos": {"tarifa": 5, "justificacion": "Revisión anual"}, "usuario": "editor"},
+        {"tipo": "accion", "periodo": "2026-02", "linea": "t1@2026-02", "accion": "resolverTarifa", "datos": {"decision": "sustituir", "tarifa": 4.5, "alcance": "MAESTRA", "justificacion": "Nueva tarifa 2026"}, "usuario": "admin"}
+      ],
+      "esperado": [
+        {"paso": 2, "linea": "t2@2026-02", "tarifa": 4.5, "coste": 108},
+        {"paso": 2, "linea": "t1@2026-02", "tarifa": 4.5, "estado": "READY"}
+      ]
+    }
+  ]
+}

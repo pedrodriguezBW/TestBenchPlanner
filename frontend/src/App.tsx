@@ -13,6 +13,10 @@ import { ConfigProyectos } from './bloques/configuracion/ConfigProyectos';
 import { ConfigUsuarios } from './bloques/configuracion/ConfigUsuarios';
 import { RegistroActividad } from './bloques/configuracion/RegistroActividad';
 import { VistaRecursos } from './bloques/recursos/VistaRecursos';
+import { VistaPeriodos } from './bloques/facturacion/VistaPeriodos';
+import { VistaRevision } from './bloques/facturacion/VistaRevision';
+import { VistaOverview } from './bloques/facturacion/VistaOverview';
+import { VistaConfiguracionFacturacion } from './bloques/facturacion/VistaConfiguracionFacturacion';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { AvisoSinConexion, AvisoVersion, Bienvenida, Presencia } from './componentes/Colaboracion';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
@@ -111,6 +115,12 @@ export function App() {
           ))}
           <div className="grp-title">Additional Equipment</div>
           {pestana('__resources__', <>&#128203; List of Equipments</>)}
+          {/* Facturación: módulo independiente de la planificación y de Settings. */}
+          <div className="grp-title">Billing</div>
+          {pestana('__billing_periods__', <>&#128182; Periods</>)}
+          {pestana('__billing_review__', <>&#128269; Review</>)}
+          {pestana('__billing_overview__', <>&#128202; Overview / Reports</>)}
+          {esAdmin && pestana('__billing_config__', <>&#128296; Configuration</>)}
           <div className="grp-title">Configuration</div>
           {esAdmin && pestana('__benches__', <>&#128296; Test Benches</>)}
           {esAdmin && pestana('__rescfg__', <>&#128296; Equipments List</>)}
@@ -137,6 +147,10 @@ export function App() {
           {vista && pantalla === '__tools__' && (esAdmin ? <ConfigHerramientas /> : <VistaDashboard />)}
           {vista && pantalla === '__activity__' && (esAdmin ? <RegistroActividad /> : <VistaDashboard />)}
           {vista && pantalla === '__about__' && <AcercaDe version={VERSION} />}
+          {vista && pantalla === '__billing_periods__' && <VistaPeriodos onAbrir={ir} />}
+          {vista && pantalla === '__billing_review__' && <VistaRevision />}
+          {vista && pantalla === '__billing_overview__' && <VistaOverview />}
+          {vista && pantalla === '__billing_config__' && (esAdmin ? <VistaConfiguracionFacturacion /> : <VistaDashboard />)}
         </main>
       </div>
       <datalist id="dl-types">{TIPOS_DE_ENSAYO.map((t) => <option key={t} value={t} />)}</datalist>

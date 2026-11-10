@@ -5,6 +5,8 @@ import { Dialogo } from '../../componentes/Dialogo';
 import { usePlanificador } from '../../estado/Planificador';
 import { fmt } from '../../utilidades/fechas';
 import { COLOR_ESTADO, ESTADOS_DECLARABLES, etiquetaMotivo, MOTIVOS_RETRASO } from '../../utilidades/textos';
+import type { DatosFacturacionEnsayo } from '../../api/facturacion';
+import { SeccionFacturacionCierre } from '../facturacion/FichaEnsayo';
 
 /*
  * Ventana de cierre (openCloseModal / closeRecalc / confirmClose de la 4.9.4).
@@ -21,7 +23,9 @@ export interface DatosCierre {
 const estiloCampo = { width: '100%', padding: '6px 8px', borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)' };
 
 export function VentanaCierre({ datos, onCerrar }: { datos: DatosCierre | null; onCerrar: () => void }) {
-  const { cerrarEnsayo, mostrarMensaje } = usePlanificador();
+  const { cerrarEnsayo, guardarFacturacion, mostrarMensaje } = usePlanificador();
+  // Datos de facturación de la sección plegable: el cierre operativo no depende de ellos.
+  const [facturacion, setFacturacion] = useState<{ valor: DatosFacturacionEnsayo; errores: string[]; tocado: boolean } | null>(null);
   const [propuesta, setPropuesta] = useState<PropuestaCierre | null>(null);
   const [valores, setValores] = useState<ValoresCierre | null>(null);
   const [validacion, setValidacion] = useState<ValidacionCierre | null>(null);
@@ -31,6 +35,7 @@ export function VentanaCierre({ datos, onCerrar }: { datos: DatosCierre | null; 
     setPropuesta(null);
     setValores(null);
     setValidacion(null);
+    setFacturacion(null);
     if (!datos) return;
     api.propuestaCierre(datos.banco, datos.id, datos.correccion)
       .then((p) => { setPropuesta(p); setValores(p.valores); setValidacion(p.validacion); })
@@ -67,6 +72,13 @@ export function VentanaCierre({ datos, onCerrar }: { datos: DatosCierre | null; 
     if (v.error) return;
     setEnviando(true);
     const ok = await cerrarEnsayo(datos.banco, datos.id, valores, datos.correccion);
+    if (ok && facturacion?.tocado) {
+      if (facturacion.errores.length) {
+        mostrarMensaje(`Ensayo cerrado. Los datos de facturación no se han guardado: ${facturacion.errores.join(' ')}`);
+      } else {
+        await guardarFacturacion(datos.banco, datos.id, facturacion.valor);
+      }
+    }
     setEnviando(false);
     if (ok) onCerrar();
   };
@@ -110,6 +122,10 @@ export function VentanaCierre({ datos, onCerrar }: { datos: DatosCierre | null; 
         <input id="cl-dn" placeholder="Opcional" style={estiloCampo} value={valores.notaParada} onChange={(e) => cambiar('notaParada', e.target.value)} />
         <label>Días facturables</label><div id="cl-bill">{facturables}</div>
       </div>
+      <SeccionFacturacionCierre banco={datos.banco} id={datos.id} fechaInicio={valores.arranqueReal} fechaFin={valores.finReal} onCambio={setFacturacion} />
+      {facturacion?.tocado && facturacion.errores.length > 0 && (
+        <div className="fac-aviso">Los datos de facturación tienen errores: el ensayo se cerrará igualmente, pero esos datos no se guardarán.</div>
+      )}
       <div id="cl-err" style={{ color: 'var(--danger)', fontWeight: 700, minHeight: 18, marginTop: 8 }}>{v.error}</div>
       <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
         <button className="btn ghost" onClick={onCerrar}>Cancelar</button>

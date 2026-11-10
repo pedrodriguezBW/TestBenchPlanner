@@ -33,7 +33,7 @@ export class ErrorSinConexion extends Error {
   }
 }
 
-async function peticion<T>(metodo: string, ruta: string, cuerpo?: unknown): Promise<T> {
+export async function peticion<T>(metodo: string, ruta: string, cuerpo?: unknown): Promise<T> {
   let respuesta: Response;
   try {
     // El código de la pestaña permite al backend descartar sus consultas si se recarga o se cierra.

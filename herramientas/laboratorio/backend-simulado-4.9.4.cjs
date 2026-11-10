@@ -20,6 +20,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { abrirVersionOriginal, cerrarNavegador, leerEscenario, nombreExcel } = require('./oraculo-4.9.4.cjs');
 const { ejecutarPaso } = require('./controlador-4.9.4.cjs');
+const facturacionSimulada = require('./facturacion/api-simulada.cjs');
 
 const RAIZ = path.resolve(__dirname, '../..');
 const PUERTO = Number(process.argv[2] || 5001);
@@ -50,6 +51,7 @@ async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = 
   sesion = await abrirVersionOriginal({ escenario, fecha, rol, aceptarDialogos: true });
   hoyLaboratorio = fecha;
   laboratorio = LABORATORIO_INICIAL();
+  if (typeof facturacion !== 'undefined') facturacion.reiniciar();
   return { ok: true, hoy: fecha };
 }
 
@@ -113,6 +115,16 @@ async function comprobarVersiones(versiones) {
     .map(([id]) => ({ id, version: huella(textos[id]), borrado: !textos[id], datos: textos[id] ? JSON.parse(textos[id]) : null }));
   return filas.length ? { estado: 409, cuerpo: { error: 'conflicto', mensaje: 'Otra persona ha cambiado este ensayo', filas } } : null;
 }
+
+/** Facturación (/api/v1/facturacion) con el motor JavaScript del laboratorio; DataJson.billing en la 4.9.4. */
+const facturacion = facturacionSimulada.crear({
+  vista, comprobarVersiones, rol: () => rol, hoy: () => hoyLaboratorio, aprobaciones: () => (escenario ? escenario.aprobaciones : []),
+  ponerBilling: (banco, id, billing) => sesion.evaluar(([bn, rid, b]) => {
+    const r = (state.benches[bn] || []).find((x) => x.id === rid);
+    if (r) r.billing = b;
+    recomputeAll();
+  }, [banco, id, billing]),
+});
 
 /** Ejecuta pasos y devuelve 422 si la 4.9.4 mostró un aviso (alert) de regla. */
 async function pasos(lista) {
@@ -321,6 +333,7 @@ async function atender(metodo, ruta, cuerpo) {
     const r = copia ? 'readonly' : rol;
     return { estado: 200, cuerpo: Object.assign({ email: CORREO_POR_ROL[rol], nombre: 'Laboratorio', responsable: rol === 'admin' ? 'Laboratorio' : (u.responsibleName || ''), rol: r, esAdmin: r === 'admin', soloLectura: r === 'readonly' }, copia ? { copiaSinConexion: copia } : {}) };
   }
+  if (p.startsWith('/api/v1/facturacion/')) return facturacion.atender(metodo, p, url.searchParams, cuerpo || {});
   if (p === '/api/v1/planificacion') return { estado: 200, cuerpo: Object.assign((await vista()).vista, copia ? { copiaSinConexion: copia } : {}) };
   if (p === '/api/v1/version' && metodo === 'GET') return { estado: 200, cuerpo: { backend: '5.0.0', published: laboratorio.publicada || '5.0.0' } };
   if (p === '/api/v1/presencia' && metodo === 'POST') {

@@ -16,6 +16,12 @@ durante la transición.
 > o tiene una decisión documentada. Solo queda H4 (entrega y retirada de la
 > 4.9.4), aparcado mientras se añade la facturación. `/clasico` sigue disponible
 > como respaldo hasta entonces.
+>
+> **Facturación (H5, 10-nov-2026): implementada como código** según el plan
+> completo de facturación (fases 1–7 y base de RACS): sección «Billing» con
+> periodos del 21 al 20, revisión, overview, configuración, aprobación,
+> auditoría y exportaciones (Excel, Controlling y HTML). Pendiente de `mvnw clean
+> verify` en el PC y de validación por Pedro. Detalle en `docs/07-facturacion.md`.
 
 ## Índice
 
@@ -45,6 +51,7 @@ durante la transición.
 | **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Terminado**; validado en el PC |
 | **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Terminado**; validado en el PC |
 | **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Terminado**; validado en el PC (10-nov-2026) |
+| **H5 · Facturación** | Módulo «Billing» separado de la planificación: datos de facturación del ensayo (hora real, paradas con fecha y hora, setup, HV, orden, facturable), motor de periodos y tramos, maestros (proyectos y órdenes, categorías, mapeos, tarifas versionadas, reglas, Controlling), revisión con ajustes trazables y tarifas excepcionales, aprobación con foto inmutable, reapertura, auditoría y exportaciones. Paridad con las 522 filas de 2026 y la hoja Controlling del Excel. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente; aparcado hasta terminar la facturación |
 
 ### Funcionalidad disponible
@@ -95,6 +102,10 @@ búsquedas, navegación y consultas siguen disponibles en todas las pantallas.
 - Rendimiento con SharePoint: lecturas compartidas sin repeticiones, consultas
 en paralelo a los guardados, estados de aprobación por lotes, recarga (F5) sin
 avisos por peticiones abandonadas y altas o copias de ensayos visibles al momento.
+- Facturación (sección «Billing»): Periods, Review, Overview / Reports y
+Configuration (Admin); columna «Billing» y ficha «Billing Data» en cada banco y en
+los cerrados; sección opcional en la ventana de cierre (el cierre no depende de
+los datos económicos). Ver `docs/07-facturacion.md`.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` como respaldo hasta la retirada de la
 4.9.4 (H4).
@@ -160,6 +171,7 @@ TestBenchPlanner/
 │       │   │   │   ├── calendario/        Festivos, semanas ISO y días laborables
 │       │   │   │   ├── comun/             Semántica y serialización JSON compatible
 │       │   │   │   ├── ensayo/            Ensayos, duración, estados y motivos
+│       │   │   │   ├── facturacion/       Periodos, tramos, tarifas, reglas, revisión y resúmenes de facturación
 │       │   │   │   ├── kpi/               KPI, ocupación, fotos e histórico
 │       │   │   │   ├── listas/            Protección de listas compartidas
 │       │   │   │   ├── operaciones/       Edición, cola y cierre
@@ -187,6 +199,7 @@ TestBenchPlanner/
 │       ├── bloques/kpi/                   Bloque C: KPI History y estadísticas
 │       ├── bloques/recursos/              Bloque D: equipos auxiliares
 │       ├── bloques/configuracion/         Bloque E: Test Benches, Projects, Users, Tools, About y Activity log
+│       ├── bloques/facturacion/           Facturación: Periods, Review, Overview, Configuration y ficha «Billing Data»
 │       ├── componentes/                   Diálogos, avisos y selector de fecha
 │       ├── estado/                        Carga, guardado, conflictos, relectura, Dashboard, equipos y ciclo de vida
 │       ├── estilos/                       CSS original y estilos de la nueva interfaz
@@ -364,6 +377,9 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `AprobacionesSharePointTest` · `CatalogosSharePointTest` | Estados de aprobación por lotes con el mismo resultado por ID; catálogos y usuarios leídos una sola vez al arrancar. |
 | `CopiaSinConexionConcurrenciaTest` | 32 lecturas simultáneas no chocan al guardar la copia sin conexión (sin `.tmp` sueltos) y solo se reescribe si cambia el contenido. |
 | `ManejadorErroresTest` · `FiltroPestanaTest` | Una petición abandonada al recargar no deja avisos; solo las consultas se asocian a la pestaña. |
+| `ParidadFacturacionTest` | Facturación: el dominio Java repite los 6 casos del laboratorio (tramos, horas, incidencias, ajustes, aprobación, reapertura, aplazamiento, tarifa maestra) y da lo mismo que la referencia JavaScript. |
+| `ExcelFacturacionTest` | Las 522 filas de 2026 de `2026 Ensayos interno.xlsx` salen con la misma tarifa y coste; la hoja Controlling de octubre coincide fila a fila; el .xlsx de Controlling tiene sus columnas. |
+| `ApiFacturacionTest` | Facturación de punta a punta en local: maestros, ficha, periodo, 409, envío, aprobación, exportación, reapertura y auditoría. |
 | `GeneradorIdsTest` · `OperacionesInmediatasTest` · `ServicioPlanificacionLatenciaTest` | Altas y copias guardadas con el id que la interfaz ya muestra, sin relectura extra y con las reglas de siempre. |
 
 Las salidas de paridad quedan en `backend/target/paridad` y pueden volver a
@@ -385,6 +401,8 @@ TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-rendimiento.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-facturacion.cjs
+node herramientas/laboratorio/facturacion/generar-referencias.cjs   # referencias del motor de facturación
 cd frontend && npm test        # pruebas unitarias de altas y copias inmediatas
 ```
 
@@ -425,6 +443,8 @@ Propiedades principales de Spring Boot:
 | `planner.sharepoint.espejo-habilitado` | `true` | Actualiza columnas espejo cuando se permite escribir. |
 | `planner.sharepoint.puerto-depuracion` | `9222` | Puerto CDP de Edge. |
 | `planner.sharepoint.carriles-lectura` | `2` | Conexiones de solo lectura con Edge en paralelo a la principal (que hace todas las escrituras). `0` vuelve al comportamiento anterior (todo por una sola conexión). |
+| `planner.facturacion.almacen` | `local` | Dónde se guardan periodos, maestros, auditoría y exportaciones: `local` (ficheros de este PC) o `sharepoint` (carpeta compartida). |
+| `planner.facturacion.carpeta-sharepoint` | vacío | Carpeta de una biblioteca del sitio para la facturación compartida (crearla antes). |
 | `planner.listas.permitir-vacias` | `false` | Permite guardar sobre listas compartidas vacías solo en una instalación nueva. |
 
 ## APIs e interfaces
@@ -440,6 +460,8 @@ operaciones, cierre, configuración, aprobaciones, recursos e indicadores
 `/api/v1/version`) y exportaciones (`POST /api/v1/exportaciones/gantt`,
 `GET /api/v1/exportaciones/copia`, `POST /api/v1/importaciones/copia`).
 `/api/export_gantt` (contrato 4.9.4) usa el mismo generador de Excel.
+- **`/api/v1/facturacion/*`**: facturación (maestros, periodos, acciones de línea,
+envío, aprobación, reapertura, exportaciones, auditoría y ficha «Billing Data»).
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa
 la interfaz 4.9.4.
 - **`/api/v1/local/reinicio`**: reinicio del escenario para el laboratorio;
@@ -469,7 +491,8 @@ que modifican datos (editar, ordenar, añadir, borrar, cerrar, asignar, guardar
 catálogos…). Nunca se deshabilitan contenedores completos ni controles de
 consulta (filtros, búsquedas, semanas, rangos, zoom, foco, recargar). Toda
 escritura se comprueba también en el backend (403).
-- Facturación queda fuera del alcance de esta migración.
+- La facturación solo escribe en la planificación el objeto `DataJson.billing`
+del ensayo; sus periodos, maestros y auditoría van en su propio almacén.
 
 ## Documentación
 
@@ -489,5 +512,7 @@ a función de la 4.9.4 y resolución de los huecos (H3Z).
 defectos heredados y mejoras no bloqueantes, con el seguimiento por hito.
 - [`docs/06-rendimiento-sharepoint.md`](docs/06-rendimiento-sharepoint.md):
 causas y correcciones de los retrasos con SharePoint (H3R).
+- [`docs/07-facturacion.md`](docs/07-facturacion.md): análisis, diseño, reglas,
+pantallas, pruebas y pendientes de la facturación (H5).
 - [`herramientas/laboratorio/README.md`](herramientas/laboratorio/README.md): uso
 del laboratorio de paridad.

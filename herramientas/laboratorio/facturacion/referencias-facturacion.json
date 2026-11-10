@@ -1,0 +1,4077 @@
+{
+ "generado": "motor.cjs",
+ "casos": [
+  {
+   "nombre": "division-paradas-y-redondeo",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-01",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "e1@2026-01",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-01-15T08:00",
+        "tramoFin": "2026-01-21T00:00",
+        "minutosBrutos": 8160,
+        "minutosFinDeSemana": 2880,
+        "minutosParadas": 240,
+        "horasNetas": 84,
+        "horasSetup": 2,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 319.92,
+        "aplicado": {
+         "horasNetas": 84,
+         "horasSetup": 2,
+         "tarifa": 3.72,
+         "coste": 319.92,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 319.92,
+       "horasNetas": 84,
+       "horasSetup": 2,
+       "lineas": 1,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 319.92,
+        "totalQty": 86,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "e1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-01-21T00:00",
+        "tramoFin": "2026-02-10T17:20",
+        "minutosBrutos": 29840,
+        "minutosFinDeSemana": 8640,
+        "minutosParadas": 270,
+        "horasNetas": 348.75,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 1297.35,
+        "aplicado": {
+         "horasNetas": 348.75,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 1297.35,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 1297.35,
+       "horasNetas": 348.75,
+       "horasSetup": 0,
+       "lineas": 1,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 1297.35,
+        "totalQty": 348.75,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "ficha",
+     "error": "",
+     "ficha": {
+      "estado": "COMPLETO",
+      "faltan": [],
+      "errores": [],
+      "setupRecomendado": null,
+      "tramos": [
+       "2026-01:84",
+       "2026-02:348.75"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "nombre": "abierto-y-periodo-en-curso",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "e2@2026-02",
+        "estado": "WARNING",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ENSAYO_ABIERTO"
+        ],
+        "tramoInicio": "2026-02-10T06:00",
+        "tramoFin": "2026-02-21T00:00",
+        "minutosBrutos": 15480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 258,
+        "horasSetup": 2,
+        "categoria": "R&D",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": 21.5,
+        "coste": 3620.04776,
+        "aplicado": {
+         "horasNetas": 258,
+         "horasSetup": 2,
+         "tarifa": 21.5,
+         "coste": 3620.04776,
+         "orden": "463B11364MD4",
+         "categoria": "R&D"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 3620.04776,
+       "horasNetas": 258,
+       "horasSetup": 2,
+       "lineas": 1,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "R&D",
+        "orden": "463B11364MD4",
+        "amount": 3620.05,
+        "totalQty": 260,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-03",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "e2@2026-03",
+        "estado": "WARNING",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ENSAYO_ABIERTO",
+         "PERIODO_EN_CURSO"
+        ],
+        "tramoInicio": "2026-02-21T00:00",
+        "tramoFin": "2026-03-05T12:00",
+        "minutosBrutos": 18000,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 300,
+        "horasSetup": 0,
+        "categoria": "R&D",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": 21.5,
+        "coste": 3909.659887,
+        "aplicado": {
+         "horasNetas": 300,
+         "horasSetup": 0,
+         "tarifa": 21.5,
+         "coste": 3909.659887,
+         "orden": "463B11364MD4",
+         "categoria": "R&D"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 3909.659887,
+       "horasNetas": 300,
+       "horasSetup": 0,
+       "lineas": 1,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "R&D",
+        "orden": "463B11364MD4",
+        "amount": 3909.66,
+        "totalQty": 300,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "ficha",
+     "error": "",
+     "ficha": {
+      "estado": "COMPLETO",
+      "faltan": [],
+      "errores": [],
+      "setupRecomendado": 3.5,
+      "tramos": [
+       "2026-02:258",
+       "2026-03:300"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "nombre": "incidencias-y-seleccion",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "asumido@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_FECHA_REAL"
+        ],
+        "tramoInicio": "",
+        "tramoFin": "",
+        "minutosBrutos": null,
+        "minutosFinDeSemana": null,
+        "minutosParadas": null,
+        "horasNetas": null,
+        "horasSetup": null,
+        "categoria": null,
+        "orden": null,
+        "hv": null,
+        "tarifa": null,
+        "coste": null,
+        "aplicado": null,
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "planificado@2026-02",
+        "estado": "PENDING",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "",
+        "tramoFin": "",
+        "minutosBrutos": null,
+        "minutosFinDeSemana": null,
+        "minutosParadas": null,
+        "horasNetas": null,
+        "horasSetup": null,
+        "categoria": null,
+        "orden": null,
+        "hv": null,
+        "tarifa": null,
+        "coste": null,
+        "aplicado": null,
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "nofact@2026-02",
+        "estado": "EXCLUDED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_HORA_FIN",
+         "FALTA_HORA_INICIO",
+         "HV_SIN_SELECCIONAR",
+         "SETUP_NO_CONFIRMADO"
+        ],
+        "tramoInicio": "2026-02-02T00:00",
+        "tramoFin": "2026-02-05T00:00",
+        "minutosBrutos": 4320,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 72,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 72,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinhora@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_HORA_FIN",
+         "FALTA_HORA_INICIO"
+        ],
+        "tramoInicio": "2026-02-02T00:00",
+        "tramoFin": "2026-02-05T00:00",
+        "minutosBrutos": 4320,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 72,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 267.84,
+        "aplicado": {
+         "horasNetas": 72,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 267.84,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "conorden@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0.5,
+        "categoria": "Cámara climática",
+        "orden": "463B01155MS0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 210.18,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0.5,
+         "tarifa": 3.72,
+         "coste": 210.18,
+         "orden": "463B01155MS0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "ordenexc@2026-02",
+        "estado": "WARNING",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_EXCEPCIONAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B99999XX0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B99999XX0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "ordenmala@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_NO_VALIDA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B99999XX0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B99999XX0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinhv@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "HV_SIN_SELECCIONAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinproyecto@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "PROYECTO_SIN_ALTA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinsetup@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "SETUP_NO_CONFIRMADO"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "solapes@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "PARADAS_INVALIDAS"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 240,
+        "horasNetas": 52,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 193.44,
+        "aplicado": {
+         "horasNetas": 52,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 193.44,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "varias@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_NO_SELECCIONADA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "tipoconcreto@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara choques térmicos",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": 10.19,
+        "coste": 570.64,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 10.19,
+         "coste": 570.64,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara choques térmicos"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "racs@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "RACS",
+        "orden": "463B80511MD7",
+        "hv": "no",
+        "tarifa": 126.92,
+        "coste": 634.6,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 126.92,
+         "coste": 634.6,
+         "orden": "463B80511MD7",
+         "categoria": "RACS"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sintarifa@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_NO_ENCONTRADA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Caudal",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Caudal"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinbanco@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "SIN_CATEGORIA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": ""
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 2918.3,
+       "horasNetas": 740,
+       "horasSetup": 0.5,
+       "lineas": 16,
+       "bloqueadas": 10,
+       "excluidas": 1,
+       "aplazadas": 0,
+       "pendientes": 1
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "",
+        "amount": 416.64,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 2
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B01155MS0",
+        "amount": 210.18,
+        "totalQty": 56.5,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 669.6,
+        "totalQty": 236,
+        "um": "H",
+        "lineas": 4
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B99999XX0",
+        "amount": 416.64,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 2
+       },
+       {
+        "equipo": "RACS",
+        "orden": "463B80511MD7",
+        "amount": 634.6,
+        "totalQty": 5,
+        "um": "PC",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara choques térmicos",
+        "orden": "463B11364MD4",
+        "amount": 570.64,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Caudal",
+        "orden": "463B11364MD4",
+        "amount": 0,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "",
+        "orden": "463B11364MD4",
+        "amount": 0,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "enviar",
+     "error": "No se puede enviar a revisión: Hay 10 línea(s) con errores bloqueantes. Faltan 1 setup(s) por confirmar. Faltan 2 orden(es) por completar. 3 línea(s) sin tarifa o sin regla.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "asumido@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_FECHA_REAL"
+        ],
+        "tramoInicio": "",
+        "tramoFin": "",
+        "minutosBrutos": null,
+        "minutosFinDeSemana": null,
+        "minutosParadas": null,
+        "horasNetas": null,
+        "horasSetup": null,
+        "categoria": null,
+        "orden": null,
+        "hv": null,
+        "tarifa": null,
+        "coste": null,
+        "aplicado": null,
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "planificado@2026-02",
+        "estado": "PENDING",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "",
+        "tramoFin": "",
+        "minutosBrutos": null,
+        "minutosFinDeSemana": null,
+        "minutosParadas": null,
+        "horasNetas": null,
+        "horasSetup": null,
+        "categoria": null,
+        "orden": null,
+        "hv": null,
+        "tarifa": null,
+        "coste": null,
+        "aplicado": null,
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "nofact@2026-02",
+        "estado": "EXCLUDED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_HORA_FIN",
+         "FALTA_HORA_INICIO",
+         "HV_SIN_SELECCIONAR",
+         "SETUP_NO_CONFIRMADO"
+        ],
+        "tramoInicio": "2026-02-02T00:00",
+        "tramoFin": "2026-02-05T00:00",
+        "minutosBrutos": 4320,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 72,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 72,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinhora@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "FALTA_HORA_FIN",
+         "FALTA_HORA_INICIO"
+        ],
+        "tramoInicio": "2026-02-02T00:00",
+        "tramoFin": "2026-02-05T00:00",
+        "minutosBrutos": 4320,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 72,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 267.84,
+        "aplicado": {
+         "horasNetas": 72,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 267.84,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "conorden@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0.5,
+        "categoria": "Cámara climática",
+        "orden": "463B01155MS0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 210.18,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0.5,
+         "tarifa": 3.72,
+         "coste": 210.18,
+         "orden": "463B01155MS0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "ordenexc@2026-02",
+        "estado": "WARNING",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_EXCEPCIONAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B99999XX0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B99999XX0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "ordenmala@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_NO_VALIDA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B99999XX0",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B99999XX0",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinhv@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "HV_SIN_SELECCIONAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinproyecto@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "PROYECTO_SIN_ALTA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinsetup@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "SETUP_NO_CONFIRMADO"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "solapes@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "PARADAS_INVALIDAS"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 240,
+        "horasNetas": 52,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 193.44,
+        "aplicado": {
+         "horasNetas": 52,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 193.44,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "varias@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "ORDEN_NO_SELECCIONADA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 208.32,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 208.32,
+         "orden": "",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "tipoconcreto@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Cámara choques térmicos",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": 10.19,
+        "coste": 570.64,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 10.19,
+         "coste": 570.64,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara choques térmicos"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "racs@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "RACS",
+        "orden": "463B80511MD7",
+        "hv": "no",
+        "tarifa": 126.92,
+        "coste": 634.6,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": 126.92,
+         "coste": 634.6,
+         "orden": "463B80511MD7",
+         "categoria": "RACS"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sintarifa@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_NO_ENCONTRADA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "Caudal",
+        "orden": "463B11364MD4",
+        "hv": "yes",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": "Caudal"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "sinbanco@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "SIN_CATEGORIA"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-04T16:00",
+        "minutosBrutos": 3360,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 56,
+        "horasSetup": 0,
+        "categoria": "",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": null,
+        "coste": null,
+        "aplicado": {
+         "horasNetas": 56,
+         "horasSetup": 0,
+         "tarifa": null,
+         "coste": null,
+         "orden": "463B11364MD4",
+         "categoria": ""
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 2918.3,
+       "horasNetas": 740,
+       "horasSetup": 0.5,
+       "lineas": 16,
+       "bloqueadas": 10,
+       "excluidas": 1,
+       "aplazadas": 0,
+       "pendientes": 1
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "",
+        "amount": 416.64,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 2
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B01155MS0",
+        "amount": 210.18,
+        "totalQty": 56.5,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 669.6,
+        "totalQty": 236,
+        "um": "H",
+        "lineas": 4
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B99999XX0",
+        "amount": 416.64,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 2
+       },
+       {
+        "equipo": "RACS",
+        "orden": "463B80511MD7",
+        "amount": 634.6,
+        "totalQty": 5,
+        "um": "PC",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara choques térmicos",
+        "orden": "463B11364MD4",
+        "amount": 570.64,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Caudal",
+        "orden": "463B11364MD4",
+        "amount": 0,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "",
+        "orden": "463B11364MD4",
+        "amount": 0,
+        "totalQty": 56,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "ficha",
+     "error": "",
+     "ficha": {
+      "estado": "BILLING_DATA_INCOMPLETE",
+      "faltan": [
+       "orden"
+      ],
+      "errores": [],
+      "setupRecomendado": null,
+      "tramos": [
+       "2026-02:56"
+      ]
+     }
+    },
+    {
+     "paso": "ficha",
+     "error": "",
+     "ficha": {
+      "estado": "BILLING_DATA_INCOMPLETE",
+      "faltan": [
+       "paradas o fechas válidas"
+      ],
+      "errores": [
+       "Parada 3: termina después del fin real del ensayo.",
+       "Las paradas 1 y 2 se solapan."
+      ],
+      "setupRecomendado": null,
+      "tramos": [
+       "2026-02:52"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "nombre": "flujo-revision-aprobacion-reapertura",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 96,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 360.84,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 2070.357037,
+       "horasNetas": 204,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 360.84,
+        "totalQty": 97,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "Justificación obligatoria: el cambio modifica el importe.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 96,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 360.84,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 2070.357037,
+       "horasNetas": 204,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 360.84,
+        "totalQty": 97,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "IMPORTE_MODIFICADO"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "AJUSTE_SIN_VALIDAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:pendiente"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 1,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "TARIFA_PROPUESTA"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "AJUSTE_SIN_VALIDAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:pendiente"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 2,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "enviar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "AJUSTE_SIN_VALIDAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:pendiente"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 2,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "aprobar",
+     "error": "No se puede aprobar: Quedan 2 propuesta(s) o ajuste(s) económicos sin resolver.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "AJUSTE_SIN_VALIDAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:pendiente"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 2,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "Solo un Admin puede aprobar ajustes económicos.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "AJUSTE_SIN_VALIDAR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:pendiente"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 2,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "AJUSTE_VALIDADO"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 16,
+         "coste": 1709.517037,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       }
+      ],
+      "indicadores": {
+       "coste": 2048.037037,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 1,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1709.52,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "TARIFA_RESUELTA",
+      "IMPORTE_MODIFICADO"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "aprobar",
+     "error": "Solo un Admin puede aprobar el periodo.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "aprobar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "APROBADO",
+      "versionAprobada": 1,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "El periodo está aprobado: no se puede modificar (un Admin puede reabrirlo).",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "APROBADO",
+      "versionAprobada": 1,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "exportar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EXPORTADO",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "VALIDA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "cambiarEnsayo",
+     "error": ""
+    },
+    {
+     "paso": "alertas",
+     "error": "",
+     "alertas": [
+      "f1@2026-02"
+     ],
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EXPORTADO",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "VALIDA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "reabrir",
+     "error": "La justificación es obligatoria para reabrir.",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EXPORTADO",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "VALIDA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "reabrir",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "OBSOLETA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "ADJUSTED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T08:00",
+        "minutosBrutos": 5760,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 96,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 360.84,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "recalcular",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "OBSOLETA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "WARNING",
+        "origen": "PERIODO",
+        "incidencias": [
+         "AJUSTE_MANUAL",
+         "CAMBIO_POSTERIOR"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T20:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 405.48,
+        "aplicado": {
+         "horasNetas": 90,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 338.52,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [
+         "horasNetas:validado:conflicto"
+        ],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1834.347407,
+       "horasNetas": 198,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 338.52,
+        "totalQty": 91,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "IMPORTE_MODIFICADO"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 1,
+      "exportaciones": [
+       "OBSOLETA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T20:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 405.48,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 405.48,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1901.307407,
+       "horasNetas": 216,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 405.48,
+        "totalQty": 109,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "aprobar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "APROBADO",
+      "versionAprobada": 2,
+      "exportaciones": [
+       "OBSOLETA"
+      ],
+      "lineas": [
+       {
+        "id": "f1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-06T20:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 1,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 405.48,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 1,
+         "tarifa": 3.72,
+         "coste": 405.48,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "f2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-09T06:00",
+        "tramoFin": "2026-02-13T18:00",
+        "minutosBrutos": 6480,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 108,
+        "horasSetup": 4,
+        "categoria": "Heating Plates",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 16,
+        "coste": 1709.517037,
+        "aplicado": {
+         "horasNetas": 108,
+         "horasSetup": 4,
+         "tarifa": 14,
+         "coste": 1495.827407,
+         "orden": "463B11364MD4",
+         "categoria": "Heating Plates"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:LINEA"
+       }
+      ],
+      "indicadores": {
+       "coste": 1901.307407,
+       "horasNetas": 216,
+       "horasSetup": 5,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Heating Plates",
+        "orden": "463B11364MD4",
+        "amount": 1495.83,
+        "totalQty": 112,
+        "um": "H",
+        "lineas": 1
+       },
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 405.48,
+        "totalQty": 109,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "nombre": "aplazamiento-y-duplicados",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "a1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "a2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 178.56,
+       "horasNetas": 48,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 178.56,
+        "totalQty": 48,
+        "um": "H",
+        "lineas": 2
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "LINEA_APLAZADA"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "a1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "a2@2026-02",
+        "estado": "DEFERRED",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 89.28,
+       "horasNetas": 24,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 1,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 89.28,
+        "totalQty": 24,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "enviar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "EN_REVISION",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "a1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "a2@2026-02",
+        "estado": "DEFERRED",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 89.28,
+       "horasNetas": 24,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 1,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 89.28,
+        "totalQty": 24,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "aprobar",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "APROBADO",
+      "versionAprobada": 1,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "a1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "a2@2026-02",
+        "estado": "DEFERRED",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 89.28,
+       "horasNetas": 24,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 1,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 89.28,
+        "totalQty": 24,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    },
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-03",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "a2@2026-02",
+        "estado": "WARNING",
+        "origen": "APLAZADA",
+        "incidencias": [
+         "DE_PERIODO_ANTERIOR"
+        ],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 4,
+        "coste": 96,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 4,
+         "coste": 96,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 96,
+       "horasNetas": 24,
+       "horasSetup": 0,
+       "lineas": 1,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 96,
+        "totalQty": 24,
+        "um": "H",
+        "lineas": 1
+       }
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "nombre": "tarifa-excepcional-maestra",
+   "pasos": [
+    {
+     "paso": "crear",
+     "error": "",
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "t1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       },
+       {
+        "id": "t2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 178.56,
+       "horasNetas": 48,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 178.56,
+        "totalQty": 48,
+        "um": "H",
+        "lineas": 2
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "TARIFA_PROPUESTA"
+     ],
+     "maestrosCambiados": false,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "t1@2026-02",
+        "estado": "BLOCKED",
+        "origen": "PERIODO",
+        "incidencias": [
+         "TARIFA_PENDIENTE"
+        ],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": "PENDIENTE:"
+       },
+       {
+        "id": "t2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 3.72,
+        "coste": 89.28,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 3.72,
+         "coste": 89.28,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 178.56,
+       "horasNetas": 48,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 1,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 178.56,
+        "totalQty": 48,
+        "um": "H",
+        "lineas": 2
+       }
+      ]
+     }
+    },
+    {
+     "paso": "accion",
+     "error": "",
+     "auditoria": [
+      "TARIFA_RESUELTA",
+      "TARIFA_MAESTRA_CREADA",
+      "IMPORTE_MODIFICADO"
+     ],
+     "maestrosCambiados": true,
+     "resultado": {
+      "periodo": "2026-02",
+      "estado": "BORRADOR",
+      "versionAprobada": 0,
+      "exportaciones": [],
+      "lineas": [
+       {
+        "id": "t1@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-02T08:00",
+        "tramoFin": "2026-02-03T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 4.5,
+        "coste": 108,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 4.5,
+         "coste": 108,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": "APROBADA:MAESTRA"
+       },
+       {
+        "id": "t2@2026-02",
+        "estado": "READY",
+        "origen": "PERIODO",
+        "incidencias": [],
+        "tramoInicio": "2026-02-04T08:00",
+        "tramoFin": "2026-02-05T08:00",
+        "minutosBrutos": 1440,
+        "minutosFinDeSemana": 0,
+        "minutosParadas": 0,
+        "horasNetas": 24,
+        "horasSetup": 0,
+        "categoria": "Cámara climática",
+        "orden": "463B11364MD4",
+        "hv": "no",
+        "tarifa": 4.5,
+        "coste": 108,
+        "aplicado": {
+         "horasNetas": 24,
+         "horasSetup": 0,
+         "tarifa": 4.5,
+         "coste": 108,
+         "orden": "463B11364MD4",
+         "categoria": "Cámara climática"
+        },
+        "ajustes": [],
+        "propuesta": ""
+       }
+      ],
+      "indicadores": {
+       "coste": 216,
+       "horasNetas": 48,
+       "horasSetup": 0,
+       "lineas": 2,
+       "bloqueadas": 0,
+       "excluidas": 0,
+       "aplazadas": 0,
+       "pendientes": 0
+      },
+      "controlling": [
+       {
+        "equipo": "Cámara climática",
+        "orden": "463B11364MD4",
+        "amount": 216,
+        "totalQty": 48,
+        "um": "H",
+        "lineas": 2
+       }
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

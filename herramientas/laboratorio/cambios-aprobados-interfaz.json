@@ -20,5 +20,10 @@
   "caso": "^UF16-",
   "ruta": "^/capturas/0/incrustado/(idDb/|filasId$)",
   "motivo": "D31: la foto de solo lectura incrusta el estado actual de todas las aprobaciones de SharePoint; la 4.9.4 incrustaba su base de IDs local (semilla del HTML más los IDs refrescados), que puede estar desfasada."
+ },
+ {
+  "caso": "^U[EF]",
+  "ruta": "^/menu(/\\d+)?$",
+  "motivo": "D37 (facturación, H5): el menú lateral tiene el grupo nuevo «Billing» (Periods, Review, Overview / Reports y, para Admin, Configuration) detrás de «List of Equipments»; la 4.9.4 no tiene facturación."
  }
 ]

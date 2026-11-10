@@ -2,6 +2,7 @@ import { useRef, useState, type MouseEvent as EventoRaton } from 'react';
 import type { FilaEnsayo } from '../../api/tipos';
 import { usePreferencia } from '../../utilidades/preferencias';
 import { COLUMNAS, ordenColumnas, type ContextoCelda } from './columnas';
+import type { EstadoDatos } from '../../api/facturacion';
 
 /*
  * Tabla de prioridades de un banco. El orden de las filas es la prioridad: se
@@ -22,10 +23,11 @@ export interface AccionesFila {
   aplicarSugerencia: (fila: FilaEnsayo) => void;
   abrirBuscadorAprobaciones: (fila: FilaEnsayo) => void;
   abrirRecursos: (fila: FilaEnsayo) => void;
+  abrirFacturacion: (fila: FilaEnsayo) => void;
   soltar: (origen: string, destino: string) => void;
 }
 
-export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, onSeleccion, acciones, soloLectura }: {
+export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, onSeleccion, acciones, soloLectura, estadosFacturacion }: {
   banco: string;
   filas: FilaEnsayo[];
   hoy: string;
@@ -34,6 +36,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
   onSeleccion: (s: Set<string>) => void;
   acciones: AccionesFila;
   soloLectura: boolean;
+  estadosFacturacion?: Record<string, EstadoDatos>;
 }) {
   const [prefs, setPrefs] = usePreferencia<{ version: string; orden: string[] | null; anchos: Record<string, number> }>(
     'tbp_columnas_v1', { version: VERSION_COLUMNAS, orden: null, anchos: {} });
@@ -134,6 +137,8 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
             aplicarSugerencia: () => acciones.aplicarSugerencia(fila),
             abrirBuscadorAprobaciones: () => acciones.abrirBuscadorAprobaciones(fila),
             abrirRecursos: () => acciones.abrirRecursos(fila),
+            estadoFacturacion: estadosFacturacion?.[fila.id],
+            abrirFacturacion: () => acciones.abrirFacturacion(fila),
           };
           return (
             <tr key={fila.id} data-id={fila.id} className={clases}

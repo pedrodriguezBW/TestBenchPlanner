@@ -9,13 +9,15 @@ import { etiquetaDuracion } from '../../utilidades/textos';
  * Ensayos cerrados (renderDoneList): búsqueda, ámbito «este banco / todos»,
  * y las acciones Reutilizar, ✎ Corregir (solo Admin), Restaurar y Borrar.
  */
-export function ListaCerrados({ banco, vista, abierto, onCerrar, onCorregir, onReutilizado }: {
+export function ListaCerrados({ banco, vista, abierto, onCerrar, onCorregir, onReutilizado, onFacturacion }: {
   banco: string;
   vista: Vista;
   abierto: boolean;
   onCerrar: () => void;
   onCorregir: (banco: string, fila: FilaEnsayo) => void;
   onReutilizado: (banco: string) => void;
+  /** Ficha «Billing Data» del ensayo cerrado (se abre encima de la lista). */
+  onFacturacion?: (banco: string, fila: FilaEnsayo) => void;
 }) {
   const { sesion, operar } = usePlanificador();
   const [busqueda, setBusqueda] = useState('');
@@ -65,6 +67,8 @@ export function ListaCerrados({ banco, vista, abierto, onCerrar, onCorregir, onR
                         &#9851; Reuse</button>{' '}
                       {sesion?.esAdmin && <><button className="btn ghost sm ed" title="Corregir fechas reales, estado, motivo o parada (queda registrado)"
                         onClick={() => onCorregir(b, fila)}>&#9998; Corregir</button>{' '}</>}
+                      {onFacturacion && <><button className="btn ghost sm" title="Billing Data: horas reales, paradas, setup, HV, orden"
+                        onClick={() => onFacturacion(b, fila)}>&#128182; Billing</button>{' '}</>}
                       <button className="btn ghost sm ed" onClick={() => void operar(b, 'restaurar', { id: fila.id }, [fila.id])}>&#8617; Restore</button>{' '}
                       <button className="dl ed" title="Delete permanently"
                         onClick={() => { if (window.confirm('Delete permanently?')) void operar(b, 'borrar', { id: fila.id }, [fila.id]); }}>&#128465;</button>

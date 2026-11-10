@@ -25,6 +25,11 @@ parado en la fecha del caso.
 | `casos-interfaz/*.json` · `comparar-panel.cjs` | Dashboard, «By Responsible» (bloque B), KPI History (bloque C), equipos auxiliares (bloque D) y configuración (bloque E): mismos gestos en las dos interfaces y comparación de lo que se ve. |
 | `pruebas-ciclo-de-vida.cjs` | Presencia de la pestaña: ocultar o minimizar no avisa de cierre; salir de la página sí. |
 | `pruebas-rendimiento.cjs` | Latencia con SharePoint: altas y copias visibles al momento con un guardado lento simulado, cola de operaciones, fallo y código de pestaña en cada petición. |
+| `facturacion/motor.cjs` · `facturacion/guion.cjs` | Especificación ejecutable de la facturación (réplica del dominio Java): periodos, tramos, horas, tarifas, reglas, incidencias, revisión y aprobación. |
+| `facturacion/casos-facturacion.json` · `facturacion/generar-referencias.cjs` · `facturacion/referencias-facturacion.json` | Casos con expectativas calculadas a mano; las referencias las repite `ParidadFacturacionTest` (Java). |
+| `facturacion/referencia-excel-2026.json` · `generar_referencia_excel.py` · `generar_maestros.py` | Paridad con `2026 Ensayos interno.xlsx` (filas, tarifas, costes y hoja Controlling) y generación de los maestros iniciales. |
+| `facturacion/exportaciones.cjs` · `facturacion/api-simulada.cjs` | Excel/HTML de facturación y API `/api/v1/facturacion` del backend simulado. |
+| `pruebas-facturacion.cjs` | Interfaz de facturación de punta a punta (28 comprobaciones). |
 | `cambios-aprobados.json` · `cambios-aprobados-interfaz.json` | Diferencias admitidas, cada una ligada a una discrepancia o a un bloque pendiente. |
 
 ## Qué contiene una foto

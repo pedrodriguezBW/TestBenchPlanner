@@ -56,7 +56,7 @@ com.borgwarner.tbp
 - **No se crean listas ni columnas** desde Java: ya existen en producción (la 4.9.4 las creaba si faltaban).
 - **Calendario por PC** (D6): fichero `calendario.json` en `planner.carpeta-usuario`.
 - **API compatible**: permite servir la 4.9.4 original desde Java en `/clasico` como respaldo; su guardado mantiene «el último gana» (contrato de la 4.9.4).
-- **Facturación**: fuera de alcance. No hay ningún modelo, campo ni servicio de facturación; «días facturables» de la ventana de cierre es comportamiento actual que se conserva tal cual.
+- **Facturación** (H5): módulo separado (`dominio/facturacion`, `aplicacion/facturacion`, `infraestructura/facturacion`, `/api/v1/facturacion`). En el ensayo solo añade `DataJson.billing`; «días facturables» de la ventana de cierre se conserva tal cual. Ver `docs/07-facturacion.md`.
 
 ---
 
