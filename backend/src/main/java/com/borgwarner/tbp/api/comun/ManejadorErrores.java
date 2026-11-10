@@ -79,6 +79,13 @@ public class ManejadorErrores {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(cuerpo);
     }
 
+    /** Facturación: otra persona ha guardado el periodo o los maestros antes (409). */
+    @ExceptionHandler(com.borgwarner.tbp.aplicacion.puertos.AlmacenFacturacion.ConflictoFacturacion.class)
+    public ResponseEntity<ObjectNode> conflictoFacturacion(com.borgwarner.tbp.aplicacion.puertos.AlmacenFacturacion.ConflictoFacturacion e) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body(JsonJs.objetoVacio().put("error", "conflicto-facturacion").put("mensaje", e.getMessage()));
+    }
+
     @ExceptionHandler(ReconciliacionBloqueada.class)
     public ResponseEntity<ObjectNode> listaProtegida(ReconciliacionBloqueada e) {
         return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)

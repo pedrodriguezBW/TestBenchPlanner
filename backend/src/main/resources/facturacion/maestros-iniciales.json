@@ -1,0 +1,2545 @@
+{
+ "revision": 0,
+ "origen": "Valores iniciales tomados de «2026 Ensayos interno.xlsx» (Equipos y costes, Cuentas 2026, Controlling).",
+ "proyectos": [
+  {
+   "numero": "651",
+   "nombre": "Ford Cooler 2.5L PAT",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B00651MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1095",
+   "nombre": "R&D TEST AUTOMATION PE E",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B01095MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1155",
+   "nombre": "FCA-GSE-EGR Valve",
+   "requester": "bperez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B01155MA0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B01155MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1188",
+   "nombre": "FIAT / IVECO EGR Module",
+   "requester": "berlopez",
+   "lineaProducto": "Vigo",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B01188MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1517",
+   "nombre": "DAIMLER WATER HEATER HV",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B01517MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1547",
+   "nombre": "RENAULT COOLER DST2020 G",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B01547MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10013",
+   "nombre": "BMW Cooler B47 C U2-O2-T",
+   "requester": "fedmartin",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10013MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10231",
+   "nombre": "BMW B47 DT2 02 U2 Cooler",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10231MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10351",
+   "nombre": "DAIMLER EGR FLAP",
+   "requester": "bperez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10351MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10353",
+   "nombre": "BORGWARNER EGR-FLAP JOHN",
+   "requester": "anagomez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10353MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10427",
+   "nombre": "R&D eHeater HW activitie",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10427MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10711",
+   "nombre": "SUZUKI ECOOLER 1.5L GASO",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10711MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10798",
+   "nombre": "Ford-Panther Upgrade 2-V",
+   "requester": "braferreira",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10798MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10847",
+   "nombre": "BMW-B57 T 3 EU7-EGR Modu",
+   "requester": "fedmartin",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10847MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10859",
+   "nombre": "JOHN DEERE-13.5L FT4 ENG",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10859MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10903",
+   "nombre": "SUZUKI-KC12N (BS6) CV-EG",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10903MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11133",
+   "nombre": "BMW HP MODUL N-B X7D20X",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11133MS0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B11133MS5",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11281",
+   "nombre": "R&D BENCHMARKING HVCH",
+   "requester": "mrilo",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11281MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11364",
+   "nombre": "R&D EHEATER HEATING PLAT",
+   "requester": "egarabatos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11364MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11367",
+   "nombre": "STC R&D COMPONENTS SHORT",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11367MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11368",
+   "nombre": "R&D RECUPERATOR ICR350",
+   "requester": "fedmartin",
+   "lineaProducto": "Recuperador",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11368MA0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B11368MD0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11370",
+   "nombre": "R&D CORROSION EGR VALVE",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11370MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11371",
+   "nombre": "R&D HVCH STANDARDIZATION",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11371MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11372",
+   "nombre": "R&D SNAKES ECOOLER GEN6+",
+   "requester": "berlopez",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11372MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11373",
+   "nombre": "R&D EGR COOLER CORROSION",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11373MA0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B11373MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11378",
+   "nombre": "R&D HEATSINKS ADVANCED C",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11378MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11379",
+   "nombre": "R&D HEATING PLATE SCREEN",
+   "requester": "egarabatos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11379MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11391",
+   "nombre": "R&D ONE BORGWARNER PN",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11391MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11392",
+   "nombre": "R&D HVCH SWITCHING FREQU",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11392MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11406",
+   "nombre": "R&D HVAH ROD OPTIMIZATIO",
+   "requester": "egarabatos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11406MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11407",
+   "nombre": "R&D ECOOLER INTERCELL EC",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11407MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11409",
+   "nombre": "R&D HVCH ECOMPRESOR+HVCH",
+   "requester": "mrilo",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11409MD0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B11409MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11416",
+   "nombre": "R&D HVCH INTEGRATION HVC",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11416MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11417",
+   "nombre": "R&D HVCH INNOVATIVE R&D",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11417MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11426",
+   "nombre": "CHINA EFAN LP R03",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11426MD0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11430",
+   "nombre": "R&D ECOOLERS CONNECTOR F",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11430MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11432",
+   "nombre": "HYUNDAI DUAL CHAMBER HVC",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11432MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11433",
+   "nombre": "R&D - HVCH - HEAT PUMP",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11433MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11434",
+   "nombre": "R&D BCP GEN II ECOOLER",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11434MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "77777",
+   "nombre": "PATENTS eCoolers",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B77777CD4",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B77777HD4",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B77777MDG",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B77777MDM",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B77777TD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80105",
+   "nombre": "DAIMLER HVCH EVA 2 MOPF",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80105MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80248",
+   "nombre": "VW MEB21 400V 9KW",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80248MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80283",
+   "nombre": "DAIMLER HVCH MMA",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80283MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80380",
+   "nombre": "DAIMLER EGR VALVE LP OM6",
+   "requester": "bperez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80380MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80511",
+   "nombre": "VOLVO HVAH GPA",
+   "requester": "yasantos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80511MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80688",
+   "nombre": "BMW HVCH I20 VAVE",
+   "requester": "afilgueira",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80688MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80834",
+   "nombre": "STELLANTIS HVCH SMALL",
+   "requester": "lezara",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80834MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80841",
+   "nombre": "CUMMINS EGR COOLER DIAMO",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80841MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80842",
+   "nombre": "CUMMINS EGR COOLER LEGEN",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80842MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80885",
+   "nombre": "BMW ECOOLERS SNAKES (NCA",
+   "requester": "araez",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80885MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80923",
+   "nombre": "VOLVO EGR COOLER 13L 202",
+   "requester": "cmorell",
+   "lineaProducto": "Vigo",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80923MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81028",
+   "nombre": "BMW ECOOLER XNF GEN 6 BA",
+   "requester": "berlopez",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81028MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81110",
+   "nombre": "BMW EGR COOLER BX7 CROSS",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81110MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81222",
+   "nombre": "80001222 PORSCHE HVCH 80",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81222MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81417",
+   "nombre": "BW ARDEN RECUPERATOR MT3",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81417MA0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B81417MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81475",
+   "nombre": "RIMAC SNAKE",
+   "requester": "fbouzas",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81475MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81700",
+   "nombre": "80001700 FORD P768 PHEV",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81700MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81754",
+   "nombre": "RIMAC ECOOLER BANE CINQU",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81754MD4",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B81754MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81755",
+   "nombre": "RIMAC ECOOLER AMPERE CER",
+   "requester": "bperez",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81755MD4",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B81755MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81786",
+   "nombre": "80001786. BMW HVCH 9KW -",
+   "requester": "afilgueira",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81786MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81787",
+   "nombre": "BMW HVCH 5.5KW - ROBUSTN",
+   "requester": "afilgueira",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81787MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81886",
+   "nombre": "BMW EGR COOLER N47C16",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81886MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81890",
+   "nombre": "SUZUKI EGR COOLER K15E",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B81890MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82005",
+   "nombre": "VW MEB21 SHORT 400V 5K",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82005MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82017",
+   "nombre": "GM C1YX HVCH",
+   "requester": "lezara",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82017MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82042",
+   "nombre": "BMW ECOOLER GEN6 WE",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82042MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82055",
+   "nombre": "VW EA288EVO2 CRAFTER 2.0",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82055MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82080",
+   "nombre": "IVECO EGR MODULE F1C DAI",
+   "requester": "fbouzas",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82080MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82220",
+   "nombre": "VOLVO VAH PA VAVE",
+   "requester": "egarabatos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82220MD7",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82225",
+   "nombre": "STELLANTIS - EGR COOLER",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82225MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82286",
+   "nombre": "HYUNDAI - HVCH - KIA DUA",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82286MD4",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B82286MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82338",
+   "nombre": "RIMAC - ECOOLER - FALCON",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82338MP0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82436",
+   "nombre": "STELLANTIS - EGR COOLER",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82436MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82480",
+   "nombre": "VOLVO EGR COOLER P3318 1",
+   "requester": "cmorell",
+   "lineaProducto": "Vigo",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82480MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82484",
+   "nombre": "FORD - LION V6 - EGM",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82484MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82517",
+   "nombre": "HORSE - EGR COOLER - BHE",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82517MA0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "99992",
+   "nombre": "STC SERIES PRODUCTION PL",
+   "requester": "",
+   "lineaProducto": "",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99992MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "99997",
+   "nombre": "Viana Low voltage heater",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997HS0",
+     "descripcion": "",
+     "activa": true
+    },
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "82067",
+   "nombre": "FORD HVCH CX735 400V 5KW",
+   "requester": "somiranda",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B82067MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1431",
+   "nombre": "Daimler AGR Klappe-01431",
+   "requester": "braferreira",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11198",
+   "nombre": "LVAH JCS-11198",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997HS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10035",
+   "nombre": "Audi PPE-10035",
+   "requester": "egarabatos",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997HS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "1014",
+   "nombre": "Perkins IAT-01014",
+   "requester": "braferreira",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "4191",
+   "nombre": "Tesla",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997HS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "4104",
+   "nombre": "LVAH MFA2-04104",
+   "requester": "alnieto",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997HS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "877",
+   "nombre": "Renault Mahle Bypass EGR Valve",
+   "requester": "anagomez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "80417",
+   "nombre": "FORD EGR COOLER PANTHER",
+   "requester": "cmorell",
+   "lineaProducto": "Vigo",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B80417MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "938",
+   "nombre": "Perkins CompactX-00938",
+   "requester": "anagomez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10888",
+   "nombre": "GM BT1xx HVCH",
+   "requester": "pgandara",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B10888MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "577",
+   "nombre": "renault-00577",
+   "requester": "anagomez",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81479",
+   "nombre": "Robustness I+D-80001479",
+   "requester": "iparada",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11364MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "11437",
+   "nombre": "11437 Dual Chamber Hyundai 8 kW - Passive TSM",
+   "requester": "srodriguez",
+   "lineaProducto": "Heaters",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B11437MD4",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "10373",
+   "nombre": "#N/A",
+   "requester": "fedmartin",
+   "lineaProducto": "Viana",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99997MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  },
+  {
+   "numero": "81009",
+   "nombre": "EVA2M Heatsink",
+   "requester": "fbouzas",
+   "lineaProducto": "eCoolers",
+   "activo": true,
+   "desde": "",
+   "hasta": "",
+   "ordenes": [
+    {
+     "codigo": "463B99996MS0",
+     "descripcion": "",
+     "activa": true
+    }
+   ]
+  }
+ ],
+ "categorias": [
+  {
+   "codigo": "Shaker 40kN",
+   "grupo": "Shakers",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 1,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "Shaker 74kN",
+   "grupo": "Shakers",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 2,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "Cámara climática",
+   "grupo": "Climático",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 9,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "Cámara choques térmicos",
+   "grupo": "Climático",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 11,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "Desplazamientos relativos",
+   "grupo": "",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 57,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "Caudal",
+   "grupo": "Caudal",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 58,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "HVCH L03",
+   "grupo": "HVCH (CTAG)",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 7,
+   "activa": true,
+   "nota": "Marcado «Depr» en el Excel."
+  },
+  {
+   "codigo": "HVCH L02",
+   "grupo": "HVCH (CTAG)",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 6,
+   "activa": true,
+   "nota": "Marcado «Depr» en el Excel."
+  },
+  {
+   "codigo": "HVCH Lubu CTAG",
+   "grupo": "HVCH (CTAG)",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 8,
+   "activa": true,
+   "nota": "Marcado «Depr» en el Excel."
+  },
+  {
+   "codigo": "Heating Plates",
+   "grupo": "HVCH (STC)",
+   "unidad": "H",
+   "regla": "ASINH_200",
+   "ordenControlling": 5,
+   "activa": true,
+   "nota": "Se aplica coeficiente reductor por número de horas ensayadas"
+  },
+  {
+   "codigo": "RACS",
+   "grupo": "RACS",
+   "unidad": "PIEZAS",
+   "regla": "PER_PIECE",
+   "ordenControlling": 10,
+   "activa": true,
+   "nota": ""
+  },
+  {
+   "codigo": "HVCH Functional",
+   "grupo": "HVCH (STC)",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 64,
+   "activa": true,
+   "nota": "Ojo, el Si de HV realmente es con cámara climática"
+  },
+  {
+   "codigo": "HVCH Lubu",
+   "grupo": "HVCH (STC)",
+   "unidad": "H",
+   "regla": "ASINH_200",
+   "ordenControlling": 4,
+   "activa": true,
+   "nota": "Se aplica coeficiente reductor por número de horas ensayadas"
+  },
+  {
+   "codigo": "R&D",
+   "grupo": "HVCH (STC)",
+   "unidad": "H",
+   "regla": "ASINH_100",
+   "ordenControlling": 3,
+   "activa": true,
+   "nota": "Ojo, el Si de HV realmente es con cámara climática. Se aplica coeficiente reductor por número de horas ensayadas"
+  },
+  {
+   "codigo": "RACS_porhora",
+   "grupo": "RACS",
+   "unidad": "H",
+   "regla": "LINEAR",
+   "ordenControlling": 12,
+   "activa": true,
+   "nota": ""
+  }
+ ],
+ "mapeos": [
+  {
+   "id": "M-001",
+   "banco": "1500 WC",
+   "tipoEnsayo": "",
+   "categoria": "Cámara climática",
+   "regla": "",
+   "activo": true,
+   "nota": "Propuesta inicial: cámara climática de BW. Revisar."
+  },
+  {
+   "id": "M-002",
+   "banco": "1500 Aire",
+   "tipoEnsayo": "",
+   "categoria": "Cámara climática",
+   "regla": "",
+   "activo": true,
+   "nota": "Propuesta inicial: cámara climática de BW. Revisar."
+  },
+  {
+   "id": "M-003",
+   "banco": "KK127",
+   "tipoEnsayo": "",
+   "categoria": "Cámara climática",
+   "regla": "",
+   "activo": true,
+   "nota": "Propuesta inicial: cámara climática de BW. Revisar."
+  },
+  {
+   "id": "M-004",
+   "banco": "KK129",
+   "tipoEnsayo": "",
+   "categoria": "Cámara climática",
+   "regla": "",
+   "activo": true,
+   "nota": "Propuesta inicial: cámara climática de BW. Revisar."
+  },
+  {
+   "id": "M-005",
+   "banco": "KK118",
+   "tipoEnsayo": "",
+   "categoria": "Cámara climática",
+   "regla": "",
+   "activo": true,
+   "nota": "Propuesta inicial: cámara climática de BW. Revisar."
+  }
+ ],
+ "tarifas": [
+  {
+   "id": "T-2025-001",
+   "categoria": "Shaker 40kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 18.37,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-002",
+   "categoria": "Shaker 40kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 22.78,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-003",
+   "categoria": "Shaker 40kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 19.59,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-004",
+   "categoria": "Shaker 40kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 24.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-005",
+   "categoria": "Shaker 74kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 18.37,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-006",
+   "categoria": "Shaker 74kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 22.78,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-007",
+   "categoria": "Shaker 74kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 19.59,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-008",
+   "categoria": "Shaker 74kN",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 24.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-009",
+   "categoria": "Cámara climática",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 4.0,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-010",
+   "categoria": "Cámara climática",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 8.41,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-011",
+   "categoria": "Cámara climática",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 3.72,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-012",
+   "categoria": "Cámara climática",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 8.13,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-013",
+   "categoria": "Cámara choques térmicos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 5.8,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-014",
+   "categoria": "Cámara choques térmicos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 10.21,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-015",
+   "categoria": "Cámara choques térmicos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 5.78,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-016",
+   "categoria": "Cámara choques térmicos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 10.19,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-017",
+   "categoria": "Desplazamientos relativos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.92,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-018",
+   "categoria": "Desplazamientos relativos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 9.92,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-019",
+   "categoria": "Desplazamientos relativos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.92,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-020",
+   "categoria": "Desplazamientos relativos",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 9.92,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-021",
+   "categoria": "Caudal",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 37.93,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-022",
+   "categoria": "Caudal",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 37.93,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-023",
+   "categoria": "HVCH L03",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.93,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-024",
+   "categoria": "HVCH L03",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 9.93,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-025",
+   "categoria": "HVCH L03",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.93,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-026",
+   "categoria": "HVCH L03",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 9.93,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-027",
+   "categoria": "HVCH L02",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 4.94,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-028",
+   "categoria": "HVCH L02",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 4.94,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-029",
+   "categoria": "HVCH L02",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 5.65,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-030",
+   "categoria": "HVCH L02",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 5.65,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-031",
+   "categoria": "HVCH Lubu CTAG",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 8.0,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-032",
+   "categoria": "HVCH Lubu CTAG",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 8.0,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-033",
+   "categoria": "HVCH Lubu CTAG",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 8.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-034",
+   "categoria": "HVCH Lubu CTAG",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 8.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-035",
+   "categoria": "Heating Plates",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 13.78,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-036",
+   "categoria": "Heating Plates",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 13.78,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-037",
+   "categoria": "Heating Plates",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 16.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-038",
+   "categoria": "Heating Plates",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 16.0,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-039",
+   "categoria": "RACS",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 126.92,
+   "unidad": "PIEZAS",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-040",
+   "categoria": "RACS",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 126.92,
+   "unidad": "PIEZAS",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-041",
+   "categoria": "RACS",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 126.92,
+   "unidad": "PIEZAS",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-042",
+   "categoria": "RACS",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 126.92,
+   "unidad": "PIEZAS",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-043",
+   "categoria": "HVCH Functional",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.17,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-044",
+   "categoria": "HVCH Functional",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 13.17,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-045",
+   "categoria": "HVCH Functional",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 9.17,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-046",
+   "categoria": "HVCH Functional",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 12.89,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-047",
+   "categoria": "HVCH Lubu",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 20.3,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-048",
+   "categoria": "HVCH Lubu",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 20.3,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-049",
+   "categoria": "HVCH Lubu",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 19.45,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-050",
+   "categoria": "HVCH Lubu",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 19.45,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-051",
+   "categoria": "R&D",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 19.85,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-052",
+   "categoria": "R&D",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 23.85,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-053",
+   "categoria": "R&D",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 17.78,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-054",
+   "categoria": "R&D",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 21.5,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2025-055",
+   "categoria": "RACS_porhora",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 20.3,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2025-056",
+   "categoria": "RACS_porhora",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 20.3,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "2025-12-31",
+   "nota": "Excel «Equipos y costes» 2025"
+  },
+  {
+   "id": "T-2026-057",
+   "categoria": "RACS_porhora",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "no",
+   "importe": 21.5,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-2026-058",
+   "categoria": "RACS_porhora",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "",
+   "hv": "yes",
+   "importe": 21.5,
+   "unidad": "H",
+   "desde": "2026-01-01",
+   "hasta": "",
+   "nota": "Excel «Equipos y costes» 2026"
+  },
+  {
+   "id": "T-STC-000",
+   "categoria": "*",
+   "proyecto": "",
+   "planta": "",
+   "lineaProducto": "STC",
+   "hv": "*",
+   "importe": 0,
+   "unidad": "H",
+   "desde": "2025-01-01",
+   "hasta": "",
+   "nota": "Excel: Coste/hora = 0 cuando la planta (línea de producto) es STC"
+  }
+ ],
+ "setupRecomendado": [],
+ "controlling": {
+  "cctrOld": "6463-41",
+  "costElement": "420000",
+  "moneda": "EUR",
+  "unidadHoras": "H",
+  "unidadPiezas": "PC",
+  "texto": "CATEGORIA"
+ },
+ "parametros": {
+  "umbralHorasAltas": 720
+ }
+}

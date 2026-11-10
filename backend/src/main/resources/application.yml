@@ -39,6 +39,17 @@ planner:
     # 0 = todo por una sola conexión, como en versiones anteriores.
     carriles-lectura: 2
 
+  facturacion:
+    # Dónde se guardan periodos, maestros, auditoría y exportaciones de la facturación.
+    #   local      -> ficheros de este PC (modo local: <carpeta-datos>/facturacion;
+    #                 con SharePoint: <carpeta-usuario>/facturacion). Por defecto.
+    #   sharepoint -> carpeta compartida de una biblioteca del sitio (hay que crearla antes
+    #                 e indicarla en carpeta-sharepoint; necesita escritura-habilitada).
+    # Los datos de cada ensayo (horas, paradas, setup, HV, orden…) van siempre en
+    # DataJson.billing de la lista de ensayos, como el resto de la ficha.
+    almacen: local
+    carpeta-sharepoint: ""        # p. ej. "Shared Documents/TestBenchPlanner/Facturacion"
+
 spring:
   mvc:
     # Una petición abandonada por el navegador (recarga) no es un error que avisar.
