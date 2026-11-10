@@ -110,7 +110,8 @@ public class ConfiguracionAlmacenes {
 
         @Bean(destroyMethod = "close")
         public ConexionEdge conexionEdge(PropiedadesPlanner p) {
-            return new ConexionEdge(p.sharepoint().puertoDepuracion(), Path.of(p.sharepoint().carpetaPerfilEdge()));
+            return new ConexionEdge(p.sharepoint().puertoDepuracion(), Path.of(p.sharepoint().carpetaPerfilEdge()),
+                    p.sharepoint().carrilesLecturaEfectivos());
         }
 
         @Bean

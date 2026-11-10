@@ -43,6 +43,7 @@ durante la transición.
 | **H3E · React, bloque E** | Configuración: Test Benches (categorías y bancos; renombrar conserva ensayos, borrar los borra), Projects, Users/Rights Management, Tools (calendario de festivos, IDs live, Reset local), About y Activity log. | **Terminado** |
 | **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Entregado**; pendiente de validar en el PC |
 | **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Entregado**; pendiente de validar en el PC |
+| **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Entregado**; pendiente de validar en el PC |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente |
 
 ### Funcionalidad disponible en H3Z
@@ -352,6 +353,13 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `CopiaSeguridadTest` | Copia JSON: exportar devuelve el estado con el formato de la 4.9.4; importar exige Admin, rechaza ficheros sin `benches`, respeta la protección de listas y una ida y vuelta no cambia nada. |
 | `CopiaSinConexionTest` | Consulta sin conexión: se guarda la última lectura buena, se muestra si SharePoint falla, una lista vacía no pisa la copia y con la copia no se habilita ningún guardado (D11). |
 | `ConfiguracionBancosTest` | Test Benches: renombrar conserva ensayos, borrar los borra, mover u Org no tocan ensayos, solo Admin, no se renombra a un banco existente ni se vacía la lista. |
+| `LecturaCompartidaTest` | Varias peticiones a la vez leen SharePoint una sola vez; cada una recibe su copia; tras escribir no se reutiliza lo leído antes; un fallo o una lectura parcial no se guardan. |
+| `ConexionEdgeTest` | Una consulta no espera detrás de un guardado largo ni de otra consulta; las escrituras van siempre por la conexión principal; la consulta de una pestaña cerrada se descarta y una escritura nunca. |
+| `ClienteSharePointTest` | La sesión se comprueba como mucho una vez por minuto, columnas y FormDigest se reutilizan, una sesión caducada se recupera y desde una consulta no se puede escribir. |
+| `AprobacionesSharePointTest` · `CatalogosSharePointTest` | Estados de aprobación por lotes con el mismo resultado por ID; catálogos y usuarios leídos una sola vez al arrancar. |
+| `CopiaSinConexionConcurrenciaTest` | 32 lecturas simultáneas no chocan al guardar la copia sin conexión (sin `.tmp` sueltos) y solo se reescribe si cambia el contenido. |
+| `ManejadorErroresTest` · `FiltroPestanaTest` | Una petición abandonada al recargar no deja avisos; solo las consultas se asocian a la pestaña. |
+| `GeneradorIdsTest` · `OperacionesInmediatasTest` · `ServicioPlanificacionLatenciaTest` | Altas y copias guardadas con el id que la interfaz ya muestra, sin relectura extra y con las reglas de siempre. |
 
 Las salidas de paridad quedan en `backend/target/paridad` y pueden volver a
 compararse con:
@@ -371,6 +379,8 @@ TZ=Europe/Madrid node herramientas/laboratorio/pruebas-interfaz.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-rendimiento.cjs
+cd frontend && npm test        # pruebas unitarias de altas y copias inmediatas
 ```
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
@@ -387,6 +397,9 @@ comprueba aparte con `herramientas/laboratorio/excel_espejo.py` y
 minimizar no da de baja la pestaña y que cerrarla sí. `pruebas-cierre.cjs` cubre
 lo añadido en H3Z: presencia, aviso de versión, bienvenida, modo sin conexión,
 calendario, sugerencias, tirador del Gantt y orden de Users.
+`pruebas-rendimiento.cjs` simula un guardado lento (2,5 s) y comprueba que
+añadir y duplicar se ven al momento, que lo escrito en la fila nueva se guarda,
+que un fallo la retira y que cada pestaña envía su código.
 
 ## Configuración
 
@@ -406,6 +419,7 @@ Propiedades principales de Spring Boot:
 | `planner.sharepoint.publicar-version` | `false` | Publica la versión en `TestBenchAppConfig` al arrancar. Mantener en `false` hasta distribuir la versión nueva: con `true`, los PCs con la 4.9.4 verán el aviso de versión antigua. |
 | `planner.sharepoint.espejo-habilitado` | `true` | Actualiza columnas espejo cuando se permite escribir. |
 | `planner.sharepoint.puerto-depuracion` | `9222` | Puerto CDP de Edge. |
+| `planner.sharepoint.carriles-lectura` | `2` | Conexiones de solo lectura con Edge en paralelo a la principal (que hace todas las escrituras). `0` vuelve al comportamiento anterior (todo por una sola conexión). |
 | `planner.listas.permitir-vacias` | `false` | Permite guardar sobre listas compartidas vacías solo en una instalación nueva. |
 
 ## APIs e interfaces

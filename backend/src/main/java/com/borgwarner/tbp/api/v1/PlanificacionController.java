@@ -127,7 +127,13 @@ public class PlanificacionController {
         String id = cuerpo.path("id").asText(null);
         List<String> seleccion = new ArrayList<>();
         cuerpo.path("ids").forEach(n -> seleccion.add(n.asText()));
-        var resultado = servicio.ejecutar(usuario, versiones(cuerpo), cuerpo.path("forzar").asBoolean(false), (p, plan) -> switch (tipo) {
+        // Ids de las filas que la interfaz ya muestra mientras se guarda (alta o copia).
+        List<String> propuestos = new ArrayList<>();
+        cuerpo.path("idsPropuestos").forEach(n -> propuestos.add(n.asText("")));
+        var resultado = servicio.ejecutar(usuario, versiones(cuerpo), cuerpo.path("forzar").asBoolean(false), (p, plan) -> {
+            GeneradorIds ids = GeneradorIds.conPropuestos(propuestos,
+                    nuevo -> p.bancoDe(nuevo).isEmpty() && p.textoLeido(nuevo) == null, this.ids);
+            return switch (tipo) {
             case "comprometer" -> { OperacionesBanco.comprometer(p, plan, banco, id); yield null; }
             case "deshacerCompromiso" -> { OperacionesBanco.deshacerCompromiso(p, banco, id); yield null; }
             case "comprometerTodos" -> { OperacionesBanco.comprometerTodos(p, plan, banco); yield null; }
@@ -144,6 +150,7 @@ public class PlanificacionController {
             case "restaurar" -> { Cierre.restaurar(p, banco, id); yield null; }
             case "reutilizar" -> Cierre.reutilizar(p, banco, id, ids);
             default -> throw new IllegalArgumentException("Operación desconocida: " + tipo);
+            };
         });
         return respuesta(resultado.vista(), resultado.valor(), resultado.cambios().size());
     }

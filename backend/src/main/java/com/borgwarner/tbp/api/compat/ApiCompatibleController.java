@@ -2,6 +2,7 @@ package com.borgwarner.tbp.api.compat;
 
 import com.borgwarner.tbp.TestBenchPlannerApplication;
 import com.borgwarner.tbp.api.comun.CicloDeVida;
+import com.borgwarner.tbp.api.comun.PestanasActivas;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
 import com.borgwarner.tbp.aplicacion.ServicioListas;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
@@ -58,11 +59,13 @@ public class ApiCompatibleController {
     private final CicloDeVida cicloDeVida;
     private final ServicioListas listas;
     private final Reloj reloj;
+    private final PestanasActivas pestanas;
 
     public ApiCompatibleController(AlmacenEnsayos ensayos, AlmacenCatalogos catalogos, AlmacenHistoricoKpi historico,
                                    AlmacenUsuarios usuarios, AlmacenRecursos recursos, ConsultaAprobaciones aprobaciones,
                                    Colaboracion colaboracion, ServicioSesion sesion, CicloDeVida cicloDeVida,
-                                   ServicioListas listas, Reloj reloj) {
+                                   ServicioListas listas, Reloj reloj, PestanasActivas pestanas) {
+        this.pestanas = pestanas;
         this.listas = listas;
         this.reloj = reloj;
         this.ensayos = ensayos;
@@ -298,7 +301,9 @@ public class ApiCompatibleController {
     /** Cierre de una pestaña (sendBeacon al cerrarla de verdad, no al minimizar). */
     @PostMapping("/shutdown")
     public ObjectNode apagar(@RequestBody(required = false) String cuerpo) {
-        cicloDeVida.solicitarApagado(codigoPestana(cuerpo));
+        String pestana = codigoPestana(cuerpo);
+        pestanas.cancelar(pestana); // sus consultas pendientes ya no hacen falta (recarga o cierre)
+        cicloDeVida.solicitarApagado(pestana);
         return JsonJs.objetoVacio().put("ok", true);
     }
 

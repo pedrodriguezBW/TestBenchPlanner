@@ -2,6 +2,7 @@ import type {
   Aprobacion, BancoCatalogo, Conectado, BloquesKpi, CalendarioPc, FilaActividad, Recurso, Recursos, UsuarioLista, FilaEnConflicto, FilaEstadistica, FotoSemanal, Historico, PropuestaCierre, RespuestaOperacion, Sesion, TablaOcupacion,
   Tendencia, TipoOperacion, ValidacionCierre, ValoresCierre, Vista,
 } from './tipos';
+import { codigoPestana } from '../estado/cicloDeVida';
 
 /*
  * Cliente de la API del backend. Traduce los códigos HTTP a errores con
@@ -35,9 +36,12 @@ export class ErrorSinConexion extends Error {
 async function peticion<T>(metodo: string, ruta: string, cuerpo?: unknown): Promise<T> {
   let respuesta: Response;
   try {
+    // El código de la pestaña permite al backend descartar sus consultas si se recarga o se cierra.
+    const cabeceras: Record<string, string> = { 'X-TBP-Pestana': codigoPestana() };
+    if (cuerpo !== undefined) cabeceras['Content-Type'] = 'application/json';
     respuesta = await fetch(ruta, {
       method: metodo,
-      headers: cuerpo === undefined ? undefined : { 'Content-Type': 'application/json' },
+      headers: cabeceras,
       body: cuerpo === undefined ? undefined : JSON.stringify(cuerpo),
     });
   } catch {

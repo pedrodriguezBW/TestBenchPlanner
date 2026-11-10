@@ -10,6 +10,9 @@ import { usePlanificador } from './Planificador';
  * Se lee al arrancar y después de cada cambio. Si la lectura falla se conserva
  * la última copia buena, igual que la caché local de la 4.9.4. Sin conexión
  * (bloqueo de arranque) no se lee, como hacía resLoad con READONLY.
+ *
+ * La lectura empieza a la vez que la de la planificación (antes esperaba a que
+ * esta terminase): en el backend va por otra conexión y no la retrasa.
  */
 
 interface ContextoRecursos {
@@ -35,7 +38,6 @@ export function ProveedorRecursos({ children }: { children: ReactNode }) {
   const [bloqueos, setBloqueos] = useState<Bloqueo[]>([]);
   const [cargado, setCargado] = useState(false);
   const bloqueado = sincronizacion === 'bloqueado';
-  const listo = sincronizacion !== 'conectando';
 
   const recargar = useCallback(async () => {
     if (bloqueado) return;
@@ -51,7 +53,7 @@ export function ProveedorRecursos({ children }: { children: ReactNode }) {
     }
   }, [bloqueado]);
 
-  useEffect(() => { if (listo) void recargar(); }, [listo, recargar]);
+  useEffect(() => { void recargar(); }, [recargar]);
 
   const guardarCatalogo = useCallback(async (lista: Recurso[]) => {
     if (soloLectura) return false;

@@ -6,11 +6,13 @@ import com.borgwarner.tbp.aplicacion.puertos.ConflictoEdicion;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
 import com.borgwarner.tbp.dominio.planificacion.CambioFila;
 import com.borgwarner.tbp.dominio.planificacion.FilaGuardada;
+import com.borgwarner.tbp.infraestructura.comun.LecturaCompartida;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microsoft.playwright.BrowserContext;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -27,6 +29,15 @@ import java.util.concurrent.ConcurrentHashMap;
  *    reintenta: no es un conflicto real.
  *  - Sin comprobación (interfaz clásica 4.9.4 por /api/save): «el último gana»,
  *    exactamente como el backend Python (IF-MATCH: *).
+ *
+ * Rendimiento:
+ *  - La lectura completa va por un carril de lectura y se COMPARTE entre las
+ *    peticiones que llegan a la vez (al arrancar o al recargar la página no se
+ *    lee la lista dos veces). Al guardar se invalida: nadie recibe una lectura
+ *    empezada antes de su propio guardado.
+ *  - La comprobación previa de versiones lee todas las filas afectadas en una
+ *    sola consulta (antes, una por fila).
+ *  - El registro de actividad se anota en segundo plano: el guardado no espera.
  */
 public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
 
@@ -35,8 +46,13 @@ public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
     private final ClienteSharePoint cliente;
     private final Colaboracion colaboracion;
     private final EspejoSharePoint espejo;
+    /** Filas por consulta al comprobar versiones (la URL debe seguir siendo corta). */
+    static final int FILAS_POR_CONSULTA = 20;
+
     /** Caché uid -> Id de SharePoint (los Id son estables). */
     private final Map<String, Integer> ids = new ConcurrentHashMap<>();
+    /** Lectura completa en curso, compartida (sin reutilizar resultados: siempre autoritativa). */
+    private final LecturaCompartida<List<FilaGuardada>> lectura = new LecturaCompartida<>(0, List::copyOf);
 
     public AlmacenEnsayosSharePoint(ClienteSharePoint cliente, Colaboracion colaboracion, EspejoSharePoint espejo) {
         this.cliente = cliente;
@@ -46,7 +62,11 @@ public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
 
     @Override
     public List<FilaGuardada> leer() {
-        return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+        return lectura.leer(this::leerDeSharePoint);
+    }
+
+    private List<FilaGuardada> leerDeSharePoint() {
+        return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
             String url = cliente.lista(LISTA) + "/items?$select=Id,Title,DataJson&$top=2000";
             List<FilaGuardada> filas = new ArrayList<>();
             for (JsonNode it : cliente.leerPaginado(contexto, url, cliente.sitio(), ClienteSharePoint.JSON_SIN_METADATOS)) {
@@ -66,6 +86,28 @@ public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
     private record Elemento(int id, String texto, String etag) {
     }
 
+    /** Id, DataJson y ETag de varias filas con una consulta por cada FILAS_POR_CONSULTA (las que no existen no aparecen). */
+    private Map<String, Elemento> elementos(BrowserContext contexto, List<String> uids) {
+        Map<String, Elemento> salida = new LinkedHashMap<>();
+        List<String> distintos = uids.stream().distinct().toList();
+        for (int i = 0; i < distintos.size(); i += FILAS_POR_CONSULTA) {
+            List<String> trozo = distintos.subList(i, Math.min(distintos.size(), i + FILAS_POR_CONSULTA));
+            String filtro = String.join(" or ", trozo.stream().map(u -> "Title eq '" + u.replace("'", "''") + "'").toList());
+            JsonNode valores = cliente.get(contexto, cliente.lista(LISTA) + "/items?$select=Id,Title,DataJson&$filter="
+                    + filtro + "&$top=" + (trozo.size() * 5) + "&$orderby=Id asc", ClienteSharePoint.JSON_CON_ETAG).path("value");
+            for (JsonNode it : valores) {
+                String uid = it.path("Title").asText("");
+                if (uid.isEmpty() || salida.containsKey(uid)) {
+                    continue; // como $top=1: vale la primera fila con ese Title
+                }
+                JsonNode datos = it.get("DataJson");
+                salida.put(uid, new Elemento(it.path("Id").asInt(), datos == null || datos.isNull() ? null : datos.asText(),
+                        it.path("odata.etag").asText("*")));
+            }
+        }
+        return salida;
+    }
+
     private Elemento elemento(BrowserContext contexto, String uid) {
         String filtro = "Title eq '" + uid.replace("'", "''") + "'";
         JsonNode valores = cliente.get(contexto, cliente.lista(LISTA) + "/items?$select=Id,Title,DataJson&$filter="
@@ -82,12 +124,18 @@ public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
     @Override
     public ResumenGuardado guardar(List<CambioFila> cambios, boolean comprobarVersion, Actor actor) {
         cliente.exigirEscritura("guardar ensayos");
-        ResumenGuardado resumen = cliente.conSesion(ConexionEdge.PRIORIDAD_GUARDADO, contexto -> {
-            String digest = cliente.digest(contexto);
-            return comprobarVersion ? guardarConVersion(contexto, digest, cambios) : guardarUltimoGana(contexto, digest, cambios);
-        });
+        ResumenGuardado resumen;
+        lectura.invalidar();
+        try {
+            resumen = cliente.conSesion(ConexionEdge.PRIORIDAD_GUARDADO, contexto -> {
+                String digest = cliente.digest(contexto);
+                return comprobarVersion ? guardarConVersion(contexto, digest, cambios) : guardarUltimoGana(contexto, digest, cambios);
+            });
+        } finally {
+            lectura.invalidar(); // las lecturas empezadas durante el guardado no se reparten
+        }
         if (resumen.creados() + resumen.actualizados() + resumen.borrados() > 0) {
-            colaboracion.anotarActividad(actor.email(), actor.nombre(), "edit", "created " + resumen.creados()
+            colaboracion.anotarActividadSinEsperar(actor.email(), actor.nombre(), "edit", "created " + resumen.creados()
                     + ", updated " + resumen.actualizados() + ", deleted " + resumen.borrados());
             espejo.encolar(cambios.stream().filter(c -> !c.esBorrado()).toList(), ids);
         }
@@ -95,11 +143,12 @@ public class AlmacenEnsayosSharePoint implements AlmacenEnsayos {
     }
 
     private ResumenGuardado guardarConVersion(BrowserContext contexto, String digest, List<CambioFila> cambios) {
-        // 1) Comprobar TODAS las filas antes de escribir ninguna.
+        // 1) Comprobar TODAS las filas antes de escribir ninguna (una consulta por cada 20 filas).
+        Map<String, Elemento> leidos = elementos(contexto, cambios.stream().map(CambioFila::uid).toList());
         List<Elemento> actuales = new ArrayList<>();
         List<ConflictoEdicion.FilaEnConflicto> conflictos = new ArrayList<>();
         for (CambioFila cambio : cambios) {
-            Elemento actual = elemento(contexto, cambio.uid());
+            Elemento actual = leidos.get(cambio.uid());
             actuales.add(actual);
             String texto = actual == null ? null : actual.texto();
             boolean igual = cambio.textoAnterior() == null ? actual == null : cambio.textoAnterior().equals(texto);

@@ -13,3 +13,6 @@
 
 /* Tiradores: también con el dedo (la 4.9.4 atendía touchstart/touchmove). */
 .card-rz, .bs-divider, .colrz, .g-lwgrip { touch-action: none; }
+
+/* Alta o copia que ya se ve mientras se guarda en SharePoint (se confirma sola). */
+tr.guardando-fila > td { opacity: .6; }

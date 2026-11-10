@@ -36,6 +36,8 @@ public class ServicioListas {
             lecturas.anotar(RegistroLecturas.PROYECTOS, !leido.has("projects_error"), leido.path("projects").size());
             lecturas.anotar(RegistroLecturas.RESPONSABLES, !leido.has("responsibles_error"), leido.path("responsibles").size());
             return leido;
+        } catch (PeticionCancelada cancelada) {
+            throw cancelada; // la pestaña se ha cerrado: no cuenta como lectura fallida (D11)
         } catch (RuntimeException e) {
             lecturas.anotar(RegistroLecturas.BANCOS, false, 0);
             lecturas.anotar(RegistroLecturas.PROYECTOS, false, 0);
@@ -65,6 +67,8 @@ public class ServicioListas {
             lecturas.anotar(RegistroLecturas.RECURSOS, !leido.has("resources_error") && !leido.has("error"),
                     leido.path("resources").size());
             return leido;
+        } catch (PeticionCancelada cancelada) {
+            throw cancelada; // la pestaña se ha cerrado: no cuenta como lectura fallida (D11)
         } catch (RuntimeException e) {
             lecturas.anotar(RegistroLecturas.RECURSOS, false, 0);
             throw e;

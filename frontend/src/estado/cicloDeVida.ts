@@ -12,6 +12,9 @@
  * - Si la página vuelve desde la caché del navegador («pageshow» con persisted),
  *   o vuelve a estar visible o se despierta («resume»), se envía un latido en el
  *   acto para volver a registrarse.
+ * - Todas las peticiones de esta página llevan el mismo código (cabecera
+ *   X-TBP-Pestana): al recargar o cerrar, el backend descarta las CONSULTAS que
+ *   esta página tenía pendientes, en lugar de hacer esperar a la página nueva.
  */
 
 const INTERVALO_LATIDO_MS = 5000;
@@ -24,8 +27,15 @@ function nuevoCodigo(): string {
   }
 }
 
+/** Código de esta carga de la página (el mismo para latidos y peticiones). */
+const CODIGO_PESTANA = nuevoCodigo();
+
+export function codigoPestana(): string {
+  return CODIGO_PESTANA;
+}
+
 export function iniciarCicloDeVida(): () => void {
-  const codigo = nuevoCodigo();
+  const codigo = CODIGO_PESTANA;
   const cuerpo = JSON.stringify({ pestana: codigo });
 
   const latido = () => {

@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { iniciarCicloDeVida } from './cicloDeVida';
+import { aplicarOperacionesOptimistas, crearCola, prepararOperacionOptimista, type OperacionOptimista } from './operacionesOptimistas';
 import { api, ErrorApi, ErrorConflicto, ErrorRegla, ErrorSinConexion, type CambioCampo } from '../api/cliente';
 import type { FilaEnConflicto, FilaEnsayo, RespuestaOperacion, Sesion, TipoOperacion, ValoresCierre, Vista } from '../api/tipos';
 
@@ -17,6 +18,10 @@ import type { FilaEnConflicto, FilaEnsayo, RespuestaOperacion, Sesion, TipoOpera
  *    «Otra persona ha cambiado este ensayo» (D12).
  *  - Sin conexión: los cambios se conservan y se reintenta cada 5 s.
  *  - Relectura cada 20 s, salvo si se está escribiendo o hay cambios pendientes.
+ *  - Añadir y duplicar se ven AL MOMENTO (fila provisional con su id
+ *    definitivo) mientras el backend guarda en SharePoint; lo que se escriba en
+ *    esa fila espera a que el alta esté guardada y después sigue la regla de
+ *    los 1,2 s. Las operaciones se envían de una en una y en orden.
  */
 
 export type EstadoSincronizacion = 'conectando' | 'ok' | 'guardando' | 'error' | 'bloqueado';
@@ -132,6 +137,28 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const vistaRef = useRef<Vista | null>(null);
   vistaRef.current = vistaServidor;
 
+  // Altas y copias que ya se enseñan mientras se guardan (operacionesOptimistas.ts).
+  const [optimistas, setOptimistas] = useState<OperacionOptimista[]>([]);
+  const optimistasRef = useRef<OperacionOptimista[]>([]);
+  /** Ids que el backend sustituyó al confirmar (solo si rechazó el propuesto). */
+  const idsConfirmados = useRef(new Map<string, string>());
+  const colaOperaciones = useRef(crearCola());
+  const operacionesEnCurso = useRef(0);
+  const vistaVisibleRef = useRef<Vista | null>(null);
+  const sesionRef = useRef<Sesion | null>(null);
+  sesionRef.current = sesion;
+
+  const ponerOptimistas = useCallback((lista: OperacionOptimista[]) => {
+    optimistasRef.current = lista;
+    setOptimistas(lista);
+  }, []);
+
+  /** ¿Es una fila provisional cuyo alta aún no se ha guardado? */
+  const sinConfirmar = useCallback((id: string) => optimistasRef.current.some((o) => o.ids.includes(id)), []);
+
+  /** Id real de una fila (igual salvo que el backend no aceptase el id propuesto). */
+  const idReal = useCallback((id: string) => idsConfirmados.current.get(id) ?? id, []);
+
   const avisar = useCallback((texto: string, tipo: 'info' | 'error' = 'info') => {
     const id = Date.now() + Math.random();
     setAvisos((a) => [...a, { id, tipo, texto }]);
@@ -166,12 +193,12 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
 
   const enviarPendientes = useCallback(async (): Promise<void> => {
     if (enEnvio.current) return;
-    const siguiente = pendientes.current.values().next();
-    if (siguiente.done) {
-      setSincronizacion((s) => (s === 'guardando' || s === 'error' ? 'ok' : s));
+    // Lo escrito en una fila que aún se está dando de alta espera a su confirmación.
+    const p = [...pendientes.current.values()].find((x) => !sinConfirmar(x.id));
+    if (!p) {
+      if (!pendientes.current.size) setSincronizacion((s) => (s === 'guardando' || s === 'error' ? 'ok' : s));
       return;
     }
-    const p = siguiente.value;
     pendientes.current.delete(p.id);
     enEnvio.current = true;
     setSincronizacion('guardando');
@@ -214,14 +241,18 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  /** Espera a que se guarde todo lo pendiente (antes de una operación). */
+  const hayEnviables = useCallback(() => [...pendientes.current.values()].some((x) => !sinConfirmar(x.id)), [sinConfirmar]);
+
+  /** Espera a que se guarde todo lo pendiente que ya se puede enviar (antes de una operación). */
   const vaciarPendientes = useCallback(async () => {
     window.clearTimeout(temporizador.current);
-    for (let i = 0; i < 50 && (pendientes.current.size || enEnvio.current); i++) {
+    for (let i = 0; i < 50 && (hayEnviables() || enEnvio.current); i++) {
       if (!enEnvio.current) await enviarPendientes();
       else await new Promise((r) => window.setTimeout(r, 100));
     }
-  }, [enviarPendientes]);
+    // Lo que espera a un alta sin confirmar sigue con su temporizador de 1,2 s.
+    if (pendientes.current.size) programarEnvio(ESPERA_GUARDADO_MS);
+  }, [enviarPendientes, hayEnviables, programarEnvio]);
 
   const editarCampo = useCallback((banco: string, id: string, campo: string, valor: string | boolean | null) => {
     if (soloLecturaRef.current) return;
@@ -267,47 +298,106 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
 
   // ---- operaciones de banco ------------------------------------------------------
 
+  /** Traduce ids provisionales a los definitivos (solo cambian si el backend rechazó el propuesto). */
+  const traducirDatos = useCallback((datos: Record<string, unknown>): Record<string, unknown> => {
+    if (!idsConfirmados.current.size) return datos;
+    const salida: Record<string, unknown> = { ...datos };
+    (['id', 'destino'] as const).forEach((k) => { if (typeof salida[k] === 'string') salida[k] = idReal(salida[k] as string); });
+    if (Array.isArray(salida.ids)) salida.ids = (salida.ids as unknown[]).map((x) => idReal(String(x)));
+    return salida;
+  }, [idReal]);
+
+  /** El backend ha guardado el alta o la copia: la fila provisional deja paso a la real. */
+  const confirmarOptimista = useCallback((op: OperacionOptimista, r: RespuestaOperacion) => {
+    const reales = (r.resultado ?? '').split(',').filter(Boolean);
+    op.ids.forEach((provisional, i) => {
+      const real = reales[i] ?? provisional;
+      if (real !== provisional) {
+        idsConfirmados.current.set(provisional, real);
+        const p = pendientes.current.get(provisional);
+        if (p) {
+          pendientes.current.delete(provisional);
+          pendientes.current.set(real, { ...p, id: real });
+        }
+      }
+      // Lo escrito en la fila mientras se guardaba parte ahora de su primera versión.
+      const p = pendientes.current.get(real);
+      if (p) p.version = r.vista.bancos[op.banco]?.find((f) => f.id === real)?.version ?? null;
+    });
+    ponerOptimistas(optimistasRef.current.filter((o) => o.clave !== op.clave));
+    if (pendientes.current.size) programarEnvio(ESPERA_GUARDADO_MS);
+  }, [ponerOptimistas, programarEnvio]);
+
+  const quitarOptimista = useCallback((op: OperacionOptimista | null) => {
+    if (!op) return;
+    ponerOptimistas(optimistasRef.current.filter((o) => o.clave !== op.clave));
+    // Lo escrito en una fila que no llegó a existir se descarta con ella.
+    op.ids.forEach((id) => pendientes.current.delete(id));
+    setRevisionPendientes((n) => n + 1);
+  }, [ponerOptimistas]);
+
   const operar = useCallback(async (banco: string, tipo: TipoOperacion, datos: Record<string, unknown> = {},
     afectados: string[] = []): Promise<RespuestaOperacion | null> => {
     if (soloLecturaRef.current) return null;
-    await vaciarPendientes();
-    const versiones: Record<string, string | null> = {};
-    afectados.forEach((id) => { versiones[id] = versionDe(id); });
-    const ejecutar = async (forzar: boolean): Promise<RespuestaOperacion | null> => {
-      setSincronizacion('guardando');
-      try {
-        const r = await api.operar(banco, tipo, datos, versiones, forzar);
-        recibirVista(r.vista);
-        setSincronizacion('ok');
-        return r;
-      } catch (e) {
-        setSincronizacion('ok');
-        if (e instanceof ErrorConflicto) {
-          return new Promise((resolver) => {
-            setConflicto({
-              filas: e.filas,
-              descripcion: `operación «${tipo}»`,
-              verSuVersion: () => { setConflicto(null); void recargarSilencioso(); resolver(null); },
-              guardarLaMia: () => { setConflicto(null); void ejecutar(true).then(resolver); },
-            });
-          });
-        }
-        if (e instanceof ErrorSinConexion) {
-          setSincronizacion('error');
-          avisar('No se ha podido guardar; inténtalo de nuevo cuando vuelva la conexión.', 'error');
-          return null;
-        }
-        setMensajeModal(e instanceof Error ? e.message : String(e));
-        return null;
-      }
-    };
-    return ejecutar(false);
+    // Alta o copia: se enseña ya, con el id que se pedirá al backend.
+    const visible = vistaVisibleRef.current;
+    const optimista = visible ? prepararOperacionOptimista(visible, banco, tipo, datos, sesionRef.current) : null;
+    if (optimista) ponerOptimistas([...optimistasRef.current, optimista]);
+    operacionesEnCurso.current += 1;
+    try {
+      return await colaOperaciones.current(async () => {
+        await vaciarPendientes();
+        const datosEnvio = { ...traducirDatos(datos), ...(optimista ? { idsPropuestos: optimista.ids } : {}) };
+        const versiones: Record<string, string | null> = {};
+        afectados.map(idReal).forEach((id) => { versiones[id] = versionDe(id); });
+        const ejecutar = async (forzar: boolean): Promise<RespuestaOperacion | null> => {
+          setSincronizacion('guardando');
+          try {
+            const r = await api.operar(banco, tipo, datosEnvio, versiones, forzar);
+            recibirVista(r.vista);
+            if (optimista) confirmarOptimista(optimista, r);
+            // Lo escrito en la fila nueva aún está por enviar: sigue «guardando».
+            setSincronizacion(pendientes.current.size ? 'guardando' : 'ok');
+            return r;
+          } catch (e) {
+            setSincronizacion(pendientes.current.size ? 'guardando' : 'ok');
+            if (e instanceof ErrorConflicto) {
+              return new Promise((resolver) => {
+                setConflicto({
+                  filas: e.filas,
+                  descripcion: `operación «${tipo}»`,
+                  verSuVersion: () => { setConflicto(null); quitarOptimista(optimista); void recargarSilencioso(); resolver(null); },
+                  guardarLaMia: () => { setConflicto(null); void ejecutar(true).then(resolver); },
+                });
+              });
+            }
+            quitarOptimista(optimista);
+            if (e instanceof ErrorSinConexion) {
+              setSincronizacion('error');
+              avisar('No se ha podido guardar; inténtalo de nuevo cuando vuelva la conexión.', 'error');
+              return null;
+            }
+            setMensajeModal(e instanceof Error ? e.message : String(e));
+            return null;
+          }
+        };
+        return ejecutar(false);
+      });
+    } finally {
+      operacionesEnCurso.current -= 1;
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vaciarPendientes, versionDe, avisar]);
+  }, [vaciarPendientes, versionDe, avisar, traducirDatos, confirmarOptimista, quitarOptimista, idReal, ponerOptimistas]);
 
-  const cerrarEnsayo = useCallback(async (banco: string, id: string, valores: ValoresCierre, correccion: boolean) => {
+  // El cierre también va en la cola: si el ensayo se acaba de añadir, espera a su alta.
+  const cerrarEnsayo = useCallback(async (banco: string, idPedido: string, valores: ValoresCierre, correccion: boolean) => {
     if (soloLecturaRef.current) return false;
+    return colaOperaciones.current(() => cerrarAhoraRef.current(banco, idPedido, valores, correccion));
+  }, []);
+
+  const cerrarAhora = async (banco: string, idPedido: string, valores: ValoresCierre, correccion: boolean): Promise<boolean> => {
     await vaciarPendientes();
+    const id = idReal(idPedido);
     const version = versionDe(id);
     const ejecutar = async (forzar: boolean): Promise<boolean> => {
       try {
@@ -328,8 +418,9 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
       }
     };
     return ejecutar(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [vaciarPendientes, versionDe]);
+  };
+  const cerrarAhoraRef = useRef(cerrarAhora);
+  cerrarAhoraRef.current = cerrarAhora;
 
   // ---- lecturas --------------------------------------------------------------------
 
@@ -384,6 +475,8 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
       const activo = document.activeElement?.tagName;
       const escribiendo = activo === 'INPUT' || activo === 'SELECT' || activo === 'TEXTAREA';
       if (sincronizacionRef.current === 'conectando' || pendientes.current.size || enEnvio.current || escribiendo) return;
+      // Con un alta o una operación a medio guardar, la relectura podría enseñarla dos veces.
+      if (operacionesEnCurso.current || optimistasRef.current.length) return;
       if (document.querySelector('.modal-bg.show')) return;
       void recargarSilencioso();
     }, RELECTURA_MS);
@@ -440,10 +533,13 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
 
   // Lo que se ve = lo del servidor + lo escrito y aún no guardado.
   const vista = useMemo(
-    () => (vistaServidor ? aplicarEnVista(vistaServidor, pendientes.current.values()) : null),
+    () => (vistaServidor
+      ? aplicarEnVista(aplicarOperacionesOptimistas(vistaServidor, optimistas), pendientes.current.values())
+      : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [vistaServidor, revisionPendientes],
+    [vistaServidor, revisionPendientes, optimistas],
   );
+  vistaVisibleRef.current = vista;
 
   const valor: Contexto = {
     vista, sesion, soloLectura, sincronizacion, copiaSinConexion, proyectos, personas, estadosAprobacion, avisos, conflicto,

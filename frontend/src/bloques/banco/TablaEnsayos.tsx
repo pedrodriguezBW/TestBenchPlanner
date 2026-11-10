@@ -121,6 +121,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
             c.estado === 'delayed' && 'delayed',
             seleccion.has(fila.id) && 'sel',
             filaDestino === fila.id && 'dragover',
+            fila.optimista && 'guardando-fila',
           ].filter(Boolean).join(' ');
           const contexto: ContextoCelda = {
             banco, fila, indice, hoy, estadosAprobacion, soloLectura,
@@ -136,6 +137,7 @@ export function TablaEnsayos({ banco, filas, hoy, estadosAprobacion, seleccion, 
           };
           return (
             <tr key={fila.id} data-id={fila.id} className={clases}
+              title={fila.optimista ? 'Guardando en SharePoint…' : undefined}
               onDragOver={(e) => { if (filaArrastrada.current) { e.preventDefault(); setFilaDestino(fila.id); } }}
               onDragLeave={() => setFilaDestino(null)}
               onDrop={(e) => {

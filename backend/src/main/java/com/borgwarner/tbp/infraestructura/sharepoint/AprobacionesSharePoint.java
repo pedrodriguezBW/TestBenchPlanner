@@ -1,16 +1,24 @@
 package com.borgwarner.tbp.infraestructura.sharepoint;
 
+import com.borgwarner.tbp.aplicacion.Cancelacion;
 import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.infraestructura.comun.LecturaCompartida;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.microsoft.playwright.BrowserContext;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.LongSupplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +26,16 @@ import java.util.regex.Pattern;
  * Base de aprobaciones de servicios (otro sitio). SOLO LECTURA: este adaptador
  * no tiene ningún método de escritura. Los nombres internos de las columnas se
  * detectan por su título, como en la 4.9.4.
+ *
+ * Rendimiento: antes se pedía el estado de cada Approval ID con una petición
+ * propia, una detrás de otra, en el único hilo de SharePoint (cientos de
+ * peticiones al abrir la aplicación, delante de todo lo demás). Ahora:
+ *  - se piden en lotes ($filter=Id eq … or Id eq …) por un carril de lectura,
+ *    con prioridad secundaria para no retrasar la planificación;
+ *  - cada estado se recuerda 20 s (la interfaz lo vuelve a pedir cada 60 s y
+ *    cada vez que cambia la lista de IDs);
+ *  - si la pestaña que lo pidió se cierra, no se piden los lotes restantes.
+ * El resultado de cada ID es exactamente el mismo que antes.
  */
 public class AprobacionesSharePoint implements ConsultaAprobaciones {
 
@@ -25,15 +43,45 @@ public class AprobacionesSharePoint implements ConsultaAprobaciones {
     private static final List<String> TITULOS_SOLICITANTE = List.of("Requester name", "Requester Name", "RequesterName", "Requester");
     private static final List<String> TITULOS_SERVICIO = List.of("Service details", "Service Details", "ServiceDetails", "Service");
 
+    /** IDs por consulta (la URL del filtro debe seguir siendo corta). */
+    static final int IDS_POR_LOTE = 50;
+    static final long VIGENCIA_ESTADO_MS = 20_000;
+    static final long VIGENCIA_TODAS_MS = 20_000;
+
+    private record EstadoRecordado(ObjectNode estado, long leido) {
+    }
+
     private final ClienteSharePoint cliente;
     private final String sitio;
     private final String lista;
+    private final LongSupplier relojMs;
     private volatile String[] campos; // estado, solicitante, servicio
+    /** Id numérico -> estado leído (sin «input», que depende de cómo lo escribió el usuario). */
+    private final Map<Integer, EstadoRecordado> recordados = new ConcurrentHashMap<>();
+    private final LecturaCompartida<ArrayNode> lecturaTodas = new LecturaCompartida<>(VIGENCIA_TODAS_MS, ArrayNode::deepCopy);
 
     public AprobacionesSharePoint(ClienteSharePoint cliente, String sitio, String lista) {
+        this(cliente, sitio, lista, System::currentTimeMillis);
+    }
+
+    AprobacionesSharePoint(ClienteSharePoint cliente, String sitio, String lista, LongSupplier relojMs) {
         this.cliente = cliente;
         this.sitio = sitio;
         this.lista = lista;
+        this.relojMs = relojMs;
+    }
+
+    /** Primer número de un Approval ID («ID 123 / x» -> 123), como resolve_status; null si no hay. */
+    static Integer numeroDe(String entrada) {
+        Matcher m = Pattern.compile("\\d+").matcher(entrada == null ? "" : entrada);
+        if (!m.find()) {
+            return null;
+        }
+        try {
+            return Integer.parseInt(m.group());
+        } catch (NumberFormatException e) {
+            return null; // número demasiado largo: ningún elemento tiene ese Id
+        }
     }
 
     /** Estado normalizado y color (map_status). */
@@ -95,7 +143,11 @@ public class AprobacionesSharePoint implements ConsultaAprobaciones {
 
     @Override
     public ArrayNode todas() {
-        return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+        return lecturaTodas.leer(this::todasDeSharePoint);
+    }
+
+    private ArrayNode todasDeSharePoint() {
+        return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
             String[] c = campos(contexto);
             String url = ClienteSharePoint.lista(sitio, lista) + "/items?$select=" + seleccion(c) + "&$top=2000&$orderby=Id desc";
             ArrayNode salida = JsonJs.mapper().createArrayNode();
@@ -119,39 +171,126 @@ public class AprobacionesSharePoint implements ConsultaAprobaciones {
 
     @Override
     public ObjectNode estados(List<JsonNode> ids) {
-        return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
-            ObjectNode salida = JsonJs.objetoVacio();
-            for (JsonNode id : ids) {
-                String clave = id == null || id.isNull() ? "" : id.asText();
-                if (!salida.has(clave)) {
-                    salida.set(clave, resolver(contexto, clave));
+        List<String> claves = new ArrayList<>();
+        Set<Integer> pendientes = new LinkedHashSet<>();
+        long ahora = relojMs.getAsLong();
+        for (JsonNode id : ids) {
+            String clave = id == null || id.isNull() ? "" : id.asText();
+            if (claves.contains(clave)) {
+                continue;
+            }
+            claves.add(clave);
+            Integer numero = numeroDe(clave);
+            if (numero != null) {
+                EstadoRecordado r = recordados.get(numero);
+                if (r == null || ahora - r.leido() >= VIGENCIA_ESTADO_MS) {
+                    pendientes.add(numero);
                 }
             }
+        }
+        Map<Integer, ObjectNode> leidos = new HashMap<>();
+        List<Integer> porLeer = new ArrayList<>(pendientes);
+        for (int i = 0; i < porLeer.size(); i += IDS_POR_LOTE) {
+            Cancelacion.comprobar(); // la pestaña ya no existe: no se piden más lotes
+            List<Integer> lote = porLeer.subList(i, Math.min(porLeer.size(), i + IDS_POR_LOTE));
+            Map<Integer, ObjectNode> estadosLote = cliente.consultar(ConexionEdge.PRIORIDAD_SECUNDARIA, contexto -> leerLote(contexto, lote));
+            long leido = relojMs.getAsLong();
+            estadosLote.forEach((numero, estado) -> {
+                recordados.put(numero, new EstadoRecordado(estado, leido));
+                leidos.put(numero, estado);
+            });
+        }
+        ObjectNode salida = JsonJs.objetoVacio();
+        for (String clave : claves) {
+            Integer numero = numeroDe(clave);
+            ObjectNode r = JsonJs.objetoVacio();
+            r.put("input", clave);
+            if (numero == null) {
+                r.putNull("resolvedId");
+                r.put("status", "not_created").put("color", "red").putNull("raw");
+            } else {
+                ObjectNode estado = leidos.get(numero);
+                if (estado == null) {
+                    EstadoRecordado recordado = recordados.get(numero);
+                    estado = recordado == null ? noCreado(numero) : recordado.estado();
+                }
+                r.setAll(estado.deepCopy());
+            }
+            salida.set(clave, r);
+        }
+        return salida;
+    }
+
+    /** Estado de un Id que no existe o no se ha podido leer (como resolve_status). */
+    private static ObjectNode noCreado(int numero) {
+        ObjectNode r = JsonJs.objetoVacio();
+        r.put("resolvedId", numero);
+        r.put("status", "not_created").put("color", "red").putNull("raw");
+        return r;
+    }
+
+    /**
+     * Estados de un lote de Ids con una sola consulta. Si la consulta del lote
+     * falla, se resuelve cada Id por separado, igual que antes.
+     */
+    Map<Integer, ObjectNode> leerLote(BrowserContext contexto, List<Integer> lote) {
+        String[] c = campos(contexto);
+        Map<Integer, ObjectNode> salida = new HashMap<>();
+        List<JsonNode> filas;
+        try {
+            String filtro = String.join(" or ", lote.stream().map(n -> "Id eq " + n).toList());
+            filas = cliente.leerPaginado(contexto, ClienteSharePoint.lista(sitio, lista) + "/items?$select=" + seleccion(c)
+                    + "&$filter=" + filtro + "&$top=" + lote.size(), sitio, ClienteSharePoint.JSON_SIN_METADATOS);
+        } catch (com.borgwarner.tbp.aplicacion.PeticionCancelada e) {
+            throw e;
+        } catch (RuntimeException e) {
+            for (Integer numero : lote) {
+                ObjectNode uno = resolver(contexto, String.valueOf(numero));
+                uno.remove("input");
+                salida.put(numero, uno);
+            }
             return salida;
-        });
+        }
+        for (JsonNode it : filas) {
+            if (!it.hasNonNull("Id")) {
+                continue;
+            }
+            int numero = it.get("Id").asInt();
+            ObjectNode r = JsonJs.objetoVacio();
+            r.put("resolvedId", numero);
+            rellenar(r, it, c);
+            salida.put(numero, r);
+        }
+        for (Integer numero : lote) {
+            salida.computeIfAbsent(numero, AprobacionesSharePoint::noCreado); // no existe: como el 404 de antes
+        }
+        return salida;
+    }
+
+    private static void rellenar(ObjectNode r, JsonNode it, String[] c) {
+        JsonNode bruto = it.get(c[0]);
+        String[] ec = estadoYColor(bruto == null || bruto.isNull() ? null : bruto.asText());
+        r.put("status", ec[0]).put("color", ec[1]);
+        r.set("raw", bruto);
+        r.set("requester", c[1] != null ? it.get(c[1]) : null);
+        r.set("service", c[2] != null ? it.get(c[2]) : null);
     }
 
     /** Estado de un Approval ID (resolve_status). Se usa también para las columnas espejo. */
     ObjectNode resolver(BrowserContext contexto, String entrada) {
         ObjectNode r = JsonJs.objetoVacio();
         r.put("input", entrada);
-        Matcher m = Pattern.compile("\\d+").matcher(entrada == null ? "" : entrada);
-        if (!m.find()) {
+        Integer id = numeroDe(entrada);
+        if (id == null) {
             r.putNull("resolvedId");
             r.put("status", "not_created").put("color", "red").putNull("raw");
             return r;
         }
-        int id = Integer.parseInt(m.group());
         r.put("resolvedId", id);
         String[] c = campos(contexto);
         try {
             JsonNode it = cliente.get(contexto, ClienteSharePoint.lista(sitio, lista) + "/items(" + id + ")?$select=" + seleccion(c));
-            JsonNode bruto = it.get(c[0]);
-            String[] ec = estadoYColor(bruto == null || bruto.isNull() ? null : bruto.asText());
-            r.put("status", ec[0]).put("color", ec[1]);
-            r.set("raw", bruto);
-            r.set("requester", c[1] != null ? it.get(c[1]) : null);
-            r.set("service", c[2] != null ? it.get(c[2]) : null);
+            rellenar(r, it, c);
         } catch (RuntimeException e) {
             r.put("status", "not_created").put("color", "red").putNull("raw");
         }

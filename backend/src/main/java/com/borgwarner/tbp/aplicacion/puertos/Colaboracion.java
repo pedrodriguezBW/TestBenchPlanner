@@ -15,6 +15,15 @@ public interface Colaboracion {
     /** Añade un evento al registro (connect, edit, res_block…). Nunca debe fallar. */
     boolean anotarActividad(String email, String nombre, String accion, String detalle);
 
+    /**
+     * Igual que anotarActividad, pero sin hacer esperar a quien lo pide (un
+     * guardado o la identificación no deben tardar más por el registro). Por
+     * defecto se anota en el acto; SharePoint lo hace en segundo plano.
+     */
+    default void anotarActividadSinEsperar(String email, String nombre, String accion, String detalle) {
+        anotarActividad(email, nombre, accion, detalle);
+    }
+
     /** Últimos eventos: {rows:[{email, name, action, detail, when}], columns:[…]}. */
     ObjectNode leerActividad(int maximo);
 

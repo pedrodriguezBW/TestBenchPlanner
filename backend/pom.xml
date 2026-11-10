@@ -123,6 +123,13 @@
                                 <goals><goal>npm</goal></goals>
                                 <configuration><arguments>run build</arguments></configuration>
                             </execution>
+                            <execution>
+                                <!-- Pruebas de la interfaz (altas y copias al momento, cola de operaciones) -->
+                                <id>pruebas-interfaz</id>
+                                <phase>test</phase>
+                                <goals><goal>npm</goal></goals>
+                                <configuration><arguments>test</arguments></configuration>
+                            </execution>
                         </executions>
                     </plugin>
                 </plugins>

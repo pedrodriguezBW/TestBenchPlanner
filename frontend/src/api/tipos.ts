@@ -88,6 +88,8 @@ export interface FilaEnsayo {
   id: string;
   version: string | null;
   cerrado: boolean;
+  /** Alta o copia que ya se enseña mientras el backend la guarda en SharePoint. */
+  optimista?: boolean;
   prioridad?: number;
   datos: DatosEnsayo;
   calculo: Calculo;

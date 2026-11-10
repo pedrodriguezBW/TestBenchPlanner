@@ -36,7 +36,11 @@ let cola = Promise.resolve(); // las peticiones se atienden de una en una
 let ultimaMatrizExcel = null;
 // Situaciones que el simulado puede imitar para las pruebas de cierre (H3Z):
 // versión publicada, conectados y modo sin conexión (copia de este PC).
-let laboratorio = { publicada: null, conectados: null, copiaSinConexion: null };
+// retardoOperacionesMs: lo que tarda «SharePoint» en guardar un alta, copia… (sin bloquear las lecturas).
+// fallarOperaciones: las operaciones de banco responden 500. pestanas: códigos X-TBP-Pestana recibidos.
+const LABORATORIO_INICIAL = () => ({ publicada: null, conectados: null, copiaSinConexion: null, retardoOperacionesMs: 0,
+  fallarOperaciones: false, aceptarIdsPropuestos: false, pestanas: [], peticionesSinPestana: 0 });
+let laboratorio = LABORATORIO_INICIAL();
 let hoyLaboratorio = '2026-11-05';
 async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = '2026-11-05', email } = {}) {
   if (sesion) await sesion.cerrar();
@@ -45,7 +49,7 @@ async function reiniciar({ escenario: nombre = 'sharepoint-2026-11-05', fecha = 
   rol = usuario ? normalizarRol(usuario.role) : (email ? 'readonly' : 'admin');
   sesion = await abrirVersionOriginal({ escenario, fecha, rol, aceptarDialogos: true });
   hoyLaboratorio = fecha;
-  laboratorio = { publicada: null, conectados: null, copiaSinConexion: null };
+  laboratorio = LABORATORIO_INICIAL();
   return { ok: true, hoy: fecha };
 }
 
@@ -147,11 +151,34 @@ async function operacion(banco, cuerpo) {
   const avisos = await pasos(mapa[cuerpo.tipo]);
   const regla = avisos.find((a) => REGLAS.some((r) => r.test(a)));
   if (regla) return { estado: 422, cuerpo: { error: 'regla', mensaje: regla } };
-  const nueva = await vista();
+  let nueva = await vista();
+  // Como GeneradorIds.conPropuestos (Java): las filas nuevas toman los ids que la interfaz ya enseña.
+  // Solo con laboratorio.aceptarIdsPropuestos (las referencias de paridad se generaron con los ids de la 4.9.4,
+  // así que el resto de pruebas recorre el otro camino: la interfaz cambia el id provisional por el real).
+  const creados = Object.keys(nueva.textos).filter((id) => !antes.includes(id));
+  if (laboratorio.aceptarIdsPropuestos && (cuerpo.tipo === 'anadir' || cuerpo.tipo === 'duplicar') && Array.isArray(cuerpo.idsPropuestos) && creados.length) {
+    const libres = new Set(Object.keys(nueva.textos));
+    const mapa = {};
+    const propuestos = [...cuerpo.idsPropuestos];
+    for (const id of creados) {
+      while (propuestos.length) {
+        const p = String(propuestos.shift());
+        if (/^r[0-9a-z]{7}$/.test(p) && !libres.has(p)) { mapa[id] = p; libres.add(p); break; }
+      }
+    }
+    if (Object.keys(mapa).length) {
+      await sesion.evaluar((m) => {
+        Object.values(state.benches).forEach((filas) => filas.forEach((r) => { if (m[r.id]) r.id = m[r.id]; }));
+        render(); // la tabla de la 4.9.4 vuelve a pintarse con los ids nuevos (los pasos siguientes la usan)
+      }, mapa);
+      nueva = await vista();
+      creados.forEach((id, i) => { if (mapa[id]) creados[i] = mapa[id]; });
+    }
+  }
   let resultado;
-  if (cuerpo.tipo === 'duplicar') resultado = Object.keys(nueva.textos).filter((id) => !antes.includes(id)).join(',');
+  if (cuerpo.tipo === 'duplicar') resultado = creados.join(',');
   if (cuerpo.tipo === 'mover') resultado = avisos[avisos.length - 1];
-  if (cuerpo.tipo === 'anadir' || cuerpo.tipo === 'reutilizar') resultado = Object.keys(nueva.textos).find((id) => !antes.includes(id));
+  if (cuerpo.tipo === 'anadir' || cuerpo.tipo === 'reutilizar') resultado = creados[0];
   return { estado: 200, cuerpo: { resultado, filasGuardadas: 1, vista: nueva.vista } };
 }
 
@@ -484,7 +511,22 @@ const servidor = http.createServer((req, res) => {
       }
       return;
     }
-    cola = cola.then(async () => {
+    const pestana = req.headers['x-tbp-pestana'];
+    if (req.url.startsWith('/api/v1/') && !req.url.startsWith('/api/v1/local/')) {
+      if (pestana && !laboratorio.pestanas.includes(pestana)) laboratorio.pestanas.push(pestana);
+      if (!pestana) laboratorio.peticionesSinPestana += 1;
+    }
+    const esOperacion = /^\/api\/v1\/bancos\/[^/]+\/operaciones/.test(req.url) && req.method === 'POST';
+    if (esOperacion && laboratorio.fallarOperaciones) {
+      res.writeHead(500, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify({ error: 'SharePoint no responde (laboratorio)' }));
+      return;
+    }
+    // El retardo simula un guardado lento en SharePoint: la operación se aplica al final y,
+    // mientras tanto, las lecturas se siguen atendiendo (no ocupa la cola).
+    const retardo = esOperacion ? Number(laboratorio.retardoOperacionesMs || 0) : 0;
+    const encolar = (trabajo) => { cola = cola.then(trabajo); };
+    const atenderEnCola = async () => {
       try {
         const r = await atender(req.method, req.url, datos ? JSON.parse(datos) : null);
         res.writeHead(r.estado, { 'Content-Type': 'application/json' });
@@ -493,7 +535,8 @@ const servidor = http.createServer((req, res) => {
         res.writeHead(500, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ error: String(e && e.message || e) }));
       }
-    });
+    };
+    if (retardo > 0) setTimeout(() => encolar(atenderEnCola), retardo); else encolar(atenderEnCola);
   });
 });
 

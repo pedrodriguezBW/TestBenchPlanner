@@ -47,6 +47,8 @@ public class ServicioSesion {
         ArrayNode lista;
         try {
             lista = usuarios.leer();
+        } catch (PeticionCancelada cancelada) {
+            throw cancelada; // la pestaña se ha cerrado: no cuenta como lectura fallida (D11)
         } catch (RuntimeException e) {
             lecturas.anotar(RegistroLecturas.USUARIOS, false, 0);
             throw e;
@@ -74,7 +76,7 @@ public class ServicioSesion {
         }
         Usuario usuario = new Usuario(email, nombre, responsable, rol);
         if (actual == null && !conexion.sinConexion()) {
-            colaboracion.anotarActividad(email, nombre, "connect", "role=" + rol);
+            colaboracion.anotarActividadSinEsperar(email, nombre, "connect", "role=" + rol);
         }
         actual = usuario;
         ultimaLista = lista;

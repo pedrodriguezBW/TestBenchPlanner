@@ -11,3 +11,6 @@ dist/
 
 # Configuración local con URLs del sitio (no se versiona)
 backend/config/
+
+# Pruebas unitarias de la interfaz (compiladas)
+frontend/target-test/

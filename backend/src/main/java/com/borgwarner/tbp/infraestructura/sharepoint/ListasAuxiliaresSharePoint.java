@@ -9,6 +9,7 @@ import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
 import com.borgwarner.tbp.dominio.usuarios.Usuario;
 import com.borgwarner.tbp.infraestructura.comun.FilaKpi;
+import com.borgwarner.tbp.infraestructura.comun.LecturaCompartida;
 import com.borgwarner.tbp.infraestructura.comun.Versionado;
 import com.borgwarner.tbp.infraestructura.local.Presencia;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.microsoft.playwright.BrowserContext;
 
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -27,6 +29,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Listas auxiliares de SharePoint: catálogos, histórico de KPI, usuarios,
@@ -35,6 +39,12 @@ import java.util.Set;
  *
  * Todas las escrituras pasan por ClienteSharePoint, que las bloquea si la
  * escritura está desactivada.
+ *
+ * Las lecturas van por los carriles de lectura (no esperan detrás de los
+ * guardados) y se comparten unos segundos: al arrancar, la interfaz pedía los
+ * catálogos dos veces seguidas y los usuarios otras dos. Lo que escribe este PC
+ * invalida su lectura en el acto; los cambios de otras personas se ven, como
+ * mucho, al cabo de esa vigencia (siempre menor que los sondeos de la interfaz).
  */
 public final class ListasAuxiliaresSharePoint {
 
@@ -49,7 +59,19 @@ public final class ListasAuxiliaresSharePoint {
     public static final String RECURSOS = "TestBenchResources";
     public static final String BLOQUEOS = "TestBenchResourceBlocks";
 
+    /** Vigencia de las lecturas compartidas. */
+    static final long VIGENCIA_CATALOGOS_MS = 15_000;
+    static final long VIGENCIA_USUARIOS_MS = 15_000;
+    static final long VIGENCIA_IDENTIDAD_MS = 10 * 60_000;
+    static final long VIGENCIA_RECURSOS_MS = 10_000;
+    static final long VIGENCIA_KPI_MS = 30_000;
+    static final long VIGENCIA_VERSION_MS = 5 * 60_000;
+
     private ListasAuxiliaresSharePoint() {
+    }
+
+    private static List<JsonNode> copiaLista(List<JsonNode> filas) {
+        return filas.stream().<JsonNode>map(JsonNode::deepCopy).toList();
     }
 
     private static Double seq(JsonNode it) {
@@ -84,6 +106,9 @@ public final class ListasAuxiliaresSharePoint {
     public static class Catalogos implements AlmacenCatalogos {
         private final ClienteSharePoint cliente;
         private final boolean permitirVacias;
+        /** Una lectura con alguna lista fallida (*_error) no se reutiliza. */
+        private final LecturaCompartida<ObjectNode> lectura = new LecturaCompartida<>(VIGENCIA_CATALOGOS_MS,
+                ObjectNode::deepCopy, c -> !c.has("benches_error") && !c.has("projects_error") && !c.has("responsibles_error"));
 
         public Catalogos(ClienteSharePoint cliente, boolean permitirVacias) {
             this.cliente = cliente;
@@ -92,7 +117,11 @@ public final class ListasAuxiliaresSharePoint {
 
         @Override
         public ObjectNode leer() {
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+            return lectura.leer(this::leerDeSharePoint);
+        }
+
+        private ObjectNode leerDeSharePoint() {
+            return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 ObjectNode salida = JsonJs.objetoVacio();
                 salida.set("responsibles", titulos(contexto, RESPONSABLES, List.of("Org", "Seq"), salida, "responsibles_error"));
                 salida.set("projects", titulos(contexto, PROYECTOS, List.of("Seq"), salida, "projects_error"));
@@ -138,6 +167,15 @@ public final class ListasAuxiliaresSharePoint {
         @Override
         public ObjectNode guardar(JsonNode catalogos) {
             cliente.exigirEscritura("guardar catálogos");
+            lectura.invalidar();
+            try {
+                return guardarEnSharePoint(catalogos);
+            } finally {
+                lectura.invalidar();
+            }
+        }
+
+        private ObjectNode guardarEnSharePoint(JsonNode catalogos) {
             return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 ObjectNode resultado = JsonJs.objetoVacio().put("ok", true);
                 ClienteSharePoint.PlanReconciliacion planResponsables = null;
@@ -202,6 +240,8 @@ public final class ListasAuxiliaresSharePoint {
                 "Unplanned", "ReasonResources", "ReasonParts", "ReasonBreakdown", "ReasonTestDrop", "DelayedDeclared",
                 "OccHoursBusy", "OccHoursCap", "OccPct", "ReasonPriority", "ReasonOther", "KPIJson");
         private final ClienteSharePoint cliente;
+        private final LecturaCompartida<List<JsonNode>> lectura =
+                new LecturaCompartida<>(VIGENCIA_KPI_MS, ListasAuxiliaresSharePoint::copiaLista);
 
         public HistoricoKpi(ClienteSharePoint cliente) {
             this.cliente = cliente;
@@ -209,7 +249,11 @@ public final class ListasAuxiliaresSharePoint {
 
         @Override
         public List<JsonNode> leer() {
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+            return lectura.leer(this::leerDeSharePoint);
+        }
+
+        private List<JsonNode> leerDeSharePoint() {
+            return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 Set<String> existentes;
                 try {
                     existentes = cliente.columnas(contexto, cliente.sitio(), KPI);
@@ -226,6 +270,15 @@ public final class ListasAuxiliaresSharePoint {
         @Override
         public ObjectNode guardarFotos(List<ObjectNode> fotos) {
             cliente.exigirEscritura("guardar la foto semanal de KPI");
+            lectura.invalidar();
+            try {
+                return guardarFotosEnSharePoint(fotos);
+            } finally {
+                lectura.invalidar();
+            }
+        }
+
+        private ObjectNode guardarFotosEnSharePoint(List<ObjectNode> fotos) {
             return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 String digest = cliente.digest(contexto);
                 String base = cliente.lista(KPI);
@@ -259,6 +312,10 @@ public final class ListasAuxiliaresSharePoint {
     public static class Usuarios implements AlmacenUsuarios {
         private final ClienteSharePoint cliente;
         private final boolean permitirVacias;
+        private final LecturaCompartida<ArrayNode> lectura = new LecturaCompartida<>(VIGENCIA_USUARIOS_MS, ArrayNode::deepCopy);
+        /** La persona que usa este PC no cambia: solo se reutiliza una identidad con email. */
+        private final LecturaCompartida<Identidad> lecturaIdentidad = new LecturaCompartida<>(VIGENCIA_IDENTIDAD_MS, i -> i,
+                i -> i.email() != null && !i.email().isBlank());
 
         public Usuarios(ClienteSharePoint cliente, boolean permitirVacias) {
             this.cliente = cliente;
@@ -267,7 +324,7 @@ public final class ListasAuxiliaresSharePoint {
 
         @Override
         public Identidad identidadActual() {
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, this::identidad);
+            return lecturaIdentidad.leer(() -> cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, this::identidad));
         }
 
         private Identidad identidad(BrowserContext contexto) {
@@ -299,7 +356,11 @@ public final class ListasAuxiliaresSharePoint {
 
         @Override
         public ArrayNode leer() {
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+            return lectura.leer(this::leerDeSharePoint);
+        }
+
+        private ArrayNode leerDeSharePoint() {
+            return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 ArrayNode salida = JsonJs.mapper().createArrayNode();
                 try {
                     for (JsonNode it : cliente.leerLista(contexto, USUARIOS, List.of("Email", "Role", "ResponsibleName"))) {
@@ -335,12 +396,17 @@ public final class ListasAuxiliaresSharePoint {
                 fila.set("ResponsibleName", responsable.isEmpty() ? NullNode.getInstance() : TextNode.valueOf(responsable));
                 filas.add(fila);
             }
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
-                ClienteSharePoint.PlanReconciliacion plan = cliente.prepararReconciliacion(contexto, USUARIOS,
-                        List.of("Email", "Role", "ResponsibleName"), filas, permitirVacias);
-                return JsonJs.objetoVacio().put("ok", true)
-                        .set("users", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
-            });
+            lectura.invalidar();
+            try {
+                return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                    ClienteSharePoint.PlanReconciliacion plan = cliente.prepararReconciliacion(contexto, USUARIOS,
+                            List.of("Email", "Role", "ResponsibleName"), filas, permitirVacias);
+                    return JsonJs.objetoVacio().put("ok", true)
+                            .set("users", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
+                });
+            } finally {
+                lectura.invalidar();
+            }
         }
     }
 
@@ -352,6 +418,8 @@ public final class ListasAuxiliaresSharePoint {
         private final ClienteSharePoint cliente;
         private final Colaboracion colaboracion;
         private final boolean permitirVacias;
+        private final LecturaCompartida<ObjectNode> lectura = new LecturaCompartida<>(VIGENCIA_RECURSOS_MS,
+                ObjectNode::deepCopy, r -> !r.has("resources_error") && !r.has("blocks_error"));
 
         public Recursos(ClienteSharePoint cliente, Colaboracion colaboracion, boolean permitirVacias) {
             this.cliente = cliente;
@@ -359,9 +427,18 @@ public final class ListasAuxiliaresSharePoint {
             this.permitirVacias = permitirVacias;
         }
 
+        /**
+         * Antes iba con la prioridad más baja del único hilo de SharePoint y
+         * esperaba detrás de todo lo demás; ahora es una consulta normal de la
+         * interfaz en un carril de lectura.
+         */
         @Override
         public ObjectNode leer() {
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_FONDO, contexto -> {
+            return lectura.leer(this::leerDeSharePoint);
+        }
+
+        private ObjectNode leerDeSharePoint() {
+            return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 ObjectNode salida = JsonJs.objetoVacio();
                 ArrayNode recursos = salida.putArray("resources");
                 ArrayNode bloqueos = salida.putArray("blocks");
@@ -434,18 +511,36 @@ public final class ListasAuxiliaresSharePoint {
                 fila.set("Seq", r.hasNonNull("seq") ? numeroONulo(r.get("seq")) : com.fasterxml.jackson.databind.node.IntNode.valueOf(i));
                 filas.add(fila);
             }
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
-                ClienteSharePoint.PlanReconciliacion plan =
-                        cliente.prepararReconciliacion(contexto, RECURSOS, COLUMNAS_RECURSOS, filas, permitirVacias);
-                return JsonJs.objetoVacio().put("ok", true)
-                        .set("resources", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
-            });
+            lectura.invalidar();
+            try {
+                return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                    ClienteSharePoint.PlanReconciliacion plan =
+                            cliente.prepararReconciliacion(contexto, RECURSOS, COLUMNAS_RECURSOS, filas, permitirVacias);
+                    return JsonJs.objetoVacio().put("ok", true)
+                            .set("resources", cliente.aplicarReconciliacion(contexto, cliente.digest(contexto), plan));
+                });
+            } finally {
+                lectura.invalidar();
+            }
         }
 
         @Override
         public ObjectNode guardarBloqueo(JsonNode p, AlmacenEnsayos.Actor actor) {
             cliente.exigirEscritura("guardar bloqueo de recurso");
-            ObjectNode resultado = cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+            lectura.invalidar();
+            ObjectNode resultado;
+            try {
+                resultado = guardarBloqueoEnSharePoint(p, actor);
+            } finally {
+                lectura.invalidar();
+            }
+            colaboracion.anotarActividadSinEsperar(actor.email(), actor.nombre(), "res_block", p.path("resource").asText() + " "
+                    + p.path("start").asText() + "->" + p.path("end").asText() + " (" + p.path("reason").asText() + ")");
+            return resultado;
+        }
+
+        private ObjectNode guardarBloqueoEnSharePoint(JsonNode p, AlmacenEnsayos.Actor actor) {
+            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 String digest = cliente.digest(contexto);
                 String base = cliente.lista(BLOQUEOS);
                 Integer id = p.hasNonNull("id") && p.get("id").asInt() != 0 ? p.get("id").asInt() : null;
@@ -466,9 +561,6 @@ public final class ListasAuxiliaresSharePoint {
                 ClienteSharePoint.Respuesta r = cliente.merge(contexto, digest, base, id, cuerpo, "*");
                 return JsonJs.objetoVacio().put("ok", r.ok()).put("id", id).put("status", r.estado());
             });
-            colaboracion.anotarActividad(actor.email(), actor.nombre(), "res_block", p.path("resource").asText() + " "
-                    + p.path("start").asText() + "->" + p.path("end").asText() + " (" + p.path("reason").asText() + ")");
-            return resultado;
         }
 
         @Override
@@ -477,8 +569,13 @@ public final class ListasAuxiliaresSharePoint {
                 return JsonJs.objetoVacio().put("ok", false).put("error", "sin id");
             }
             cliente.exigirEscritura("borrar bloqueo de recurso");
-            return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> JsonJs.objetoVacio()
-                    .put("ok", cliente.reciclar(contexto, cliente.digest(contexto), cliente.lista(BLOQUEOS), Integer.parseInt(id.toString()))));
+            lectura.invalidar();
+            try {
+                return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> JsonJs.objetoVacio()
+                        .put("ok", cliente.reciclar(contexto, cliente.digest(contexto), cliente.lista(BLOQUEOS), Integer.parseInt(id.toString()))));
+            } finally {
+                lectura.invalidar();
+            }
         }
     }
 
@@ -488,10 +585,29 @@ public final class ListasAuxiliaresSharePoint {
         private static final int TTL_PRESENCIA_S = 75;
         private final ClienteSharePoint cliente;
         private final boolean publicar;
+        /** Registro de actividad en segundo plano, en orden, sin hacer esperar a nadie. */
+        private final ExecutorService registro = Executors.newSingleThreadExecutor(r -> {
+            Thread hilo = new Thread(r, "registro-actividad");
+            hilo.setDaemon(true);
+            return hilo;
+        });
+        private final LecturaCompartida<String> lecturaVersion = new LecturaCompartida<>(VIGENCIA_VERSION_MS, v -> v);
 
         public ColaboracionSharePoint(ClienteSharePoint cliente, boolean publicar) {
             this.cliente = cliente;
             this.publicar = publicar;
+        }
+
+        @Override
+        public void anotarActividadSinEsperar(String email, String nombre, String accion, String detalle) {
+            if (!cliente.escrituraHabilitada()) {
+                return;
+            }
+            try {
+                registro.execute(() -> anotarActividad(email, nombre, accion, detalle));
+            } catch (RuntimeException e) {
+                // cola cerrada al apagar: el registro nunca impide nada
+            }
         }
 
         /**
@@ -602,7 +718,7 @@ public final class ListasAuxiliaresSharePoint {
         @Override
         public ObjectNode leerActividad(int maximo) {
             try {
-                return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                     Set<String> columnas;
                     try {
                         columnas = cliente.columnas(contexto, cliente.sitio(), ACTIVIDAD);
@@ -635,6 +751,8 @@ public final class ListasAuxiliaresSharePoint {
                     hay.stream().sorted().forEach(lista::add);
                     return salida;
                 });
+            } catch (com.borgwarner.tbp.aplicacion.PeticionCancelada e) {
+                throw e;
             } catch (RuntimeException e) {
                 return JsonJs.objetoVacio().put("error", ClienteSharePoint.recortar(e.getMessage(), 200))
                         .set("rows", JsonJs.mapper().createArrayNode());
@@ -644,15 +762,19 @@ public final class ListasAuxiliaresSharePoint {
         @Override
         public String versionPublicada() {
             try {
-                return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
-                    JsonNode valores = cliente.get(contexto, cliente.lista(CONFIG_APP)
-                            + "/items?$select=Title,Value&$filter=Title eq 'CurrentVersion'&$top=1").path("value");
-                    String v = valores.size() > 0 ? valores.get(0).path("Value").asText("").trim() : "";
-                    return v.isEmpty() ? null : v;
-                });
+                return lecturaVersion.leer(this::versionDeSharePoint);
             } catch (RuntimeException e) {
                 return null;
             }
+        }
+
+        private String versionDeSharePoint() {
+            return cliente.consultar(ConexionEdge.PRIORIDAD_FONDO, contexto -> {
+                JsonNode valores = cliente.get(contexto, cliente.lista(CONFIG_APP)
+                        + "/items?$select=Title,Value&$filter=Title eq 'CurrentVersion'&$top=1").path("value");
+                String v = valores.size() > 0 ? valores.get(0).path("Value").asText("").trim() : "";
+                return v.isEmpty() ? null : v;
+            });
         }
 
         /** Publica la versión solo si es estrictamente mayor (nunca la rebaja). */
@@ -661,6 +783,7 @@ public final class ListasAuxiliaresSharePoint {
             if (!publicar || !cliente.escrituraHabilitada()) {
                 return false;
             }
+            lecturaVersion.invalidar();
             return cliente.conSesion(ConexionEdge.PRIORIDAD_FONDO, contexto -> {
                 String digest = cliente.digest(contexto);
                 String base = cliente.lista(CONFIG_APP);

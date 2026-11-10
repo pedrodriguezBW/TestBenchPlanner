@@ -32,6 +32,12 @@ import java.util.Map;
  * ConflictoEdicion y no se escribe nada. Con «forzar» se omite la comprobación
  * de lo que vio el usuario (opción «Guardar la mía encima»), pero el almacén
  * sigue protegiendo contra cambios ocurridos durante la propia escritura.
+ *
+ * Las operaciones de este PC se ejecutan de una en una (la interfaz ya enseña
+ * el alta o la copia antes de que termine de guardarse, así que el usuario
+ * puede encadenar varias): dos operaciones propias nunca se pisan entre sí.
+ * La lectura de cada operación es autoritativa y, al terminar, la respuesta
+ * lleva la vista calculada sin volver a leer SharePoint.
  */
 @Service
 public class ServicioPlanificacion {
@@ -51,6 +57,7 @@ public class ServicioPlanificacion {
     private final AlmacenCalendario calendarios;
     private final Reloj reloj;
     private final ServicioSesion sesion;
+    private final Object operaciones = new Object();
 
     public ServicioPlanificacion(AlmacenEnsayos ensayos, AlmacenCatalogos catalogos, AlmacenCalendario calendarios,
                                  Reloj reloj, ServicioSesion sesion) {
@@ -124,6 +131,13 @@ public class ServicioPlanificacion {
      */
     public <T> Resultado<T> ejecutar(Usuario usuario, Map<String, String> versionesVistas, boolean forzar, Operacion<T> operacion) {
         sesion.exigirEscritura(usuario);
+        synchronized (operaciones) {
+            // Una operación enviada termina aunque se cierre la pestaña que la pidió.
+            return Cancelacion.sinCancelar(() -> ejecutarAhora(usuario, versionesVistas, forzar, operacion));
+        }
+    }
+
+    private <T> Resultado<T> ejecutarAhora(Usuario usuario, Map<String, String> versionesVistas, boolean forzar, Operacion<T> operacion) {
         Vista vista = vista();
         T valor = operacion.aplicar(vista.planificacion(), vista.plan());
         List<CambioFila> cambios = vista.planificacion().cambiosPendientes();

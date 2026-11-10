@@ -1,5 +1,6 @@
 package com.borgwarner.tbp.infraestructura.sharepoint;
 
+import com.borgwarner.tbp.aplicacion.Cancelacion;
 import com.borgwarner.tbp.aplicacion.puertos.SinSesionAlmacen;
 import com.borgwarner.tbp.aplicacion.puertos.EscrituraDesactivada;
 
@@ -18,6 +19,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.LongSupplier;
 
 /**
  * Llamadas REST a SharePoint (equivalente a los helpers del backend 4.9.4).
@@ -26,6 +30,18 @@ import java.util.Set;
  * escritura desactivada (valor por defecto) se lanza EscrituraDesactivada antes
  * de enviar nada. Así es imposible escribir en las listas por accidente
  * durante el desarrollo o las pruebas.
+ *
+ * Rendimiento (antes cada llamada repetía trabajo que no cambia):
+ *  - La sesión SSO se comprueba como mucho una vez por minuto, no antes de
+ *    cada llamada. Si una respuesta indica que la sesión ha caducado (401/403 o
+ *    una página de inicio de sesión en lugar de JSON) y el bloque no había
+ *    escrito nada, se recupera la sesión y el bloque se repite una vez.
+ *  - El FormDigest se reutiliza mientras es válido (si SharePoint lo rechaza,
+ *    se pide otro y se reintenta: la petición rechazada no llegó a escribir).
+ *  - Las columnas de cada lista se recuerdan (el esquema no lo cambia la
+ *    aplicación); si una consulta falla por una columna, se vuelven a leer.
+ *  - Las consultas ({@link #consultar}) van por los carriles de lectura y no
+ *    esperan detrás de los guardados; desde ellas no se puede escribir.
  */
 public class ClienteSharePoint {
 
@@ -44,14 +60,43 @@ public class ClienteSharePoint {
         }
     }
 
+    static final long VIGENCIA_SESION_MS = 60_000;
+    static final long VIGENCIA_COLUMNAS_MS = 30 * 60_000;
+    static final long VIGENCIA_MAXIMA_DIGEST_MS = 10 * 60_000;
+
+    /** Marcas del bloque que se está ejecutando en este hilo. */
+    private static final class Marcas {
+        boolean sesionSospechosa;
+        boolean escrito;
+        boolean soloLectura;
+    }
+
+    private static final ThreadLocal<Marcas> MARCAS = new ThreadLocal<>();
+
+    private record Digest(String valor, long caduca) {
+    }
+
+    private record Columnas(Set<String> nombres, long leidas) {
+    }
+
     private final ConexionEdge conexion;
     private final String sitio;
     private final boolean escrituraHabilitada;
+    private final LongSupplier relojMs;
+    private final Object cerrojoSesion = new Object();
+    private volatile long sesionVerificadaHasta;
+    private volatile Digest digest;
+    private final Map<String, Columnas> columnas = new ConcurrentHashMap<>();
 
     public ClienteSharePoint(ConexionEdge conexion, String sitio, boolean escrituraHabilitada) {
+        this(conexion, sitio, escrituraHabilitada, System::currentTimeMillis);
+    }
+
+    ClienteSharePoint(ConexionEdge conexion, String sitio, boolean escrituraHabilitada, LongSupplier relojMs) {
         this.conexion = conexion;
         this.sitio = sitio;
         this.escrituraHabilitada = escrituraHabilitada;
+        this.relojMs = relojMs;
     }
 
     public String sitio() {
@@ -68,14 +113,101 @@ public class ClienteSharePoint {
         }
     }
 
-    /** Ejecuta un bloque con la sesión comprobada, en el hilo de SharePoint. */
-    public <T> T conSesion(int prioridad, java.util.function.Function<BrowserContext, T> bloque) {
-        return conexion.ejecutar(prioridad, contexto -> {
+    /** Justo antes de enviar una escritura: no desde una consulta y anotando que el bloque ya ha escrito. */
+    private void antesDeEscribir(String operacion) {
+        exigirEscritura(operacion);
+        Marcas marcas = MARCAS.get();
+        if (marcas != null && marcas.soloLectura) {
+            throw new IllegalStateException("Escritura dentro de una consulta (solo lectura): " + operacion);
+        }
+        if (marcas != null) {
+            marcas.escrito = true;
+        }
+    }
+
+    /**
+     * Ejecuta un bloque con la sesión comprobada en el carril PRINCIPAL de
+     * SharePoint. Es el que se usa para escribir (y para las lecturas que forman
+     * parte de una escritura).
+     */
+    public <T> T conSesion(int prioridad, Function<BrowserContext, T> bloque) {
+        return conexion.ejecutar(prioridad, contexto -> ejecutarBloque(contexto, bloque, false));
+    }
+
+    /**
+     * Ejecuta una CONSULTA (sin escrituras) en un carril de lectura: no espera
+     * detrás de los guardados ni de otras consultas largas, y se descarta si la
+     * pestaña que la pidió se ha cerrado.
+     */
+    public <T> T consultar(int prioridad, Function<BrowserContext, T> bloque) {
+        return conexion.consultar(prioridad, contexto -> ejecutarBloque(contexto, bloque, true));
+    }
+
+    private <T> T ejecutarBloque(BrowserContext contexto, Function<BrowserContext, T> bloque, boolean soloLectura) {
+        Marcas anteriores = MARCAS.get();
+        Marcas marcas = new Marcas();
+        marcas.soloLectura = soloLectura || (anteriores != null && anteriores.soloLectura);
+        MARCAS.set(marcas);
+        try {
+            verificarSesion(contexto, false);
+            T resultado;
+            try {
+                resultado = bloque.apply(contexto);
+            } catch (RuntimeException e) {
+                if (!repetirTrasRecuperarSesion(contexto, marcas)) {
+                    throw e;
+                }
+                marcas.sesionSospechosa = false;
+                return bloque.apply(contexto);
+            }
+            if (repetirTrasRecuperarSesion(contexto, marcas)) {
+                // Lo leído pudo salir de una sesión caducada (listas vacías o con *_error): se lee otra vez.
+                marcas.sesionSospechosa = false;
+                return bloque.apply(contexto);
+            }
+            return resultado;
+        } finally {
+            if (anteriores != null) {
+                anteriores.escrito |= marcas.escrito;
+                MARCAS.set(anteriores);
+            } else {
+                MARCAS.remove();
+            }
+        }
+    }
+
+    /** Si el bloque vio señales de sesión caducada y no escribió nada, recupera la sesión y pide repetirlo. */
+    private boolean repetirTrasRecuperarSesion(BrowserContext contexto, Marcas marcas) {
+        if (!marcas.sesionSospechosa || marcas.escrito) {
+            return false;
+        }
+        sesionVerificadaHasta = 0;
+        verificarSesion(contexto, true);
+        return true;
+    }
+
+    /** Comprueba la sesión si no se ha comprobado en el último minuto. Un solo carril navega a la vez. */
+    private void verificarSesion(BrowserContext contexto, boolean forzar) {
+        if (!forzar && relojMs.getAsLong() < sesionVerificadaHasta) {
+            return;
+        }
+        synchronized (cerrojoSesion) {
+            if (!forzar && relojMs.getAsLong() < sesionVerificadaHasta) {
+                return;
+            }
             if (!asegurarSesion(contexto)) {
+                sesionVerificadaHasta = 0;
                 throw new SinSesionAlmacen();
             }
-            return bloque.apply(contexto);
-        });
+            sesionVerificadaHasta = relojMs.getAsLong() + VIGENCIA_SESION_MS;
+        }
+    }
+
+    private static void sospecharDeLaSesion() {
+        Marcas marcas = MARCAS.get();
+        if (marcas != null) {
+            marcas.sesionSospechosa = true;
+        }
     }
 
     /** URL base de una lista por su título. */
@@ -128,11 +260,15 @@ public class ClienteSharePoint {
     public JsonNode get(BrowserContext contexto, String url, String accept) {
         APIResponse r = contexto.request().get(url, RequestOptions.create().setHeader("Accept", accept).setTimeout(60000));
         if (!r.ok()) {
+            if (r.status() == 401 || r.status() == 403) {
+                sospecharDeLaSesion();
+            }
             throw new IllegalStateException("GET " + url + " -> " + r.status());
         }
         JsonNode json = JsonJs.leer(r.text());
         if (json == null) {
             // Suele ser una página de inicio de sesión en lugar de JSON.
+            sospecharDeLaSesion();
             throw new IllegalStateException("GET " + url + " no devolvió JSON");
         }
         return json;
@@ -143,6 +279,7 @@ public class ClienteSharePoint {
         List<JsonNode> filas = new ArrayList<>();
         String siguiente = url;
         while (siguiente != null) {
+            Cancelacion.comprobar(); // la pestaña que lo pidió ya no existe: no se piden más páginas
             JsonNode datos = get(contexto, siguiente, accept);
             datos.path("value").forEach(filas::add);
             String enlace = datos.path("@odata.nextLink").asText(datos.path("odata.nextLink").asText(""));
@@ -154,12 +291,24 @@ public class ClienteSharePoint {
         return filas;
     }
 
-    /** Nombres internos de las columnas de una lista. */
+    /** Nombres internos de las columnas de una lista (recordados 30 min: el esquema no lo toca la aplicación). */
     public Set<String> columnas(BrowserContext contexto, String sitioLista, String titulo) {
+        String clave = sitioLista + "|" + titulo;
+        Columnas recordadas = columnas.get(clave);
+        if (recordadas != null && relojMs.getAsLong() - recordadas.leidas() < VIGENCIA_COLUMNAS_MS) {
+            return recordadas.nombres();
+        }
         Set<String> nombres = new HashSet<>();
         get(contexto, lista(sitioLista, titulo) + "/fields?$select=InternalName&$top=500")
                 .path("value").forEach(f -> nombres.add(f.path("InternalName").asText()));
-        return nombres;
+        Set<String> inmutables = Set.copyOf(nombres);
+        columnas.put(clave, new Columnas(inmutables, relojMs.getAsLong()));
+        return inmutables;
+    }
+
+    /** Olvida las columnas recordadas de una lista (tras un error que puede deberse a una columna). */
+    public void olvidarColumnas(String sitioLista, String titulo) {
+        columnas.remove(sitioLista + "|" + titulo);
     }
 
     /**
@@ -167,6 +316,20 @@ public class ClienteSharePoint {
      * pide una que no existe, SharePoint devuelve error y no se leería nada).
      */
     public List<JsonNode> leerLista(BrowserContext contexto, String titulo, List<String> columnasDeseadas) {
+        boolean recordadas = columnas.containsKey(sitio + "|" + titulo);
+        try {
+            return leerListaUnaVez(contexto, titulo, columnasDeseadas);
+        } catch (RuntimeException e) {
+            if (!recordadas || e instanceof com.borgwarner.tbp.aplicacion.PeticionCancelada) {
+                throw e;
+            }
+            // Puede que una columna recordada ya no exista: se vuelven a leer las columnas.
+            olvidarColumnas(sitio, titulo);
+            return leerListaUnaVez(contexto, titulo, columnasDeseadas);
+        }
+    }
+
+    private List<JsonNode> leerListaUnaVez(BrowserContext contexto, String titulo, List<String> columnasDeseadas) {
         List<String> seleccion = new ArrayList<>(List.of("Id", "Title"));
         try {
             Set<String> existentes = columnas(contexto, sitio, titulo);
@@ -180,26 +343,61 @@ public class ClienteSharePoint {
 
     // ---- escrituras ----------------------------------------------------------
 
+    /** FormDigest para escribir; se reutiliza mientras SharePoint lo da por válido (con margen). */
     public String digest(BrowserContext contexto) {
+        Digest actual = digest;
+        if (actual != null && relojMs.getAsLong() < actual.caduca()) {
+            return actual.valor();
+        }
+        return digestNuevo(contexto);
+    }
+
+    private String digestNuevo(BrowserContext contexto) {
         APIResponse r = contexto.request().post(sitio + "/_api/contextinfo",
                 RequestOptions.create().setHeader("Accept", JSON_SIN_METADATOS).setTimeout(30000));
         if (!r.ok()) {
+            digest = null;
             throw new IllegalStateException("No se pudo obtener FormDigest.");
         }
         JsonNode j = JsonJs.leer(r.text());
         if (j == null) {
+            digest = null;
             throw new IllegalStateException("No se pudo obtener FormDigest (respuesta no JSON).");
         }
-        String valor = j.path("FormDigestValue").asText("");
-        return valor.isEmpty() ? j.path("d").path("GetContextWebInformation").path("FormDigestValue").asText("") : valor;
+        JsonNode info = j.has("FormDigestValue") ? j : j.path("d").path("GetContextWebInformation");
+        String valor = info.path("FormDigestValue").asText("");
+        long segundos = info.path("FormDigestTimeoutSeconds").asLong(1800);
+        long vigencia = Math.min(VIGENCIA_MAXIMA_DIGEST_MS, Math.max(0, segundos * 1000 - 120_000));
+        digest = valor.isEmpty() ? null : new Digest(valor, relojMs.getAsLong() + vigencia);
+        return valor;
+    }
+
+    /** SharePoint ha rechazado el FormDigest (la petición no se ha aplicado). */
+    private static boolean digestRechazado(APIResponse r) {
+        if (r.status() != 403) {
+            return false;
+        }
+        String texto = String.valueOf(r.text()).toLowerCase(java.util.Locale.ROOT);
+        return texto.contains("security validation") || texto.contains("x-requestdigest") || texto.contains("formdigest");
+    }
+
+    /** Envía una escritura; si el FormDigest recordado ya no vale, pide otro y la repite una vez. */
+    private APIResponse escribir(BrowserContext contexto, String digestUsado, Function<String, APIResponse> envio) {
+        APIResponse r = envio.apply(digestUsado);
+        if (digestRechazado(r)) {
+            digest = null;
+            r = envio.apply(digestNuevo(contexto));
+        }
+        return r;
     }
 
     /** Crea un elemento y devuelve su Id (o null). */
     public Integer crear(BrowserContext contexto, String digest, String baseLista, ObjectNode cuerpo) {
-        exigirEscritura("crear elemento en " + baseLista);
-        APIResponse r = contexto.request().post(baseLista + "/items", RequestOptions.create()
+        antesDeEscribir("crear elemento en " + baseLista);
+        String datos = JsonJs.escribir(cuerpo);
+        APIResponse r = escribir(contexto, digest, d -> contexto.request().post(baseLista + "/items", RequestOptions.create()
                 .setHeader("Accept", JSON_SIN_METADATOS).setHeader("Content-Type", JSON_SIN_METADATOS)
-                .setHeader("X-RequestDigest", digest).setData(JsonJs.escribir(cuerpo)).setTimeout(60000));
+                .setHeader("X-RequestDigest", d).setData(datos).setTimeout(60000)));
         if (!(r.status() == 200 || r.status() == 201 || r.status() == 204)) {
             throw new IllegalStateException("crear " + r.status() + ": " + recortar(r.text(), 200));
         }
@@ -209,19 +407,20 @@ public class ClienteSharePoint {
 
     /** MERGE de campos; etag = «*» para «el último gana». */
     public Respuesta merge(BrowserContext contexto, String digest, String baseLista, int id, ObjectNode cuerpo, String etag) {
-        exigirEscritura("actualizar elemento " + id + " de " + baseLista);
-        APIResponse r = contexto.request().post(baseLista + "/items(" + id + ")", RequestOptions.create()
+        antesDeEscribir("actualizar elemento " + id + " de " + baseLista);
+        String datos = JsonJs.escribir(cuerpo);
+        APIResponse r = escribir(contexto, digest, d -> contexto.request().post(baseLista + "/items(" + id + ")", RequestOptions.create()
                 .setHeader("Accept", JSON_SIN_METADATOS).setHeader("Content-Type", JSON_SIN_METADATOS)
-                .setHeader("X-RequestDigest", digest).setHeader("IF-MATCH", etag == null ? "*" : etag)
-                .setHeader("X-HTTP-Method", "MERGE").setData(JsonJs.escribir(cuerpo)).setTimeout(60000));
+                .setHeader("X-RequestDigest", d).setHeader("IF-MATCH", etag == null ? "*" : etag)
+                .setHeader("X-HTTP-Method", "MERGE").setData(datos).setTimeout(60000)));
         return new Respuesta(r.status(), r.status() == 200 || r.status() == 204 ? "" : recortar(r.text(), 180));
     }
 
     /** Envía el elemento a la papelera (recuperable). */
     public boolean reciclar(BrowserContext contexto, String digest, String baseLista, int id) {
-        exigirEscritura("borrar elemento " + id + " de " + baseLista);
-        APIResponse r = contexto.request().post(baseLista + "/items(" + id + ")/recycle", RequestOptions.create()
-                .setHeader("Accept", JSON_SIN_METADATOS).setHeader("X-RequestDigest", digest).setTimeout(60000));
+        antesDeEscribir("borrar elemento " + id + " de " + baseLista);
+        APIResponse r = escribir(contexto, digest, d -> contexto.request().post(baseLista + "/items(" + id + ")/recycle", RequestOptions.create()
+                .setHeader("Accept", JSON_SIN_METADATOS).setHeader("X-RequestDigest", d).setTimeout(60000)));
         return r.status() == 200 || r.status() == 204;
     }
 

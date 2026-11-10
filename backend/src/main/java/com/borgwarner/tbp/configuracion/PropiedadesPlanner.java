@@ -37,6 +37,12 @@ public record PropiedadesPlanner(
             boolean publicarVersion,
             int puertoDepuracion,
             String carpetaPerfilEdge,
-            boolean espejoHabilitado) {
+            boolean espejoHabilitado,
+            /* Conexiones de solo lectura con Edge en paralelo (0 = todo por una sola, como antes). */
+            Integer carrilesLectura) {
+
+        public int carrilesLecturaEfectivos() {
+            return carrilesLectura == null ? 2 : Math.max(0, Math.min(4, carrilesLectura));
+        }
     }
 }

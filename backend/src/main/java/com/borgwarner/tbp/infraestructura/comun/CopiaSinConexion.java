@@ -1,6 +1,7 @@
 package com.borgwarner.tbp.infraestructura.comun;
 
 import com.borgwarner.tbp.aplicacion.EstadoConexion;
+import com.borgwarner.tbp.aplicacion.PeticionCancelada;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenEnsayos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
@@ -14,13 +15,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.file.AtomicMoveNotSupportedException;
+import java.nio.file.FileSystemException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.time.Clock;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
 
 /**
@@ -33,6 +42,18 @@ import java.util.function.Supplier;
  * que pone la sesión en solo lectura. Escribir no pasa nunca por la copia.
  *
  * Solo se usa con SharePoint; el modo local no tiene red que perder.
+ *
+ * Varias peticiones pueden terminar de leer a la vez (al arrancar, la
+ * planificación y los catálogos se piden en paralelo). Antes todas escribían
+ * el mismo «catalogos.json.tmp» y en Windows chocaban («el archivo está siendo
+ * utilizado por otro proceso»). Ahora:
+ *  - cada copia se escribe de una en una (un cerrojo por copia);
+ *  - cada escritura usa su propio temporal, que siempre se borra;
+ *  - si el contenido no ha cambiado no se reescribe (como mucho, se renueva la
+ *    fecha una vez por minuto);
+ *  - si Windows tiene el fichero abierto un instante (antivirus, indexador),
+ *    se reintenta el cambio de nombre antes de rendirse.
+ * Un fallo al guardar la copia nunca afecta a la lectura.
  */
 public class CopiaSinConexion {
 
@@ -42,9 +63,20 @@ public class CopiaSinConexion {
     static final String CATALOGOS = "catalogos";
     static final String USUARIOS = "usuarios";
 
+    /** Con el mismo contenido, la fecha de la copia se renueva como mucho una vez por minuto. */
+    static final long RENOVAR_FECHA_MS = 60_000;
+    private static final int INTENTOS_MOVER = 5;
+
     private final Path carpeta;
     private final EstadoConexion estado;
     private final Clock reloj;
+    private final Map<String, Object> cerrojos = new ConcurrentHashMap<>();
+    /** Huella del contenido y momento de la última copia escrita, por nombre. */
+    private final Map<String, Escrita> escritas = new ConcurrentHashMap<>();
+    private final AtomicLong escrituras = new AtomicLong();
+
+    private record Escrita(byte[] huella, long momento) {
+    }
 
     public CopiaSinConexion(Path carpetaUsuario, EstadoConexion estado) {
         this(carpetaUsuario, estado, Clock.systemUTC());
@@ -144,6 +176,8 @@ public class CopiaSinConexion {
         JsonNode valor;
         try {
             valor = servidor.get();
+        } catch (PeticionCancelada cancelada) {
+            throw cancelada; // la pestaña se ha cerrado: no es un fallo de conexión
         } catch (RuntimeException fallo) {
             ObjectNode copia = cargar(nombre);
             if (copia == null) {
@@ -181,17 +215,82 @@ public class CopiaSinConexion {
         }
     }
 
-    /** Escritura atómica (temporal y renombrar): una copia a medias no sirve. */
+    /** Copias escritas en disco desde el arranque (pruebas y diagnóstico). */
+    long escrituras() {
+        return escrituras.get();
+    }
+
+    /**
+     * Escritura atómica (temporal propio y renombrar): una copia a medias no
+     * sirve. Una sola escritura de cada copia a la vez.
+     */
     private void guardar(String nombre, JsonNode valor) {
+        synchronized (cerrojos.computeIfAbsent(nombre, n -> new Object())) {
+            Path temporal = null;
+            try {
+                byte[] huella = huella(valor);
+                long ahora = reloj.millis();
+                Escrita anterior = escritas.get(nombre);
+                Path destino = carpeta.resolve(nombre + ".json");
+                if (anterior != null && Arrays.equals(anterior.huella(), huella)
+                        && ahora - anterior.momento() < RENOVAR_FECHA_MS && Files.exists(destino)) {
+                    return; // mismo contenido y copia reciente: nada que escribir
+                }
+                Files.createDirectories(carpeta);
+                temporal = Files.createTempFile(carpeta, nombre + "-", ".json.tmp");
+                ObjectNode sobre = JsonJs.objetoVacio().put("ts", ahora);
+                sobre.set("datos", valor);
+                JsonJs.mapper().writeValue(temporal.toFile(), sobre);
+                mover(temporal, destino);
+                temporal = null;
+                escritas.put(nombre, new Escrita(huella, ahora));
+                escrituras.incrementAndGet();
+            } catch (IOException | RuntimeException e) {
+                LOG.warn("No se pudo guardar la copia sin conexión de {}: {}", nombre, e.getMessage());
+            } finally {
+                if (temporal != null) {
+                    try {
+                        Files.deleteIfExists(temporal);
+                    } catch (IOException ignorada) {
+                        // se intentará borrar en la próxima limpieza
+                    }
+                }
+            }
+        }
+    }
+
+    /** Renombra el temporal sobre la copia; si Windows la tiene abierta un momento, reintenta. */
+    private static void mover(Path temporal, Path destino) throws IOException {
+        for (int intento = 1; ; intento++) {
+            try {
+                Files.move(temporal, destino, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+                return;
+            } catch (AtomicMoveNotSupportedException e) {
+                Files.move(temporal, destino, StandardCopyOption.REPLACE_EXISTING);
+                return;
+            } catch (FileSystemException e) { // AccessDenied incluido: fichero abierto por otro proceso
+                esperarOAbandonar(intento, e);
+            }
+        }
+    }
+
+    private static void esperarOAbandonar(int intento, IOException e) throws IOException {
+        if (intento >= INTENTOS_MOVER) {
+            throw e;
+        }
         try {
-            Files.createDirectories(carpeta);
-            Path temporal = carpeta.resolve(nombre + ".json.tmp");
-            ObjectNode sobre = JsonJs.objetoVacio().put("ts", reloj.millis());
-            sobre.set("datos", valor);
-            JsonJs.mapper().writeValue(temporal.toFile(), sobre);
-            Files.move(temporal, carpeta.resolve(nombre + ".json"), StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
-        } catch (IOException | RuntimeException e) {
-            LOG.warn("No se pudo guardar la copia sin conexión de {}: {}", nombre, e.getMessage());
+            Thread.sleep(40L * intento);
+        } catch (InterruptedException interrumpido) {
+            Thread.currentThread().interrupt();
+            throw e;
+        }
+    }
+
+    private static byte[] huella(JsonNode valor) throws IOException {
+        try {
+            return MessageDigest.getInstance("SHA-256").digest(JsonJs.mapper().writeValueAsBytes(valor));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException(e);
         }
     }
 }

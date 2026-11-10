@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "comprobar-tipos": "tsc --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "tsc -p tsconfig.pruebas.json && node --test test/*.test.mjs"
   },
   "dependencies": {
     "react": "19.2.5",

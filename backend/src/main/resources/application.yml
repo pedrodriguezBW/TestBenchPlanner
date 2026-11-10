@@ -33,6 +33,16 @@ planner:
     puerto-depuracion: 9222
     carpeta-perfil-edge: ${planner.carpeta-usuario}/.edge_profile
     espejo-habilitado: true
+    # Conexiones de SOLO LECTURA con Edge en paralelo a la principal (que hace
+    # todas las escrituras). Así las consultas (estados de aprobación, recursos…)
+    # no esperan detrás de la carga de la planificación ni de los guardados.
+    # 0 = todo por una sola conexión, como en versiones anteriores.
+    carriles-lectura: 2
+
+spring:
+  mvc:
+    # Una petición abandonada por el navegador (recarga) no es un error que avisar.
+    log-resolved-exception: false
 
 logging:
   level:
