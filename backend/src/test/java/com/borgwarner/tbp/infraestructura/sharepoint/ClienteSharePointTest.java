@@ -164,4 +164,46 @@ class ClienteSharePointTest {
                 ConexionEdge.PRIORIDAD_GUARDADO, c -> soloLectura.merge(c, "d", ClienteSharePoint.lista(SITIO, "TestBenchPlanner"), 1, cuerpo, "*")));
         assertEquals(0, contar("/items(1)"));
     }
+
+    // ---- guardar listas: solo se escribe lo que cambia ------------------------
+
+    private JsonNode reconciliar(ObjectNode... filas) {
+        return cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, c -> {
+            var plan = cliente.prepararReconciliacion(c, "TestBenchProjects", List.of("Seq"), List.of(filas), false);
+            return cliente.aplicarReconciliacion(c, cliente.digest(c), plan);
+        });
+    }
+
+    @Test
+    void unaFilaSinCambiosNoGeneraNingunaEscritura() {
+        JsonNode r = reconciliar(JsonJs.objetoVacio().put("Title", "P1").put("Seq", 1));
+        assertEquals(0, contar("/items(1)"));
+        assertEquals(1, r.path("unchanged").asInt());
+        assertEquals(0, r.path("updated").asInt());
+    }
+
+    @Test
+    void soloSeEnvianLosCamposQueCambianEnUnaSolaPeticion() {
+        JsonNode r = reconciliar(JsonJs.objetoVacio().put("Title", "P1").put("Seq", 2).put("Org", "BW"));
+        assertEquals(1, contar("/items(1)"), "Seq y Org en un único MERGE");
+        assertEquals(1, r.path("updated").asInt());
+    }
+
+    @Test
+    void unaColumnaQueLaListaNoTieneNoSeIntentaEscribir() {
+        JsonNode r = reconciliar(JsonJs.objetoVacio().put("Title", "P1").put("Seq", 1).put("Inexistente", "x"));
+        assertEquals(0, contar("/items(1)"));
+        assertTrue(r.path("field_errors").has("Inexistente"));
+    }
+
+    @Test
+    void comparacionDeValores() {
+        var n = com.fasterxml.jackson.databind.node.JsonNodeFactory.instance;
+        assertTrue(ClienteSharePoint.mismoValor(n.numberNode(3), n.numberNode(3.0)));
+        assertTrue(ClienteSharePoint.mismoValor(n.numberNode(3), n.textNode("3")));
+        assertTrue(ClienteSharePoint.mismoValor(n.textNode(""), null));
+        assertTrue(ClienteSharePoint.mismoValor(n.nullNode(), n.textNode("")));
+        assertTrue(!ClienteSharePoint.mismoValor(n.textNode("Shaker 40kN"), n.textNode("")));
+        assertTrue(!ClienteSharePoint.mismoValor(n.textNode("bw"), n.textNode("BW")));
+    }
 }

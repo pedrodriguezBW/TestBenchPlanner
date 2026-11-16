@@ -83,11 +83,31 @@ public final class AlmacenesAuxiliaresLocales {
             } else {
                 resultado.putObject("responsibles").put("skipped", "frozen (people come from TestBenchUsers)");
             }
-            actual.set("projects", catalogos.path("projects").isArray() ? catalogos.get("projects") : JsonJs.mapper().createArrayNode());
+            JsonNode proyectos = catalogos.path("projects").isArray() ? catalogos.get("projects") : JsonJs.mapper().createArrayNode();
+            // Columnas de facturación: si no llegan (interfaz clásica) se conservan las guardadas.
+            JsonNode ordenesRecibidas = catalogos.get("projectOrders");
+            JsonNode ordenesBase = ordenesRecibidas != null && ordenesRecibidas.isObject() ? ordenesRecibidas : actual.path("projectOrders");
+            ObjectNode ordenes = JsonJs.objetoVacio();
+            for (JsonNode p : proyectos) {
+                String orden = ordenesBase.path(p.asText("")).asText("").trim();
+                if (!orden.isEmpty()) {
+                    ordenes.put(p.asText(), orden);
+                }
+            }
+            java.util.Map<String, String> tiposGuardados = new java.util.HashMap<>();
+            for (JsonNode b : actual.path("benches")) {
+                tiposGuardados.put(b.path("name").asText(""), b.path("equipmentType").asText(""));
+            }
+            actual.set("projects", proyectos);
+            actual.set("projectOrders", ordenes);
             ArrayNode bancos = JsonJs.mapper().createArrayNode();
             for (JsonNode b : catalogos.path("benches")) {
                 if (b.hasNonNull("name") && !b.path("name").asText().isEmpty()) {
-                    bancos.add(b);
+                    ObjectNode copia = b.deepCopy();
+                    if (!copia.has("equipmentType")) {
+                        copia.put("equipmentType", tiposGuardados.getOrDefault(b.path("name").asText(), ""));
+                    }
+                    bancos.add(copia);
                 }
             }
             actual.set("benches", bancos);
@@ -410,6 +430,33 @@ public final class AlmacenesAuxiliaresLocales {
             }
             datos.escribir("version.json", JsonJs.objetoVacio().put("published", version));
             return true;
+        }
+    }
+
+    /** Equipment Types de facturación en tipos-equipo.json ({"tipos": [...]}). */
+    public static class TiposEquipo implements com.borgwarner.tbp.aplicacion.puertos.AlmacenTiposEquipo {
+        static final String FICHERO = "tipos-equipo.json";
+        private final DatosLocales datos;
+
+        public TiposEquipo(DatosLocales datos) {
+            this.datos = datos;
+        }
+
+        @Override
+        public java.util.List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> leer() {
+            java.util.List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> lista = new java.util.ArrayList<>();
+            for (JsonNode n : datos.leer(FICHERO, JsonJs.objetoVacio()).path("tipos")) {
+                lista.add(com.borgwarner.tbp.dominio.facturacion.TipoEquipo.desdeJson(n));
+            }
+            return lista;
+        }
+
+        @Override
+        public void guardar(java.util.List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> tipos) {
+            ObjectNode doc = JsonJs.objetoVacio();
+            ArrayNode lista = doc.putArray("tipos");
+            tipos.forEach(t -> lista.add(t.json()));
+            datos.escribir(FICHERO, doc);
         }
     }
 }

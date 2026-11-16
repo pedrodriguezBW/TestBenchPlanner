@@ -13,9 +13,12 @@ import { ConfigProyectos } from './bloques/configuracion/ConfigProyectos';
 import { ConfigUsuarios } from './bloques/configuracion/ConfigUsuarios';
 import { RegistroActividad } from './bloques/configuracion/RegistroActividad';
 import { VistaRecursos } from './bloques/recursos/VistaRecursos';
+import { VistaHojaMensual } from './bloques/facturacion/VistaHojaMensual';
+import { VistaConfiguracionFacturacion } from './bloques/facturacion/VistaConfiguracionFacturacion';
 import { Avisos, DialogoConflicto } from './componentes/Avisos';
 import { AvisoSinConexion, AvisoVersion, Bienvenida, Presencia } from './componentes/Colaboracion';
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
+import { useColaConfiguracion } from './estado/useColaConfiguracion';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
 
 /*
@@ -53,7 +56,9 @@ export function App() {
   const pantalla = actual || '__dash__';
   const esAdmin = !!sesion?.esAdmin;
   const esEditor = sesion?.rol === 'editor';
-  const [textoSync, colorSync] = SINCRONIZACION[sincronizacion];
+  // La configuración (Test Benches, Projects) se guarda en segundo plano: mientras tanto, «Saving…».
+  const configuracionPendiente = useColaConfiguracion().pendientes > 0;
+  const [textoSync, colorSync] = SINCRONIZACION[configuracionPendiente && sincronizacion === 'ok' ? 'guardando' : sincronizacion];
   const idsUsados = vista ? [...new Set(Object.values(vista.bancos).flatMap((fs) => fs.map((f) => String(f.datos.approvalId ?? ''))).filter(Boolean))] : [];
   const proyectosUsados = vista ? [...new Set([...proyectos, ...Object.values(vista.bancos).flatMap((fs) => fs.map((f) => String(f.datos.project ?? '')))].filter(Boolean))] : proyectos;
 
@@ -111,6 +116,10 @@ export function App() {
           ))}
           <div className="grp-title">Additional Equipment</div>
           {pestana('__resources__', <>&#128203; List of Equipments</>)}
+          {/* Facturación: módulo independiente de la planificación y de Settings. */}
+          <div className="grp-title">Billing</div>
+          {pestana('__billing_sheet__', <>&#128182; Monthly sheet</>)}
+          {esAdmin && pestana('__billing_config__', <>&#128296; Configuration</>)}
           <div className="grp-title">Configuration</div>
           {esAdmin && pestana('__benches__', <>&#128296; Test Benches</>)}
           {esAdmin && pestana('__rescfg__', <>&#128296; Equipments List</>)}
@@ -137,6 +146,8 @@ export function App() {
           {vista && pantalla === '__tools__' && (esAdmin ? <ConfigHerramientas /> : <VistaDashboard />)}
           {vista && pantalla === '__activity__' && (esAdmin ? <RegistroActividad /> : <VistaDashboard />)}
           {vista && pantalla === '__about__' && <AcercaDe version={VERSION} />}
+          {vista && pantalla === '__billing_sheet__' && <VistaHojaMensual />}
+          {vista && pantalla === '__billing_config__' && (esAdmin ? <VistaConfiguracionFacturacion /> : <VistaDashboard />)}
         </main>
       </div>
       <datalist id="dl-types">{TIPOS_DE_ENSAYO.map((t) => <option key={t} value={t} />)}</datalist>

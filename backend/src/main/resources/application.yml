@@ -39,6 +39,7 @@ planner:
     # 0 = todo por una sola conexión, como en versiones anteriores.
     carriles-lectura: 2
 
+
 spring:
   mvc:
     # Una petición abandonada por el navegador (recarga) no es un error que avisar.

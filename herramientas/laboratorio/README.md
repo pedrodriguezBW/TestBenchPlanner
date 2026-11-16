@@ -25,6 +25,9 @@ parado en la fecha del caso.
 | `casos-interfaz/*.json` · `comparar-panel.cjs` | Dashboard, «By Responsible» (bloque B), KPI History (bloque C), equipos auxiliares (bloque D) y configuración (bloque E): mismos gestos en las dos interfaces y comparación de lo que se ve. |
 | `pruebas-ciclo-de-vida.cjs` | Presencia de la pestaña: ocultar o minimizar no avisa de cierre; salir de la página sí. |
 | `pruebas-rendimiento.cjs` | Latencia con SharePoint: altas y copias visibles al momento con un guardado lento simulado, cola de operaciones, fallo y código de pestaña en cada petición. |
+| `facturacion/hoja.cjs` | Réplica JavaScript de la facturación Java (reglas, hoja mensual, exportación Excel/HTML). |
+| `facturacion/api-simulada.cjs` | API `/api/v1/facturacion` del backend simulado (Equipment Types en memoria, vacíos al empezar). |
+| `pruebas-facturacion.cjs` | Facturación: regresión con enero de 2026 del Excel y la interfaz de punta a punta (47 comprobaciones). |
 | `cambios-aprobados.json` · `cambios-aprobados-interfaz.json` | Diferencias admitidas, cada una ligada a una discrepancia o a un bloque pendiente. |
 
 ## Qué contiene una foto

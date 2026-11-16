@@ -6,6 +6,7 @@ import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenEnsayos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenHistoricoKpi;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
+import com.borgwarner.tbp.aplicacion.puertos.AlmacenTiposEquipo;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
@@ -97,6 +98,12 @@ public class ConfiguracionAlmacenes {
             return new AlmacenesAuxiliaresLocales.Recursos(datos, colaboracion, permitirVacias);
         }
 
+        /** Tipos de equipo de facturación del modo local (tipos-equipo.json junto a los datos locales). */
+        @Bean
+        public AlmacenTiposEquipo almacenTiposEquipo(DatosLocales datos) {
+            return new AlmacenesAuxiliaresLocales.TiposEquipo(datos);
+        }
+
         @Bean
         public ConsultaAprobaciones consultaAprobaciones(DatosLocales datos) {
             return new AlmacenesAuxiliaresLocales.Aprobaciones(datos);
@@ -173,6 +180,12 @@ public class ConfiguracionAlmacenes {
         public AlmacenUsuarios almacenUsuarios(ClienteSharePoint cliente, @Value("${planner.listas.permitir-vacias:false}") boolean permitirVacias,
                                                CopiaSinConexion copia) {
             return copia.usuarios(new ListasAuxiliaresSharePoint.Usuarios(cliente, permitirVacias));
+        }
+
+        /** Tipos de equipo de facturación: lista TestBenchEquipmentTypes del sitio. */
+        @Bean
+        public AlmacenTiposEquipo almacenTiposEquipo(ClienteSharePoint cliente) {
+            return new ListasAuxiliaresSharePoint.TiposEquipo(cliente);
         }
 
         @Bean

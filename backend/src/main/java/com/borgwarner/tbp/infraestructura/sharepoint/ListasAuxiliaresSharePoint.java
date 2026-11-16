@@ -26,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,6 +51,9 @@ public final class ListasAuxiliaresSharePoint {
 
     public static final String BANCOS = "TestBenchBenches";
     public static final String PROYECTOS = "TestBenchProjects";
+    /** Columnas de facturación (texto de una línea) que crea a mano un Admin del sitio. */
+    public static final String COLUMNA_ORDEN = "BillingOrder";
+    public static final String COLUMNA_TIPO_EQUIPO = "EquipmentType";
     public static final String RESPONSABLES = "TestBenchResponsibles";
     public static final String KPI = "TestBenchKPIHistory";
     public static final String USUARIOS = "TestBenchUsers";
@@ -124,10 +128,28 @@ public final class ListasAuxiliaresSharePoint {
             return cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
                 ObjectNode salida = JsonJs.objetoVacio();
                 salida.set("responsibles", titulos(contexto, RESPONSABLES, List.of("Org", "Seq"), salida, "responsibles_error"));
-                salida.set("projects", titulos(contexto, PROYECTOS, List.of("Seq"), salida, "projects_error"));
+                ArrayNode proyectos = JsonJs.mapper().createArrayNode();
+                ObjectNode ordenes = JsonJs.objetoVacio();
+                try {
+                    for (JsonNode it : ordenarPorSeq(cliente.leerLista(contexto, PROYECTOS, List.of("Seq", COLUMNA_ORDEN)))) {
+                        if (!it.hasNonNull("Title") || it.get("Title").asText().isEmpty()) {
+                            continue;
+                        }
+                        proyectos.add(it.get("Title").asText());
+                        String orden = it.path(COLUMNA_ORDEN).asText("").trim();
+                        if (!orden.isEmpty()) {
+                            ordenes.put(it.get("Title").asText(), orden);
+                        }
+                    }
+                } catch (RuntimeException e) {
+                    salida.put("projects_error", ClienteSharePoint.recortar(e.getMessage(), 120));
+                }
+                salida.set("projects", proyectos);
+                salida.set("projectOrders", ordenes);
                 ArrayNode bancos = JsonJs.mapper().createArrayNode();
                 try {
-                    for (JsonNode it : ordenarPorSeq(cliente.leerLista(contexto, BANCOS, List.of("GroupKey", "GroupName", "Dot", "Org", "Seq")))) {
+                    for (JsonNode it : ordenarPorSeq(cliente.leerLista(contexto, BANCOS,
+                            List.of("GroupKey", "GroupName", "Dot", "Org", "Seq", COLUMNA_TIPO_EQUIPO)))) {
                         if (!it.hasNonNull("Title")) {
                             continue;
                         }
@@ -138,6 +160,7 @@ public final class ListasAuxiliaresSharePoint {
                         b.set("dot", it.get("Dot"));
                         b.set("org", it.get("Org"));
                         b.set("seq", it.get("Seq"));
+                        b.put("equipmentType", it.path(COLUMNA_TIPO_EQUIPO).asText("").trim());
                     }
                 } catch (RuntimeException e) {
                     salida.put("benches_error", ClienteSharePoint.recortar(e.getMessage(), 120));
@@ -145,6 +168,46 @@ public final class ListasAuxiliaresSharePoint {
                 salida.set("benches", bancos);
                 return salida;
             });
+        }
+
+        /** La lista no tiene la columna y no hace falta escribir nada en ella. */
+        private static final Map<String, String> SIN_COLUMNA = java.util.Collections.unmodifiableMap(new java.util.HashMap<>());
+
+        private static ObjectNode tiposPedidos(JsonNode catalogos) {
+            ObjectNode o = JsonJs.objetoVacio();
+            for (JsonNode b : catalogos.path("benches")) {
+                if (b.has("equipmentType")) {
+                    o.put(b.path("name").asText(""), b.path("equipmentType").asText(""));
+                }
+            }
+            return o;
+        }
+
+        /**
+         * Valor actual de una columna de facturación por Title. Si la lista no
+         * tiene la columna: SIN_COLUMNA cuando no se pide ningún valor y, si se
+         * pide alguno, error claro ANTES de escribir nada (la columna la crea un
+         * Admin del sitio; la aplicación no cambia el esquema de las listas).
+         */
+        private Map<String, String> columnaActual(BrowserContext contexto, String lista, String columna, JsonNode pedidos) {
+            if (!cliente.columnas(contexto, cliente.sitio(), lista).contains(columna)) {
+                boolean alguno = false;
+                for (java.util.Iterator<JsonNode> it = pedidos.elements(); it.hasNext(); ) {
+                    alguno |= !it.next().asText("").trim().isEmpty();
+                }
+                if (alguno) {
+                    throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("Falta la columna «" + columna + "» en la lista " + lista
+                            + " de SharePoint. Créala (una línea de texto, nombre exacto " + columna + ") y vuelve a guardar.");
+                }
+                return SIN_COLUMNA;
+            }
+            Map<String, String> actual = new java.util.HashMap<>();
+            for (JsonNode it : cliente.leerLista(contexto, lista, List.of(columna))) {
+                if (it.hasNonNull("Title")) {
+                    actual.put(it.get("Title").asText(), it.path(columna).asText("").trim());
+                }
+            }
+            return actual;
         }
 
         private ArrayNode titulos(BrowserContext contexto, String lista, List<String> columnas, ObjectNode salida, String claveError) {
@@ -191,12 +254,31 @@ public final class ListasAuxiliaresSharePoint {
                     }
                     planResponsables = cliente.prepararReconciliacion(contexto, RESPONSABLES, List.of("Org", "Seq"), filas, permitirVacias);
                 }
+                // Columnas de facturación: solo se tocan si llegan (la interfaz clásica no las conoce)
+                // y solo en las filas en las que cambian (menos escrituras).
+                JsonNode ordenes = catalogos.get("projectOrders");
+                boolean conOrdenes = ordenes != null && ordenes.isObject();
+                boolean conTipos = false;
+                for (JsonNode b : catalogos.path("benches")) {
+                    conTipos |= b.has("equipmentType");
+                }
+                Map<String, String> ordenesActuales = conOrdenes
+                        ? columnaActual(contexto, PROYECTOS, COLUMNA_ORDEN, ordenes) : Map.of();
+                Map<String, String> tiposActuales = conTipos
+                        ? columnaActual(contexto, BANCOS, COLUMNA_TIPO_EQUIPO, tiposPedidos(catalogos)) : Map.of();
                 List<ObjectNode> proyectos = new ArrayList<>();
                 int i = 0;
                 for (JsonNode n : catalogos.path("projects")) {
                     i++;
                     if (!n.asText("").isEmpty()) {
-                        proyectos.add(JsonJs.objetoVacio().put("Title", n.asText()).put("Seq", i));
+                        ObjectNode fila = JsonJs.objetoVacio().put("Title", n.asText()).put("Seq", i);
+                        if (conOrdenes) {
+                            String orden = ordenes.path(n.asText()).asText("").trim();
+                            if (!orden.equals(ordenesActuales.getOrDefault(n.asText(), "")) && ordenesActuales != SIN_COLUMNA) {
+                                fila.put(COLUMNA_ORDEN, orden);
+                            }
+                        }
+                        proyectos.add(fila);
                     }
                 }
                 List<ObjectNode> bancos = new ArrayList<>();
@@ -211,6 +293,12 @@ public final class ListasAuxiliaresSharePoint {
                     fila.set("Dot", b.get("dot"));
                     fila.set("Org", b.get("org"));
                     fila.set("Seq", numeroONulo(b.get("seq")));
+                    if (b.has("equipmentType") && tiposActuales != SIN_COLUMNA) {
+                        String categoria = b.path("equipmentType").asText("").trim();
+                        if (!categoria.equals(tiposActuales.getOrDefault(b.get("name").asText(), ""))) {
+                            fila.put(COLUMNA_TIPO_EQUIPO, categoria);
+                        }
+                    }
                     bancos.add(fila);
                 }
                 ClienteSharePoint.PlanReconciliacion planProyectos =
@@ -227,6 +315,14 @@ public final class ListasAuxiliaresSharePoint {
                 }
                 resultado.set("projects", cliente.aplicarReconciliacion(contexto, digest, planProyectos));
                 resultado.set("benches", cliente.aplicarReconciliacion(contexto, digest, planBancos));
+                // Un fallo al escribir una columna de facturación no puede pasar desapercibido.
+                for (String[] c : new String[][]{{"projects", COLUMNA_ORDEN, PROYECTOS}, {"benches", COLUMNA_TIPO_EQUIPO, BANCOS}}) {
+                    JsonNode error = resultado.path(c[0]).path("field_errors").get(c[1]);
+                    if (error != null) {
+                        throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("El resto se ha guardado, pero SharePoint no ha aceptado la columna «"
+                                + c[1] + "» de " + c[2] + ": " + ClienteSharePoint.recortar(error.asText(), 160));
+                    }
+                }
                 return resultado;
             });
         }
@@ -808,6 +904,146 @@ public final class ListasAuxiliaresSharePoint {
         /** Diagnóstico mínimo de las listas (para /api/diag). */
         public Map<String, Object> diagnostico() {
             return Map.of("sitio", cliente.sitio(), "escrituraHabilitada", cliente.escrituraHabilitada());
+        }
+    }
+
+    // ---- Equipment Types de facturación (lista nueva, sin equivalente en la 4.9.4) --------
+
+    /**
+     * Lista TestBenchEquipmentTypes: una fila por Equipment Type y año. La crea a
+     * mano un Admin del sitio (la aplicación no cambia el esquema de las listas):
+     * Title (Equipment Type), EquipmentGroup (texto), Year (número),
+     * WithoutHV (número), WithHV (número), Units (texto: HORAS o PIEZAS) y
+     * BillingRule (texto: LINEAR, ASINH_100, ASINH_200, PER_PIECE o NOT_BILLABLE).
+     */
+    public static class TiposEquipo implements com.borgwarner.tbp.aplicacion.puertos.AlmacenTiposEquipo {
+        public static final String LISTA = "TestBenchEquipmentTypes";
+        public static final List<String> COLUMNAS = List.of("EquipmentGroup", "Year", "WithoutHV", "WithHV", "Units", "BillingRule");
+        private final ClienteSharePoint cliente;
+        private final LecturaCompartida<List<JsonNode>> lectura =
+                new LecturaCompartida<>(VIGENCIA_CATALOGOS_MS, ListasAuxiliaresSharePoint::copiaLista);
+
+        public TiposEquipo(ClienteSharePoint cliente) {
+            this.cliente = cliente;
+        }
+
+        private static com.borgwarner.tbp.dominio.facturacion.TipoEquipo tipo(JsonNode it) {
+            ObjectNode n = JsonJs.objetoVacio();
+            n.put("titulo", it.path("Title").asText(""));
+            n.put("grupo", it.path("EquipmentGroup").asText(""));
+            n.set("anio", it.get("Year"));
+            n.set("sinHv", it.get("WithoutHV"));
+            n.set("conHv", it.get("WithHV"));
+            n.put("unidad", it.path("Units").asText(""));
+            n.put("regla", it.path("BillingRule").asText(""));
+            return com.borgwarner.tbp.dominio.facturacion.TipoEquipo.desdeJson(n);
+        }
+
+        private static ObjectNode fila(com.borgwarner.tbp.dominio.facturacion.TipoEquipo t) {
+            ObjectNode f = JsonJs.objetoVacio();
+            f.put("Title", t.titulo());
+            f.put("EquipmentGroup", t.grupo());
+            f.put("Year", t.anio());
+            if (t.sinHv() == null) {
+                f.putNull("WithoutHV");
+            } else {
+                f.put("WithoutHV", t.sinHv());
+            }
+            if (t.conHv() == null) {
+                f.putNull("WithHV");
+            } else {
+                f.put("WithHV", t.conHv());
+            }
+            f.put("Units", t.unidad());
+            f.put("BillingRule", t.regla().name());
+            return f;
+        }
+
+        private List<JsonNode> leerFilas(BrowserContext contexto) {
+            Set<String> existentes = cliente.columnas(contexto, cliente.sitio(), LISTA);
+            List<String> faltan = COLUMNAS.stream().filter(c -> !existentes.contains(c)).toList();
+            if (!faltan.isEmpty()) {
+                throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("A la lista " + LISTA + " de SharePoint le faltan las columnas "
+                        + String.join(", ", faltan) + ". Créalas con ese nombre exacto y vuelve a intentarlo.");
+            }
+            return cliente.leerLista(contexto, LISTA, COLUMNAS);
+        }
+
+        @Override
+        public List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> leer() {
+            List<JsonNode> filas;
+            try {
+                filas = lectura.leer(() -> cliente.consultar(ConexionEdge.PRIORIDAD_INTERFAZ, this::leerFilas));
+            } catch (com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida | com.borgwarner.tbp.aplicacion.PeticionCancelada e) {
+                throw e;
+            } catch (RuntimeException e) {
+                throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("No se ha podido leer la lista " + LISTA
+                        + " de SharePoint (¿existe?): " + ClienteSharePoint.recortar(String.valueOf(e.getMessage()), 160));
+            }
+            List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> tipos = new ArrayList<>();
+            for (JsonNode it : filas) {
+                if (!it.path("Title").asText("").isBlank()) {
+                    tipos.add(tipo(it));
+                }
+            }
+            return tipos;
+        }
+
+        /** Lee la lista y solo escribe lo que cambia: filas nuevas, campos distintos y filas que sobran (a la papelera). */
+        @Override
+        public void guardar(List<com.borgwarner.tbp.dominio.facturacion.TipoEquipo> tipos) {
+            cliente.exigirEscritura("guardar Equipment Types");
+            lectura.invalidar();
+            try {
+                cliente.conSesion(ConexionEdge.PRIORIDAD_INTERFAZ, contexto -> {
+                    Map<String, JsonNode> actuales = new LinkedHashMap<>();
+                    List<Integer> duplicados = new ArrayList<>();
+                    for (JsonNode it : leerFilas(contexto)) {
+                        String clave = tipo(it).clave();
+                        if (actuales.containsKey(clave)) {
+                            duplicados.add(it.path("Id").asInt());
+                        } else {
+                            actuales.put(clave, it);
+                        }
+                    }
+                    String base = cliente.lista(LISTA);
+                    String digest = cliente.digest(contexto);
+                    List<String> errores = new ArrayList<>();
+                    for (com.borgwarner.tbp.dominio.facturacion.TipoEquipo t : tipos) {
+                        ObjectNode nueva = fila(t);
+                        JsonNode actual = actuales.remove(t.clave());
+                        if (actual == null) {
+                            cliente.crear(contexto, digest, base, nueva);
+                            continue;
+                        }
+                        ObjectNode cambios = ClienteSharePoint.camposCambiados(nueva, actual);
+                        if (!t.titulo().equals(actual.path("Title").asText(""))) {
+                            cambios.put("Title", t.titulo());
+                        }
+                        if (!cambios.isEmpty()) {
+                            ClienteSharePoint.Respuesta r = cliente.merge(contexto, digest, base, actual.path("Id").asInt(), cambios, "*");
+                            if (!r.ok()) {
+                                errores.add(t.titulo() + " " + t.anio() + ": " + r.estado() + " " + r.cuerpo());
+                            }
+                        }
+                    }
+                    for (JsonNode sobra : actuales.values()) {
+                        duplicados.add(sobra.path("Id").asInt());
+                    }
+                    for (Integer id : duplicados) {
+                        if (!cliente.reciclar(contexto, digest, base, id)) {
+                            errores.add("borrar la fila " + id);
+                        }
+                    }
+                    if (!errores.isEmpty()) {
+                        throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("SharePoint no ha aceptado parte de los cambios de "
+                                + LISTA + ": " + ClienteSharePoint.recortar(String.join("; ", errores), 300));
+                    }
+                    return null;
+                });
+            } finally {
+                lectura.invalidar();
+            }
         }
     }
 }

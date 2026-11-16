@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { api } from '../../api/cliente';
+import { apiFacturacion } from '../../api/facturacion';
 import type { BancoCatalogo } from '../../api/tipos';
+import { colaConfiguracion } from '../../estado/colaConfiguracion';
 import { usePlanificador } from '../../estado/Planificador';
+import { useAlVaciarConfiguracion } from '../../estado/useColaConfiguracion';
 
 /*
  * 🔧 Test Benches (renderBenchesCfg de la 4.9.4, solo Admin): categorías y
  * bancos. Renombrar un banco conserva sus ensayos; borrar un banco o una
  * categoría con bancos borra sus ensayos (con confirmación, como en la 4.9.4).
- * Cada cambio se guarda en el acto: lista de bancos y, si hace falta, ensayos.
+ * Cada cambio se ve en el acto y se guarda en segundo plano (cola de configuración):
+ * lista de bancos y, si hace falta, ensayos. Si el guardado falla se avisa y la
+ * pantalla vuelve a lo guardado.
+ *
+ * Facturación: columna «Equipment Type» (EquipmentType en TestBenchBenches): el
+ * Equipment Type del banco, que da la tarifa y la regla de cálculo de sus tareas
+ * (los Equipment Types se mantienen en Billing › Configuration).
  */
 
 interface Categoria { key: string; name: string; dot: string; benches: { name: string; org: string }[] }
@@ -15,53 +24,89 @@ interface Categoria { key: string; name: string; dot: string; benches: { name: s
 /** slugKey de la 4.9.4: clave a partir del nombre con un sufijo aleatorio. */
 const claveDe = (s: string) => `${(s || 'grp').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '')}_${Math.random().toString(36).slice(2, 5)}`;
 
-/** cfgSnapshot: una fila por banco, en orden, con su categoría y organización. */
-function instantanea(categorias: Categoria[]): BancoCatalogo[] {
+/** cfgSnapshot: una fila por banco, en orden, con su categoría y organización (y su categoría de facturación). */
+function instantanea(categorias: Categoria[], facturacion?: Record<string, string>): BancoCatalogo[] {
   let seq = 0;
-  return categorias.flatMap((g) => g.benches.map((b) => ({ name: b.name, groupKey: g.key, groupName: g.name, dot: g.dot, org: b.org, seq: ++seq })));
+  return categorias.flatMap((g) => g.benches.map((b) => ({ name: b.name, groupKey: g.key, groupName: g.name, dot: g.dot, org: b.org, seq: ++seq,
+    ...(facturacion ? { equipmentType: facturacion[b.name] ?? '' } : {}) })));
 }
 
 const estiloSelect = { padding: 6, borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)', fontSize: 12 };
 
 export function ConfigBancos() {
-  const { vista, soloLectura, recargar, recargarListas, mostrarMensaje, proyectos } = usePlanificador();
+  const { vista, soloLectura } = usePlanificador();
   const [nuevaCategoria, setNuevaCategoria] = useState('');
   const [colorCategoria, setColorCategoria] = useState('#23BCA3');
   const [nuevos, setNuevos] = useState<Record<string, string>>({});
-  const [guardando, setGuardando] = useState(false);
   const [version, setVersion] = useState(0); // vuelve a pintar las cajas si un cambio no se aplica
   // Categorías recién creadas sin bancos: como en la 4.9.4, solo existen en esta
   // pantalla hasta que se les añade un banco (la lista compartida es de bancos).
   const [vacias, setVacias] = useState<Categoria[]>([]);
+  // Lo que se ve mientras el guardado va en segundo plano (como pushConfig de la 4.9.4).
+  // alias: nombre nuevo → nombre con el que el servidor conoce el banco (para contar sus ensayos).
+  const [local, setLocal] = useState<{ categorias: Categoria[]; alias: Record<string, string> } | null>(null);
+  // Categoría de facturación de cada banco (lista compartida) y categorías disponibles (Billing › Configuration).
+  const [facturacion, setFacturacion] = useState<Record<string, string> | null>(null);
+  const [categoriasFact, setCategoriasFact] = useState<string[]>([]);
+  const leerFacturacion = () => {
+    api.catalogos().then((c) => setFacturacion(Object.fromEntries((c.benches ?? []).map((b) => [b.name, String(b.equipmentType ?? '')]))))
+      .catch(() => setFacturacion(null));
+    apiFacturacion.tiposEquipo().then((d) => setCategoriasFact([...new Set(d.tipos.map((t) => t.titulo))].sort((a, b) => a.localeCompare(b))))
+      .catch(() => setCategoriasFact([]));
+  };
+  useEffect(leerFacturacion, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Guardado terminado (la vista ya está recargada): se suelta la copia local y se relee la facturación.
+  const alVaciar = useCallback(() => {
+    setLocal(null);
+    setVersion((v) => v + 1);
+    leerFacturacion();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useAlVaciarConfiguracion(alVaciar);
   if (!vista) return null;
 
   const delServidor: Categoria[] = vista.grupos.map((g) => ({
     key: g.clave, name: g.nombre, dot: g.color, benches: g.bancos.map((b) => ({ name: b.nombre, org: b.organizacion })),
   }));
-  const categorias: Categoria[] = [...delServidor, ...vacias.filter((v) => !delServidor.some((g) => g.key === v.key))];
+  const categorias: Categoria[] = local?.categorias
+    ?? [...delServidor, ...vacias.filter((v) => !delServidor.some((g) => g.key === v.key))];
+  const alias = local?.alias ?? {};
   const todos = new Set(categorias.flatMap((g) => g.benches.map((b) => b.name)));
-  const activos = (b: string) => (vista.bancos[b] ?? []).filter((f) => !f.cerrado).length;
-  const total = (b: string) => (vista.bancos[b] ?? []).length;
-  const bloqueado = soloLectura || guardando;
+  const ensayos = (b: string) => vista.bancos[alias[b] ?? b] ?? [];
+  const activos = (b: string) => ensayos(b).filter((f) => !f.cerrado).length;
+  const total = (b: string) => ensayos(b).length;
+  const bloqueado = soloLectura;
 
-  const guardar = async (nuevas: Categoria[], renombrados: Record<string, string> = {}) => {
+  /**
+   * La pantalla cambia en el acto y el guardado va a la cola (en segundo plano,
+   * en orden). Si falla, se avisa y la pantalla vuelve a lo guardado.
+   */
+  const guardar = (nuevas: Categoria[], renombrados: Record<string, string> = {}, nuevaFacturacion?: Record<string, string>) => {
     setVacias(nuevas.filter((g) => !g.benches.length).map((g) => ({ ...g, benches: [] })));
-    if (instantanea(nuevas).length === instantanea(categorias).length && JSON.stringify(instantanea(nuevas)) === JSON.stringify(instantanea(categorias))
-      && !Object.keys(renombrados).length) {
+    if (JSON.stringify(instantanea(nuevas)) === JSON.stringify(instantanea(categorias))
+      && !Object.keys(renombrados).length && !nuevaFacturacion) {
+      setLocal(local ? { ...local, categorias: nuevas } : null);
       return; // solo cambian categorías vacías: no hay nada que guardar
     }
-    setGuardando(true);
-    try {
-      // Los proyectos se guardan tal como están: aquí solo cambian los bancos.
-      const catalogo = await api.catalogos();
-      await api.guardarBancos(catalogo.projects ?? proyectos, instantanea(nuevas), renombrados);
-      await Promise.all([recargar(), recargarListas()]);
-    } catch (e) {
-      mostrarMensaje(e instanceof Error ? e.message : String(e));
-    } finally {
-      setGuardando(false);
-      setVersion((v) => v + 1);
+    // Categoría de facturación: un banco renombrado conserva la suya.
+    let fact: Record<string, string> | undefined = nuevaFacturacion ?? (facturacion ? { ...facturacion } : undefined);
+    if (fact) {
+      fact = { ...fact };
+      Object.entries(renombrados).forEach(([a, n]) => { if (fact && fact[a] !== undefined) { fact[n] = fact[a]; delete fact[a]; } });
+      setFacturacion(fact);
     }
+    const nuevoAlias = { ...alias };
+    Object.entries(renombrados).forEach(([a, n]) => { nuevoAlias[n] = alias[a] ?? a; delete nuevoAlias[a]; });
+    setLocal({ categorias: nuevas, alias: nuevoAlias });
+    const bancos = instantanea(nuevas, fact);
+    colaConfiguracion.encolar({
+      clave: 'bancos',
+      fusionable: !Object.keys(renombrados).length,
+      ejecutar: async () => {
+        // Los proyectos se guardan tal como están en ese momento: aquí solo cambian los bancos.
+        const catalogo = await api.catalogos();
+        await api.guardarBancos(catalogo.projects ?? [], bancos, renombrados);
+      },
+    });
   };
   const copia = () => categorias.map((g) => ({ ...g, benches: g.benches.map((b) => ({ ...b })) }));
 
@@ -118,6 +163,10 @@ export function ConfigBancos() {
     c[gi].benches[bi].org = org;
     void guardar(c);
   };
+  const cambiarCategoriaFacturacion = (banco: string, valor: string) => {
+    if (!facturacion) return;
+    void guardar(copia(), {}, { ...facturacion, [banco]: valor });
+  };
   const borrarBanco = (gi: number, bi: number) => {
     const bn = categorias[gi].benches[bi].name;
     const nt = total(bn);
@@ -147,6 +196,10 @@ export function ConfigBancos() {
         Create and organise your bench categories and benches. Rename or recolour categories, add/rename/move/delete benches. Renaming a bench
         keeps its tests; deleting a bench or a non-empty category asks for confirmation.
       </div>
+      {/* data-solo-nueva: lo que la 4.9.4 no tiene (facturación); el laboratorio de paridad lo deja fuera (D38). */}
+      <div className="hint" data-solo-nueva="">
+        <b>Equipment Type</b>: how the bench&rsquo;s tests are billed (rate per hour or per piece and calculation rule, kept in Billing &rsaquo; Configuration).
+      </div>
       <div className="tools">
         <input className="f" id="newcat" placeholder="New category name..." style={{ minWidth: 260 }} value={nuevaCategoria}
           disabled={bloqueado} onChange={(e) => setNuevaCategoria(e.target.value)} />
@@ -170,7 +223,7 @@ export function ConfigBancos() {
             </span>
           </div>
           <table className="lst">
-            <thead><tr><th>#</th><th>Bench</th><th>Org</th><th>Active tests</th><th>Move to category</th><th /></tr></thead>
+            <thead><tr><th>#</th><th>Bench</th><th>Org</th><th data-solo-nueva="">Equipment Type</th><th>Active tests</th><th>Move to category</th><th /></tr></thead>
             <tbody>
               {g.benches.map((b, bi) => (
                 <tr key={b.name} data-banco={b.name}>
@@ -182,6 +235,16 @@ export function ConfigBancos() {
                     <select value={b.org} style={estiloSelect} disabled={bloqueado} onChange={(e) => orgBanco(gi, bi, e.target.value)}>
                       <option>BW</option><option>CTAG</option>
                     </select>
+                  </td>
+                  <td data-categoria-facturacion={b.name} data-solo-nueva="">
+                    {facturacion ? (
+                      <select value={facturacion[b.name] ?? ''} style={estiloSelect} disabled={bloqueado}
+                        onChange={(e) => cambiarCategoriaFacturacion(b.name, e.target.value)}>
+                        <option value="">&mdash;</option>
+                        {[...new Set([...categoriasFact, ...(facturacion[b.name] ? [facturacion[b.name]] : [])])].map((c) => (
+                          <option key={c} value={c}>{c}{categoriasFact.includes(c) ? '' : ' (no existe)'}</option>))}
+                      </select>
+                    ) : <span className="hint" style={{ margin: 0 }}>&hellip;</span>}
                   </td>
                   <td>{activos(b.name)}</td>
                   <td>
@@ -199,7 +262,7 @@ export function ConfigBancos() {
               ))}
               <tr>
                 <td />
-                <td colSpan={4}>
+                <td colSpan={5}>
                   <input className="f" placeholder={`New bench in ${g.name}...`} style={{ minWidth: 220 }} value={nuevos[g.key] || ''} disabled={bloqueado}
                     onChange={(e) => setNuevos({ ...nuevos, [g.key]: e.target.value })} />
                   <button className="btn sm" style={{ marginLeft: 8 }} disabled={bloqueado} onClick={() => anadirBanco(gi)}>&#65291; Add bench</button>

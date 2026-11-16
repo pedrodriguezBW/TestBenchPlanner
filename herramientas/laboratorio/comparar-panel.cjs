@@ -107,7 +107,9 @@ function extraerSeccion() {
   const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
   const main = document.getElementById('main');
   // Las ventanas se leen aparte (en la 4.9.4 cuelgan de <body>, no de #main).
-  const fuera = (el) => !el.closest('#kpi-fresh') && !el.closest('.modal-bg');
+  // [data-solo-nueva]: elementos de la facturación que la 4.9.4 no tiene (D38).
+  const fuera = (el) => !el.closest('#kpi-fresh') && !el.closest('.modal-bg') && !el.closest('[data-solo-nueva]');
+  const propia = (el) => !el.hasAttribute('data-solo-nueva');
   return {
     titulos: [...main.querySelectorAll('h2, h3')].filter(fuera).map(t),
     org: [...main.querySelectorAll('select')].filter(fuera).map((s) => s.value),
@@ -119,8 +121,8 @@ function extraerSeccion() {
     kpis: [...main.querySelectorAll('.kpi')].map((k) => [t(k.querySelector('.n')), t(k.querySelector('.l')), k.className]),
     tablas: [...main.querySelectorAll('table')].filter(fuera).map((tb) => ({
       clase: tb.className,
-      cabecera: [...tb.querySelectorAll('thead th')].map(t),
-      filas: [...tb.querySelectorAll('tbody tr')].map((tr) => [...tr.children].map((td) => {
+      cabecera: [...tb.querySelectorAll('thead th')].filter(propia).map(t),
+      filas: [...tb.querySelectorAll('tbody tr')].map((tr) => [...tr.children].filter(propia).map((td) => {
         const i = td.querySelector('.bar i');
         const color = td.firstElementChild ? getComputedStyle(td.firstElementChild).color : '';
         return [t(td), i ? i.style.width : null, td.title || '', getComputedStyle(td).color, color, getComputedStyle(td).fontWeight];
@@ -159,7 +161,7 @@ function extraerCeldasRecursos() {
 /** Valores de las cajas de texto y casillas de #main (pantallas de configuración). */
 function extraerEntradas() {
   const main = document.getElementById('main');
-  return [...main.querySelectorAll('input:not([type=date]):not([type=file]), textarea')].filter((i) => !i.closest('.modal-bg'))
+  return [...main.querySelectorAll('input:not([type=date]):not([type=file]), textarea')].filter((i) => !i.closest('.modal-bg') && !i.closest('[data-solo-nueva]'))
     .map((i) => (i.type === 'checkbox' ? i.checked : i.type === 'color' ? i.value.toLowerCase() : i.value));
 }
 
@@ -355,8 +357,10 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     case 'cfgBanco': {
       const fila = main.locator('table.lst tbody tr').filter({ has: pagina.locator(`input[value="${paso.banco}"]`) }).first();
       if (paso.nuevo !== undefined) { const c = fila.locator('input').first(); await c.fill(paso.nuevo); await c.press('Tab'); }
-      if (paso.org !== undefined) await fila.locator('select').first().selectOption(paso.org);
-      if (paso.categoria !== undefined) await fila.locator('select').nth(1).selectOption({ label: paso.categoria });
+      // Sin los desplegables que solo tiene la versión nueva (categoría de facturación, D38).
+      const propios = fila.locator('td:not([data-solo-nueva]) select');
+      if (paso.org !== undefined) await propios.first().selectOption(paso.org);
+      if (paso.categoria !== undefined) await propios.nth(1).selectOption({ label: paso.categoria });
       if (paso.subir) await fila.getByRole('button', { name: '\u25B2' }).click();
       if (paso.bajar) await fila.getByRole('button', { name: '\u25BC' }).click();
       if (paso.borrar) await fila.locator('button.del').click();

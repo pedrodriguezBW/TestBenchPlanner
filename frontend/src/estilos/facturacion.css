@@ -1,0 +1,37 @@
+/* Facturación (sección «Billing»): hoja mensual y configuración de Equipment Types. */
+.fac-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 10px; }
+.fac-head h2 { margin: 0; }
+.fac-head .sub { color: var(--muted); font-size: 13px; }
+.fac-acciones { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+.fac-filtros { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+.fac-filtros select, .fac-filtros input[type=month] { background: var(--navy); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 5px 6px; font-size: 12px; }
+.fac-filtros label { font-size: 12px; color: var(--muted); display: inline-flex; gap: 4px; align-items: center; }
+.fac-nota { color: var(--muted); font-size: 12px; }
+.fac-aviso { background: var(--warnbg); color: var(--warn); border: 1px solid var(--warn); border-radius: 8px; padding: 8px 10px; font-size: 12.5px; }
+.fac-error { background: rgba(255, 107, 107, .12); color: var(--danger); border: 1px solid var(--danger); border-radius: 8px; padding: 8px 10px; margin-bottom: 10px; }
+.fac-error-texto { color: var(--danger); }
+.fac-resumen { display: flex; flex-wrap: wrap; gap: 18px; margin: 0 0 10px; font-size: 13px; }
+.fac-resumen .aviso { color: var(--warn); }
+.fac-tabla-wrap { overflow: auto; max-height: 70vh; }
+table.fac { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+table.fac th { position: sticky; top: 0; background: var(--panel2); color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .3px;
+  padding: 7px 8px; text-align: left; border-bottom: 2px solid var(--line); z-index: 1; }
+table.fac td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+table.fac td.n, table.fac th.n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+table.fac-hoja { width: auto; min-width: 60%; }
+table.fac tr.nivel0 td { font-weight: 800; background: rgba(76, 141, 255, .10); }
+table.fac tr.nivel1 td:first-child { padding-left: 22px; }
+table.fac tr.nivel2 td:first-child { padding-left: 40px; color: var(--muted); }
+table.fac tr.total td { font-weight: 800; border-top: 2px solid var(--line); }
+table.fac tr.incompleta td { background: var(--warnbg); }
+table.fac tr.incompleta td:first-child { color: var(--warn); }
+details.fac-plegable > summary { cursor: pointer; font-weight: 700; padding: 6px 0; }
+.fac-selector-mes { display: inline-flex; gap: 4px; align-items: center; }
+.fac-selector-mes select { font-weight: 700; }
+.fac-campos { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; padding: 8px 12px; margin-bottom: 10px; }
+.fac-campos label { display: inline-flex; gap: 4px; align-items: center; font-size: 13px; color: var(--muted); cursor: pointer; }
+.fac-campos label.activo { color: var(--text); font-weight: 700; }
+.fac-flecha { color: var(--muted); font-weight: 400; }
+.fac-plegar { background: transparent; border: 0; color: var(--turq); cursor: pointer; font-size: 14px; padding: 0 4px 0 0; line-height: 1; }
+.fac-plegar-hueco { display: inline-block; width: 18px; }
+.fac-periodo { font-size: 13px; color: var(--muted); white-space: nowrap; }

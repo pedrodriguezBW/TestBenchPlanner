@@ -33,7 +33,7 @@ export class ErrorSinConexion extends Error {
   }
 }
 
-async function peticion<T>(metodo: string, ruta: string, cuerpo?: unknown): Promise<T> {
+export async function peticion<T>(metodo: string, ruta: string, cuerpo?: unknown): Promise<T> {
   let respuesta: Response;
   try {
     // El código de la pestaña permite al backend descartar sus consultas si se recarga o se cierra.
@@ -74,7 +74,7 @@ export const api = {
   presencia: () => peticion<{ me: string; online: Conectado[] }>('POST', '/api/v1/presencia', {}),
   version: () => peticion<{ backend: string; published: string }>('GET', '/api/v1/version'),
   planificacion: () => peticion<Vista>('GET', '/api/v1/planificacion'),
-  catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[] }>('GET', '/api/v1/catalogos'),
+  catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[]; projectOrders?: Record<string, string> }>('GET', '/api/v1/catalogos'),
   usuarios: () => peticion<UsuarioLista[]>('GET', '/api/v1/usuarios'),
 
   editarCampos: (banco: string, id: string, cambios: CambioCampo[], version: string | null, forzar = false) =>
@@ -119,8 +119,9 @@ export const api = {
   // Configuración (bloque E)
   guardarBancos: (projects: string[], benches: BancoCatalogo[], renombrados: Record<string, string>) =>
     peticion<RespuestaOperacion & { ensayosBorrados: number }>('PUT', '/api/v1/configuracion/bancos', { projects, benches, renombrados }),
-  guardarCatalogos: (projects: string[], benches: BancoCatalogo[]) =>
-    peticion<{ ok: boolean }>('PUT', '/api/v1/catalogos', { projects, benches }),
+  /** projectOrders: orden contable por proyecto (solo Admin); si no se envía, se conservan las guardadas. */
+  guardarCatalogos: (projects: string[], benches: BancoCatalogo[], projectOrders?: Record<string, string>) =>
+    peticion<{ ok: boolean }>('PUT', '/api/v1/catalogos', projectOrders ? { projects, benches, projectOrders } : { projects, benches }),
   guardarUsuarios: (users: UsuarioLista[]) => peticion<{ ok: boolean }>('PUT', '/api/v1/usuarios', { users }),
   calendario: () => peticion<CalendarioPc>('GET', '/api/v1/calendario'),
   guardarCalendario: (c: CalendarioPc) => peticion<CalendarioPc>('PUT', '/api/v1/calendario', c),

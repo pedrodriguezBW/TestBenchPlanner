@@ -330,6 +330,8 @@ export interface BancoCatalogo {
   dot: string;
   org: string;
   seq: number;
+  /** Categoría de facturación del banco (columna EquipmentType). */
+  equipmentType?: string;
   [campo: string]: unknown;
 }
 

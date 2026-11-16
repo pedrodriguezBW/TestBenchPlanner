@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { iniciarCicloDeVida } from './cicloDeVida';
+import { colaConfiguracion } from './colaConfiguracion';
 import { aplicarOperacionesOptimistas, crearCola, prepararOperacionOptimista, type OperacionOptimista } from './operacionesOptimistas';
 import { api, ErrorApi, ErrorConflicto, ErrorRegla, ErrorSinConexion, type CambioCampo } from '../api/cliente';
 import type { FilaEnConflicto, FilaEnsayo, RespuestaOperacion, Sesion, TipoOperacion, ValoresCierre, Vista } from '../api/tipos';
@@ -540,6 +541,22 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
     [vistaServidor, revisionPendientes, optimistas],
   );
   vistaVisibleRef.current = vista;
+
+  // Configuración compartida guardada en segundo plano: al terminar se recargan vista
+  // y listas una sola vez; un fallo se avisa (la pantalla vuelve a lo guardado).
+  useEffect(() => {
+    colaConfiguracion.configurar({
+      despues: async () => { await Promise.all([recargarSilencioso(), recargarListas()]); },
+      alFallar: (e) => setMensajeModal(`The configuration could not be saved in SharePoint; the screen shows what is really saved.\n\n${e instanceof Error ? e.message : String(e)}`),
+    });
+  }, [recargarSilencioso, recargarListas]);
+  useEffect(() => {
+    const salir = (e: BeforeUnloadEvent) => {
+      if (colaConfiguracion.pendiente()) { e.preventDefault(); e.returnValue = ''; }
+    };
+    window.addEventListener('beforeunload', salir);
+    return () => window.removeEventListener('beforeunload', salir);
+  }, []);
 
   const valor: Contexto = {
     vista, sesion, soloLectura, sincronizacion, copiaSinConexion, proyectos, personas, estadosAprobacion, avisos, conflicto,

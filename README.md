@@ -16,6 +16,43 @@ durante la transición.
 > o tiene una decisión documentada. Solo queda H4 (entrega y retirada de la
 > 4.9.4), aparcado mientras se añade la facturación. `/clasico` sigue disponible
 > como respaldo hasta entonces.
+>
+> **Facturación (H5, 10-nov-2026): implementada como código** según el plan
+> completo de facturación (fases 1–7 y base de RACS): sección «Billing» con
+> periodos del 21 al 20, revisión, overview, configuración, aprobación,
+> auditoría y exportaciones (Excel, Controlling y HTML). Pendiente de `mvnw clean
+> verify` en el PC y de validación por Pedro. Detalle en `docs/07-facturacion.md`.
+>
+> **H6 (12-nov-2026) · Facturación rehecha** según «CambiosTestBenchFacturacion.docx»: se ha
+> eliminado todo lo anterior (periodos, revisión, aprobación, ajustes, Controlling, auditoría,
+> ficha «Billing Data», JSON) y queda la **hoja mensual** como la del Excel (Billing › Monthly
+> sheet, exportable en Excel y HTML) con Equipment Types por año en la lista nueva
+> **TestBenchEquipmentTypes**, Equipment Type del banco (columna `EquipmentType`), Billing Order
+> del proyecto y columnas Setup (h), HV y Product Line en la tarea. Ver `docs/07-facturacion.md`.
+> **H6b**: la hoja mensual es una tabla dinámica como la del Excel (Billing Order › Planta › Tipo ›
+> Equipo › HV › Inicio › Fin › Coste/hora, campos elegibles, filas plegables; Excel con filas
+> agrupadas) y el mes se elige con desplegables y flechas.
+> **H6c**: el mes de facturación es el periodo del 21 del mes anterior al 20 del mes (horas, setup,
+> Inicio/Fin y cabeceras referidos a ese periodo).
+> Lo que sigue sobre H5–H5d es historia.
+>
+> **H5d (12-nov-2026)**: paridad con el Excel de facturación: tarifas por año como «Equipos y
+> costes» (Equipo × HV), regla STC = 0, «Planta» = la del Excel (antes «línea de producto»), nombres
+> Equipo/Tipo, UM «H» en Controlling y hoja «Detalle» con las columnas de INPUTS_2026. Ver
+> docs/07-facturacion.md §7b.
+
+> **H5c (11-nov-2026)**: guardar Test Benches/Projects en SharePoint solo escribe los campos
+> que cambian (antes reescribía todas las filas y bloqueaba la aplicación varios minutos), y la
+> pantalla cambia al momento: el guardado va en segundo plano («Saving…»; si falla, aviso y vuelta
+> a lo guardado).
+> Ver docs/06-rendimiento-sharepoint.md.
+
+> **H5b (11-nov-2026)**: los maestros de facturación arrancan vacíos (se dan de
+> alta a mano); la orden contable pasa a Configuration › Projects (columna
+> `BillingOrder` de TestBenchProjects) y la categoría de cada banco a
+> Configuration › Test Benches (columna `BillingCategory` de TestBenchBenches);
+> requester y línea de producto son de cada ensayo; los periodos se pueden
+> eliminar. Hay que crear las dos columnas en SharePoint.
 
 ## Índice
 
@@ -45,6 +82,7 @@ durante la transición.
 | **H3F · React, bloque F** | Exportaciones e importaciones: 📊 Excel de los Gantt (banco, Dashboard, «By Responsible», equipos; con foco), ⬇️ Exportar CSV de estadísticas, copia de seguridad JSON (exportar e importar) y 📤 Export read-only. El Excel lo genera el backend Java con el mismo aspecto que la 4.9.4. | **Terminado**; validado en el PC |
 | **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Terminado**; validado en el PC |
 | **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Terminado**; validado en el PC (10-nov-2026) |
+| **H5 · Facturación** | Módulo «Billing» separado de la planificación: datos de facturación del ensayo (hora real, paradas con fecha y hora, setup, HV, orden, requester, línea de producto, facturable), motor de periodos y tramos, maestros (categorías, tarifas versionadas, reglas, Controlling; orden del proyecto en Projects y categoría del banco en Test Benches), revisión con ajustes trazables y tarifas excepcionales, aprobación con foto inmutable, reapertura, auditoría y exportaciones. Paridad con las 522 filas de 2026 y la hoja Controlling del Excel. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente; aparcado hasta terminar la facturación |
 
 ### Funcionalidad disponible
@@ -95,6 +133,12 @@ búsquedas, navegación y consultas siguen disponibles en todas las pantallas.
 - Rendimiento con SharePoint: lecturas compartidas sin repeticiones, consultas
 en paralelo a los guardados, estados de aprobación por lotes, recarga (F5) sin
 avisos por peticiones abandonadas y altas o copias de ensayos visibles al momento.
+- Facturación (sección «Billing», H6): Monthly sheet y Configuration (Admin); columnas
+Setup (h), HV y Product Line en cada banco; «Equipment Type» en Test Benches y «Billing order»
+en Projects. Ver `docs/07-facturacion.md`. (Texto anterior, H5:) columna «Billing» y ficha «Billing Data» en cada banco y en
+los cerrados; sección opcional en la ventana de cierre (el cierre no depende de
+los datos económicos); eliminar periodos; columnas «Billing order» en Projects y
+«Billing category» en Test Benches. Ver `docs/07-facturacion.md`.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` como respaldo hasta la retirada de la
 4.9.4 (H4).
@@ -160,6 +204,7 @@ TestBenchPlanner/
 │       │   │   │   ├── calendario/        Festivos, semanas ISO y días laborables
 │       │   │   │   ├── comun/             Semántica y serialización JSON compatible
 │       │   │   │   ├── ensayo/            Ensayos, duración, estados y motivos
+│       │   │   │   ├── facturacion/       Reglas, Equipment Types y hoja mensual de facturación
 │       │   │   │   ├── kpi/               KPI, ocupación, fotos e histórico
 │       │   │   │   ├── listas/            Protección de listas compartidas
 │       │   │   │   ├── operaciones/       Edición, cola y cierre
@@ -187,6 +232,7 @@ TestBenchPlanner/
 │       ├── bloques/kpi/                   Bloque C: KPI History y estadísticas
 │       ├── bloques/recursos/              Bloque D: equipos auxiliares
 │       ├── bloques/configuracion/         Bloque E: Test Benches, Projects, Users, Tools, About y Activity log
+│       ├── bloques/facturacion/           Facturación: Monthly sheet y Configuration
 │       ├── componentes/                   Diálogos, avisos y selector de fecha
 │       ├── estado/                        Carga, guardado, conflictos, relectura, Dashboard, equipos y ciclo de vida
 │       ├── estilos/                       CSS original y estilos de la nueva interfaz
@@ -364,6 +410,8 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `AprobacionesSharePointTest` · `CatalogosSharePointTest` | Estados de aprobación por lotes con el mismo resultado por ID; catálogos y usuarios leídos una sola vez al arrancar. |
 | `CopiaSinConexionConcurrenciaTest` | 32 lecturas simultáneas no chocan al guardar la copia sin conexión (sin `.tmp` sueltos) y solo se reescribe si cambia el contenido. |
 | `ManejadorErroresTest` · `FiltroPestanaTest` | Una petición abandonada al recargar no deja avisos; solo las consultas se asocian a la pestaña. |
+| `HojaMensualTest` | Facturación: regresión con enero de 2026 del Excel (25 «Coste total» y las 34 filas de la hoja ENERO) y reglas de la hoja mensual (meses, parada, setup, piezas, STC, proyecto 0, incompletas). |
+| `ApiFacturacionTest` | Facturación en local: Equipment Types (guardar, validar), hoja mensual y exportación Excel/HTML. |
 | `GeneradorIdsTest` · `OperacionesInmediatasTest` · `ServicioPlanificacionLatenciaTest` | Altas y copias guardadas con el id que la interfaz ya muestra, sin relectura extra y con las reglas de siempre. |
 
 Las salidas de paridad quedan en `backend/target/paridad` y pueden volver a
@@ -385,6 +433,7 @@ TZ=Europe/Madrid node herramientas/laboratorio/comparar-panel.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-rendimiento.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-facturacion.cjs
 cd frontend && npm test        # pruebas unitarias de altas y copias inmediatas
 ```
 
@@ -440,6 +489,11 @@ operaciones, cierre, configuración, aprobaciones, recursos e indicadores
 `/api/v1/version`) y exportaciones (`POST /api/v1/exportaciones/gantt`,
 `GET /api/v1/exportaciones/copia`, `POST /api/v1/importaciones/copia`).
 `/api/export_gantt` (contrato 4.9.4) usa el mismo generador de Excel.
+- **`/api/v1/facturacion/*`** (H6): `GET/PUT /tipos-equipo`, `GET /hoja?mes=aaaa-mm[&niveles=…]`,
+`GET /hoja/exportar?mes=…&formato=excel|html`. (Antes, H5:) facturación (maestros, periodos, acciones de línea,
+envío, aprobación, reapertura, eliminar periodo, exportaciones, auditoría y ficha
+«Billing Data»). `GET/PUT /api/v1/catalogos` lleva también `projectOrders`
+(columna BillingOrder; cambiarla exige Admin) y `benches[].equipmentType` (columna EquipmentType).
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa
 la interfaz 4.9.4.
 - **`/api/v1/local/reinicio`**: reinicio del escenario para el laboratorio;
@@ -469,7 +523,11 @@ que modifican datos (editar, ordenar, añadir, borrar, cerrar, asignar, guardar
 catálogos…). Nunca se deshabilitan contenedores completos ni controles de
 consulta (filtros, búsquedas, semanas, rangos, zoom, foco, recargar). Toda
 escritura se comprueba también en el backend (403).
-- Facturación queda fuera del alcance de esta migración.
+- La facturación solo escribe en la planificación el objeto `DataJson.billing`
+del ensayo; sus periodos, maestros y auditoría van en su propio almacén. La orden
+de cada proyecto y la categoría de cada banco van en las columnas `BillingOrder`
+(TestBenchProjects) y `BillingCategory` (TestBenchBenches), que crea a mano un
+Admin del sitio (la aplicación no cambia el esquema de las listas).
 
 ## Documentación
 
@@ -489,5 +547,7 @@ a función de la 4.9.4 y resolución de los huecos (H3Z).
 defectos heredados y mejoras no bloqueantes, con el seguimiento por hito.
 - [`docs/06-rendimiento-sharepoint.md`](docs/06-rendimiento-sharepoint.md):
 causas y correcciones de los retrasos con SharePoint (H3R).
+- [`docs/07-facturacion.md`](docs/07-facturacion.md): análisis, diseño, reglas,
+pantallas, pruebas y pendientes de la facturación (H5).
 - [`herramientas/laboratorio/README.md`](herramientas/laboratorio/README.md): uso
 del laboratorio de paridad.

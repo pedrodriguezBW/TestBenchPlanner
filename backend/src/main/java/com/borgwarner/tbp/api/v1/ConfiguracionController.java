@@ -2,6 +2,7 @@ package com.borgwarner.tbp.api.v1;
 
 import com.borgwarner.tbp.aplicacion.ServicioListas;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
+import com.borgwarner.tbp.aplicacion.SinPermiso;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCalendario;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
@@ -64,10 +65,25 @@ public class ConfiguracionController {
         return listas.leerCatalogos();
     }
 
-    /** Guardar la configuración de bancos y proyectos (en la 4.9.4 no exigía rol: se conserva). */
+    /**
+     * Guardar la configuración de bancos y proyectos (en la 4.9.4 no exigía rol: se conserva).
+     * La orden contable de los proyectos («projectOrders», columna BillingOrder) solo la
+     * cambia un Admin: un Editor puede añadir y quitar proyectos, no tocar sus órdenes.
+     */
     @PutMapping("/catalogos")
     public ObjectNode guardarCatalogos(@RequestBody JsonNode cuerpo) {
-        sesion.exigirEscritura(sesion.usuarioActual());
+        Usuario u = sesion.usuarioActual();
+        sesion.exigirEscritura(u);
+        JsonNode ordenes = cuerpo.get("projectOrders");
+        if (ordenes != null && ordenes.isObject() && !u.esAdmin()) {
+            JsonNode actuales = listas.leerCatalogos().path("projectOrders");
+            for (JsonNode p : cuerpo.path("projects")) {
+                String titulo = p.asText("");
+                if (!ordenes.path(titulo).asText("").trim().equals(actuales.path(titulo).asText("").trim())) {
+                    throw new SinPermiso("Solo un Admin puede cambiar la orden contable de un proyecto.");
+                }
+            }
+        }
         return listas.guardarCatalogos(cuerpo);
     }
 

@@ -79,6 +79,7 @@ public class ManejadorErrores {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(cuerpo);
     }
 
+
     @ExceptionHandler(ReconciliacionBloqueada.class)
     public ResponseEntity<ObjectNode> listaProtegida(ReconciliacionBloqueada e) {
         return ResponseEntity.status(HttpStatus.PRECONDITION_FAILED)

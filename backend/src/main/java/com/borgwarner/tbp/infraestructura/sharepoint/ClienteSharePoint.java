@@ -15,6 +15,7 @@ import com.microsoft.playwright.options.RequestOptions;
 import com.microsoft.playwright.options.WaitUntilState;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -453,37 +454,103 @@ public class ClienteSharePoint {
         return errores;
     }
 
-    /** Reconciliación preparada: lo que hay ahora en la lista y lo que se quiere guardar. */
-    public record PlanReconciliacion(String titulo, Map<String, Integer> existentes, List<ObjectNode> filas) {
+    /**
+     * Reconciliación preparada: lo que hay ahora en la lista (Id y valores
+     * leídos por Title), las columnas que existen (null si no se pudieron leer)
+     * y lo que se quiere guardar.
+     */
+    public record PlanReconciliacion(String titulo, Map<String, Integer> existentes, List<ObjectNode> filas,
+                                     Map<String, JsonNode> actuales, Set<String> columnas) {
+        public PlanReconciliacion(String titulo, Map<String, Integer> existentes, List<ObjectNode> filas) {
+            this(titulo, existentes, filas, Map.of(), null);
+        }
     }
 
     /**
      * Fase 1 de la reconciliación (_reconcile_list): lee la lista y comprueba la
      * protección D11. No escribe nada; si la lectura falla, lanza la excepción.
+     * Se leen también los valores actuales de las columnas que se van a
+     * escribir, para que la fase 2 solo envíe lo que de verdad cambia.
      */
     public PlanReconciliacion prepararReconciliacion(BrowserContext contexto, String titulo, List<String> columnas,
                                                      List<ObjectNode> filas, boolean permitirVacias) {
+        java.util.LinkedHashSet<String> leer = new java.util.LinkedHashSet<>(columnas);
+        filas.forEach(f -> f.fieldNames().forEachRemaining(leer::add));
+        leer.remove("Title");
+        leer.remove("Id");
         Map<String, Integer> existentes = new java.util.LinkedHashMap<>();
-        for (JsonNode it : leerLista(contexto, titulo, columnas)) {
+        Map<String, JsonNode> actuales = new HashMap<>();
+        for (JsonNode it : leerLista(contexto, titulo, new ArrayList<>(leer))) {
             if (it.hasNonNull("Title")) {
                 existentes.put(it.get("Title").asText(), it.path("Id").asInt());
+                actuales.put(it.get("Title").asText(), it);
             }
+        }
+        Set<String> hay;
+        try {
+            hay = columnas(contexto, sitio, titulo); // en caché: ya se pidió al leer
+        } catch (RuntimeException e) {
+            hay = null; // sin esquema: se escribe todo, como antes
         }
         List<String> entrantes = filas.stream().filter(f -> f.hasNonNull("Title")).map(f -> f.get("Title").asText()).toList();
         ProteccionListas.comprobar(titulo, existentes.keySet(), entrantes, permitirVacias);
-        return new PlanReconciliacion(titulo, existentes, filas);
+        return new PlanReconciliacion(titulo, existentes, filas, actuales, hay);
+    }
+
+    /**
+     * Campos de la fila que hay que enviar: los que difieren del valor que ya
+     * tiene SharePoint (sin Title). Sin valores actuales (fila nueva), todos.
+     * Vacío, nulo y ausente son lo mismo; los números se comparan como número.
+     */
+    static ObjectNode camposCambiados(ObjectNode fila, JsonNode actual) {
+        ObjectNode cambios = JsonJs.objetoVacio();
+        fila.fields().forEachRemaining(campo -> {
+            if (campo.getKey().equals("Title")) {
+                return;
+            }
+            if (actual == null || !mismoValor(campo.getValue(), actual.get(campo.getKey()))) {
+                cambios.set(campo.getKey(), campo.getValue());
+            }
+        });
+        return cambios;
+    }
+
+    static boolean mismoValor(JsonNode a, JsonNode b) {
+        boolean vacioA = a == null || a.isNull() || a.isMissingNode() || (a.isTextual() && a.textValue().isEmpty());
+        boolean vacioB = b == null || b.isNull() || b.isMissingNode() || (b.isTextual() && b.textValue().isEmpty());
+        if (vacioA || vacioB) {
+            return vacioA && vacioB;
+        }
+        Double na = numero(a), nb = numero(b);
+        if ((a.isNumber() || b.isNumber()) && na != null && nb != null) {
+            return Double.compare(na, nb) == 0;
+        }
+        return a.asText().equals(b.asText());
+    }
+
+    private static Double numero(JsonNode n) {
+        if (n.isNumber()) {
+            return n.doubleValue();
+        }
+        try {
+            return Double.valueOf(n.asText().trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 
     /**
      * Fase 2: crea o actualiza las filas recibidas y manda a la papelera las
      * que no vienen. Solo se llama cuando TODAS las listas de la operación han
-     * pasado la fase 1.
+     * pasado la fase 1. De cada fila existente solo se envían los campos que
+     * cambian, en una sola petición (si falla, campo a campo para aislar la
+     * columna problemática); las filas sin cambios no generan ninguna escritura.
      */
     public ObjectNode aplicarReconciliacion(BrowserContext contexto, String digest, PlanReconciliacion plan) {
         exigirEscritura("reconciliar " + plan.titulo());
         String base = lista(plan.titulo());
         Set<String> recibidas = new HashSet<>();
-        int creadas = 0, actualizadas = 0, borradas = 0;
+        int creadas = 0, actualizadas = 0, sinCambios = 0, borradas = 0;
         ObjectNode errores = JsonJs.objetoVacio();
         for (ObjectNode fila : plan.filas()) {
             if (!fila.hasNonNull("Title")) {
@@ -492,16 +559,39 @@ public class ClienteSharePoint {
             String clave = fila.get("Title").asText();
             recibidas.add(clave);
             Integer id = plan.existentes().get(clave);
+            ObjectNode cambios = camposCambiados(fila, id == null ? null : plan.actuales().get(clave));
+            if (plan.columnas() != null) {
+                // Una columna que la lista no tiene no se puede escribir: se avisa y no se reintenta en cada fila.
+                List<String> inexistentes = new ArrayList<>();
+                cambios.fieldNames().forEachRemaining(c -> {
+                    if (!plan.columnas().contains(c)) {
+                        inexistentes.add(c);
+                    }
+                });
+                inexistentes.forEach(c -> {
+                    cambios.remove(c);
+                    errores.put(c, "la lista " + plan.titulo() + " no tiene la columna " + c);
+                });
+            }
             if (id == null) {
                 id = crearMinimo(contexto, digest, base, clave);
                 if (id == null) {
                     continue;
                 }
                 creadas++;
+            } else if (cambios.isEmpty()) {
+                sinCambios++;
+                continue;
             } else {
                 actualizadas++;
             }
-            mergeCampoACampo(contexto, digest, base, id, fila).forEach(errores::put);
+            if (cambios.isEmpty()) {
+                continue;
+            }
+            Respuesta junta = cambios.size() == 1 ? null : merge(contexto, digest, base, id, cambios, "*");
+            if (junta == null || !junta.ok()) {
+                mergeCampoACampo(contexto, digest, base, id, cambios).forEach(errores::put);
+            }
         }
         for (Map.Entry<String, Integer> existente : plan.existentes().entrySet()) {
             if (!recibidas.contains(existente.getKey())) {
@@ -513,8 +603,8 @@ public class ClienteSharePoint {
                 }
             }
         }
-        return JsonJs.objetoVacio().put("created", creadas).put("updated", actualizadas).put("deleted", borradas)
-                .set("field_errors", errores);
+        return JsonJs.objetoVacio().put("created", creadas).put("updated", actualizadas).put("unchanged", sinCambios)
+                .put("deleted", borradas).set("field_errors", errores);
     }
 
     static String recortar(String texto, int maximo) {

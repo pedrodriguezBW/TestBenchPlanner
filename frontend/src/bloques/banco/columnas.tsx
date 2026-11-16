@@ -42,6 +42,13 @@ export interface Columna {
 
 const sinOpciones = (pares: [string, string][]) => pares;
 
+/** Product Lines de la hoja de facturación (Planta del Excel); un valor antiguo distinto se conserva. */
+export const PRODUCT_LINES = ['Vigo', 'Viana', 'Heaters', 'eCoolers', 'Recuperador', 'STC'];
+function opcionesProductLine(actual: string): [string, string][] {
+  const valores = actual && !PRODUCT_LINES.includes(actual) ? [...PRODUCT_LINES, actual] : PRODUCT_LINES;
+  return [['', '\u2014'], ...valores.map((v): [string, string] => [v, v])];
+}
+
 function insigniaCriterio(criterio?: string) {
   const t = criterio ? CRITERIO_INICIO[criterio] : undefined;
   return t ? <span className="start-why" title={t[1]}>{t[0]}</span> : null;
@@ -277,16 +284,39 @@ export const COLUMNAS: Record<string, Columna> = {
     cabecera: 'Resources', clase: 'wideproj',
     celda: ({ fila, abrirRecursos }) => <CeldaRecursos fila={fila} onAbrir={abrirRecursos} />,
   },
+  // Facturación (no existen en la 4.9.4): setup del mes de arranque (o piezas en los Equipment Types por pieza),
+  // HV de la tarea y Product Line.
+  setupHours: {
+    cabecera: 'Setup (h)', clase: 'numcol',
+    celda: ({ fila, editar }) => <Entrada campo="setupHours" tipo="number" min="0" paso="0.25" marcador="0" valor={fila.datos.setupHours}
+      titulo="Billing: setup hours, billed in the month the test starts. For Equipment Types billed per piece (RACS), the number of pieces."
+      onCambio={(v) => editar('setupHours', v)} />,
+  },
+  hv: {
+    cabecera: 'HV', clase: 'unitcol',
+    celda: ({ fila, editar }) => <Selector campo="hv" valor={texto(fila.datos.hv)} titulo="Billing: test with high voltage (With HV / Without HV rate)"
+      opciones={[['', '\u2014'], ['yes', 'Yes'], ['no', 'No']]} onCambio={(v) => editar('hv', v)} />,
+  },
+  productLine: {
+    cabecera: 'Product Line', clase: 'modecol',
+    celda: ({ fila, editar }) => <Selector campo="productLine" valor={texto(fila.datos.productLine)} titulo="Billing: product line (Planta in the billing Excel)"
+      opciones={opcionesProductLine(texto(fila.datos.productLine))} onCambio={(v) => editar('productLine', v)} />,
+  },
 };
 
 /** Orden por defecto de las columnas (DEFAULT_COLS de la 4.9.4). */
 export const COLUMNAS_POR_DEFECTO = ['actions', 'prio', 'responsible', 'project', 'comments', 'approvalId', 'type', 'weekend', 'inputs',
   'avail', 'confirmedStart', 'confirmedEnd', 'actualStart', 'trueEnd', 'start', 'end', 'planned', 'progressActual', 'progPct', 'status',
-  'reason', 'lastUpdate', 'durMode', 'cycles', 'cycleVal', 'cycleUnit', 'durManual', 'manualUnit', 'cf', 'downtime', 'resources'];
+  'reason', 'lastUpdate', 'durMode', 'cycles', 'cycleVal', 'cycleUnit', 'durManual', 'manualUnit', 'cf', 'downtime', 'setupHours', 'resources', 'hv', 'productLine'];
 
 /** Orden guardado, completado con las columnas nuevas y sin las que ya no existen (colOrder). */
 export function ordenColumnas(guardado: string[] | null): string[] {
   const orden = (guardado ?? COLUMNAS_POR_DEFECTO).filter((k) => COLUMNAS[k]);
-  COLUMNAS_POR_DEFECTO.forEach((k) => { if (!orden.includes(k)) orden.push(k); });
+  // Las columnas nuevas entran detrás de la que las precede por defecto (Setup detrás de Parada).
+  COLUMNAS_POR_DEFECTO.forEach((k, i) => {
+    if (orden.includes(k)) return;
+    const anterior = i > 0 ? orden.indexOf(COLUMNAS_POR_DEFECTO[i - 1]) : -1;
+    if (anterior >= 0) orden.splice(anterior + 1, 0, k); else orden.push(k);
+  });
   return orden;
 }

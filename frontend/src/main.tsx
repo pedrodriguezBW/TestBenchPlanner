@@ -6,6 +6,7 @@ import { ProveedorRecursos } from './estado/Recursos';
 import { ProveedorPlanificador } from './estado/Planificador';
 import './estilos/base-4.9.4.css';
 import './estilos/aplicacion.css';
+import './estilos/facturacion.css';
 
 createRoot(document.getElementById('raiz')!).render(
   <StrictMode>
