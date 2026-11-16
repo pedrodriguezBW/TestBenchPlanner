@@ -461,7 +461,10 @@ final class LaboratorioJava {
             semana.set(org, JsonJs.mapper().valueToTree(IndicadoresSemana.semana(planificacion, plan, lunes, filtro)));
         }
         ArrayNode fotos = kpi.putArray("fotoSemanal");
-        FotoSemanal.tomar(planificacion, plan).forEach(fotos::add);
+        // Las fotos por área (THERMAL, HVCH-*) no existen en la 4.9.4 (D39): se comparan las tres de siempre.
+        FotoSemanal.tomar(planificacion, plan).stream()
+                .filter(f -> FiltroOrganizacion.ORGANIZACIONES.contains(f.path("org").asText()))
+                .forEach(fotos::add);
         ObjectNode ocupacion = kpi.putObject("ocupacion");
         int anio = contexto.hoy().getYear();
         for (Grupo g : planificacion.configuracion().grupos()) {

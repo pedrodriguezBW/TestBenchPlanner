@@ -83,6 +83,7 @@ durante la transición.
 | **H3Z · Cierre de la migración** | Auditoría de las 510 piezas de la 4.9.4 (funciones, rutas, semillas, temporizadores) y cierre de los huecos: presencia, aviso de versión antigua, consulta sin conexión con la última copia, bienvenida, relectura de catálogos, calendario con Escape, tiradores táctiles, sugerencias completas al entrar y orden de Admin en Users (D29). Inventario y discrepancias en su estado final. | **Terminado**; validado en el PC |
 | **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Terminado**; validado en el PC (10-nov-2026) |
 | **H5 · Facturación** | Módulo «Billing» separado de la planificación: datos de facturación del ensayo (hora real, paradas con fecha y hora, setup, HV, orden, requester, línea de producto, facturable), motor de periodos y tramos, maestros (categorías, tarifas versionadas, reglas, Controlling; orden del proyecto en Projects y categoría del banco en Test Benches), revisión con ajustes trazables y tarifas excepcionales, aprobación con foto inmutable, reapertura, auditoría y exportaciones. Paridad con las 522 filas de 2026 y la hoja Controlling del Excel. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
+| **H7 · Áreas de bancos** | Nivel nuevo por encima de las categorías (Thermal Benches, HVCH - CTAG, HVCH - STC): menú lateral por áreas con selector y secciones plegables, Test Benches por áreas, filtro de dos niveles (área y, en Thermal, Org) en Dashboard, «By Responsible», tarjetas y KPI History, foto semanal por área y filtro Org en List of Equipments. Columna nueva `Area` en TestBenchBenches. Ver `docs/08-areas-de-bancos.md`. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente; aparcado hasta terminar la facturación |
 
 ### Funcionalidad disponible
@@ -139,6 +140,10 @@ en Projects. Ver `docs/07-facturacion.md`. (Texto anterior, H5:) columna «Billi
 los cerrados; sección opcional en la ventana de cierre (el cierre no depende de
 los datos económicos); eliminar periodos; columnas «Billing order» en Projects y
 «Billing category» en Test Benches. Ver `docs/07-facturacion.md`.
+- Áreas de bancos (H7): Thermal Benches, HVCH - CTAG y HVCH - STC por encima de
+las categorías; menú lateral agrupado y filtrable por área; filtro Area + Org (Org
+solo en Thermal Benches) en todas las pantallas de indicadores; foto semanal por
+área; filtro Org en List of Equipments. Ver `docs/08-areas-de-bancos.md`.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` como respaldo hasta la retirada de la
 4.9.4 (H4).
@@ -410,6 +415,7 @@ desactivados presencia, registro de actividad y publicación de versión.
 | `AprobacionesSharePointTest` · `CatalogosSharePointTest` | Estados de aprobación por lotes con el mismo resultado por ID; catálogos y usuarios leídos una sola vez al arrancar. |
 | `CopiaSinConexionConcurrenciaTest` | 32 lecturas simultáneas no chocan al guardar la copia sin conexión (sin `.tmp` sueltos) y solo se reescribe si cambia el contenido. |
 | `ManejadorErroresTest` · `FiltroPestanaTest` | Una petición abandonada al recargar no deja avisos; solo las consultas se asocian a la pestaña. |
+| `AreasTest` · `AreasIntegracionTest` | Áreas de bancos: columna `Area` (vacía = Thermal), Org fija en HVCH, filtros por área y Org, histórico de KPI con semanas antiguas, foto semanal con seis filas y conservación del área al guardar desde `/clasico`. |
 | `HojaMensualTest` | Facturación: regresión con enero de 2026 del Excel (25 «Coste total» y las 34 filas de la hoja ENERO) y reglas de la hoja mensual (meses, parada, setup, piezas, STC, proyecto 0, incompletas). |
 | `ApiFacturacionTest` | Facturación en local: Equipment Types (guardar, validar), hoja mensual y exportación Excel/HTML. |
 | `GeneradorIdsTest` · `OperacionesInmediatasTest` · `ServicioPlanificacionLatenciaTest` | Altas y copias guardadas con el id que la interfaz ya muestra, sin relectura extra y con las reglas de siempre. |
@@ -434,6 +440,7 @@ TZ=Europe/Madrid node herramientas/laboratorio/pruebas-ciclo-de-vida.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-rendimiento.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-facturacion.cjs
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-areas.cjs
 cd frontend && npm test        # pruebas unitarias de altas y copias inmediatas
 ```
 
@@ -454,6 +461,8 @@ calendario, sugerencias, tirador del Gantt y orden de Users.
 `pruebas-rendimiento.cjs` simula un guardado lento (2,5 s) y comprueba que
 añadir y duplicar se ven al momento, que lo escrito en la fila nueva se guarda,
 que un fallo la retira y que cada pestaña envía su código.
+`pruebas-areas.cjs` cubre las áreas de bancos: Test Benches por áreas, mover una
+categoría, menú lateral, filtro de dos niveles, renombrar un área y filtro Org de los equipos.
 
 ## Configuración
 
@@ -492,7 +501,7 @@ operaciones, cierre, configuración, aprobaciones, recursos e indicadores
 - **`/api/v1/facturacion/*`** (H6): `GET/PUT /tipos-equipo`, `GET /hoja?mes=aaaa-mm[&niveles=…]`,
 `GET /hoja/exportar?mes=…&formato=excel|html`. (Antes, H5:) facturación (maestros, periodos, acciones de línea,
 envío, aprobación, reapertura, eliminar periodo, exportaciones, auditoría y ficha
-«Billing Data»). `GET/PUT /api/v1/catalogos` lleva también `projectOrders`
+«Billing Data»). `GET/PUT /api/v1/catalogos` lleva también `areaNames` y `benches[].area` (H7), `projectOrders`
 (columna BillingOrder; cambiarla exige Admin) y `benches[].equipmentType` (columna EquipmentType).
 - **`/api/*`**: contrato compatible con el backend Python para mantener operativa
 la interfaz 4.9.4.
@@ -528,6 +537,10 @@ del ensayo; sus periodos, maestros y auditoría van en su propio almacén. La or
 de cada proyecto y la categoría de cada banco van en las columnas `BillingOrder`
 (TestBenchProjects) y `BillingCategory` (TestBenchBenches), que crea a mano un
 Admin del sitio (la aplicación no cambia el esquema de las listas).
+- Áreas de bancos: el área de cada categoría va en la columna `Area` de
+TestBenchBenches (texto de una línea, vacía = Thermal Benches), que también crea
+a mano un Admin del sitio antes de pasar la primera categoría a un área HVCH. Los
+nombres de área renombrados van en `TestBenchAppConfig` (`AreaName:<código>`).
 
 ## Documentación
 
@@ -549,5 +562,7 @@ defectos heredados y mejoras no bloqueantes, con el seguimiento por hito.
 causas y correcciones de los retrasos con SharePoint (H3R).
 - [`docs/07-facturacion.md`](docs/07-facturacion.md): análisis, diseño, reglas,
 pantallas, pruebas y pendientes de la facturación (H5).
+- [`docs/08-areas-de-bancos.md`](docs/08-areas-de-bancos.md): áreas de bancos
+(Thermal Benches, HVCH - CTAG, HVCH - STC): datos, filtros, pantallas, KPI y pruebas (H7).
 - [`herramientas/laboratorio/README.md`](herramientas/laboratorio/README.md): uso
 del laboratorio de paridad.

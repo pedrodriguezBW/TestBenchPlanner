@@ -8,7 +8,8 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Bancos agrupados por tipo y organización de cada banco (BW / CTAG).
+ * Bancos agrupados por tipo (categoría) y organización de cada banco (BW / CTAG).
+ * Cada categoría pertenece a un área ({@link Areas}); sin área, Bancos Térmicos.
  *
  * Se construye a partir de la lista compartida de bancos igual que applyConfig
  * de la 4.9.4. Si la lista está vacía se usan los grupos de serie.
@@ -26,16 +27,41 @@ public final class ConfiguracionBancos {
 
     private final List<Grupo> grupos;
     private final Map<String, String> organizacionPorBanco;
+    private final Map<String, String> areaPorGrupo;
+    private final Map<String, String> nombresAreas;
 
     public ConfiguracionBancos(List<Grupo> grupos, Map<String, String> organizacionPorBanco) {
+        this(grupos, organizacionPorBanco, Map.of(), Map.of());
+    }
+
+    /**
+     * @param areaPorGrupo clave de categoría → código de área (las que falten son Bancos Térmicos)
+     * @param nombresAreas código de área → nombre guardado (los que falten, el de serie)
+     */
+    public ConfiguracionBancos(List<Grupo> grupos, Map<String, String> organizacionPorBanco,
+                               Map<String, String> areaPorGrupo, Map<String, String> nombresAreas) {
         this.grupos = List.copyOf(grupos);
         this.organizacionPorBanco = Map.copyOf(organizacionPorBanco);
+        Map<String, String> areas = new LinkedHashMap<>();
+        areaPorGrupo.forEach((k, v) -> areas.put(k, Areas.normalizar(v)));
+        this.areaPorGrupo = Map.copyOf(areas);
+        this.nombresAreas = Areas.nombres(nombresAreas);
+    }
+
+    /** La misma configuración con otros nombres de área. */
+    public ConfiguracionBancos conNombresAreas(Map<String, String> nombres) {
+        return new ConfiguracionBancos(grupos, organizacionPorBanco, areaPorGrupo, nombres);
     }
 
     /** applyConfig: ordena por Seq y agrupa por GroupKey en orden de aparición. */
     public static ConfiguracionBancos desdeLista(List<BancoConfigurado> bancos) {
+        return desdeLista(bancos, Map.of());
+    }
+
+    /** applyConfig con los nombres de área guardados. */
+    public static ConfiguracionBancos desdeLista(List<BancoConfigurado> bancos, Map<String, String> nombresAreas) {
         if (bancos == null || bancos.isEmpty()) {
-            return new ConfiguracionBancos(GRUPOS_DE_SERIE, Map.of());
+            return new ConfiguracionBancos(GRUPOS_DE_SERIE, Map.of(), Map.of(), nombresAreas);
         }
         List<BancoConfigurado> ordenados = new ArrayList<>(bancos);
         // (a.seq||0)-(b.seq||0): ordenación estable, un Seq vacío cuenta como 0.
@@ -44,6 +70,7 @@ public final class ConfiguracionBancos {
         Map<String, String> colores = new LinkedHashMap<>();
         Map<String, List<String>> bancosPorGrupo = new LinkedHashMap<>();
         Map<String, String> organizaciones = new LinkedHashMap<>();
+        Map<String, String> areas = new LinkedHashMap<>();
         for (BancoConfigurado banco : ordenados) {
             if (banco == null || banco.name() == null || banco.name().isEmpty()) {
                 continue;
@@ -54,6 +81,10 @@ public final class ConfiguracionBancos {
                 nombres.put(clave, (banco.groupName() != null && !banco.groupName().isEmpty()) ? banco.groupName() : clave);
                 colores.put(clave, (banco.dot() != null && !banco.dot().isEmpty()) ? banco.dot() : "#23BCA3");
                 bancosPorGrupo.put(clave, new ArrayList<>());
+                // El área es de la categoría: manda la primera fila que la trae.
+            }
+            if (!areas.containsKey(clave) && banco.area() != null && !banco.area().trim().isEmpty()) {
+                areas.put(clave, Areas.normalizar(banco.area()));
             }
             List<String> lista = bancosPorGrupo.get(clave);
             if (!lista.contains(banco.name())) {
@@ -64,11 +95,14 @@ public final class ConfiguracionBancos {
             }
         }
         if (bancosPorGrupo.isEmpty()) {
-            return new ConfiguracionBancos(GRUPOS_DE_SERIE, Map.of());
+            return new ConfiguracionBancos(GRUPOS_DE_SERIE, Map.of(), Map.of(), nombresAreas);
         }
         List<Grupo> grupos = new ArrayList<>();
         bancosPorGrupo.forEach((clave, lista) -> grupos.add(new Grupo(clave, nombres.get(clave), colores.get(clave), List.copyOf(lista))));
-        return new ConfiguracionBancos(grupos, organizaciones);
+        // Las categorías de cada área van juntas, en el orden de las áreas (ordenación estable:
+        // dentro de un área se respeta el orden guardado). Sin áreas no cambia nada.
+        grupos.sort(Comparator.comparingInt(g -> Areas.CODIGOS.indexOf(areas.getOrDefault(g.key(), Areas.TERMICOS))));
+        return new ConfiguracionBancos(grupos, organizaciones, areas, nombresAreas);
     }
 
     /**
@@ -100,5 +134,31 @@ public final class ConfiguracionBancos {
     public String organizacion(String banco) {
         String org = organizacionPorBanco.get(banco);
         return (org == null || org.isEmpty()) ? "BW" : org;
+    }
+
+    /** Área (código) de una categoría: la guardada o Bancos Térmicos. */
+    public String areaDeGrupo(String claveGrupo) {
+        String area = areaPorGrupo.get(claveGrupo);
+        return area == null ? Areas.TERMICOS : area;
+    }
+
+    /** Área (código) del banco: la de su categoría. */
+    public String area(String banco) {
+        for (Grupo g : grupos) {
+            if (g.benches().contains(banco)) {
+                return areaDeGrupo(g.key());
+            }
+        }
+        return Areas.TERMICOS;
+    }
+
+    /** Código de área → nombre, en el orden fijo. */
+    public Map<String, String> nombresAreas() {
+        return nombresAreas;
+    }
+
+    /** Nombre visible de un área. */
+    public String nombreArea(String area) {
+        return nombresAreas.getOrDefault(Areas.normalizar(area), Areas.NOMBRES_DE_SERIE.get(Areas.TERMICOS));
     }
 }

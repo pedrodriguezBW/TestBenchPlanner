@@ -5,6 +5,7 @@ import { BloquesKpi } from './BloquesKpi';
 import { SelectorOrganizacion, TarjetaRedimensionable } from './comunes';
 import { GanttGeneral } from './GanttGeneral';
 import { Chip, NavegacionSemana } from './NavegacionSemana';
+import { cumpleFiltro, etiquetaFiltro } from '../../utilidades/areas';
 
 /*
  * «By Responsible» (renderRespDash de la 4.9.4): la planificación de una
@@ -22,7 +23,7 @@ export function VistaResponsable() {
   const manager = elegido === VISTA_MANAGER;
   const esSuyo = (resp: unknown) => manager || String(resp ?? '') === elegido;
 
-  const bancos = vista.grupos.flatMap((g) => g.bancos).filter((b) => organizacion === 'ALL' || b.organizacion === organizacion);
+  const bancos = vista.grupos.flatMap((g) => g.bancos.map((b) => ({ ...b, area: g.area }))).filter((b) => cumpleFiltro(b, organizacion));
   const activas = bancos.flatMap((b) => (vista.bancos[b.nombre] ?? []).filter((f) => !f.cerrado).map((f) => ({ banco: b.nombre, f })));
 
   // Ensayos sin ID aprobado (o sin ID), sin contar los tipos especiales.
@@ -73,7 +74,7 @@ export function VistaResponsable() {
       <BloquesKpi responsable={manager ? null : elegido} />
       {manager && (
         <TarjetaRedimensionable clave="mgr-table">
-          <h3 style={{ margin: '0 0 8px' }}>Team load by responsible{organizacion !== 'ALL' && <> &middot; {organizacion}</>}</h3>
+          <h3 style={{ margin: '0 0 8px' }}>Team load by responsible{organizacion !== 'ALL' && <> &middot; {etiquetaFiltro(organizacion, vista)}</>}</h3>
           <table className="dash util-full" id="tabla-equipo">
             <thead>
               <tr>
@@ -104,7 +105,7 @@ export function VistaResponsable() {
         </div>
         <div className="hint">
           {manager
-            ? `All responsibles${organizacion !== 'ALL' ? ' \u00b7 ' + organizacion : ''}.`
+            ? `All responsibles${organizacion !== 'ALL' ? ' \u00b7 ' + etiquetaFiltro(organizacion, vista) : ''}.`
             : <>Only tests where Responsible = <b>{elegido || '\u2014'}</b>.</>}
         </div>
         <GanttGeneral responsable={manager ? null : elegido} enResponsable />

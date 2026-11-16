@@ -8,6 +8,7 @@ import com.borgwarner.tbp.dominio.comun.JsonJs;
 import com.borgwarner.tbp.dominio.ensayo.Duraciones;
 import com.borgwarner.tbp.dominio.ensayo.Ensayo;
 import com.borgwarner.tbp.dominio.ensayo.EstadosEnsayo;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
 import com.borgwarner.tbp.dominio.planificacion.ContextoPlan;
 import com.borgwarner.tbp.dominio.planificacion.Grupo;
 import com.borgwarner.tbp.dominio.planificacion.MotorFechas;
@@ -44,12 +45,18 @@ public final class RepresentacionVista {
             festivos.addObject().put("fecha", f.date()).put("nombre", f.name());
         }
 
+        // Áreas en su orden fijo (aunque no tengan categorías) y categorías con su área.
+        ArrayNode areas = salida.putArray("areas");
+        p.configuracion().nombresAreas().forEach((codigo, nombre) -> areas.addObject().put("clave", codigo).put("nombre", nombre)
+                .put("conOrganizacion", Areas.esConOrganizacion(codigo)));
         ArrayNode grupos = salida.putArray("grupos");
         for (Grupo g : p.configuracion().grupos()) {
             ObjectNode grupo = grupos.addObject();
-            grupo.put("clave", g.key()).put("nombre", g.name()).put("color", g.dot());
+            String area = p.configuracion().areaDeGrupo(g.key());
+            grupo.put("clave", g.key()).put("nombre", g.name()).put("color", g.dot()).put("area", area);
             ArrayNode bancos = grupo.putArray("bancos");
-            g.benches().forEach(b -> bancos.addObject().put("nombre", b).put("organizacion", p.configuracion().organizacion(b)));
+            g.benches().forEach(b -> bancos.addObject().put("nombre", b).put("organizacion", p.configuracion().organizacion(b))
+                    .put("area", area));
         }
 
         ObjectNode bancos = salida.putObject("bancos");

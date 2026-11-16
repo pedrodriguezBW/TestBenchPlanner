@@ -125,6 +125,7 @@ public class ServicioFacturacion {
         }
         for (String b : v.planificacion().bancos()) {
             bancos.addObject().put("nombre", b).put("organizacion", v.planificacion().configuracion().organizacion(b))
+                    .put("area", v.planificacion().configuracion().area(b))
                     .put("equipmentType", tipoDe.getOrDefault(b, ""));
         }
         return salida;

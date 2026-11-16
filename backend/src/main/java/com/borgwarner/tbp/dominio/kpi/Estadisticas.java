@@ -29,8 +29,9 @@ public final class Estadisticas {
     public static List<Fila> filas(Planificacion planificacion, LocalDate desde, LocalDate hasta,
                                    String organizacion, String responsable) {
         List<Fila> filas = new ArrayList<>();
+        java.util.function.Predicate<String> filtro = FiltroOrganizacion.de(organizacion, planificacion.configuracion());
         for (String banco : planificacion.bancos()) {
-            if (!"ALL".equals(organizacion) && !organizacion.equals(planificacion.configuracion().organizacion(banco))) {
+            if (!filtro.test(banco)) {
                 continue;
             }
             for (Ensayo e : planificacion.ensayos(banco)) {

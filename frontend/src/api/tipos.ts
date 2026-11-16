@@ -99,13 +99,25 @@ export interface Grupo {
   clave: string;
   nombre: string;
   color: string;
-  bancos: { nombre: string; organizacion: string }[];
+  /** Área de la categoría (THERMAL, HVCH-CTAG o HVCH-STC). */
+  area?: string;
+  bancos: { nombre: string; organizacion: string; area?: string }[];
+}
+
+/** Un área de bancos (nivel por encima de las categorías), en su orden fijo. */
+export interface Area {
+  clave: string;
+  nombre: string;
+  /** Solo Thermal Benches se divide por organización (BW / CTAG). */
+  conOrganizacion: boolean;
 }
 
 export interface Vista {
   hoy: string;
   semanaHoy: number;
   calendario: { anio: number; saltarFestivos: boolean; festivos: { fecha: string; nombre: string }[] };
+  /** Las tres áreas, aunque no tengan categorías (ausente con un backend anterior). */
+  areas?: Area[];
   grupos: Grupo[];
   bancos: Record<string, FilaEnsayo[]>;
   /** Sin conexión: fecha (ISO) de la copia de este PC que se está mostrando. */
@@ -332,6 +344,8 @@ export interface BancoCatalogo {
   seq: number;
   /** Categoría de facturación del banco (columna EquipmentType). */
   equipmentType?: string;
+  /** Área de la categoría (columna Area; vacío = Thermal Benches). */
+  area?: string;
   [campo: string]: unknown;
 }
 

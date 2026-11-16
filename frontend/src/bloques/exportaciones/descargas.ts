@@ -6,6 +6,7 @@
 import { api } from '../../api/cliente';
 import type { Bloqueo, FilaEnsayo, Recurso, Vista } from '../../api/tipos';
 import { dia, diasEntre, esFinDeSemana, iso, lunesDe, semanaIso, sumarDias } from '../../utilidades/fechas';
+import { cumpleFiltro, nombresArea, normalizarArea } from '../../utilidades/areas';
 
 /** Descarga un Blob con un nombre (como el enlace temporal de la 4.9.4). */
 export function descargar(contenido: Blob, nombre: string) {
@@ -104,11 +105,20 @@ export function matrizGantt(vista: Vista, que: VistaGantt, foco: string): Matriz
     max = sumarDias(min, 53 * 7 - 1);
     titulo = `${que.responsable ? 'Team plan' : 'Annual plan'} ${anio}`;
     // Como en la 4.9.4: todos los ensayos activos de los bancos de la organización elegida.
-    vista.grupos.forEach((g) => g.bancos.forEach((b) => {
-      if (que.organizacion !== 'ALL' && b.organizacion !== que.organizacion) return;
+    // Con bancos de más de un área, una fila de título por área (vacía) antes de sus bancos.
+    const nombres = nombresArea(vista);
+    const visibles = vista.grupos.flatMap((g) => g.bancos.map((b) => ({ ...b, area: normalizarArea(g.area) })))
+      .filter((b) => cumpleFiltro(b, que.organizacion));
+    const variasAreas = new Set(visibles.map((b) => b.area)).size > 1;
+    let areaAnterior = '';
+    visibles.forEach((b) => {
+      if (variasAreas && b.area !== areaAnterior) {
+        filas.push({ label: `\u25B8 ${nombres[b.area]}`, cells: [] });
+        areaAnterior = b.area;
+      }
       const celdas = (vista.bancos[b.nombre] ?? []).filter(conFechas).map((f) => celdaDe(f, String(f.datos.project || f.datos.type || '')));
       filas.push({ label: b.nombre, cells: celdas });
-    }));
+    });
   }
 
   const n = diasEntre(min, max) + 1;

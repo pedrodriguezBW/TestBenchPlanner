@@ -5,6 +5,7 @@ import { usePanel } from '../../estado/Panel';
 import { usePlanificador } from '../../estado/Planificador';
 import { dia, semanaIso } from '../../utilidades/fechas';
 import { CampoSemana, horas, SelectorOrganizacion, SelectorUnidad, TarjetaRedimensionable, useConsulta } from './comunes';
+import { etiquetaFiltro } from '../../utilidades/areas';
 
 /*
  * «% Ocupación por CW» (trendChartHTML + trendSVG de la 4.9.4): una línea por
@@ -31,7 +32,7 @@ export function GraficaOcupacion() {
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
         <h3 style={{ margin: '0 8px 8px 0' }}>
           {enHoras ? 'Horas de banco ocupadas por CW' : '% Ocupación por CW'} &middot; {datos.anio}
-          {preferencias.trendOrg !== 'ALL' && <> &middot; {preferencias.trendOrg}</>}
+          {preferencias.trendOrg !== 'ALL' && <> &middot; {etiquetaFiltro(preferencias.trendOrg, vista)}</>}
         </h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto', fontSize: 12, flexWrap: 'wrap' }}>
           <SelectorUnidad valor={preferencias.trendMode} onCambiar={(v) => cambiarPreferencia('trendMode', v)} />

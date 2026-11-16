@@ -1,6 +1,7 @@
 package com.borgwarner.tbp.dominio.kpi;
 
 import com.borgwarner.tbp.dominio.comun.ValorJs;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -15,6 +16,10 @@ import java.util.Map;
  *
  * Distingue semanas «nuevas» (guardadas desde la 4.9.3, con DelayedDeclared y
  * ocupación) de las antiguas, cuyo retraso se toma de NotStarted.
+ *
+ * Filtros: los de {@link FiltroOrganizacion}. BW y CTAG leen las filas de
+ * siempre (ahora, Bancos Térmicos de cada organización). THERMAL lee sus filas
+ * y, en las semanas anteriores a las áreas (sin fila THERMAL), la fila ALL.
  */
 public final class HistoricoKpi {
 
@@ -48,10 +53,26 @@ public final class HistoricoKpi {
                     presente(r.get("OccHoursCap")) ? unario(r.get("OccHoursCap")) : null,
                     nueva, oCero(r.get("Unplanned")), motivos));
         }
+        String filtro = FiltroOrganizacion.normalizar(organizacion);
+        // Bancos Térmicos: las semanas guardadas antes de las áreas solo tienen ALL, y
+        // entonces todos los bancos eran térmicos; se usa su ALL si falta la fila THERMAL.
+        java.util.Set<String> conTermicos = new java.util.HashSet<>();
+        semanas.stream().filter(s -> s.org().equals(Areas.TERMICOS)).forEach(s -> conTermicos.add(claveSemana(s)));
         return semanas.stream()
-                .filter(s -> s.org().equals(organizacion))
+                .filter(s -> s.org().equals(filtro)
+                        || (Areas.TERMICOS.equals(filtro) && "ALL".equals(s.org()) && !conTermicos.contains(claveSemana(s))))
+                .map(s -> s.org().equals(filtro) ? s : conOrg(s, filtro))
                 .sorted(Comparator.comparingDouble(Semana::year).thenComparingDouble(Semana::cw))
                 .toList();
+    }
+
+    private static String claveSemana(Semana s) {
+        return s.year() + "/" + s.cw();
+    }
+
+    private static Semana conOrg(Semana s, String org) {
+        return new Semana(s.year(), s.cw(), org, s.benches(), s.total(), s.starts(), s.ends(), s.running(), s.noid(), s.behind(),
+                s.delayed(), s.risk(), s.occPct(), s.occBusy(), s.occCap(), s.isNew(), s.unplanned(), s.reasons());
     }
 
     /** v != null && v !== '' */

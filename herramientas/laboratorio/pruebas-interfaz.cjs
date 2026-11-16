@@ -141,7 +141,11 @@ const PRUEBAS = {
     const semanaInicial = await p.locator('#main .week-nav b').textContent();
     await p.locator('#main .week-nav button', { hasText: 'Prev' }).click();
     assert.notStrictEqual(await p.locator('#main .week-nav b').textContent(), semanaInicial);
-    const orgDashboard = p.locator('#main .view-head select').first();
+    // Filtro de dos niveles (áreas, H7): primero el área y, con Thermal Benches, la organización.
+    const areaDashboard = p.locator('#main .view-head select[data-filtro-area]').first();
+    assert.ok(await areaDashboard.isEnabled());
+    await areaDashboard.selectOption('THERMAL');
+    const orgDashboard = p.locator('#main .view-head select[data-filtro-org]').first();
     assert.ok(await orgDashboard.isEnabled());
     await orgDashboard.selectOption('CTAG');
     assert.ok(await p.getByRole('button', { name: /Update Yearly Status/ }).isDisabled());

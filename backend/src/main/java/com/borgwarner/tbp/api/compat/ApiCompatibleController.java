@@ -3,6 +3,7 @@ package com.borgwarner.tbp.api.compat;
 import com.borgwarner.tbp.TestBenchPlannerApplication;
 import com.borgwarner.tbp.api.comun.CicloDeVida;
 import com.borgwarner.tbp.api.comun.PestanasActivas;
+import com.borgwarner.tbp.aplicacion.ServicioIndicadores;
 import com.borgwarner.tbp.aplicacion.ServicioPlanificacion;
 import com.borgwarner.tbp.aplicacion.ServicioListas;
 import com.borgwarner.tbp.aplicacion.ServicioSesion;
@@ -16,6 +17,8 @@ import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
 import com.borgwarner.tbp.aplicacion.puertos.Reloj;
 import com.borgwarner.tbp.api.v1.ExportacionesController;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
+import com.borgwarner.tbp.dominio.planificacion.ConfiguracionBancos;
 import com.borgwarner.tbp.dominio.planificacion.CambioFila;
 import com.borgwarner.tbp.dominio.planificacion.FilaGuardada;
 import com.borgwarner.tbp.dominio.usuarios.Usuario;
@@ -60,12 +63,14 @@ public class ApiCompatibleController {
     private final ServicioListas listas;
     private final Reloj reloj;
     private final PestanasActivas pestanas;
+    private final ServicioIndicadores indicadores;
 
     public ApiCompatibleController(AlmacenEnsayos ensayos, AlmacenCatalogos catalogos, AlmacenHistoricoKpi historico,
                                    AlmacenUsuarios usuarios, AlmacenRecursos recursos, ConsultaAprobaciones aprobaciones,
                                    Colaboracion colaboracion, ServicioSesion sesion, CicloDeVida cicloDeVida,
-                                   ServicioListas listas, Reloj reloj, PestanasActivas pestanas) {
+                                   ServicioListas listas, Reloj reloj, PestanasActivas pestanas, ServicioIndicadores indicadores) {
         this.pestanas = pestanas;
+        this.indicadores = indicadores;
         this.listas = listas;
         this.reloj = reloj;
         this.ensayos = ensayos;
@@ -175,8 +180,19 @@ public class ApiCompatibleController {
         return historico.leer();
     }
 
+    /**
+     * Foto semanal desde la interfaz clásica. La clásica no conoce las áreas:
+     * su «CTAG» sumaría los bancos de HVCH - CTAG a los térmicos. Por eso, si
+     * hay algún banco fuera de Bancos Térmicos, la foto la calcula el servidor
+     * (las seis filas, como «Update Yearly Status» de la versión nueva).
+     */
     @PostMapping("/save_kpis")
     public ObjectNode guardarKpis(@RequestBody(required = false) JsonNode entrada) {
+        ConfiguracionBancos configuracion = ServicioPlanificacion.configuracionDe(catalogos.leer().path("benches"));
+        if (configuracion.bancos().stream().anyMatch(b -> !Areas.TERMICOS.equals(configuracion.area(b)))) {
+            List<ObjectNode> calculadas = indicadores.guardarFotoSemanal();
+            return JsonJs.objetoVacio().put("ok", true).put("recalculated", calculadas.size());
+        }
         List<ObjectNode> fotos = new ArrayList<>();
         for (JsonNode s : cuerpo(entrada).path("snapshots")) {
             if (s instanceof ObjectNode o) {

@@ -24,6 +24,8 @@ export function VistaRecursos() {
   const { bloqueos, recargar } = useRecursos();
   const { semana, setSemana, zoomRecursos, setZoomRecursos } = usePanel();
   const [bloquear, setBloquear] = useState<string | null>(null);
+  // Filtro por organización del equipo (Org de Equipments List; sin Org = BW). Se recuerda en el navegador.
+  const [orgEquipos, setOrgEquipos] = usePreferencia<'ALL' | 'BW' | 'CTAG'>('tbp_equipos_org', 'ALL');
   const esAdmin = !!sesion?.esAdmin;
   const puedeEscribir = esAdmin && !soloLectura;
   if (!vista) return null;
@@ -41,6 +43,13 @@ export function VistaRecursos() {
       <div className="view-head">
         <h2>&#128295; Additional Equipment</h2>
         <div className="week-nav no-print" style={{ marginLeft: 'auto' }}>
+          <span data-solo-nueva="" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <label className="hint" style={{ margin: 0 }}>Org:</label>
+            <select id="equipos-org" value={orgEquipos} onChange={(e) => setOrgEquipos(e.target.value as 'ALL' | 'BW' | 'CTAG')}
+              style={{ padding: '5px 8px', borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)', fontSize: 12 }}>
+              {(['ALL', 'BW', 'CTAG'] as const).map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </span>
           <button className="btn ghost sm" onClick={() => setSemana(sumarDias(semana, -7))}>&#9664; Prev</button>
           <b>CW{semanaIso(semana)}</b>
           <button className="btn ghost sm" onClick={() => setSemana(sumarDias(semana, 7))}>Next &#9654;</button>
@@ -53,7 +62,7 @@ export function VistaRecursos() {
         Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el
         recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.
       </div>
-      <div className="card"><GanttRecursos /></div>
+      <div className="card"><GanttRecursos org={orgEquipos} /></div>
       <div className="card">
         <h3 style={{ margin: '0 0 8px' }}>Bloqueos manuales ({lista.length})</h3>
         {!lista.length
@@ -125,9 +134,10 @@ function VentanaBloqueo({ inicial, hoy, onCerrar, onGuardado, onError }: {
 }
 
 /** Gantt por equipo (resourceGanttHTML). */
-function GanttRecursos() {
+function GanttRecursos({ org }: { org: 'ALL' | 'BW' | 'CTAG' }) {
   const { vista, proyectos } = usePlanificador();
-  const { recursos, bloqueos } = useRecursos();
+  const { recursos: todos, bloqueos } = useRecursos();
+  const recursos = org === 'ALL' ? todos : todos.filter((r) => (String(r.org || '') || 'BW') === org);
   const { semana, zoomRecursos: zoom, anchoRecursos, setAnchoRecursos } = usePanel();
   const [foco, setFoco] = usePreferencia<string>('tbp_gantt_foco', '');
   const [anchoEtiqueta, setAnchoEtiqueta] = usePreferencia<number | null>('bw_gantt_lw', null);
@@ -150,7 +160,9 @@ function GanttRecursos() {
   useLayoutEffect(() => fijarCabeceras(caja.current));
 
   const grupos = porTipo(recursos);
-  if (!grupos.length) return <div className="empty">No hay recursos. Créalos en Configuration → Equipments List.</div>;
+  if (!grupos.length) {
+    return <div className="empty">{todos.length ? `No hay recursos de ${org}.` : 'No hay recursos. Créalos en Configuration → Equipments List.'}</div>;
+  }
 
   const dias = Array.from({ length: n }, (_, i) => sumarDias(min, i));
   const festivos = new Set(vista!.calendario.festivos.map((f) => f.fecha));

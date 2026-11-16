@@ -16,3 +16,16 @@
 
 /* Alta o copia que ya se ve mientras se guarda en SharePoint (se confirma sola). */
 tr.guardando-fila > td { opacity: .6; }
+
+/* Áreas de bancos (Thermal Benches, HVCH - CTAG, HVCH - STC) */
+.g-area{display:flex;align-items:center;border-top:2px solid var(--turq);height:22px;background:var(--panel)}
+.g-area .g-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--turq);padding:0 8px;height:22px;display:flex;align-items:center;background:var(--panel)}
+.side .area-sel{width:100%;margin:6px 0 4px;padding:5px 6px;border-radius:6px;background:var(--navy);color:var(--text);border:1px solid var(--line);font-size:12px}
+.side .area-title{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;margin:10px 0 2px;padding:4px 6px;border-radius:6px;font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--text);background:rgba(255,255,255,.04)}
+.side .area-title:hover{background:rgba(255,255,255,.08)}
+.side .area-title .flecha{display:inline-block;width:10px;color:var(--muted)}
+.side .area-body .grp-title{padding-left:8px}
+.cfg-area{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0 18px;background:rgba(255,255,255,.02)}
+.cfg-area>.area-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.cfg-area>.area-head h3{margin:0}
+.cfg-area .area-empty{color:var(--muted);font-size:12px;padding:6px 2px}

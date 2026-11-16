@@ -9,6 +9,7 @@ import { GanttGeneral } from './GanttGeneral';
 import { GraficaOcupacion } from './GraficaOcupacion';
 import { Chip, NavegacionSemana } from './NavegacionSemana';
 import { TablaOcupacionCard } from './TablaOcupacion';
+import { etiquetaFiltro } from '../../utilidades/areas';
 
 /*
  * Dashboard (renderDashboard de la 4.9.4): cabecera, navegación por semanas,
@@ -24,7 +25,7 @@ export function VistaDashboard() {
     try {
       const fotos = await api.fotoSemanal();
       const f = fotos[0];
-      mostrarMensaje(`Yearly status updated: KPIs for CW${f?.cw ?? ''} (${f?.year ?? ''}) saved to the annual history (ALL / BW / CTAG). Syncing to SharePoint\u2026`);
+      mostrarMensaje(`Yearly status updated: KPIs for CW${f?.cw ?? ''} (${f?.year ?? ''}) saved to the annual history (ALL / BW / CTAG and by area). Syncing to SharePoint\u2026`);
     } catch (e) {
       mostrarMensaje(e instanceof Error ? e.message : String(e));
     }
@@ -41,7 +42,7 @@ export function VistaDashboard() {
       <div className="view-head">
         <NavegacionSemana activarZoom>
           <SelectorOrganizacion valor={organizacion} onCambiar={setOrganizacion} />
-          <button className="btn ghost sm" disabled={soloLectura} onClick={() => void fotoSemanal()} title="Freeze this week's KPIs (ALL / BW / CTAG) into the annual history">
+          <button className="btn ghost sm" disabled={soloLectura} onClick={() => void fotoSemanal()} title="Freeze this week's KPIs (ALL / BW / CTAG and by area) into the annual history">
             &#128202; Update Yearly Status
           </button>
         </NavegacionSemana>
@@ -62,7 +63,7 @@ export function VistaDashboard() {
           {zoom
             ? `Daily resolution for CW${semanaIso(semana)} (${fmt(semana)} \u2192 ${fmt(sumarDias(semana, 6))}). Use Prev/Next above to move; press \u201CFull year\u201D to zoom out.`
             : `Weekly resolution across ${vista.calendario.anio}. Use Prev/Next above (or \u201CZoom to week\u201D) to see a natural week at daily resolution.`}
-          {organizacion !== 'ALL' && <>{' \u00b7 Filtered by '}<b>{organizacion}</b>.</>}
+          {organizacion !== 'ALL' && <>{' \u00b7 Filtered by '}<b>{etiquetaFiltro(organizacion, vista)}</b>.</>}
         </div>
         <GanttGeneral responsable={null} />
       </TarjetaRedimensionable>

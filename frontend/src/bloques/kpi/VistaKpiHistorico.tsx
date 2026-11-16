@@ -6,6 +6,7 @@ import { usePlanificador } from '../../estado/Planificador';
 import { colorEstado } from '../../utilidades/textos';
 import { SelectorOrganizacion } from '../panel/comunes';
 import { Estadisticas } from './Estadisticas';
+import { etiquetaFiltro } from '../../utilidades/areas';
 
 /*
  * 📈 KPI History (renderKpiHistory de la 4.9.4). Dos lecturas:
@@ -26,7 +27,7 @@ function sello(ts: number): string {
 }
 
 export function VistaKpiHistorico() {
-  const { sincronizacion } = usePlanificador();
+  const { sincronizacion, vista } = usePlanificador();
   // Solo el bloqueo por falta de conexión impide leer (READONLY de la 4.9.4); el rol de solo lectura sí ve el histórico.
   const bloqueado = sincronizacion === 'bloqueado';
   const { kpiOrg, setKpiOrg } = usePanel();
@@ -78,10 +79,10 @@ export function VistaKpiHistorico() {
         instant&aacute;nea de c&oacute;mo estaba cada semana.
       </div>
       <Estadisticas />
-      {filas.length ? <FotoSemanal filas={filas} org={kpiOrg} /> : (
+      {filas.length ? <FotoSemanal filas={filas} org={etiquetaFiltro(kpiOrg, vista)} /> : (
         <div className="card">
           <h3 style={{ margin: '0 0 8px' }}>Foto semanal</h3>
-          <div className="empty">A&uacute;n no hay fotos semanales para {kpiOrg}. Pulsa &#128202; Update Yearly Status en el Dashboard para guardar esta semana.</div>
+          <div className="empty">A&uacute;n no hay fotos semanales para {etiquetaFiltro(kpiOrg, vista)}. Pulsa &#128202; Update Yearly Status en el Dashboard para guardar esta semana.</div>
         </div>
       )}
     </div>

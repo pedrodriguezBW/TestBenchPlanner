@@ -83,18 +83,31 @@ public class ServicioPlanificacion {
     }
 
     public ConfiguracionBancos configuracion() {
-        return configuracionDe(catalogos.leer().path("benches"));
+        JsonNode catalogo = catalogos.leer();
+        return configuracionDe(catalogo.path("benches"), nombresAreas(catalogo));
+    }
+
+    /** Nombres de área guardados (areaNames del catálogo: código → nombre). */
+    public static java.util.Map<String, String> nombresAreas(JsonNode catalogo) {
+        java.util.Map<String, String> nombres = new java.util.LinkedHashMap<>();
+        catalogo.path("areaNames").fields().forEachRemaining(e -> nombres.put(e.getKey(), e.getValue().asText("")));
+        return nombres;
     }
 
     /** Configuración de bancos a partir de la lista compartida (filas de TestBenchBenches). */
     public static ConfiguracionBancos configuracionDe(JsonNode lista) {
+        return configuracionDe(lista, java.util.Map.of());
+    }
+
+    /** Ídem, con los nombres de área guardados. */
+    public static ConfiguracionBancos configuracionDe(JsonNode lista, java.util.Map<String, String> nombresAreas) {
         List<BancoConfigurado> bancos = new ArrayList<>();
         for (JsonNode b : lista) {
             JsonNode seq = b.get("seq");
             bancos.add(new BancoConfigurado(b.path("name").asText(""), texto(b, "groupKey"), texto(b, "groupName"),
-                    texto(b, "dot"), texto(b, "org"), seq == null || seq.isNull() ? null : seq.asDouble()));
+                    texto(b, "dot"), texto(b, "org"), seq == null || seq.isNull() ? null : seq.asDouble(), texto(b, "area")));
         }
-        return ConfiguracionBancos.desdeLista(bancos);
+        return ConfiguracionBancos.desdeLista(bancos, nombresAreas);
     }
 
     /** Quién firma en el registro de actividad: nombre visible, responsable o correo. */

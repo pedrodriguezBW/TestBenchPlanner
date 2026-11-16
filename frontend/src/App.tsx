@@ -20,6 +20,9 @@ import { AvisoSinConexion, AvisoVersion, Bienvenida, Presencia } from './compone
 import { usePlanificador, type EstadoSincronizacion } from './estado/Planificador';
 import { useColaConfiguracion } from './estado/useColaConfiguracion';
 import { TIPOS_DE_ENSAYO } from './utilidades/textos';
+import { CODIGOS_AREA, nombresArea, normalizarArea, type CodigoArea } from './utilidades/areas';
+import { usePreferencia } from './utilidades/preferencias';
+import type { Vista } from './api/tipos';
 
 /*
  * Estructura de la aplicación: barra superior (presencia, avisos), menú
@@ -108,12 +111,7 @@ export function App() {
           {pestana('__dash__', <>&#128202; Dashboard</>)}
           {pestana('__resp__', <>&#128100; By Responsible</>)}
           {pestana('__kpihist__', <>&#128200; KPI History</>)}
-          {vista?.grupos.map((g) => (
-            <div key={g.clave}>
-              <div className="grp-title">{g.nombre}</div>
-              {g.bancos.map((b) => pestana(b.nombre, <><span className="dot" style={{ background: g.color }} />{b.nombre}</>))}
-            </div>
-          ))}
+          {vista && <MenuBancos vista={vista} pestana={pestana} />}
           <div className="grp-title">Additional Equipment</div>
           {pestana('__resources__', <>&#128203; List of Equipments</>)}
           {/* Facturación: módulo independiente de la planificación y de Settings. */}
@@ -156,6 +154,55 @@ export function App() {
       <datalist id="dl-ids">{idsUsados.map((p) => <option key={p} value={p} />)}</datalist>
       <Avisos />
       <DialogoConflicto />
+    </div>
+  );
+}
+
+/**
+ * Bancos del menú lateral agrupados por área (Thermal Benches, HVCH - CTAG,
+ * HVCH - STC) y, dentro, por categoría. Arriba, un desplegable para ver todas
+ * las áreas o solo una; cada área se pliega con un clic en su título. Las dos
+ * cosas se recuerdan en este navegador y no dependen del filtro del Dashboard.
+ * Un área sin categorías no aparece en el menú (sí en Configuration › Test Benches).
+ */
+function MenuBancos({ vista, pestana }: { vista: Vista; pestana: (clave: string, contenido: ReactNode) => ReactNode }) {
+  const [filtro, setFiltro] = usePreferencia<'ALL' | CodigoArea>('tbp_menu_area', 'ALL');
+  const [plegadas, setPlegadas] = usePreferencia<Record<string, boolean>>('tbp_menu_areas_plegadas', {});
+  const nombres = nombresArea(vista);
+  const conCategorias = CODIGOS_AREA.filter((c) => vista.grupos.some((g) => normalizarArea(g.area) === c));
+  const elegido = filtro !== 'ALL' && !conCategorias.includes(filtro) ? 'ALL' : filtro;
+  const visibles = conCategorias.filter((c) => elegido === 'ALL' || c === elegido);
+  return (
+    <div className="menu-bancos">
+      {conCategorias.length > 0 && (
+        <select className="area-sel no-print" data-solo-nueva="" value={elegido} title="Show the benches of one area"
+          onChange={(e) => setFiltro(e.target.value as 'ALL' | CodigoArea)}>
+          <option value="ALL">All areas</option>
+          {conCategorias.map((c) => <option key={c} value={c}>{nombres[c]}</option>)}
+        </select>
+      )}
+      {visibles.map((c) => {
+        const grupos = vista.grupos.filter((g) => normalizarArea(g.area) === c);
+        const abierta = !plegadas[c];
+        return (
+          <div key={c} className="area-menu" data-area={c}>
+            <div className="area-title" data-solo-nueva="" role="button" title={abierta ? 'Collapse' : 'Expand'}
+              onClick={() => setPlegadas({ ...plegadas, [c]: abierta })}>
+              <span className="flecha">{abierta ? '\u25BE' : '\u25B8'}</span>{nombres[c]}
+            </div>
+            {abierta && (
+              <div className="area-body">
+                {grupos.map((g) => (
+                  <div key={g.clave}>
+                    <div className="grp-title">{g.nombre}</div>
+                    {g.bancos.map((b) => pestana(b.nombre, <><span className="dot" style={{ background: g.color }} />{b.nombre}</>))}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

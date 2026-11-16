@@ -1,6 +1,7 @@
 package com.borgwarner.tbp.aplicacion;
 
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -47,6 +48,7 @@ public class ServicioListas {
     }
 
     public ObjectNode guardarCatalogos(JsonNode entrada) {
+        normalizarAreas(entrada);
         lecturas.exigir(RegistroLecturas.BANCOS);
         lecturas.exigir(RegistroLecturas.PROYECTOS);
         if (entrada.path("responsibles").size() > 0) {
@@ -82,5 +84,43 @@ public class ServicioListas {
 
     public boolean permitirVacias() {
         return lecturas.permitirVacias();
+    }
+
+    /**
+     * Áreas de los bancos que llegan con «area»: el área es de la categoría
+     * (manda la de su primer banco) y los bancos de un área HVCH llevan su
+     * organización fija (CTAG o STC). Un banco que vuelve a Bancos Térmicos con
+     * una organización que no existe ahí pasa a BW. Los bancos sin «area»
+     * (interfaz clásica) no se tocan: el almacén conserva la que tenían.
+     */
+    static void normalizarAreas(JsonNode entrada) {
+        JsonNode bancos = entrada == null ? null : entrada.path("benches");
+        if (bancos == null || !bancos.isArray()) {
+            return;
+        }
+        java.util.Map<String, String> areaPorGrupo = new java.util.HashMap<>();
+        for (JsonNode b : bancos) {
+            if (b.has("area") && !b.path("area").asText("").trim().isEmpty()) {
+                areaPorGrupo.putIfAbsent(claveGrupo(b), Areas.normalizar(b.path("area").asText("")));
+            }
+        }
+        for (JsonNode b : bancos) {
+            if (!(b instanceof ObjectNode o) || !o.has("area")) {
+                continue;
+            }
+            String area = areaPorGrupo.getOrDefault(claveGrupo(o), Areas.TERMICOS);
+            o.put("area", area);
+            String fija = Areas.organizacionFija(area);
+            if (fija != null) {
+                o.put("org", fija);
+            } else if (!"CTAG".equals(o.path("org").asText(""))) {
+                o.put("org", "BW");
+            }
+        }
+    }
+
+    private static String claveGrupo(JsonNode banco) {
+        String clave = banco.path("groupKey").asText("");
+        return clave.isEmpty() ? "nombre:" + banco.path("groupName").asText("") : clave;
     }
 }

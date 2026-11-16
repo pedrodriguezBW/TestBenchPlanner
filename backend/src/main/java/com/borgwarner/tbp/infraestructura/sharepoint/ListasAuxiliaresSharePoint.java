@@ -7,6 +7,7 @@ import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
 import com.borgwarner.tbp.dominio.usuarios.Usuario;
 import com.borgwarner.tbp.infraestructura.comun.FilaKpi;
 import com.borgwarner.tbp.infraestructura.comun.LecturaCompartida;
@@ -54,6 +55,10 @@ public final class ListasAuxiliaresSharePoint {
     /** Columnas de facturación (texto de una línea) que crea a mano un Admin del sitio. */
     public static final String COLUMNA_ORDEN = "BillingOrder";
     public static final String COLUMNA_TIPO_EQUIPO = "EquipmentType";
+    /** Área de la categoría del banco (vacío = Bancos Térmicos). */
+    public static final String COLUMNA_AREA = "Area";
+    /** Prefijo del Title de las filas de TestBenchAppConfig con el nombre de un área. */
+    public static final String PREFIJO_NOMBRE_AREA = "AreaName:";
     public static final String RESPONSABLES = "TestBenchResponsibles";
     public static final String KPI = "TestBenchKPIHistory";
     public static final String USUARIOS = "TestBenchUsers";
@@ -149,7 +154,7 @@ public final class ListasAuxiliaresSharePoint {
                 ArrayNode bancos = JsonJs.mapper().createArrayNode();
                 try {
                     for (JsonNode it : ordenarPorSeq(cliente.leerLista(contexto, BANCOS,
-                            List.of("GroupKey", "GroupName", "Dot", "Org", "Seq", COLUMNA_TIPO_EQUIPO)))) {
+                            List.of("GroupKey", "GroupName", "Dot", "Org", "Seq", COLUMNA_TIPO_EQUIPO, COLUMNA_AREA)))) {
                         if (!it.hasNonNull("Title")) {
                             continue;
                         }
@@ -161,13 +166,76 @@ public final class ListasAuxiliaresSharePoint {
                         b.set("org", it.get("Org"));
                         b.set("seq", it.get("Seq"));
                         b.put("equipmentType", it.path(COLUMNA_TIPO_EQUIPO).asText("").trim());
+                        // Vacío se deja vacío: así la fila hereda el área de su categoría (como en local).
+                        String area = it.path(COLUMNA_AREA).asText("").trim();
+                        b.put("area", area.isEmpty() ? "" : Areas.normalizar(area));
                     }
                 } catch (RuntimeException e) {
                     salida.put("benches_error", ClienteSharePoint.recortar(e.getMessage(), 120));
                 }
                 salida.set("benches", bancos);
+                salida.set("areaNames", nombresAreas(contexto));
                 return salida;
             });
+        }
+
+        /**
+         * Nombres de área guardados en TestBenchAppConfig (Title «AreaName:THERMAL»,
+         * Value = nombre). Si la lista no se puede leer se usan los de serie: el
+         * nombre de un área no es un dato que se pueda perder.
+         */
+        private ObjectNode nombresAreas(BrowserContext contexto) {
+            ObjectNode nombres = JsonJs.objetoVacio();
+            try {
+                for (JsonNode it : filasNombresAreas(contexto)) {
+                    String codigo = it.path("Title").asText("").substring(PREFIJO_NOMBRE_AREA.length());
+                    String valor = it.path("Value").asText("").trim();
+                    if (Areas.CODIGOS.contains(codigo) && !valor.isEmpty()) {
+                        nombres.put(codigo, valor);
+                    }
+                }
+            } catch (RuntimeException e) {
+                // sin nombres guardados: los de serie
+            }
+            return nombres;
+        }
+
+        private List<JsonNode> filasNombresAreas(BrowserContext contexto) {
+            List<JsonNode> filas = new ArrayList<>();
+            cliente.get(contexto, cliente.lista(CONFIG_APP) + "/items?$select=Id,Title,Value&$filter=startswith(Title,'"
+                    + PREFIJO_NOMBRE_AREA + "')&$top=50").path("value").forEach(filas::add);
+            return filas;
+        }
+
+        /** Guarda solo los nombres de área que cambian (una fila por área en TestBenchAppConfig). */
+        private ObjectNode guardarNombresAreas(BrowserContext contexto, String digest, JsonNode pedidos) {
+            ObjectNode resultado = JsonJs.objetoVacio();
+            Map<String, JsonNode> actuales = new LinkedHashMap<>();
+            for (JsonNode it : filasNombresAreas(contexto)) {
+                actuales.put(it.path("Title").asText(""), it);
+            }
+            String base = cliente.lista(CONFIG_APP);
+            int cambiados = 0;
+            for (String codigo : Areas.CODIGOS) {
+                if (!pedidos.has(codigo)) {
+                    continue;
+                }
+                String nombre = pedidos.path(codigo).asText("").trim();
+                String titulo = PREFIJO_NOMBRE_AREA + codigo;
+                JsonNode actual = actuales.get(titulo);
+                String guardado = actual == null ? "" : actual.path("Value").asText("").trim();
+                String deSerie = Areas.NOMBRES_DE_SERIE.get(codigo);
+                if (nombre.equals(guardado) || (actual == null && (nombre.isEmpty() || nombre.equals(deSerie)))) {
+                    continue;
+                }
+                Integer id = actual != null ? Integer.valueOf(actual.path("Id").asInt()) : cliente.crearMinimo(contexto, digest, base, titulo);
+                if (id == null || !cliente.merge(contexto, digest, base, id, JsonJs.objetoVacio().put("Value", nombre), "*").ok()) {
+                    throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("El resto se ha guardado, pero no se ha podido guardar el nombre del área «"
+                            + nombre + "» en " + CONFIG_APP + ".");
+                }
+                cambiados++;
+            }
+            return resultado.put("updated", cambiados);
         }
 
         /** La lista no tiene la columna y no hace falta escribir nada en ella. */
@@ -208,6 +276,12 @@ public final class ListasAuxiliaresSharePoint {
                 }
             }
             return actual;
+        }
+
+        /** Valor de la columna Area: el código del área, vacío para Bancos Térmicos. */
+        private static String valorArea(JsonNode banco) {
+            String area = Areas.normalizar(banco.path("area").asText(""));
+            return Areas.TERMICOS.equals(area) ? "" : area;
         }
 
         private ArrayNode titulos(BrowserContext contexto, String lista, List<String> columnas, ObjectNode salida, String claveError) {
@@ -266,6 +340,21 @@ public final class ListasAuxiliaresSharePoint {
                         ? columnaActual(contexto, PROYECTOS, COLUMNA_ORDEN, ordenes) : Map.of();
                 Map<String, String> tiposActuales = conTipos
                         ? columnaActual(contexto, BANCOS, COLUMNA_TIPO_EQUIPO, tiposPedidos(catalogos)) : Map.of();
+                // Área: solo si llega (la interfaz clásica no la conoce). Bancos Térmicos se guarda vacío,
+                // así que mientras no haya bancos HVCH no hace falta la columna.
+                boolean conAreas = false;
+                boolean areaNoVacia = false;
+                for (JsonNode b : catalogos.path("benches")) {
+                    if (b.has("area")) {
+                        conAreas = true;
+                        areaNoVacia |= !valorArea(b).isEmpty();
+                    }
+                }
+                boolean hayColumnaArea = conAreas && cliente.columnas(contexto, cliente.sitio(), BANCOS).contains(COLUMNA_AREA);
+                if (conAreas && !hayColumnaArea && areaNoVacia) {
+                    throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("Falta la columna «" + COLUMNA_AREA + "» en la lista " + BANCOS
+                            + " de SharePoint. Créala (una línea de texto, nombre exacto " + COLUMNA_AREA + ") y vuelve a guardar.");
+                }
                 List<ObjectNode> proyectos = new ArrayList<>();
                 int i = 0;
                 for (JsonNode n : catalogos.path("projects")) {
@@ -293,6 +382,9 @@ public final class ListasAuxiliaresSharePoint {
                     fila.set("Dot", b.get("dot"));
                     fila.set("Org", b.get("org"));
                     fila.set("Seq", numeroONulo(b.get("seq")));
+                    if (b.has("area") && hayColumnaArea) {
+                        fila.put(COLUMNA_AREA, valorArea(b)); // prepararReconciliacion solo envía lo que cambia
+                    }
                     if (b.has("equipmentType") && tiposActuales != SIN_COLUMNA) {
                         String categoria = b.path("equipmentType").asText("").trim();
                         if (!categoria.equals(tiposActuales.getOrDefault(b.get("name").asText(), ""))) {
@@ -315,8 +407,12 @@ public final class ListasAuxiliaresSharePoint {
                 }
                 resultado.set("projects", cliente.aplicarReconciliacion(contexto, digest, planProyectos));
                 resultado.set("benches", cliente.aplicarReconciliacion(contexto, digest, planBancos));
+                if (catalogos.path("areaNames").isObject()) {
+                    resultado.set("areaNames", guardarNombresAreas(contexto, digest, catalogos.get("areaNames")));
+                }
                 // Un fallo al escribir una columna de facturación no puede pasar desapercibido.
-                for (String[] c : new String[][]{{"projects", COLUMNA_ORDEN, PROYECTOS}, {"benches", COLUMNA_TIPO_EQUIPO, BANCOS}}) {
+                for (String[] c : new String[][]{{"projects", COLUMNA_ORDEN, PROYECTOS}, {"benches", COLUMNA_TIPO_EQUIPO, BANCOS},
+                        {"benches", COLUMNA_AREA, BANCOS}}) {
                     JsonNode error = resultado.path(c[0]).path("field_errors").get(c[1]);
                     if (error != null) {
                         throw new com.borgwarner.tbp.dominio.operaciones.ReglaNoCumplida("El resto se ha guardado, pero SharePoint no ha aceptado la columna «"

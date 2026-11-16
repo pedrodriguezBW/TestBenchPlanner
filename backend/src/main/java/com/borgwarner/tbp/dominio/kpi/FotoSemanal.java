@@ -15,7 +15,9 @@ import java.util.function.Predicate;
 
 /**
  * Foto semanal de KPI para el histórico (snapshotKPIs de la 4.9.4), una por
- * organización: ALL, BW y CTAG. Siempre es la semana de HOY.
+ * filtro: ALL, BW y CTAG (como la 4.9.4; BW y CTAG son ahora los Bancos
+ * Térmicos de cada organización) y, después, una por área: THERMAL, HVCH-CTAG
+ * y HVCH-STC. Siempre es la semana de HOY.
  *
  * Corrección aprobada D8: el año de la foto es el año de la semana ISO. La
  * 4.9.4 usaba el año natural, de modo que el 1-ene-2027 generaba «2027-CW53»
@@ -36,7 +38,7 @@ public final class FotoSemanal {
         int anio = Fechas.anioDeSemanaIso(hoy);   // D8 (antes: hoy.getYear())
         int semana = Fechas.semanaIso(hoy);
         List<ObjectNode> fotos = new ArrayList<>();
-        for (String organizacion : FiltroOrganizacion.ORGANIZACIONES) {
+        for (String organizacion : FiltroOrganizacion.FILTROS) {
             Predicate<String> filtro = FiltroOrganizacion.de(organizacion, planificacion.configuracion());
             IndicadoresSemana.Semana k = IndicadoresSemana.semana(planificacion, plan, lunes, filtro);
             int total = (int) planificacion.bancos().stream().filter(filtro).count();

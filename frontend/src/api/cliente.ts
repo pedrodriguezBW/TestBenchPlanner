@@ -74,7 +74,7 @@ export const api = {
   presencia: () => peticion<{ me: string; online: Conectado[] }>('POST', '/api/v1/presencia', {}),
   version: () => peticion<{ backend: string; published: string }>('GET', '/api/v1/version'),
   planificacion: () => peticion<Vista>('GET', '/api/v1/planificacion'),
-  catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[]; projectOrders?: Record<string, string> }>('GET', '/api/v1/catalogos'),
+  catalogos: () => peticion<{ projects: string[]; responsibles: string[]; benches?: BancoCatalogo[]; projectOrders?: Record<string, string>; areaNames?: Record<string, string> }>('GET', '/api/v1/catalogos'),
   usuarios: () => peticion<UsuarioLista[]>('GET', '/api/v1/usuarios'),
 
   editarCampos: (banco: string, id: string, cambios: CambioCampo[], version: string | null, forzar = false) =>
@@ -117,8 +117,10 @@ export const api = {
     peticion<{ ok: boolean; ensayosGuardados: number; ensayosBorrados: number; vista: Vista }>('POST', '/api/v1/importaciones/copia', estado),
 
   // Configuración (bloque E)
-  guardarBancos: (projects: string[], benches: BancoCatalogo[], renombrados: Record<string, string>) =>
-    peticion<RespuestaOperacion & { ensayosBorrados: number }>('PUT', '/api/v1/configuracion/bancos', { projects, benches, renombrados }),
+  /** areaNames: nombres de las áreas (solo si cambian; si no se envía, se conservan). */
+  guardarBancos: (projects: string[], benches: BancoCatalogo[], renombrados: Record<string, string>, areaNames?: Record<string, string>) =>
+    peticion<RespuestaOperacion & { ensayosBorrados: number }>('PUT', '/api/v1/configuracion/bancos',
+      areaNames ? { projects, benches, renombrados, areaNames } : { projects, benches, renombrados }),
   /** projectOrders: orden contable por proyecto (solo Admin); si no se envía, se conservan las guardadas. */
   guardarCatalogos: (projects: string[], benches: BancoCatalogo[], projectOrders?: Record<string, string>) =>
     peticion<{ ok: boolean }>('PUT', '/api/v1/catalogos', projectOrders ? { projects, benches, projectOrders } : { projects, benches }),

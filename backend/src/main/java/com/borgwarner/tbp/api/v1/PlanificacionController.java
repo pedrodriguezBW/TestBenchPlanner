@@ -176,8 +176,8 @@ public class PlanificacionController {
 
     /**
      * Configuration → Test Benches (solo Admin). Cuerpo:
-     * {"projects": [...], "benches": [{name, groupKey, groupName, dot, org, seq}],
-     *  "renombrados": {"anterior": "nuevo"}}.
+     * {"projects": [...], "benches": [{name, groupKey, groupName, dot, org, seq, area}],
+     *  "renombrados": {"anterior": "nuevo"}, "areaNames": {"THERMAL": "…"}}.
      * Guarda la lista de bancos y, si hace falta, los ensayos de los bancos
      * renombrados o borrados.
      */
@@ -188,6 +188,9 @@ public class PlanificacionController {
         ObjectNode catalogo = JsonJs.objetoVacio();
         catalogo.set("projects", cuerpo.path("projects"));
         catalogo.set("benches", cuerpo.path("benches"));
+        if (cuerpo.path("areaNames").isObject()) {
+            catalogo.set("areaNames", cuerpo.get("areaNames")); // nombres de las áreas (solo Admin, como todo este guardado)
+        }
         var r = configuracionBancos.guardar(sesion.usuarioActual(), catalogo, renombrados);
         ObjectNode salida = respuesta(r.vista(), null, r.ensayosGuardados() + r.ensayosBorrados());
         salida.put("ensayosBorrados", r.ensayosBorrados());

@@ -31,16 +31,23 @@ const CORREO_POR_ROL = { admin: 'usuario01@ejemplo.local', editor: 'usuario07@ej
 
 /** Lo que ve el usuario, leído igual en las dos interfaces. */
 function extraer() {
-  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
+  // D39 (áreas): el filtro de la versión nueva son dos desplegables (área y, con Thermal Benches, Org).
+  // Se compara como el «Org» de la 4.9.4: área ALL = Org ALL; Thermal Benches = su Org. Los títulos
+  // dicen «Thermal Benches · BW» donde la 4.9.4 decía «BW».
+  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim().replace(/Thermal Benches \u00b7 /g, '') : null);
+  const valorSelect = (s) => (s.hasAttribute('data-filtro-area') ? (s.value === 'ALL' || s.value === 'THERMAL' ? (s.value === 'ALL' ? 'ALL' : null) : s.value) : s.value);
+  const comoOrg = (lista) => lista.filter((s) => !(s.closest('[data-solo-nueva]') && !s.hasAttribute('data-filtro-area')))
+    .map(valorSelect).filter((v) => v !== null);
   const px = (v) => (v === '' || v == null ? null : Math.round(parseFloat(v) * 100) / 100);
   const main = document.getElementById('main');
   const foto = {};
   const cabeceras = [...main.querySelectorAll('.view-head')];
   foto.titulo = t(main.querySelector('.view-head h2'));
   foto.semana = t(main.querySelector('.week-nav b'));
-  const selects = cabeceras.flatMap((c) => [...c.querySelectorAll('select')]);
+  const selects = cabeceras.flatMap((c) => [...c.querySelectorAll('select')]).filter((s) => !s.closest('#equipos-org') && s.id !== 'equipos-org');
   const org = selects.find((s) => [...s.options].some((o) => o.text === 'CTAG'));
-  foto.org = org ? org.value : null;
+  const area = selects.find((s) => s.hasAttribute('data-filtro-area'));
+  foto.org = org ? org.value : (area ? area.value : null);
   const resp = selects.find((s) => [...s.options].some((o) => o.value === '__manager__'));
   foto.responsable = resp ? { valor: resp.value, opciones: [...resp.options].map((o) => o.text) } : null;
   foto.botonesSemana = [...main.querySelectorAll('.week-nav button')].map(t);
@@ -48,9 +55,10 @@ function extraer() {
   foto.alerta = main.querySelector('.resp-alert') ? { texto: t(main.querySelector('.resp-alert')), ok: main.querySelector('.resp-alert').classList.contains('ok') } : null;
   foto.tarjetas = [...main.querySelectorAll('.card.rzcard')].map((c) => {
     const h3 = c.querySelector('h3');
-    const hints = [...c.querySelectorAll('.hint')].filter((h) => !h.closest('.g-toolbar')).map(t);
+    const hints = [...c.querySelectorAll('.hint')].filter((h) => !h.closest('.g-toolbar') && !h.closest('[data-solo-nueva]')).map(t)
+      .filter((h) => h !== 'Org' && h !== 'Org:'); // D39
     return { titulo: t(h3), hints, botones: [...c.querySelectorAll('button')].map(t), casillas: [...c.querySelectorAll('input[type=number]')].map((i) => i.value),
-      desplegables: [...c.querySelectorAll('select')].filter((s) => !s.classList.contains('g-focsel')).map((s) => s.value) };
+      desplegables: comoOrg([...c.querySelectorAll('select')].filter((s) => !s.classList.contains('g-focsel'))) };
   });
   const caja = document.getElementById('ganttbox');
   if (caja) {
@@ -104,19 +112,23 @@ function extraer() {
 
 /** KPI History: todo lo visible de #main salvo la hora de la última lectura. */
 function extraerSeccion() {
-  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : null);
+  const t = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim().replace(/Thermal Benches \u00b7 /g, '') : null); // D39
   const main = document.getElementById('main');
   // Las ventanas se leen aparte (en la 4.9.4 cuelgan de <body>, no de #main).
   // [data-solo-nueva]: elementos de la facturación que la 4.9.4 no tiene (D38).
   const fuera = (el) => !el.closest('#kpi-fresh') && !el.closest('.modal-bg') && !el.closest('[data-solo-nueva]');
   const propia = (el) => !el.hasAttribute('data-solo-nueva');
+  // D39: el área ALL del filtro de la versión nueva cuenta como el Org ALL de la 4.9.4.
+  const orgs = [...main.querySelectorAll('select')].filter((s) => fuera(s) || (s.hasAttribute('data-filtro-area') && s.value === 'ALL'))
+    .map((s) => s.value);
   return {
     titulos: [...main.querySelectorAll('h2, h3')].filter(fuera).map(t),
-    org: [...main.querySelectorAll('select')].filter(fuera).map((s) => s.value),
+    org: orgs,
     opcionesResponsable: [...main.querySelectorAll('select')].filter((s) => [...s.options].some((o) => o.text === 'Todos')).map((s) => [...s.options].map((o) => o.text)),
     fechas: [...main.querySelectorAll('input[type=date]')].filter(fuera).map((i) => i.value),
     botones: [...main.querySelectorAll('button')].filter(fuera).map(t),
-    hints: [...main.querySelectorAll('.hint')].filter(fuera).map(t),
+    // D39: la etiqueta «Org» solo aparece en la versión nueva con el área Thermal Benches; no se compara.
+    hints: [...main.querySelectorAll('.hint')].filter(fuera).map(t).filter((h) => h !== 'Org:' && h !== 'Org'),
     vacios: [...main.querySelectorAll('.empty')].filter(fuera).map(t),
     kpis: [...main.querySelectorAll('.kpi')].map((k) => [t(k.querySelector('.n')), t(k.querySelector('.l')), k.className]),
     tablas: [...main.querySelectorAll('table')].filter(fuera).map((tb) => ({
@@ -245,12 +257,24 @@ function guionFoto(pantalla) {
   return `(() => { ${defs}\n${cuerpo} })()`;
 }
 
+/** Org de una tarjeta: en la versión nueva, primero el área (D39). */
+async function elegirOrg(tarjeta, org, esOriginal) {
+  if (esOriginal) { await tarjeta.locator('select').selectOption(org); return; }
+  await tarjeta.locator('select[data-filtro-area]').selectOption(org === 'ALL' ? 'ALL' : 'THERMAL');
+  if (org !== 'ALL') await tarjeta.locator('select[data-filtro-org]').selectOption(org);
+}
+
 async function pasoComun(pagina, paso, esOriginal, avanzar) {
   const main = pagina.locator('#main');
   const tarjeta = (texto) => main.locator('.card.rzcard').filter({ has: pagina.locator('h3', { hasText: texto }) }).first();
   const escribir = async (casilla, valor) => { await casilla.fill(String(valor)); await casilla.press('Tab'); };
   switch (paso.op) {
     case 'org':
+      // D39: en la versión nueva el Org solo aparece con el área Thermal Benches (y ALL es el área ALL).
+      if (!esOriginal) {
+        await main.locator('.view-head select[data-filtro-area]').first().selectOption(paso.valor === 'ALL' ? 'ALL' : 'THERMAL');
+        if (paso.valor === 'ALL') break;
+      }
       await main.locator('.view-head select').filter({ has: pagina.locator('option', { hasText: /^CTAG$/ }) }).first().selectOption(paso.valor);
       break;
     case 'semana':
@@ -274,7 +298,7 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     case 'tendencia': {
       const c = main.locator('.card.rzcard').filter({ has: pagina.locator('#trend-svg-wrap') });
       if (paso.unidad) await c.getByRole('button', { name: paso.unidad, exact: true }).click();
-      if (paso.org) { await c.locator('select').selectOption(paso.org); await avanzar(); }
+      if (paso.org) { await elegirOrg(c, paso.org, esOriginal); await avanzar(); }
       if (paso.desde) { await escribir(c.locator('input[type=number]').nth(0), paso.desde); await avanzar(); }
       if (paso.hasta) { await escribir(c.locator('input[type=number]').nth(1), paso.hasta); await avanzar(); }
       if (paso.anio) await c.getByRole('button', { name: 'Full year' }).click();
@@ -284,7 +308,7 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     case 'ocupacion': {
       const c = tarjeta('Ocupación por tipo de banco');
       if (paso.unidad) await c.getByRole('button', { name: paso.unidad, exact: true }).click();
-      if (paso.org) { await c.locator('select').selectOption(paso.org); await avanzar(); }
+      if (paso.org) { await elegirOrg(c, paso.org, esOriginal); await avanzar(); }
       if (paso.desde) { await escribir(c.locator('input[type=number]').nth(0), paso.desde); await avanzar(); }
       if (paso.hasta) { await escribir(c.locator('input[type=number]').nth(1), paso.hasta); await avanzar(); }
       if (paso.anio) { await tarjeta('Ocupación por tipo de banco').getByRole('button', { name: 'Año' }).click(); await avanzar(); }
@@ -352,7 +376,7 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
     // ---- Configuración (bloque E) ----
     case 'cfgCategoriaNueva':
       await main.locator('#newcat').fill(paso.nombre);
-      await main.getByRole('button', { name: /Add category/ }).click();
+      await main.getByRole('button', { name: /Add category/ }).first().click(); // D39: una caja por área; la primera es Thermal Benches
       break;
     case 'cfgBanco': {
       const fila = main.locator('table.lst tbody tr').filter({ has: pagina.locator(`input[value="${paso.banco}"]`) }).first();
@@ -426,6 +450,11 @@ async function pasoComun(pagina, paso, esOriginal, avanzar) {
       break;
     }
     case 'kpiOrg':
+      if (!esOriginal) {
+        await main.locator('select[data-filtro-area]').first().selectOption(paso.valor === 'ALL' ? 'ALL' : 'THERMAL');
+        if (paso.valor !== 'ALL') await main.locator('select[data-filtro-org]').first().selectOption(paso.valor);
+        break;
+      }
       await main.locator('select').first().selectOption(paso.valor);
       break;
     case 'estDesde':

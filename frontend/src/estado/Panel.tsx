@@ -2,6 +2,7 @@ import { createContext, useContext, useMemo, useState, type ReactNode } from 're
 import { usePlanificador } from './Planificador';
 import { dia, lunesDe } from '../utilidades/fechas';
 import { usePreferencia } from '../utilidades/preferencias';
+import { normalizarFiltro, type FiltroBancos } from '../utilidades/areas';
 
 /*
  * Estado compartido por el Dashboard y «By Responsible», igual que las
@@ -11,8 +12,11 @@ import { usePreferencia } from '../utilidades/preferencias';
  * navegador con la misma clave que la 4.9.4.
  */
 
-export type Organizacion = 'ALL' | 'BW' | 'CTAG';
-export const ORGANIZACIONES: Organizacion[] = ['ALL', 'BW', 'CTAG'];
+/**
+ * Filtro de bancos: área y, dentro de Thermal Benches, organización, en un
+ * solo código (ver utilidades/areas). ALL, BW y CTAG son los de la 4.9.4.
+ */
+export type Organizacion = FiltroBancos;
 
 export interface PreferenciasVista {
   trendOrg: Organizacion;
@@ -78,7 +82,10 @@ export function ProveedorPanel({ children }: { children: ReactNode }) {
   // Vacíos = el año del calendario (statDefaults); se rellenan al abrir la pantalla.
   const [estadisticas, setEstadisticas] = useState({ desde: '', hasta: '', responsable: '' });
   const [guardadas, setGuardadas] = usePreferencia<Partial<PreferenciasVista>>('bw_tbp_viewprefs_v1', {});
-  const preferencias = useMemo(() => ({ ...PREFERENCIAS_DE_SERIE, ...guardadas }), [guardadas]);
+  const preferencias = useMemo(() => {
+    const p = { ...PREFERENCIAS_DE_SERIE, ...guardadas };
+    return { ...p, trendOrg: normalizarFiltro(p.trendOrg), utilOrg: normalizarFiltro(p.utilOrg) };
+  }, [guardadas]);
 
   // Hasta que el usuario se mueve, la semana es la de hoy (viewWeek = weekStart(TODAY)).
   const semana = semanaElegida ?? lunesDe(dia(vista?.hoy) ?? new Date());

@@ -95,8 +95,10 @@ public final class AlmacenesAuxiliaresLocales {
                 }
             }
             java.util.Map<String, String> tiposGuardados = new java.util.HashMap<>();
+            java.util.Map<String, String> areasGuardadas = new java.util.HashMap<>();
             for (JsonNode b : actual.path("benches")) {
                 tiposGuardados.put(b.path("name").asText(""), b.path("equipmentType").asText(""));
+                areasGuardadas.put(b.path("name").asText(""), b.path("area").asText(""));
             }
             actual.set("projects", proyectos);
             actual.set("projectOrders", ordenes);
@@ -107,10 +109,17 @@ public final class AlmacenesAuxiliaresLocales {
                     if (!copia.has("equipmentType")) {
                         copia.put("equipmentType", tiposGuardados.getOrDefault(b.path("name").asText(), ""));
                     }
+                    // Área: si no llega (interfaz clásica) se conserva la guardada.
+                    if (!copia.has("area")) {
+                        copia.put("area", areasGuardadas.getOrDefault(b.path("name").asText(), ""));
+                    }
                     bancos.add(copia);
                 }
             }
             actual.set("benches", bancos);
+            if (catalogos.path("areaNames").isObject()) {
+                actual.set("areaNames", catalogos.get("areaNames").deepCopy());
+            }
             datos.escribir("configuracion.json", actual);
             return resultado;
         }

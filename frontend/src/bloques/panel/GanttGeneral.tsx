@@ -6,6 +6,7 @@ import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias 
 import { usePreferencia } from '../../utilidades/preferencias';
 import { exportarGanttExcel, matrizGantt } from '../exportaciones/descargas';
 import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../utilidades/textos';
+import { cumpleFiltro, nombresArea, normalizarArea } from '../../utilidades/areas';
 
 /*
  * Gantt de todos los bancos (overviewGantt de la 4.9.4), una fila por banco:
@@ -88,9 +89,12 @@ export function GanttGeneral({ responsable, enResponsable = false }: Props) {
   const claseFoco = (proyecto: string) => (foco ? (proyecto === foco ? ' g-foc' : ' g-dim') : '');
 
   const filasBanco: ReactElement[] = [];
+  // Cabecera de área (solo si se ven bancos de más de un área).
+  const nombresAreas = nombresArea(vista);
+  const areasVistas: string[] = [];
   let alguno = false;
   vista.grupos.forEach((g) => g.bancos.forEach((b) => {
-    if (organizacion !== 'ALL' && b.organizacion !== organizacion) return;
+    if (!cumpleFiltro({ ...b, area: g.area }, organizacion)) return;
     const todas = vista.bancos[b.nombre] ?? [];
     const activas = todas.filter((f) => !f.cerrado && f.calculo.inicio && f.calculo.fin && filtro(f));
     const cerradas = todas.filter((f) => f.cerrado && f.datos.histStart && f.datos.histEnd && filtro(f));
@@ -140,6 +144,16 @@ export function GanttGeneral({ responsable, enResponsable = false }: Props) {
         </div>,
       );
     });
+    const area = normalizarArea(g.area);
+    if (!areasVistas.includes(area)) {
+      areasVistas.push(area);
+      filasBanco.push(
+        <div key={'area:' + area} className="g-area" data-area={area} data-solo-nueva="">
+          <div className="g-label">{nombresAreas[area]}</div>
+          <div className="g-track" style={{ width: n * W, height: 'auto' }} />
+        </div>,
+      );
+    }
     filasBanco.push(
       <div key={b.nombre} className="g-row" data-banco={b.nombre}>
         <div className="g-label"><span className="dot" style={{ background: g.color, width: 8, height: 8, borderRadius: '50%', display: 'inline-block', marginRight: 6 }} />{b.nombre}</div>
@@ -186,7 +200,7 @@ export function GanttGeneral({ responsable, enResponsable = false }: Props) {
                 style={{ width: W, minWidth: W }}>{'MTWTFSS'[(d.getDay() + 6) % 7]}<br />{d.getDate()}</div>
             ))}</div>
           )}
-          {filasBanco}
+          {areasVistas.length > 1 ? filasBanco : filasBanco.filter((f) => !String(f.key).startsWith('area:'))}
           {desplazamientoHoy >= 0 && <div className="g-todayline" style={{ left: LW + desplazamientoHoy }} />}
         </div>
       </div>

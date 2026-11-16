@@ -9,6 +9,7 @@ import com.borgwarner.tbp.dominio.calendario.Festivo;
 import com.borgwarner.tbp.dominio.comun.JsonJs;
 import com.borgwarner.tbp.dominio.ensayo.Ensayo;
 import com.borgwarner.tbp.dominio.planificacion.CambioFila;
+import com.borgwarner.tbp.dominio.planificacion.Areas;
 import com.borgwarner.tbp.dominio.planificacion.ConfiguracionBancos;
 import com.borgwarner.tbp.dominio.planificacion.Grupo;
 import com.borgwarner.tbp.dominio.planificacion.Planificacion;
@@ -74,7 +75,8 @@ public class ServicioCopiaSeguridad {
         ObjectNode organizaciones = JsonJs.objetoVacio();
         ArrayNode grupos = JsonJs.mapper().createArrayNode();
         for (Grupo g : p.configuracion().grupos()) {
-            ObjectNode grupo = grupos.addObject().put("key", g.key()).put("name", g.name()).put("dot", g.dot());
+            ObjectNode grupo = grupos.addObject().put("key", g.key()).put("name", g.name()).put("dot", g.dot())
+                    .put("area", p.configuracion().areaDeGrupo(g.key()));
             ArrayNode lista = grupo.putArray("benches");
             for (String banco : g.benches()) {
                 lista.add(banco);
@@ -92,6 +94,8 @@ public class ServicioCopiaSeguridad {
         estado.set("projects", catalogo.path("projects").isArray() ? catalogo.get("projects").deepCopy() : JsonJs.mapper().createArrayNode());
         estado.set("responsibles", catalogo.path("responsibles").isArray() ? catalogo.get("responsibles").deepCopy() : JsonJs.mapper().createArrayNode());
         estado.set("benchOrg", organizaciones);
+        ObjectNode nombresAreas = estado.putObject("areaNames");
+        p.configuracion().nombresAreas().forEach(nombresAreas::put);
         return estado;
     }
 
@@ -103,7 +107,11 @@ public class ServicioCopiaSeguridad {
         }
         // Grupos de la copia o, si no trae, los de serie (como importJSON).
         List<Grupo> grupos = new ArrayList<>();
+        Map<String, String> areas = new LinkedHashMap<>(); // solo las copias con áreas las traen
         for (JsonNode g : d.path("groups")) {
+            if (g.hasNonNull("area")) {
+                areas.put(g.path("key").asText(""), Areas.normalizar(g.path("area").asText("")));
+            }
             List<String> lista = new ArrayList<>();
             g.path("benches").forEach(b -> lista.add(b.asText()));
             grupos.add(new Grupo(g.path("key").asText(""), g.path("name").asText(""), g.path("dot").asText("#23BCA3"), lista));
@@ -139,12 +147,18 @@ public class ServicioCopiaSeguridad {
         int seq = 0;
         for (Grupo g : configuracion.grupos()) {
             for (String banco : g.benches()) {
-                bancos.addObject().put("name", banco).put("groupKey", g.key()).put("groupName", g.name()).put("dot", g.dot())
+                ObjectNode fila = bancos.addObject().put("name", banco).put("groupKey", g.key()).put("groupName", g.name()).put("dot", g.dot())
                         .put("org", configuracion.organizacion(banco)).put("seq", ++seq);
+                if (areas.containsKey(g.key())) {
+                    fila.put("area", areas.get(g.key())); // sin área en la copia: se conserva la guardada
+                }
             }
         }
         JsonNode proyectos = d.path("projects").isArray() ? d.get("projects") : catalogos.leer().path("projects");
         catalogo.set("projects", proyectos.deepCopy());
+        if (d.path("areaNames").isObject()) {
+            catalogo.set("areaNames", d.get("areaNames").deepCopy());
+        }
         listas.guardarCatalogos(catalogo);
 
         // 2. Ensayos que cambian, nuevos o que ya no están.

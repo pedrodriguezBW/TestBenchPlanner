@@ -84,6 +84,9 @@ public class ConfiguracionController {
                 }
             }
         }
+        if (!u.esAdmin() && cuerpo instanceof com.fasterxml.jackson.databind.node.ObjectNode o) {
+            o.remove("areaNames"); // los nombres de las áreas solo los cambia un Admin (Test Benches)
+        }
         return listas.guardarCatalogos(cuerpo);
     }
 

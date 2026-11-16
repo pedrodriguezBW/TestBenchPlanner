@@ -66,11 +66,26 @@ const huella = (texto) => (texto == null ? null : crypto.createHash('sha256').up
 async function vista() {
   const v = await sesion.evaluar(() => {
     recomputeAll();
+    // Áreas (versión nueva; la 4.9.4 no las tiene): área por categoría y nombres, en la página.
+    const A = window.__TBP_AREAS = window.__TBP_AREAS || { grupo: {}, nombres: {} };
+    const ORDEN = ['THERMAL', 'HVCH-CTAG', 'HVCH-STC'];
+    const DE_SERIE = { THERMAL: 'Thermal Benches', 'HVCH-CTAG': 'HVCH - CTAG', 'HVCH-STC': 'HVCH - STC' };
+    const areaDeGrupo = (k) => A.grupo[k] || 'THERMAL';
+    const areaDe = (bn) => { const g = GROUPS.find((x) => x.benches.includes(bn)); return g ? areaDeGrupo(g.key) : 'THERMAL'; };
+    window.__tbpFiltro = (x) => {
+      if (!x || x === 'ALL') return null;
+      if (x === 'BW' || x === 'CTAG') return (bn) => areaDe(bn) === 'THERMAL' && benchOrg(bn) === x;
+      if (ORDEN.includes(x)) return (bn) => areaDe(bn) === x;
+      return (bn) => benchOrg(bn) === x;
+    };
+    const grupos = ORDEN.flatMap((a) => GROUPS.filter((g) => areaDeGrupo(g.key) === a));
     const textos = lbBuild();
     const salida = {
       hoy: iso(TODAY), semanaHoy: cw(TODAY),
       calendario: { anio: state.settings.year, saltarFestivos: !!state.settings.skipHolidays, festivos: state.holidays.map((h) => ({ fecha: h.date, nombre: h.name })) },
-      grupos: GROUPS.map((g) => ({ clave: g.key, nombre: g.name, color: g.dot, bancos: g.benches.map((b) => ({ nombre: b, organizacion: benchOrg(b) })) })),
+      areas: ORDEN.map((a) => ({ clave: a, nombre: A.nombres[a] || DE_SERIE[a], conOrganizacion: a === 'THERMAL' })),
+      grupos: grupos.map((g) => ({ clave: g.key, nombre: g.name, color: g.dot, area: areaDeGrupo(g.key),
+        bancos: g.benches.map((b) => ({ nombre: b, organizacion: benchOrg(b), area: areaDeGrupo(g.key) })) })),
       bancos: {}, textos,
     };
     const fechaIso = (d) => (d ? iso(d) : null);
@@ -248,7 +263,7 @@ async function indicadores(que, q, metodo) {
   if (que === 'bloques') {
     const cuerpo = await sesion.evaluar(([lunes, o, resp]) => {
       recomputeAll();
-      const ff = o === 'ALL' ? null : (bn) => benchOrg(bn) === o;
+      const ff = (window.__tbpFiltro || ((x) => (x === 'ALL' ? null : (bn) => benchOrg(bn) === x)))(o);
       const filas = resp === null ? null : (r) => (r.resp || '') === resp;
       const l = lunes ? weekStart(d0(lunes)) : weekStart(TODAY);
       return { estaSemana: blockKPIs(l, filas, ff), siguiente: blockKPIs(addDays(l, 7), filas, ff) };
@@ -259,7 +274,7 @@ async function indicadores(que, q, metodo) {
     const cuerpo = await sesion.evaluar(([desde, hasta, o]) => {
       recomputeAll();
       const a = d0(desde), b = d0(hasta);
-      const ff = o === 'ALL' ? null : (bn) => benchOrg(bn) === o;
+      const ff = (window.__tbpFiltro || ((x) => (x === 'ALL' ? null : (bn) => benchOrg(bn) === x)))(o);
       let TB = 0, TC = 0;
       const grupos = [];
       GROUPS.forEach((g) => {
@@ -283,7 +298,9 @@ async function indicadores(que, q, metodo) {
     const cuerpo = await sesion.evaluar(([desde, hasta, o]) => {
       recomputeAll();
       const prefs = Object.assign({}, VIEWPREF), trend = Object.assign({}, TREND);
-      VIEWPREF.trendOrg = o; TREND.cwFrom = desde; TREND.cwTo = hasta;
+      // La gráfica de la 4.9.4 solo sabe filtrar por organización: THERMAL sin bancos HVCH equivale a ALL.
+      const sinHvch = !Object.values((window.__TBP_AREAS || { grupo: {} }).grupo).some((a) => a !== 'THERMAL');
+      VIEWPREF.trendOrg = o === 'THERMAL' && sinHvch ? 'ALL' : o; TREND.cwFrom = desde; TREND.cwTo = hasta;
       VIEWPREF.trendMode = 'pct'; const pct = trendData();
       VIEWPREF.trendMode = 'hours'; const horas = trendData();
       Object.assign(VIEWPREF, prefs); Object.assign(TREND, trend);
@@ -383,7 +400,13 @@ async function atender(metodo, ruta, cuerpo) {
   if (p === '/api/v1/catalogos' && metodo === 'GET') {
     // Responsables: los de la lista compartida (como el backend), no la lista fija de la 4.9.4 (D24).
     // Más las columnas de facturación (BillingOrder / EquipmentType), que guarda la API simulada de facturación.
-    return { estado: 200, cuerpo: facturacion.mezclarCatalogo(await sesion.evaluar((r) => Object.assign({ responsibles: r }, JSON.parse(JSON.stringify(cfgSnapshot()))), escenario.configuracion.responsibles || [])) };
+    return { estado: 200, cuerpo: facturacion.mezclarCatalogo(await sesion.evaluar((r) => {
+      const c = Object.assign({ responsibles: r }, JSON.parse(JSON.stringify(cfgSnapshot())));
+      const A = window.__TBP_AREAS || { grupo: {}, nombres: {} };
+      (c.benches || []).forEach((b) => { b.area = A.grupo[b.groupKey] || 'THERMAL'; });
+      c.areaNames = Object.assign({}, A.nombres);
+      return c;
+    }, escenario.configuracion.responsibles || [])) };
   }
   if (p === '/api/v1/catalogos' && metodo === 'PUT') {
     if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
@@ -411,7 +434,17 @@ async function atender(metodo, ruta, cuerpo) {
       GROUPS.forEach((g) => g.benches.forEach((b) => { if (!nombres.has(b) && !Object.values(ren || {}).includes(b)) { delete state.benches[b]; if (state.benchOrg) delete state.benchOrg[b]; } }));
       state.projects = cfg.projects;
       applyConfig({ projects: cfg.projects, benches: cfg.benches });
-      cfg.benches.forEach((b) => { state.benchOrg[b.name] = b.org; });
+      // Áreas (como ServicioListas.normalizarAreas): el área es de la categoría y HVCH lleva Org fija.
+      const A = window.__TBP_AREAS = window.__TBP_AREAS || { grupo: {}, nombres: {} };
+      const FIJA = { 'HVCH-CTAG': 'CTAG', 'HVCH-STC': 'STC' };
+      const nuevas = {};
+      cfg.benches.forEach((b) => { if (b.area && !(b.groupKey in nuevas)) nuevas[b.groupKey] = b.area; });
+      Object.assign(A.grupo, nuevas);
+      cfg.benches.forEach((b) => {
+        const area = A.grupo[b.groupKey] || 'THERMAL';
+        state.benchOrg[b.name] = FIJA[area] || (b.org === 'CTAG' ? 'CTAG' : 'BW');
+      });
+      if (cfg.areaNames) Object.assign(A.nombres, cfg.areaNames);
       persistGroups();
     }, [cuerpo, cuerpo.renombrados]);
     await sesion.avanzar(1500);

@@ -3,6 +3,7 @@ import { usePanel } from '../../estado/Panel';
 import { usePlanificador } from '../../estado/Planificador';
 import { fmt, iso, lunesDe, semanaIso, sumarDias } from '../../utilidades/fechas';
 import { CampoSemana, horas, SelectorOrganizacion, SelectorUnidad, TarjetaRedimensionable, useConsulta } from './comunes';
+import { etiquetaFiltro } from '../../utilidades/areas';
 
 /*
  * «Ocupación por tipo de banco» (utilCardHTML de la 4.9.4): la semana del
@@ -40,7 +41,7 @@ export function TablaOcupacionCard() {
   return (
     <TarjetaRedimensionable clave="dash-util">
       <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 6 }}>
-        <h3 style={{ margin: '0 8px 6px 0' }}>Ocupaci&oacute;n por tipo de banco{p.utilOrg !== 'ALL' && <> &middot; {p.utilOrg}</>}</h3>
+        <h3 style={{ margin: '0 8px 6px 0' }}>Ocupaci&oacute;n por tipo de banco{p.utilOrg !== 'ALL' && <> &middot; {etiquetaFiltro(p.utilOrg, vista)}</>}</h3>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 'auto', fontSize: 12, flexWrap: 'wrap' }}>
           <SelectorUnidad valor={p.utilMode} onCambiar={(v) => cambiarPreferencia('utilMode', v)} />
           <SelectorOrganizacion compacto etiqueta="Org" valor={p.utilOrg} onCambiar={(o) => cambiarPreferencia('utilOrg', o)} />

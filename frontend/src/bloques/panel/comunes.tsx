@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode, type MouseEvent as EventoRaton } from 'react';
 import { usePlanificador } from '../../estado/Planificador';
-import { ORGANIZACIONES, type Organizacion } from '../../estado/Panel';
+import type { Organizacion } from '../../estado/Panel';
+import { filtroDe, nombresArea, partesFiltro, CODIGOS_AREA, type CodigoArea } from '../../utilidades/areas';
 import { usePreferencia } from '../../utilidades/preferencias';
 
 /* Piezas comunes del Dashboard y de «By Responsible». */
@@ -23,19 +24,36 @@ export function useConsulta<T>(cargar: () => Promise<T>, claves: unknown[]): T |
   return datos;
 }
 
-/** Selector «Org:» (orgSelectHTML / vpOrgSelect). */
+/**
+ * Filtro de bancos en dos desplegables: «Area» (ALL o un área) y, solo con
+ * Thermal Benches, «Org» (ALL / BW / CTAG, el orgSelectHTML / vpOrgSelect de la 4.9.4).
+ */
 export function SelectorOrganizacion({ valor, onCambiar, etiqueta = 'Org:', compacto = false }: {
   valor: Organizacion; onCambiar: (o: Organizacion) => void; etiqueta?: string; compacto?: boolean;
 }) {
+  const { vista } = usePlanificador();
+  const nombres = nombresArea(vista);
+  const { area, org } = partesFiltro(valor);
   const estilo = compacto
     ? { padding: '4px 6px', borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)', fontSize: 12 }
     : { padding: '5px 8px', borderRadius: 6, background: 'var(--navy)', color: 'var(--text)', border: '1px solid var(--line)', fontSize: 12 };
+  const etiquetaArea = etiqueta.endsWith(':') ? 'Area:' : 'Area';
   return (
     <>
-      <label className="hint" style={{ margin: compacto ? 0 : '0 0 0 8px' }}>{etiqueta}</label>
-      <select style={estilo} value={valor} onChange={(e) => onCambiar(e.target.value as Organizacion)}>
-        {ORGANIZACIONES.map((o) => <option key={o}>{o}</option>)}
+      <label className="hint" style={{ margin: compacto ? 0 : '0 0 0 8px' }} data-solo-nueva="">{etiquetaArea}</label>
+      <select style={estilo} value={area} data-filtro-area="" data-solo-nueva=""
+        onChange={(e) => onCambiar(filtroDe(e.target.value as 'ALL' | CodigoArea, 'ALL'))}>
+        <option value="ALL">ALL</option>
+        {CODIGOS_AREA.map((c) => <option key={c} value={c}>{nombres[c]}</option>)}
       </select>
+      {area === 'THERMAL' && (
+        <>
+          <label className="hint" style={{ margin: compacto ? 0 : '0 0 0 4px' }}>{etiqueta}</label>
+          <select style={estilo} value={org} data-filtro-org="" onChange={(e) => onCambiar(filtroDe('THERMAL', e.target.value as 'ALL' | 'BW' | 'CTAG'))}>
+            {(['ALL', 'BW', 'CTAG'] as const).map((o) => <option key={o}>{o}</option>)}
+          </select>
+        </>
+      )}
     </>
   );
 }
