@@ -1,0 +1,368 @@
+{
+ "original": {
+  "titulo": "👤 My planning",
+  "semana": "CW46 · 09 Nov 26 → 15 Nov 26",
+  "org": "CTAG",
+  "responsable": {
+   "valor": "Responsable 05",
+   "opciones": [
+    "👥 Manager View — all team",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  },
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW460/7Bancos con carga0Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   },
+   {
+    "texto": "Semana que viene · CW470/7Bancos con carga0Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   }
+  ],
+  "alerta": {
+   "texto": "✓ All tests have an approved ID.📋 Open approval tickets form",
+   "ok": true
+  },
+  "tarjetas": [
+   {
+    "titulo": "My plan by bench",
+    "hints": [
+     "Only tests where Responsible = Responsable 05."
+    ],
+    "botones": [
+     "🔍 Zoom to week",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Dec 25",
+     "Jan 26",
+     "Feb 26",
+     "Mar 26",
+     "Apr 26",
+     "May 26",
+     "Jun 26",
+     "Jul 26",
+     "Aug 26",
+     "Sept 26",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53"
+    ]
+   ],
+   "dias": null,
+   "hoy": 2969,
+   "filas": [
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 1890,
+       "w": 763,
+       "titulo": "FP Aceite 2 · Completed · 00000 - STC General Works Breakdown",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 1890,
+       "w": 43,
+       "titulo": "2000 CTAG · Completed · 00000 - STC General Works Not available",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "👤 My planning",
+  "semana": "CW46 · 09 Nov 26 → 15 Nov 26",
+  "org": "CTAG",
+  "responsable": {
+   "valor": "Responsable 05",
+   "opciones": [
+    "👥 Manager View — all team",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  },
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW460/7Bancos con carga0Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   },
+   {
+    "texto": "Semana que viene · CW470/7Bancos con carga0Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   }
+  ],
+  "alerta": {
+   "texto": "✓ All tests have an approved ID.📋 Open approval tickets form",
+   "ok": true
+  },
+  "tarjetas": [
+   {
+    "titulo": "My plan by bench",
+    "hints": [
+     "Only tests where Responsible = Responsable 05."
+    ],
+    "botones": [
+     "🔍 Zoom to week",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Dec 25",
+     "Jan 26",
+     "Feb 26",
+     "Mar 26",
+     "Apr 26",
+     "May 26",
+     "Jun 26",
+     "Jul 26",
+     "Aug 26",
+     "Sept 26",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53"
+    ]
+   ],
+   "dias": null,
+   "hoy": 2969,
+   "filas": [
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 1890,
+       "w": 763,
+       "titulo": "FP Aceite 2 · Completed · 00000 - STC General Works Breakdown",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 1890,
+       "w": 43,
+       "titulo": "2000 CTAG · Completed · 00000 - STC General Works Not available",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

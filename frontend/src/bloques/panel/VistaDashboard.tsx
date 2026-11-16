@@ -48,7 +48,7 @@ export function VistaDashboard() {
         </NavegacionSemana>
       </div>
       <BloquesKpi />
-      <TarjetaRedimensionable clave="dash-annual">
+      <TarjetaRedimensionable clave="dash-annual" ajustable={false}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
           <h3 style={{ margin: '0 8px 0 0' }}>Annual plan by bench</h3>
           <div className="dash-toolbar" style={{ marginLeft: 'auto' }}>

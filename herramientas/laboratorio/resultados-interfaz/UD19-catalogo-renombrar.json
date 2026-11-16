@@ -1,0 +1,66 @@
+{
+ "original": {
+  "titulos": [
+   "🔧 Additional Equipment",
+   "Bloqueos manuales (0)"
+  ],
+  "org": [
+   ""
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🔍 Zoom to week",
+   "🔒 Bloquear recurso",
+   "−",
+   "+",
+   "100%",
+   "📊 Excel"
+  ],
+  "hints": [
+   "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+   "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+   "No hay bloqueos. Usa 🔒 Bloquear recurso para reservar un equipo por calibración, avería, etc."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulos": [
+   "🔧 Additional Equipment",
+   "Bloqueos manuales (0)"
+  ],
+  "org": [
+   ""
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🔍 Zoom to week",
+   "🔒 Bloquear recurso",
+   "−",
+   "+",
+   "100%",
+   "📊 Excel"
+  ],
+  "hints": [
+   "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+   "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+   "No hay bloqueos. Usa 🔒 Bloquear recurso para reservar un equipo por calibración, avería, etc."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

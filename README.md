@@ -84,6 +84,8 @@ durante la transición.
 | **H3R · Rendimiento con SharePoint** | Lecturas compartidas y sin repeticiones, conexiones de solo lectura en paralelo a la de escritura, estados de aprobación por lotes, consultas de una pestaña recargada descartadas sin avisos, altas y copias visibles al momento y copia sin conexión sin choques entre escrituras. Detalle en `docs/06-rendimiento-sharepoint.md`. | **Terminado**; validado en el PC (10-nov-2026) |
 | **H5 · Facturación** | Módulo «Billing» separado de la planificación: datos de facturación del ensayo (hora real, paradas con fecha y hora, setup, HV, orden, requester, línea de producto, facturable), motor de periodos y tramos, maestros (categorías, tarifas versionadas, reglas, Controlling; orden del proyecto en Projects y categoría del banco en Test Benches), revisión con ajustes trazables y tarifas excepcionales, aprobación con foto inmutable, reapertura, auditoría y exportaciones. Paridad con las 522 filas de 2026 y la hoja Controlling del Excel. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
 | **H7 · Áreas de bancos** | Nivel nuevo por encima de las categorías (Thermal Benches, HVCH - CTAG, HVCH - STC): menú lateral por áreas con selector y secciones plegables, Test Benches por áreas, filtro de dos niveles (área y, en Thermal, Org) en Dashboard, «By Responsible», tarjetas y KPI History, foto semanal por área y filtro Org en List of Equipments. Columna nueva `Area` en TestBenchBenches. Ver `docs/08-areas-de-bancos.md`. | **Código terminado**; pendiente de `mvnw clean verify` y validación |
+| **H8 · Gantt general rediseñado** | Dashboard y «By Responsible»: color por proyecto y estado por forma, carriles para ensayos simultáneos con aviso «N en paralelo», ocupación por banco, categorías plegables, pasado atenuado, tarjeta de detalle al pasar el ratón (clic abre el ensayo, F enfoca el proyecto) y foco con ficha resumen, bancos resaltados y flechas de trazabilidad. Ver `docs/09-gantt-rediseno.md`. | **Código terminado**; pendiente de validación |
+| **H9 · Gantt a altura libre** | Dashboard y «By Responsible»: sin tirador en la tarjeta del Gantt, que ocupa todo el alto que necesita (sin scroll vertical propio), con cabecera y barra horizontal que acompañan al scroll de la página. Banco: el divisor fija el alto de la tabla y el Gantt se desplaza hacia abajo en vez de comprimirse. Ver `docs/09-gantt-rediseno.md`. | **Código terminado**; pendiente de validación |
 | **H4 · Entrega** | Validación integral en oficina, escritura controlada en SharePoint, runtime de Java incluido, lanzador y retirada controlada de la 4.9.4. | Pendiente; aparcado hasta terminar la facturación |
 
 ### Funcionalidad disponible
@@ -144,6 +146,12 @@ los datos económicos); eliminar periodos; columnas «Billing order» en Project
 las categorías; menú lateral agrupado y filtrable por área; filtro Area + Org (Org
 solo en Thermal Benches) en todas las pantallas de indicadores; foto semanal por
 área; filtro Org en List of Equipments. Ver `docs/08-areas-de-bancos.md`.
+- Gantt general rediseñado (H8): color por proyecto y estado por forma, carriles para
+ensayos simultáneos, ocupación por banco, categorías plegables, tarjeta al pasar el
+ratón y foco con ficha y trazabilidad entre bancos. Ver `docs/09-gantt-rediseno.md`.
+- Gantt a altura libre (H9): los Gantt ocupan todo el alto que necesitan, con
+cabecera y barra horizontal flotantes; en cada banco, ampliar la tabla desplaza
+el Gantt en vez de comprimirlo.
 - La aplicación se abre en el Dashboard, como la 4.9.4.
 - Interfaz clásica servida en `/clasico` como respaldo hasta la retirada de la
 4.9.4 (H4).
@@ -441,7 +449,8 @@ TZ=Europe/Madrid node herramientas/laboratorio/pruebas-cierre.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-rendimiento.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-facturacion.cjs
 TZ=Europe/Madrid node herramientas/laboratorio/pruebas-areas.cjs
-cd frontend && npm test        # pruebas unitarias de altas y copias inmediatas
+TZ=Europe/Madrid node herramientas/laboratorio/pruebas-gantt.cjs
+cd frontend && npm test        # pruebas unitarias (altas y copias inmediatas, cola de configuración, Gantt general)
 ```
 
 El comparador de interfaz recorre 65 casos de edición, fechas, estados, cola,
@@ -463,6 +472,11 @@ añadir y duplicar se ven al momento, que lo escrito en la fila nueva se guarda,
 que un fallo la retira y que cada pestaña envía su código.
 `pruebas-areas.cjs` cubre las áreas de bancos: Test Benches por áreas, mover una
 categoría, menú lateral, filtro de dos niveles, renombrar un área y filtro Org de los equipos.
+`pruebas-gantt.cjs` cubre el Gantt general rediseñado (H8): carriles sin solapes,
+color por proyecto y «Color: Estado», formas de estado, categorías plegables,
+tarjeta y tecla F, foco con ficha y trazabilidad, y clic que abre el ensayo;
+y la altura libre (H9): sin scroll vertical propio, cabecera y barra horizontal
+flotantes, y divisor del banco que desplaza el Gantt sin comprimirlo.
 
 ## Configuración
 
@@ -564,5 +578,8 @@ causas y correcciones de los retrasos con SharePoint (H3R).
 pantallas, pruebas y pendientes de la facturación (H5).
 - [`docs/08-areas-de-bancos.md`](docs/08-areas-de-bancos.md): áreas de bancos
 (Thermal Benches, HVCH - CTAG, HVCH - STC): datos, filtros, pantallas, KPI y pruebas (H7).
+- [`docs/09-gantt-rediseno.md`](docs/09-gantt-rediseno.md): Gantt general
+rediseñado (propuesta A + trazabilidad + tarjetas): qué se ve, cómo se deduce la
+trazabilidad, paridad y pruebas (H8).
 - [`herramientas/laboratorio/README.md`](herramientas/laboratorio/README.md): uso
 del laboratorio de paridad.

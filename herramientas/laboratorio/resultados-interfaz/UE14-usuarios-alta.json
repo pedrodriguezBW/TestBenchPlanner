@@ -1,0 +1,1576 @@
+{
+ "original": {
+  "entradas": [
+   "",
+   "",
+   ""
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "👤 Users/Rights Management"
+  ],
+  "org": [
+   "Editor"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Add / Update",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑"
+  ],
+  "hints": [
+   "El acceso se identifica por el email corporativo (SSO). La app muestra el ResponsibleName en vez del email. Cualquiera que no este en esta lista entra como Read only. Estos nombres alimentan tambien el desplegable de Responsible.",
+   "",
+   "Los nombres de esta tabla (ResponsibleName) son los que aparecen en el desplegable Responsible de los ensayos y en By Responsible. Ya no hay un catalogo de responsables aparte: esta lista es la unica fuente. Aun asi, en un ensayo puedes escribir cualquier nombre libremente."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst users-tbl",
+    "cabecera": [
+     "Name",
+     "Email",
+     "Role",
+     "ResponsibleName",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "Persona 01",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario01@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 01",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 03",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario02@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 03",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 05",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario03@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 05",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 07",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario04@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 07",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 09",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario05@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 09",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario06@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario07@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 23",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario12@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 23",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 15",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario08@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 15",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 17",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario09@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 17",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario10@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 21",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario11@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 21",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario13@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 27",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario14@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 27",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario15@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona Nueva",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "nueva@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "readonly",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(245, 166, 35)",
+       "400"
+      ],
+      [
+       "Responsable 99",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "entradas": [
+   "",
+   "",
+   ""
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "💶 Monthly sheet",
+   "🔨 Configuration",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "👤 Users/Rights Management"
+  ],
+  "org": [
+   "Editor"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Add / Update",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑",
+   "✎",
+   "🗑"
+  ],
+  "hints": [
+   "El acceso se identifica por el email corporativo (SSO). La app muestra el ResponsibleName en vez del email. Cualquiera que no este en esta lista entra como Read only. Estos nombres alimentan tambien el desplegable de Responsible.",
+   "Guardado en SharePoint.",
+   "Los nombres de esta tabla (ResponsibleName) son los que aparecen en el desplegable Responsible de los ensayos y en By Responsible. Ya no hay un catalogo de responsables aparte: esta lista es la unica fuente. Aun asi, en un ensayo puedes escribir cualquier nombre libremente."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst users-tbl",
+    "cabecera": [
+     "Name",
+     "Email",
+     "Role",
+     "ResponsibleName",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "Persona 01",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario01@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 01",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 03",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario02@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 03",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 05",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario03@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 05",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 07",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario04@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 07",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 09",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario05@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 09",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario06@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario07@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 23",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario12@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "admin",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(6, 35, 31)",
+       "400"
+      ],
+      [
+       "Responsable 23",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 15",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario08@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 15",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 17",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario09@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 17",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario10@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 21",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario11@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 21",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario13@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 27",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario14@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 27",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "usuario15@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "editor",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(4, 19, 46)",
+       "400"
+      ],
+      [
+       "Responsable 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Persona Nueva",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "nueva@ejemplo.local",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "readonly",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(245, 166, 35)",
+       "400"
+      ],
+      [
+       "Responsable 99",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✎🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

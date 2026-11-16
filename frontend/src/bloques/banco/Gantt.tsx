@@ -4,6 +4,7 @@ import { dia, diasEntre, esFinDeSemana, fmt, iso, lunesDe, semanaIso, sumarDias 
 import { usePreferencia } from '../../utilidades/preferencias';
 import { exportarGanttExcel, matrizGantt } from '../exportaciones/descargas';
 import { fijarCabeceras } from '../panel/GanttGeneral';
+import { BarraHorizontalFlotante, useCabeceraFlotante } from '../panel/desplazamientoGantt';
 import { colorEstado, colorEstadoTransparente, etiquetaEstado } from '../../utilidades/textos';
 
 /*
@@ -50,6 +51,8 @@ export function Gantt({ banco, filas, vista, proyectos }: { banco: string; filas
 
   // Cabeceras (meses, CW, días) fijas al hacer scroll vertical, como en la 4.9.4.
   useLayoutEffect(() => fijarCabeceras(caja.current));
+  // H9: altura libre (sin scroll vertical propio); la cabecera acompaña al scroll de la página.
+  useCabeceraFlotante(caja);
 
   const zoom = (direccion: number) => {
     const paso = Math.max(2, Math.round(W * 0.2));
@@ -116,7 +119,7 @@ export function Gantt({ banco, filas, vista, proyectos }: { banco: string; filas
   return (
     <>
       {barra}
-      <div className="gantt" id="ganttbox" ref={caja} style={{ ['--lw' as string]: `${LW}px`, position: 'relative' }}>
+      <div className="gantt gm-alto-libre" id="ganttbox" ref={caja} style={{ ['--lw' as string]: `${LW}px`, position: 'relative' }}>
         <div className="g-lwgrip no-print" style={{ left: LW - 4 }} onPointerDown={empezarAnchoEtiqueta}
           onDoubleClick={() => setAnchoEtiqueta(null)} />
         <div style={{ width: LW + n * W, position: 'relative' }}>
@@ -167,6 +170,7 @@ export function Gantt({ banco, filas, vista, proyectos }: { banco: string; filas
           <div className="g-todayline" style={{ left: LW + diasEntre(min, hoy) * W }} />
         </div>
       </div>
+      <BarraHorizontalFlotante caja={caja} />
     </>
   );
 }

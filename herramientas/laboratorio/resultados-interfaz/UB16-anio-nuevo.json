@@ -1,0 +1,3988 @@
+{
+ "original": {
+  "titulo": null,
+  "semana": "CW53 · 28 Dec 26 → 03 Jan 27",
+  "org": "ALL",
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW5314/26Bancos con carga18Corriendo / acumulando horas2En retraso (declarado)⚠️ 15 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW118/26Bancos con carga34Corriendo / acumulando horas2En retraso (declarado)⚠️ 13 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   }
+  ],
+  "alerta": null,
+  "tarjetas": [
+   {
+    "titulo": "Annual plan by bench",
+    "hints": [
+     "Weekly resolution across 2027. Use Prev/Next above (or “Zoom to week”) to see a natural week at daily resolution."
+    ],
+    "botones": [
+     "🔍 Zoom to week",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   },
+   {
+    "titulo": "% Ocupación por CW · 2027",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Full year"
+    ],
+    "casillas": [
+     "1",
+     "52"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   },
+   {
+    "titulo": "Ocupación por tipo de banco",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Año",
+     "Semana del dashboard"
+    ],
+    "casillas": [
+     "53",
+     "53"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Jan 27",
+     "Feb 27",
+     "Mar 27",
+     "Apr 27",
+     "May 27",
+     "Jun 27",
+     "Jul 27",
+     "Aug 27",
+     "Sept 27",
+     "Oct 27",
+     "Nov 27",
+     "Dec 27",
+     "Jan 28"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW1"
+    ]
+   ],
+   "dias": null,
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "MD1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 61,
+       "titulo": "MD1 · Calibration (bench blocked) · 00000 - STC General Works Calibration · 01 Jan 27→10 Jan 27",
+       "texto": "00000 - STC General Works · Calibration · Calibración",
+       "clases": [
+        "striped"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Jan 27→21 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 ICA",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 162,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 22 Jan 27→01 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 02 Feb 27→12 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #2",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 360,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 13 Feb 27→23 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #3",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 459,
+       "w": 61,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 24 Feb 27→02 Mar 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR1 (ICA)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD2 · Delayed · PPQ5 Viana #5 Thermal Fatigue · 27 Oct 26→04 Jan 27",
+       "texto": "PPQ5 Viana #5 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD2 · Running · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP Eff & dP · 09 Nov 26→04 Jan 27",
+       "texto": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP · Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 61,
+       "titulo": "MD2 · Queued · 00306 - Perkins C6.6 HP Eff & dP · 05 Jan 27→11 Jan 27",
+       "texto": "00306 - Perkins C6.6 HP · Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 72,
+       "w": 25,
+       "titulo": "MD2 · Queued · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 Eff & dP · 12 Jan 27→14 Jan 27",
+       "texto": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · Eff & dP · x3 Samples (170 kg/h)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 99,
+       "w": 61,
+       "titulo": "MD2 · Queued · PPQ5 #29 Thermal Fatigue · 15 Jan 27→21 Jan 27",
+       "texto": "PPQ5 #29 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 162,
+       "w": 61,
+       "titulo": "MD2 · Queued · PPQ5 #30 Thermal Fatigue · 22 Jan 27→28 Jan 27",
+       "texto": "PPQ5 #30 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "MD2 · Queued · 80552 - Ford Scorpion MY27 Eff & dP · 29 Jan 27→02 Feb 27",
+       "texto": "80552 - Ford Scorpion MY27 · Eff & dP · Eff& dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 142,
+       "titulo": "MD2 · Queued · 80552 - Ford Scorpion MY27 Thermal Fatigue · 03 Feb 27→18 Feb 27",
+       "texto": "80552 - Ford Scorpion MY27 · Thermal Fatigue · Thermal fatigue - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 414,
+       "w": 223,
+       "titulo": "MD2 · Queued · 00651 - Ford - EGR Cooler - 2.5L Duratec Thermal Fatigue · 19 Feb 27→15 Mar 27",
+       "texto": "00651 - Ford - EGR Cooler - 2.5L Duratec · Thermal Fatigue · 6 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 639,
+       "w": 70,
+       "titulo": "MD2 · Queued · 80842 - Legend 10L Eff & dP · 16 Mar 27→23 Mar 27",
+       "texto": "80842 - Legend 10L · Eff & dP · Eff & dP - PV2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD3",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD3 · Delayed · PPQ5 #28 Thermal Fatigue · 03 Nov 26→04 Jan 27",
+       "texto": "PPQ5 #28 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 142,
+       "titulo": "MD3 · Queued · 10847 - BMW - EGR Module - B57 TU3 EU7 Thermal Fatigue · 05 Jan 27→20 Jan 27",
+       "texto": "10847 - BMW - EGR Module - B57 TU3 EU7 · Thermal Fatigue · Thermoshock propina 384h-600h",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 21 Jan 27→30 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · Cambio proveedor - 4pzas",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 252,
+       "w": 43,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Eff & dP · 01 Feb 27→05 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Eff & dP · PV Dixon - EffdP",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 297,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 06 Feb 27→15 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · PV Dixon - TF",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 387,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 16 Feb 27→25 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · PV Dixon - Propina TF",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 477,
+       "w": 322,
+       "titulo": "MD3 · Calibration (bench blocked) · 00000 - STC General Works Calibration · 26 Feb 27→02 Apr 27",
+       "texto": "00000 - STC General Works · Calibration · Calibración",
+       "clases": [
+        "striped"
+       ]
+      },
+      {
+       "x": 801,
+       "w": 169,
+       "titulo": "MD3 · Queued · 11133 - BMW - HP EGR Modul - HP Modul  N-B X7D20XX Thermal Fatigue · 03 Apr 27→21 Apr 27",
+       "texto": "11133 - BMW - HP EGR Modul - HP Modul N-B X7D20XX · Thermal Fatigue · Validación Anual - 4x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 972,
+       "w": 115,
+       "titulo": "MD3 · Queued · 80842 - Legend 10L Thermal Fatigue · 22 Apr 27→04 May 27",
+       "texto": "80842 - Legend 10L · Thermal Fatigue · Propina TF PV1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 1089,
+       "w": 214,
+       "titulo": "MD3 · Queued · 80842 - Legend 10L Thermal Fatigue · 05 May 27→28 May 27",
+       "texto": "80842 - Legend 10L · Thermal Fatigue · PV2 TF",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD4",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 178,
+       "titulo": "MD4 · Running · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Sept 26→23 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-Sample ICA",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 189,
+       "w": 70,
+       "titulo": "MD4 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 25 Jan 27→01 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-sample baseline - pruebas ciclado",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 925,
+       "titulo": "MD4 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 02 Feb 27→15 May 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-sample ICA",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Camiones",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Camiones · Running · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP · 02 Nov 26→04 Jan 27",
+       "texto": "80001417 - Endeavour - Recuperator - MT350 Recuperator · Eff & dP · Pruebas Eficiencia (caudalímetros/termopares)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 25,
+       "titulo": "Camiones · Queued · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP · 05 Jan 27→07 Jan 27",
+       "texto": "80001417 - Endeavour - Recuperator - MT350 Recuperator · Eff & dP · Recuperador 102 celdas-2º",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 36,
+       "w": 160,
+       "titulo": "Camiones · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 08 Jan 27→25 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Transition Duct TF",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Turismos · Running · 00577 Renault M9R Cooler Eff & dP · 02 Nov 26→04 Jan 27",
+       "texto": "00577 Renault M9R Cooler · Eff & dP · Eff&dP x 3 Samples",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Gasolina · Running · 00204 - Ford - EGR Cooler - Panther Commercial Vehicle Boiling · 02 Nov 26→04 Jan 27",
+       "texto": "00204 - Ford - EGR Cooler - Panther Commercial Vehicle · Boiling · Boiling test",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Gasolina · Queued · 82225 - Stellantis EB2 1.2 Eff & dP · 05 Jan 27→08 Jan 27",
+       "texto": "82225 - Stellantis EB2 1.2 · Eff & dP · Eff&dP x1 proto",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 43,
+       "titulo": "Gasolina · Queued · 11133 - BMW - HP EGR Modul - HP Modul  N-B X7D20XX Eff & dP · 11 Jan 27→15 Jan 27",
+       "texto": "11133 - BMW - HP EGR Modul - HP Modul N-B X7D20XX · Eff & dP · Validación Anual - 4x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "Gasolina · Queued · 82726 - GM LZ0 - EGR cooler Eff & dP · 18 Jan 27→20 Jan 27",
+       "texto": "82726 - GM LZ0 - EGR cooler · Eff & dP · Eff&dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 79,
+       "titulo": "Gasolina · Queued · 82726 - GM LZ0 - EGR cooler Thermal Fatigue · 21 Jan 27→29 Jan 27",
+       "texto": "82726 - GM LZ0 - EGR cooler · Thermal Fatigue · Galling test - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Gasolina · Running · HKMC 1.2L EGR cooler Eff & dP · 23 Nov 26→04 Jan 27",
+       "texto": "HKMC 1.2L EGR cooler · Eff & dP · Eff & dP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FT Turismos",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "BC1 (4 branches)",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 3337,
+       "titulo": "BC1 (4 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 16 Oct 26→05 Jul 28",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 3 + 1 Gamma2",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "BC2 (12 branches)",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 637,
+       "titulo": "BC2 (12 branches) · Queued · 80000552 - Ford - EGR Module - MY27 6.7L Scorpion EGR Module Corrosion · 04 Jan 27→15 Mar 27",
+       "texto": "80000552 - Ford - EGR Module - MY27 6.7L Scorpion EGR Module · Corrosion · Corrosión 3 baterías",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 639,
+       "w": 448,
+       "titulo": "BC2 (12 branches) · Queued · 80002613 VW EGR Module EA 211 Corrosion · 16 Mar 27→04 May 27",
+       "texto": "80002613 VW EGR Module EA 211 · Corrosion · x5 Samples Corrosion @150ºC",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Manual Cylinder",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Fatiga",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Fatiga · Running · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Displacement · 02 Nov 26→04 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Displacement · One Cell Displacement (OSE Ramos)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 79,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 05 Jan 27→13 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Banana Shape (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 90,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 14 Jan 27→18 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Solid Pin (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 135,
+       "w": 25,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 19 Jan 27→21 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Side Intrusion (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 01 Mar 27→05 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Banana Shape (THERMALEX RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 567,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 08 Mar 27→12 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · One cell (THERMALEX RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "FP Aceite 1 · Running · 00938 - Perkins Compact X 3.6LRC Pressure Fatigue · 04 Nov 26→04 Jan 27",
+       "texto": "00938 - Perkins Compact X 3.6LRC · Pressure Fatigue · Housing Change - Lado Agua",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "FP Aceite 1 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Pressure Fatigue · 05 Jan 27→08 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Pressure Fatigue · Cambio Proveedores Serie- FP GAS - 4 samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 45,
+       "w": 7,
+       "titulo": "FP Aceite 1 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Pressure Fatigue · 09 Jan 27→09 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Pressure Fatigue · Cambio Proveedores Serie- FP COOLANT - 4 samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 54,
+       "w": 43,
+       "titulo": "FP Aceite 1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Pressure Fatigue · 10 Jan 27→14 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Pressure Fatigue · FP monoceldasTBC",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Urna Burst RT",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Urna Burst RT · Running · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 02 Nov 26→04 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst test - 5 piezas perfil HYDRO",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Urna Burst RT · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Burst Test · 05 Jan 27→08 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (snake indiv. perfil OSE)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "Urna Burst RT · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 01 Mar 27→03 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos THERMALEX)-individual x5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Other Tasks",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1500 WC",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 151,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Ageing · 04 Jan 27→20 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Ageing · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 70,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 21 Jan 27→28 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 29 Jan 27→02 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 25,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 03 Feb 27→05 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst · 08 Feb 27→10 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1500 Aire",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "1500 Aire · Running · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 05 Nov 26→04 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 61,
+       "titulo": "1500 Aire · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Burst Test · 05 Jan 27→11 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (Assembly perfil OSE)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 72,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 12 Jan 27→13 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · P&S Woco Improved Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 90,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 14 Jan 27→18 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 135,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 19 Jan 27→20 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Spigot Rugosidad",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque K01 · 21 Jan 27→25 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · K01 · Manifolds Celanese",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 198,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 26 Jan 27→27 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · Manifolds Celanese",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 216,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 28 Jan 27→01 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · 3W ALU - standalone Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 25,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 02 Feb 27→04 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 288,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 05 Feb 27→09 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst P&S RT",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 333,
+       "w": 52,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 10 Feb 27→15 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 387,
+       "w": 34,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 16 Feb 27→19 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 97,
+       "titulo": "2000 CTAG · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Humidity · 04 Jan 27→14 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Humidity · Humidity",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 99,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 15 Jan 27→19 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 144,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 20 Jan 27→22 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · P&S Woco Improved Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 189,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 25 Jan 27→26 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 207,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 27 Jan 27→28 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 34,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 29 Jan 27→01 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 02 Feb 27→04 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · Spigot Rugosidad",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 288,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 05 Feb 27→09 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Spigot Rugosidad + self adhesive",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 333,
+       "w": 61,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 10 Feb 27→16 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 396,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 17 Feb 27→18 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 414,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 19 Feb 27→23 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 459,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 24 Feb 27→26 Feb 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 01 Mar 27→03 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 2",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 531,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 04 Mar 27→08 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 3",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 576,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 09 Mar 27→11 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 4",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 603,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 12 Mar 27→16 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 648,
+       "w": 52,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Type Test · 17 Mar 27→22 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Type Test · Ramos PPG USA to MEX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 702,
+       "w": 79,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 23 Mar 27→31 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · PV Ramos - Service life (post ageing tests)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK127",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "KK129",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 3337,
+       "titulo": "KK129 · Queued · HVCH HVCH · 04 Jan 27→05 Jun 28",
+       "texto": "HVCH · HVCH",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 1357,
+       "titulo": "KK129 · Completed · HVCH Not available",
+       "texto": "✓ HVCH",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK118",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 547,
+       "titulo": "1000 CTAG 1 · Running · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 20 Aug 26→05 Mar 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube - standalone validation + 3W ALU validation",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 549,
+       "w": 2788,
+       "titulo": "1000 CTAG 1 · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 06 Mar 27→17 Feb 30",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 2",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "XXL CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 34,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony K01 · 04 Jan 27→07 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · K01 · K01 - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 36,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 08 Jan 27→12 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 81,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 13 Jan 27→15 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 18 Jan 27→20 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony K01 · 21 Jan 27→25 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · K01 · K01 6 montajes - PV",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 198,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony P03 · 26 Jan 27→28 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · P03 · P03",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 29 Jan 27→02 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - PV serial tests",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony P03 · 03 Feb 27→05 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · P03 · P03",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 08 Feb 27→10 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 342,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 11 Feb 27→15 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst - PV serial tests",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Snakes dP",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Snakes dP · Running · 80001755 - Rimac - eCooler - Ampere Ceremony dP Coolant · 02 Nov 26→04 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · dP Coolant · 4/5 piezas perfil Hydro",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Snakes dP · Running · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Eff & dP · 03 Nov 26→04 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Eff & dP · Thermal Hydraulic Function 15 piezas Ramos OSE",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Snakes dP · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling dP Coolant · 05 Jan 27→08 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · dP Coolant · Estudio correlacion USA (6 piezas) 100 l/h @ 46 ºC",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 43,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling dP Coolant · 11 Jan 27→15 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · dP Coolant · Estudio nivel aplastado (15 piezas) 39 ºC",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 18 Jan 27→20 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness FUSHI Ramos + SELF ADHESIVE",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 08 Feb 27→10 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness AMG Ramos",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 01 Mar 27→03 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness THERMALEX Ramos",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 531,
+       "w": 70,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 04 Mar 27→11 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Cooling Capacity THERMALEX Ramos - 20 piezas",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "grafica": {
+   "ancho": "1302",
+   "leyenda": [
+    [
+     "Durability MD/HD Hot Gas",
+     "1"
+    ],
+    [
+     "PC Hot Gas",
+     "1"
+    ],
+    [
+     "Corrosion",
+     "1"
+    ],
+    [
+     "Mechanical Fatigue",
+     "1"
+    ],
+    [
+     "Climatic / Environment",
+     "1"
+    ],
+    [
+     "Coolant Carts",
+     "1"
+    ]
+   ],
+   "textos": [
+    [
+     "0%",
+     "34",
+     "213"
+    ],
+    [
+     "25%",
+     "34",
+     "164.5"
+    ],
+    [
+     "50%",
+     "34",
+     "116"
+    ],
+    [
+     "75%",
+     "34",
+     "67.5"
+    ],
+    [
+     "100%",
+     "34",
+     "19"
+    ],
+    [
+     "CW1",
+     "52",
+     "230"
+    ],
+    [
+     "CW3",
+     "100",
+     "230"
+    ],
+    [
+     "CW5",
+     "148",
+     "230"
+    ],
+    [
+     "CW7",
+     "196",
+     "230"
+    ],
+    [
+     "CW9",
+     "244",
+     "230"
+    ],
+    [
+     "CW11",
+     "292",
+     "230"
+    ],
+    [
+     "CW13",
+     "340",
+     "230"
+    ],
+    [
+     "CW15",
+     "388",
+     "230"
+    ],
+    [
+     "CW17",
+     "436",
+     "230"
+    ],
+    [
+     "CW19",
+     "484",
+     "230"
+    ],
+    [
+     "CW21",
+     "532",
+     "230"
+    ],
+    [
+     "CW23",
+     "580",
+     "230"
+    ],
+    [
+     "CW25",
+     "628",
+     "230"
+    ],
+    [
+     "CW27",
+     "676",
+     "230"
+    ],
+    [
+     "CW29",
+     "724",
+     "230"
+    ],
+    [
+     "CW31",
+     "772",
+     "230"
+    ],
+    [
+     "CW33",
+     "820",
+     "230"
+    ],
+    [
+     "CW35",
+     "868",
+     "230"
+    ],
+    [
+     "CW37",
+     "916",
+     "230"
+    ],
+    [
+     "CW39",
+     "964",
+     "230"
+    ],
+    [
+     "CW41",
+     "1012",
+     "230"
+    ],
+    [
+     "CW43",
+     "1060",
+     "230"
+    ],
+    [
+     "CW45",
+     "1108",
+     "230"
+    ],
+    [
+     "CW47",
+     "1156",
+     "230"
+    ],
+    [
+     "CW49",
+     "1204",
+     "230"
+    ],
+    [
+     "CW51",
+     "1252",
+     "230"
+    ]
+   ],
+   "lineas": [
+    [
+     "52,93.60000000000001 76,37.34 100,33.46000000000001 124,76.14000000000001 148,66.44 172,66.44 196,66.44 220,81.96000000000001 244,132.39999999999998 268,144.04 292,149.86 316,159.56 340,159.56 364,132.39999999999998 388,132.39999999999998 412,144.04 436,144.04 460,144.04 484,149.86 508,188.66 532,182.84 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(76, 141, 255)"
+    ],
+    [
+     "52,163.44 76,163.44 100,145.98000000000002 124,163.44 148,210 172,210 196,210 220,210 244,210 268,210 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(35, 188, 163)"
+    ],
+    [
+     "52,56.73999999999998 76,43.16 100,43.16 124,43.16 148,43.16 172,43.16 196,43.16 220,43.16 244,43.16 268,43.16 292,16 316,16 340,16 364,16 388,16 412,16 436,16 460,85.84 484,113 508,113 532,113 556,113 580,113 604,113 628,113 652,113 676,113 700,113 724,113 748,113 772,113 796,113 820,113 844,113 868,113 892,113 916,113 940,113 964,113 988,113 1012,113 1036,113 1060,113 1084,113 1108,113 1132,113 1156,113 1180,113 1204,113 1228,113 1252,113 1276,113",
+     "rgb(255, 200, 0)"
+    ],
+    [
+     "52,134.34 76,169.26 100,190.6 124,210 148,210 172,210 196,210 220,210 244,173.14 268,186.72 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(168, 54, 221)"
+    ],
+    [
+     "52,136.28 76,111.06 100,116.88000000000001 124,116.88000000000001 148,116.88000000000001 172,124.64 196,145.98000000000002 220,163.44 244,157.62 268,157.62 292,163.44 316,169.26 340,163.44 364,173.14 388,173.14 412,173.14 436,173.14 460,173.14 484,173.14 508,177.01999999999998 532,173.14 556,173.14 580,173.14 604,173.14 628,177.01999999999998 652,173.14 676,173.14 700,173.14 724,173.14 748,173.14 772,173.14 796,173.14 820,177.01999999999998 844,173.14 868,173.14 892,173.14 916,173.14 940,173.14 964,173.14 988,173.14 1012,177.01999999999998 1036,173.14 1060,173.14 1084,177.01999999999998 1108,173.14 1132,173.14 1156,173.14 1180,173.14 1204,178.96 1228,173.14 1252,173.14 1276,173.14",
+     "rgb(0, 204, 255)"
+    ],
+    [
+     "52,99.42000000000002 76,72.26000000000002 100,126.58 124,210 148,210 172,126.58 196,210 220,210 244,72.26000000000002 268,99.42000000000002 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(190, 35, 35)"
+    ]
+   ],
+   "puntos": [
+    "Durability MD/HD Hot Gas · CW1: 60%",
+    "Durability MD/HD Hot Gas · CW2: 89%",
+    "Durability MD/HD Hot Gas · CW3: 91%",
+    "Durability MD/HD Hot Gas · CW4: 69%",
+    "Durability MD/HD Hot Gas · CW5: 74%",
+    "Durability MD/HD Hot Gas · CW6: 74%",
+    "Durability MD/HD Hot Gas · CW7: 74%",
+    "Durability MD/HD Hot Gas · CW8: 66%",
+    "Durability MD/HD Hot Gas · CW9: 40%",
+    "Durability MD/HD Hot Gas · CW10: 34%",
+    "Durability MD/HD Hot Gas · CW11: 31%",
+    "Durability MD/HD Hot Gas · CW12: 26%",
+    "Durability MD/HD Hot Gas · CW13: 26%",
+    "Durability MD/HD Hot Gas · CW14: 40%",
+    "Durability MD/HD Hot Gas · CW15: 40%",
+    "Durability MD/HD Hot Gas · CW16: 34%",
+    "Durability MD/HD Hot Gas · CW17: 34%",
+    "Durability MD/HD Hot Gas · CW18: 34%",
+    "Durability MD/HD Hot Gas · CW19: 31%",
+    "Durability MD/HD Hot Gas · CW20: 11%",
+    "Durability MD/HD Hot Gas · CW21: 14%",
+    "Durability MD/HD Hot Gas · CW22: 0%",
+    "Durability MD/HD Hot Gas · CW23: 0%",
+    "Durability MD/HD Hot Gas · CW24: 0%",
+    "Durability MD/HD Hot Gas · CW25: 0%",
+    "Durability MD/HD Hot Gas · CW26: 0%",
+    "Durability MD/HD Hot Gas · CW27: 0%",
+    "Durability MD/HD Hot Gas · CW28: 0%",
+    "Durability MD/HD Hot Gas · CW29: 0%",
+    "Durability MD/HD Hot Gas · CW30: 0%",
+    "Durability MD/HD Hot Gas · CW31: 0%",
+    "Durability MD/HD Hot Gas · CW32: 0%",
+    "Durability MD/HD Hot Gas · CW33: 0%",
+    "Durability MD/HD Hot Gas · CW34: 0%",
+    "Durability MD/HD Hot Gas · CW35: 0%",
+    "Durability MD/HD Hot Gas · CW36: 0%",
+    "Durability MD/HD Hot Gas · CW37: 0%",
+    "Durability MD/HD Hot Gas · CW38: 0%",
+    "Durability MD/HD Hot Gas · CW39: 0%",
+    "Durability MD/HD Hot Gas · CW40: 0%",
+    "Durability MD/HD Hot Gas · CW41: 0%",
+    "Durability MD/HD Hot Gas · CW42: 0%",
+    "Durability MD/HD Hot Gas · CW43: 0%",
+    "Durability MD/HD Hot Gas · CW44: 0%",
+    "Durability MD/HD Hot Gas · CW45: 0%",
+    "Durability MD/HD Hot Gas · CW46: 0%",
+    "Durability MD/HD Hot Gas · CW47: 0%",
+    "Durability MD/HD Hot Gas · CW48: 0%",
+    "Durability MD/HD Hot Gas · CW49: 0%",
+    "Durability MD/HD Hot Gas · CW50: 0%",
+    "Durability MD/HD Hot Gas · CW51: 0%",
+    "Durability MD/HD Hot Gas · CW52: 0%",
+    "PC Hot Gas · CW1: 24%",
+    "PC Hot Gas · CW2: 24%",
+    "PC Hot Gas · CW3: 33%",
+    "PC Hot Gas · CW4: 24%",
+    "PC Hot Gas · CW5: 0%",
+    "PC Hot Gas · CW6: 0%",
+    "PC Hot Gas · CW7: 0%",
+    "PC Hot Gas · CW8: 0%",
+    "PC Hot Gas · CW9: 0%",
+    "PC Hot Gas · CW10: 0%",
+    "PC Hot Gas · CW11: 0%",
+    "PC Hot Gas · CW12: 0%",
+    "PC Hot Gas · CW13: 0%",
+    "PC Hot Gas · CW14: 0%",
+    "PC Hot Gas · CW15: 0%",
+    "PC Hot Gas · CW16: 0%",
+    "PC Hot Gas · CW17: 0%",
+    "PC Hot Gas · CW18: 0%",
+    "PC Hot Gas · CW19: 0%",
+    "PC Hot Gas · CW20: 0%",
+    "PC Hot Gas · CW21: 0%",
+    "PC Hot Gas · CW22: 0%",
+    "PC Hot Gas · CW23: 0%",
+    "PC Hot Gas · CW24: 0%",
+    "PC Hot Gas · CW25: 0%",
+    "PC Hot Gas · CW26: 0%",
+    "PC Hot Gas · CW27: 0%",
+    "PC Hot Gas · CW28: 0%",
+    "PC Hot Gas · CW29: 0%",
+    "PC Hot Gas · CW30: 0%",
+    "PC Hot Gas · CW31: 0%",
+    "PC Hot Gas · CW32: 0%",
+    "PC Hot Gas · CW33: 0%",
+    "PC Hot Gas · CW34: 0%",
+    "PC Hot Gas · CW35: 0%",
+    "PC Hot Gas · CW36: 0%",
+    "PC Hot Gas · CW37: 0%",
+    "PC Hot Gas · CW38: 0%",
+    "PC Hot Gas · CW39: 0%",
+    "PC Hot Gas · CW40: 0%",
+    "PC Hot Gas · CW41: 0%",
+    "PC Hot Gas · CW42: 0%",
+    "PC Hot Gas · CW43: 0%",
+    "PC Hot Gas · CW44: 0%",
+    "PC Hot Gas · CW45: 0%",
+    "PC Hot Gas · CW46: 0%",
+    "PC Hot Gas · CW47: 0%",
+    "PC Hot Gas · CW48: 0%",
+    "PC Hot Gas · CW49: 0%",
+    "PC Hot Gas · CW50: 0%",
+    "PC Hot Gas · CW51: 0%",
+    "PC Hot Gas · CW52: 0%",
+    "Corrosion · CW1: 79%",
+    "Corrosion · CW2: 86%",
+    "Corrosion · CW3: 86%",
+    "Corrosion · CW4: 86%",
+    "Corrosion · CW5: 86%",
+    "Corrosion · CW6: 86%",
+    "Corrosion · CW7: 86%",
+    "Corrosion · CW8: 86%",
+    "Corrosion · CW9: 86%",
+    "Corrosion · CW10: 86%",
+    "Corrosion · CW11: 100%",
+    "Corrosion · CW12: 100%",
+    "Corrosion · CW13: 100%",
+    "Corrosion · CW14: 100%",
+    "Corrosion · CW15: 100%",
+    "Corrosion · CW16: 100%",
+    "Corrosion · CW17: 100%",
+    "Corrosion · CW18: 64%",
+    "Corrosion · CW19: 50%",
+    "Corrosion · CW20: 50%",
+    "Corrosion · CW21: 50%",
+    "Corrosion · CW22: 50%",
+    "Corrosion · CW23: 50%",
+    "Corrosion · CW24: 50%",
+    "Corrosion · CW25: 50%",
+    "Corrosion · CW26: 50%",
+    "Corrosion · CW27: 50%",
+    "Corrosion · CW28: 50%",
+    "Corrosion · CW29: 50%",
+    "Corrosion · CW30: 50%",
+    "Corrosion · CW31: 50%",
+    "Corrosion · CW32: 50%",
+    "Corrosion · CW33: 50%",
+    "Corrosion · CW34: 50%",
+    "Corrosion · CW35: 50%",
+    "Corrosion · CW36: 50%",
+    "Corrosion · CW37: 50%",
+    "Corrosion · CW38: 50%",
+    "Corrosion · CW39: 50%",
+    "Corrosion · CW40: 50%",
+    "Corrosion · CW41: 50%",
+    "Corrosion · CW42: 50%",
+    "Corrosion · CW43: 50%",
+    "Corrosion · CW44: 50%",
+    "Corrosion · CW45: 50%",
+    "Corrosion · CW46: 50%",
+    "Corrosion · CW47: 50%",
+    "Corrosion · CW48: 50%",
+    "Corrosion · CW49: 50%",
+    "Corrosion · CW50: 50%",
+    "Corrosion · CW51: 50%",
+    "Corrosion · CW52: 50%",
+    "Mechanical Fatigue · CW1: 39%",
+    "Mechanical Fatigue · CW2: 21%",
+    "Mechanical Fatigue · CW3: 10%",
+    "Mechanical Fatigue · CW4: 0%",
+    "Mechanical Fatigue · CW5: 0%",
+    "Mechanical Fatigue · CW6: 0%",
+    "Mechanical Fatigue · CW7: 0%",
+    "Mechanical Fatigue · CW8: 0%",
+    "Mechanical Fatigue · CW9: 19%",
+    "Mechanical Fatigue · CW10: 12%",
+    "Mechanical Fatigue · CW11: 0%",
+    "Mechanical Fatigue · CW12: 0%",
+    "Mechanical Fatigue · CW13: 0%",
+    "Mechanical Fatigue · CW14: 0%",
+    "Mechanical Fatigue · CW15: 0%",
+    "Mechanical Fatigue · CW16: 0%",
+    "Mechanical Fatigue · CW17: 0%",
+    "Mechanical Fatigue · CW18: 0%",
+    "Mechanical Fatigue · CW19: 0%",
+    "Mechanical Fatigue · CW20: 0%",
+    "Mechanical Fatigue · CW21: 0%",
+    "Mechanical Fatigue · CW22: 0%",
+    "Mechanical Fatigue · CW23: 0%",
+    "Mechanical Fatigue · CW24: 0%",
+    "Mechanical Fatigue · CW25: 0%",
+    "Mechanical Fatigue · CW26: 0%",
+    "Mechanical Fatigue · CW27: 0%",
+    "Mechanical Fatigue · CW28: 0%",
+    "Mechanical Fatigue · CW29: 0%",
+    "Mechanical Fatigue · CW30: 0%",
+    "Mechanical Fatigue · CW31: 0%",
+    "Mechanical Fatigue · CW32: 0%",
+    "Mechanical Fatigue · CW33: 0%",
+    "Mechanical Fatigue · CW34: 0%",
+    "Mechanical Fatigue · CW35: 0%",
+    "Mechanical Fatigue · CW36: 0%",
+    "Mechanical Fatigue · CW37: 0%",
+    "Mechanical Fatigue · CW38: 0%",
+    "Mechanical Fatigue · CW39: 0%",
+    "Mechanical Fatigue · CW40: 0%",
+    "Mechanical Fatigue · CW41: 0%",
+    "Mechanical Fatigue · CW42: 0%",
+    "Mechanical Fatigue · CW43: 0%",
+    "Mechanical Fatigue · CW44: 0%",
+    "Mechanical Fatigue · CW45: 0%",
+    "Mechanical Fatigue · CW46: 0%",
+    "Mechanical Fatigue · CW47: 0%",
+    "Mechanical Fatigue · CW48: 0%",
+    "Mechanical Fatigue · CW49: 0%",
+    "Mechanical Fatigue · CW50: 0%",
+    "Mechanical Fatigue · CW51: 0%",
+    "Mechanical Fatigue · CW52: 0%",
+    "Climatic / Environment · CW1: 38%",
+    "Climatic / Environment · CW2: 51%",
+    "Climatic / Environment · CW3: 48%",
+    "Climatic / Environment · CW4: 48%",
+    "Climatic / Environment · CW5: 48%",
+    "Climatic / Environment · CW6: 44%",
+    "Climatic / Environment · CW7: 33%",
+    "Climatic / Environment · CW8: 24%",
+    "Climatic / Environment · CW9: 27%",
+    "Climatic / Environment · CW10: 27%",
+    "Climatic / Environment · CW11: 24%",
+    "Climatic / Environment · CW12: 21%",
+    "Climatic / Environment · CW13: 24%",
+    "Climatic / Environment · CW14: 19%",
+    "Climatic / Environment · CW15: 19%",
+    "Climatic / Environment · CW16: 19%",
+    "Climatic / Environment · CW17: 19%",
+    "Climatic / Environment · CW18: 19%",
+    "Climatic / Environment · CW19: 19%",
+    "Climatic / Environment · CW20: 17%",
+    "Climatic / Environment · CW21: 19%",
+    "Climatic / Environment · CW22: 19%",
+    "Climatic / Environment · CW23: 19%",
+    "Climatic / Environment · CW24: 19%",
+    "Climatic / Environment · CW25: 17%",
+    "Climatic / Environment · CW26: 19%",
+    "Climatic / Environment · CW27: 19%",
+    "Climatic / Environment · CW28: 19%",
+    "Climatic / Environment · CW29: 19%",
+    "Climatic / Environment · CW30: 19%",
+    "Climatic / Environment · CW31: 19%",
+    "Climatic / Environment · CW32: 19%",
+    "Climatic / Environment · CW33: 17%",
+    "Climatic / Environment · CW34: 19%",
+    "Climatic / Environment · CW35: 19%",
+    "Climatic / Environment · CW36: 19%",
+    "Climatic / Environment · CW37: 19%",
+    "Climatic / Environment · CW38: 19%",
+    "Climatic / Environment · CW39: 19%",
+    "Climatic / Environment · CW40: 19%",
+    "Climatic / Environment · CW41: 17%",
+    "Climatic / Environment · CW42: 19%",
+    "Climatic / Environment · CW43: 19%",
+    "Climatic / Environment · CW44: 17%",
+    "Climatic / Environment · CW45: 19%",
+    "Climatic / Environment · CW46: 19%",
+    "Climatic / Environment · CW47: 19%",
+    "Climatic / Environment · CW48: 19%",
+    "Climatic / Environment · CW49: 16%",
+    "Climatic / Environment · CW50: 19%",
+    "Climatic / Environment · CW51: 19%",
+    "Climatic / Environment · CW52: 19%",
+    "Coolant Carts · CW1: 57%",
+    "Coolant Carts · CW2: 71%",
+    "Coolant Carts · CW3: 43%",
+    "Coolant Carts · CW4: 0%",
+    "Coolant Carts · CW5: 0%",
+    "Coolant Carts · CW6: 43%",
+    "Coolant Carts · CW7: 0%",
+    "Coolant Carts · CW8: 0%",
+    "Coolant Carts · CW9: 71%",
+    "Coolant Carts · CW10: 57%",
+    "Coolant Carts · CW11: 0%",
+    "Coolant Carts · CW12: 0%",
+    "Coolant Carts · CW13: 0%",
+    "Coolant Carts · CW14: 0%",
+    "Coolant Carts · CW15: 0%",
+    "Coolant Carts · CW16: 0%",
+    "Coolant Carts · CW17: 0%",
+    "Coolant Carts · CW18: 0%",
+    "Coolant Carts · CW19: 0%",
+    "Coolant Carts · CW20: 0%",
+    "Coolant Carts · CW21: 0%",
+    "Coolant Carts · CW22: 0%",
+    "Coolant Carts · CW23: 0%",
+    "Coolant Carts · CW24: 0%",
+    "Coolant Carts · CW25: 0%",
+    "Coolant Carts · CW26: 0%",
+    "Coolant Carts · CW27: 0%",
+    "Coolant Carts · CW28: 0%",
+    "Coolant Carts · CW29: 0%",
+    "Coolant Carts · CW30: 0%",
+    "Coolant Carts · CW31: 0%",
+    "Coolant Carts · CW32: 0%",
+    "Coolant Carts · CW33: 0%",
+    "Coolant Carts · CW34: 0%",
+    "Coolant Carts · CW35: 0%",
+    "Coolant Carts · CW36: 0%",
+    "Coolant Carts · CW37: 0%",
+    "Coolant Carts · CW38: 0%",
+    "Coolant Carts · CW39: 0%",
+    "Coolant Carts · CW40: 0%",
+    "Coolant Carts · CW41: 0%",
+    "Coolant Carts · CW42: 0%",
+    "Coolant Carts · CW43: 0%",
+    "Coolant Carts · CW44: 0%",
+    "Coolant Carts · CW45: 0%",
+    "Coolant Carts · CW46: 0%",
+    "Coolant Carts · CW47: 0%",
+    "Coolant Carts · CW48: 0%",
+    "Coolant Carts · CW49: 0%",
+    "Coolant Carts · CW50: 0%",
+    "Coolant Carts · CW51: 0%",
+    "Coolant Carts · CW52: 0%"
+   ]
+  },
+  "tablas": [
+   {
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      "Durability MD/HD Hot Gas",
+      "5",
+      "5",
+      "552 / 840",
+      [
+       "66%",
+       "66%",
+       "66% de las horas disponibles"
+      ],
+      "1",
+      "1"
+     ],
+     [
+      "PC Hot Gas",
+      "3",
+      "2",
+      "192 / 504",
+      [
+       "38%",
+       "38%",
+       "38% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Corrosion",
+      "2",
+      "2",
+      "288 / 336",
+      [
+       "86%",
+       "86%",
+       "86% de las horas disponibles"
+      ],
+      "0",
+      "1"
+     ],
+     [
+      "Mechanical Fatigue",
+      "6",
+      "3",
+      "192 / 1008",
+      [
+       "19%",
+       "19%",
+       "19% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Climatic / Environment",
+      "9",
+      "2",
+      "192 / 1512",
+      [
+       "13%",
+       "13%",
+       "13% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Coolant Carts",
+      "1",
+      "1",
+      "96 / 168",
+      [
+       "57%",
+       "57%",
+       "57% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "TOTAL",
+      "",
+      "",
+      "1512 / 4368",
+      [
+       "35%",
+       "35%",
+       ""
+      ],
+      "",
+      ""
+     ]
+    ],
+    "periodo": "CW53 · 28 Dec 26 → 03 Jan 27"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": null,
+  "semana": "CW53 · 28 Dec 26 → 03 Jan 27",
+  "org": "ALL",
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW5314/26Bancos con carga18Corriendo / acumulando horas2En retraso (declarado)⚠️ 15 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW118/26Bancos con carga34Corriendo / acumulando horas2En retraso (declarado)⚠️ 13 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   }
+  ],
+  "alerta": null,
+  "tarjetas": [
+   {
+    "titulo": "Annual plan by bench",
+    "hints": [
+     "Weekly resolution across 2027. Use Prev/Next above (or “Zoom to week”) to see a natural week at daily resolution."
+    ],
+    "botones": [
+     "🔍 Zoom to week",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   },
+   {
+    "titulo": "% Ocupación por CW · 2027",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Full year"
+    ],
+    "casillas": [
+     "1",
+     "52"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   },
+   {
+    "titulo": "Ocupación por tipo de banco",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Año",
+     "Semana del dashboard"
+    ],
+    "casillas": [
+     "53",
+     "53"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Jan 27",
+     "Feb 27",
+     "Mar 27",
+     "Apr 27",
+     "May 27",
+     "Jun 27",
+     "Jul 27",
+     "Aug 27",
+     "Sept 27",
+     "Oct 27",
+     "Nov 27",
+     "Dec 27",
+     "Jan 28"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW1"
+    ]
+   ],
+   "dias": null,
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "MD1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 61,
+       "titulo": "MD1 · Calibration (bench blocked) · 00000 - STC General Works Calibration · 01 Jan 27→10 Jan 27",
+       "texto": "00000 - STC General Works · Calibration · Calibración",
+       "clases": [
+        "striped"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Jan 27→21 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 ICA",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 162,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 22 Jan 27→01 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 02 Feb 27→12 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #2",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 360,
+       "w": 97,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 13 Feb 27→23 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR6 PCAv2 #3",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 459,
+       "w": 61,
+       "titulo": "MD1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 24 Feb 27→02 Mar 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Thermal Fatigue Simplified MR1 (ICA)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD2 · Delayed · PPQ5 Viana #5 Thermal Fatigue · 27 Oct 26→04 Jan 27",
+       "texto": "PPQ5 Viana #5 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD2 · Running · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP Eff & dP · 09 Nov 26→04 Jan 27",
+       "texto": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP · Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 61,
+       "titulo": "MD2 · Queued · 00306 - Perkins C6.6 HP Eff & dP · 05 Jan 27→11 Jan 27",
+       "texto": "00306 - Perkins C6.6 HP · Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 72,
+       "w": 25,
+       "titulo": "MD2 · Queued · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 Eff & dP · 12 Jan 27→14 Jan 27",
+       "texto": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · Eff & dP · x3 Samples (170 kg/h)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 99,
+       "w": 61,
+       "titulo": "MD2 · Queued · PPQ5 #29 Thermal Fatigue · 15 Jan 27→21 Jan 27",
+       "texto": "PPQ5 #29 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 162,
+       "w": 61,
+       "titulo": "MD2 · Queued · PPQ5 #30 Thermal Fatigue · 22 Jan 27→28 Jan 27",
+       "texto": "PPQ5 #30 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "MD2 · Queued · 80552 - Ford Scorpion MY27 Eff & dP · 29 Jan 27→02 Feb 27",
+       "texto": "80552 - Ford Scorpion MY27 · Eff & dP · Eff& dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 142,
+       "titulo": "MD2 · Queued · 80552 - Ford Scorpion MY27 Thermal Fatigue · 03 Feb 27→18 Feb 27",
+       "texto": "80552 - Ford Scorpion MY27 · Thermal Fatigue · Thermal fatigue - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 414,
+       "w": 223,
+       "titulo": "MD2 · Queued · 00651 - Ford - EGR Cooler - 2.5L Duratec Thermal Fatigue · 19 Feb 27→15 Mar 27",
+       "texto": "00651 - Ford - EGR Cooler - 2.5L Duratec · Thermal Fatigue · 6 Samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 639,
+       "w": 70,
+       "titulo": "MD2 · Queued · 80842 - Legend 10L Eff & dP · 16 Mar 27→23 Mar 27",
+       "texto": "80842 - Legend 10L · Eff & dP · Eff & dP - PV2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD3",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "MD3 · Delayed · PPQ5 #28 Thermal Fatigue · 03 Nov 26→04 Jan 27",
+       "texto": "PPQ5 #28 · Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 142,
+       "titulo": "MD3 · Queued · 10847 - BMW - EGR Module - B57 TU3 EU7 Thermal Fatigue · 05 Jan 27→20 Jan 27",
+       "texto": "10847 - BMW - EGR Module - B57 TU3 EU7 · Thermal Fatigue · Thermoshock propina 384h-600h",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 21 Jan 27→30 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · Cambio proveedor - 4pzas",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 252,
+       "w": 43,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Eff & dP · 01 Feb 27→05 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Eff & dP · PV Dixon - EffdP",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 297,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 06 Feb 27→15 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · PV Dixon - TF",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 387,
+       "w": 88,
+       "titulo": "MD3 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Thermal Fatigue · 16 Feb 27→25 Feb 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Thermal Fatigue · PV Dixon - Propina TF",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 477,
+       "w": 322,
+       "titulo": "MD3 · Calibration (bench blocked) · 00000 - STC General Works Calibration · 26 Feb 27→02 Apr 27",
+       "texto": "00000 - STC General Works · Calibration · Calibración",
+       "clases": [
+        "striped"
+       ]
+      },
+      {
+       "x": 801,
+       "w": 169,
+       "titulo": "MD3 · Queued · 11133 - BMW - HP EGR Modul - HP Modul  N-B X7D20XX Thermal Fatigue · 03 Apr 27→21 Apr 27",
+       "texto": "11133 - BMW - HP EGR Modul - HP Modul N-B X7D20XX · Thermal Fatigue · Validación Anual - 4x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 972,
+       "w": 115,
+       "titulo": "MD3 · Queued · 80842 - Legend 10L Thermal Fatigue · 22 Apr 27→04 May 27",
+       "texto": "80842 - Legend 10L · Thermal Fatigue · Propina TF PV1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 1089,
+       "w": 214,
+       "titulo": "MD3 · Queued · 80842 - Legend 10L Thermal Fatigue · 05 May 27→28 May 27",
+       "texto": "80842 - Legend 10L · Thermal Fatigue · PV2 TF",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD4",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 178,
+       "titulo": "MD4 · Running · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Sept 26→23 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-Sample ICA",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 189,
+       "w": 70,
+       "titulo": "MD4 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 25 Jan 27→01 Feb 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-sample baseline - pruebas ciclado",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 925,
+       "titulo": "MD4 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 02 Feb 27→15 May 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-sample ICA",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Camiones",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Camiones · Running · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP · 02 Nov 26→04 Jan 27",
+       "texto": "80001417 - Endeavour - Recuperator - MT350 Recuperator · Eff & dP · Pruebas Eficiencia (caudalímetros/termopares)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 25,
+       "titulo": "Camiones · Queued · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP · 05 Jan 27→07 Jan 27",
+       "texto": "80001417 - Endeavour - Recuperator - MT350 Recuperator · Eff & dP · Recuperador 102 celdas-2º",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 36,
+       "w": 160,
+       "titulo": "Camiones · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 08 Jan 27→25 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · Transition Duct TF",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Turismos · Running · 00577 Renault M9R Cooler Eff & dP · 02 Nov 26→04 Jan 27",
+       "texto": "00577 Renault M9R Cooler · Eff & dP · Eff&dP x 3 Samples",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Gasolina · Running · 00204 - Ford - EGR Cooler - Panther Commercial Vehicle Boiling · 02 Nov 26→04 Jan 27",
+       "texto": "00204 - Ford - EGR Cooler - Panther Commercial Vehicle · Boiling · Boiling test",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Gasolina · Queued · 82225 - Stellantis EB2 1.2 Eff & dP · 05 Jan 27→08 Jan 27",
+       "texto": "82225 - Stellantis EB2 1.2 · Eff & dP · Eff&dP x1 proto",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 43,
+       "titulo": "Gasolina · Queued · 11133 - BMW - HP EGR Modul - HP Modul  N-B X7D20XX Eff & dP · 11 Jan 27→15 Jan 27",
+       "texto": "11133 - BMW - HP EGR Modul - HP Modul N-B X7D20XX · Eff & dP · Validación Anual - 4x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "Gasolina · Queued · 82726 - GM LZ0 - EGR cooler Eff & dP · 18 Jan 27→20 Jan 27",
+       "texto": "82726 - GM LZ0 - EGR cooler · Eff & dP · Eff&dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 79,
+       "titulo": "Gasolina · Queued · 82726 - GM LZ0 - EGR cooler Thermal Fatigue · 21 Jan 27→29 Jan 27",
+       "texto": "82726 - GM LZ0 - EGR cooler · Thermal Fatigue · Galling test - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Gasolina · Running · HKMC 1.2L EGR cooler Eff & dP · 23 Nov 26→04 Jan 27",
+       "texto": "HKMC 1.2L EGR cooler · Eff & dP · Eff & dP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FT Turismos",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "BC1 (4 branches)",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 3337,
+       "titulo": "BC1 (4 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 16 Oct 26→05 Jul 28",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 3 + 1 Gamma2",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "BC2 (12 branches)",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 637,
+       "titulo": "BC2 (12 branches) · Queued · 80000552 - Ford - EGR Module - MY27 6.7L Scorpion EGR Module Corrosion · 04 Jan 27→15 Mar 27",
+       "texto": "80000552 - Ford - EGR Module - MY27 6.7L Scorpion EGR Module · Corrosion · Corrosión 3 baterías",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 639,
+       "w": 448,
+       "titulo": "BC2 (12 branches) · Queued · 80002613 VW EGR Module EA 211 Corrosion · 16 Mar 27→04 May 27",
+       "texto": "80002613 VW EGR Module EA 211 · Corrosion · x5 Samples Corrosion @150ºC",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Manual Cylinder",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Fatiga",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Fatiga · Running · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Displacement · 02 Nov 26→04 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Displacement · One Cell Displacement (OSE Ramos)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 79,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 05 Jan 27→13 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Banana Shape (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 90,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 14 Jan 27→18 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Solid Pin (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 135,
+       "w": 25,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 19 Jan 27→21 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Side Intrusion (PPG RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 01 Mar 27→05 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · Banana Shape (THERMALEX RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 567,
+       "w": 43,
+       "titulo": "Fatiga · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement · 08 Mar 27→12 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Displacement · One cell (THERMALEX RAMOS)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "FP Aceite 1 · Running · 00938 - Perkins Compact X 3.6LRC Pressure Fatigue · 04 Nov 26→04 Jan 27",
+       "texto": "00938 - Perkins Compact X 3.6LRC · Pressure Fatigue · Housing Change - Lado Agua",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "FP Aceite 1 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Pressure Fatigue · 05 Jan 27→08 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Pressure Fatigue · Cambio Proveedores Serie- FP GAS - 4 samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 45,
+       "w": 7,
+       "titulo": "FP Aceite 1 · Queued · 80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC Pressure Fatigue · 09 Jan 27→09 Jan 27",
+       "texto": "80000923 - Volvo - EGR COOLER - Volvo GTT EGR COOLER HDEP 2027_ 13L TC · Pressure Fatigue · Cambio Proveedores Serie- FP COOLANT - 4 samples",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 54,
+       "w": 43,
+       "titulo": "FP Aceite 1 · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Pressure Fatigue · 10 Jan 27→14 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Pressure Fatigue · FP monoceldasTBC",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Urna Burst RT",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Urna Burst RT · Running · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 02 Nov 26→04 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst test - 5 piezas perfil HYDRO",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Urna Burst RT · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Burst Test · 05 Jan 27→08 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (snake indiv. perfil OSE)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "Urna Burst RT · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 01 Mar 27→03 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos THERMALEX)-individual x5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Other Tasks",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1500 WC",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 151,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Ageing · 04 Jan 27→20 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Ageing · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 70,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 21 Jan 27→28 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 29 Jan 27→02 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 25,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 03 Feb 27→05 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "1500 WC · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst · 08 Feb 27→10 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst · PV Validation",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1500 Aire",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "1500 Aire · Running · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 05 Nov 26→04 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 61,
+       "titulo": "1500 Aire · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Burst Test · 05 Jan 27→11 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (Assembly perfil OSE)",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 72,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 12 Jan 27→13 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · P&S Woco Improved Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 90,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 14 Jan 27→18 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 135,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 19 Jan 27→20 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Spigot Rugosidad",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque K01 · 21 Jan 27→25 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · K01 · Manifolds Celanese",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 198,
+       "w": 16,
+       "titulo": "1500 Aire · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 26 Jan 27→27 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · Manifolds Celanese",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 216,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 28 Jan 27→01 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · 3W ALU - standalone Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 25,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 02 Feb 27→04 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 288,
+       "w": 43,
+       "titulo": "1500 Aire · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 05 Feb 27→09 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst P&S RT",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 333,
+       "w": 52,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 10 Feb 27→15 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 387,
+       "w": 34,
+       "titulo": "1500 Aire · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 16 Feb 27→19 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 97,
+       "titulo": "2000 CTAG · Queued · 11368 - R&D - Recuperator - Recuperator ICR350 Humidity · 04 Jan 27→14 Jan 27",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Humidity · Humidity",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 99,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 15 Jan 27→19 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 144,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 20 Jan 27→22 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · P&S Woco Improved Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 189,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 25 Jan 27→26 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 207,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 27 Jan 27→28 Jan 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 34,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Vacuum · 29 Jan 27→01 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Vacuum · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 261,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 02 Feb 27→04 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · Spigot Rugosidad",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 288,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Burst Test · 05 Feb 27→09 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Burst Test · Spigot Rugosidad + self adhesive",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 333,
+       "w": 61,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Pressure Fatigue · 10 Feb 27→16 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Pressure Fatigue · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 396,
+       "w": 16,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Overpressure · 17 Feb 27→18 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Overpressure · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 414,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001754 - Rimac - eCooler  - Bane Cinque Burst Test · 19 Feb 27→23 Feb 27",
+       "texto": "80001754 - Rimac - eCooler - Bane Cinque · Burst Test · OSE Profile Validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 459,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 24 Feb 27→26 Feb 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 1",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 01 Mar 27→03 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 2",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 531,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 04 Mar 27→08 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 3",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 576,
+       "w": 25,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 09 Mar 27→11 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 4",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 603,
+       "w": 43,
+       "titulo": "2000 CTAG · Queued · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Type Test · 12 Mar 27→16 Mar 27",
+       "texto": "80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7 · Type Test · HV increase study - Batch 5",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 648,
+       "w": 52,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Type Test · 17 Mar 27→22 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Type Test · Ramos PPG USA to MEX",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 702,
+       "w": 79,
+       "titulo": "2000 CTAG · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue · 23 Mar 27→31 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Pressure Fatigue · PV Ramos - Service life (post ageing tests)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK127",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "KK129",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 3337,
+       "titulo": "KK129 · Queued · HVCH HVCH · 04 Jan 27→05 Jun 28",
+       "texto": "HVCH · HVCH",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 1357,
+       "titulo": "KK129 · Completed · HVCH Not available",
+       "texto": "✓ HVCH",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK118",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 547,
+       "titulo": "1000 CTAG 1 · Running · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 20 Aug 26→05 Mar 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube - standalone validation + 3W ALU validation",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 549,
+       "w": 2788,
+       "titulo": "1000 CTAG 1 · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 06 Mar 27→17 Feb 30",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 2",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "XXL CTAG",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 34,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony K01 · 04 Jan 27→07 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · K01 · K01 - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 36,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 08 Jan 27→12 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 81,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 13 Jan 27→15 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 18 Jan 27→20 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 153,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony K01 · 21 Jan 27→25 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · K01 · K01 6 montajes - PV",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 198,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony P03 · 26 Jan 27→28 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · P03 · P03",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 225,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 29 Jan 27→02 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - PV serial tests",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 270,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony P03 · 03 Feb 27→05 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · P03 · P03",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Pressure Fatigue · 08 Feb 27→10 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Pressure Fatigue · Pressure pulsation - mechanical validation",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 342,
+       "w": 43,
+       "titulo": "XXL CTAG · Queued · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test · 11 Feb 27→15 Feb 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst - PV serial tests",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Snakes dP",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Snakes dP · Running · 80001755 - Rimac - eCooler - Ampere Ceremony dP Coolant · 02 Nov 26→04 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · dP Coolant · 4/5 piezas perfil Hydro",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 7,
+       "titulo": "Snakes dP · Running · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Eff & dP · 03 Nov 26→04 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Eff & dP · Thermal Hydraulic Function 15 piezas Ramos OSE",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      },
+      {
+       "x": 9,
+       "w": 34,
+       "titulo": "Snakes dP · Queued · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling dP Coolant · 05 Jan 27→08 Jan 27",
+       "texto": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · dP Coolant · Estudio correlacion USA (6 piezas) 100 l/h @ 46 ºC",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 63,
+       "w": 43,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling dP Coolant · 11 Jan 27→15 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · dP Coolant · Estudio nivel aplastado (15 piezas) 39 ºC",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 126,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 18 Jan 27→20 Jan 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness FUSHI Ramos + SELF ADHESIVE",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 315,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 08 Feb 27→10 Feb 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness AMG Ramos",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 504,
+       "w": 25,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 01 Mar 27→03 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Leak tightness THERMALEX Ramos",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 531,
+       "w": 70,
+       "titulo": "Snakes dP · Queued · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Eff & dP · 04 Mar 27→11 Mar 27",
+       "texto": "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling · Eff & dP · Cooling Capacity THERMALEX Ramos - 20 piezas",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "grafica": {
+   "ancho": "1302",
+   "leyenda": [
+    [
+     "Durability MD/HD Hot Gas",
+     "1"
+    ],
+    [
+     "PC Hot Gas",
+     "1"
+    ],
+    [
+     "Corrosion",
+     "1"
+    ],
+    [
+     "Mechanical Fatigue",
+     "1"
+    ],
+    [
+     "Climatic / Environment",
+     "1"
+    ],
+    [
+     "Coolant Carts",
+     "1"
+    ]
+   ],
+   "textos": [
+    [
+     "0%",
+     "34",
+     "213"
+    ],
+    [
+     "25%",
+     "34",
+     "164.5"
+    ],
+    [
+     "50%",
+     "34",
+     "116"
+    ],
+    [
+     "75%",
+     "34",
+     "67.5"
+    ],
+    [
+     "100%",
+     "34",
+     "19"
+    ],
+    [
+     "CW1",
+     "52",
+     "230"
+    ],
+    [
+     "CW3",
+     "100",
+     "230"
+    ],
+    [
+     "CW5",
+     "148",
+     "230"
+    ],
+    [
+     "CW7",
+     "196",
+     "230"
+    ],
+    [
+     "CW9",
+     "244",
+     "230"
+    ],
+    [
+     "CW11",
+     "292",
+     "230"
+    ],
+    [
+     "CW13",
+     "340",
+     "230"
+    ],
+    [
+     "CW15",
+     "388",
+     "230"
+    ],
+    [
+     "CW17",
+     "436",
+     "230"
+    ],
+    [
+     "CW19",
+     "484",
+     "230"
+    ],
+    [
+     "CW21",
+     "532",
+     "230"
+    ],
+    [
+     "CW23",
+     "580",
+     "230"
+    ],
+    [
+     "CW25",
+     "628",
+     "230"
+    ],
+    [
+     "CW27",
+     "676",
+     "230"
+    ],
+    [
+     "CW29",
+     "724",
+     "230"
+    ],
+    [
+     "CW31",
+     "772",
+     "230"
+    ],
+    [
+     "CW33",
+     "820",
+     "230"
+    ],
+    [
+     "CW35",
+     "868",
+     "230"
+    ],
+    [
+     "CW37",
+     "916",
+     "230"
+    ],
+    [
+     "CW39",
+     "964",
+     "230"
+    ],
+    [
+     "CW41",
+     "1012",
+     "230"
+    ],
+    [
+     "CW43",
+     "1060",
+     "230"
+    ],
+    [
+     "CW45",
+     "1108",
+     "230"
+    ],
+    [
+     "CW47",
+     "1156",
+     "230"
+    ],
+    [
+     "CW49",
+     "1204",
+     "230"
+    ],
+    [
+     "CW51",
+     "1252",
+     "230"
+    ]
+   ],
+   "lineas": [
+    [
+     "52,93.60000000000001 76,37.34 100,33.46000000000001 124,76.14000000000001 148,66.44 172,66.44 196,66.44 220,81.96000000000001 244,132.39999999999998 268,144.04 292,149.86 316,159.56 340,159.56 364,132.39999999999998 388,132.39999999999998 412,144.04 436,144.04 460,144.04 484,149.86 508,188.66 532,182.84 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(76, 141, 255)"
+    ],
+    [
+     "52,163.44 76,163.44 100,145.98000000000002 124,163.44 148,210 172,210 196,210 220,210 244,210 268,210 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(35, 188, 163)"
+    ],
+    [
+     "52,56.73999999999998 76,43.16 100,43.16 124,43.16 148,43.16 172,43.16 196,43.16 220,43.16 244,43.16 268,43.16 292,16 316,16 340,16 364,16 388,16 412,16 436,16 460,85.84 484,113 508,113 532,113 556,113 580,113 604,113 628,113 652,113 676,113 700,113 724,113 748,113 772,113 796,113 820,113 844,113 868,113 892,113 916,113 940,113 964,113 988,113 1012,113 1036,113 1060,113 1084,113 1108,113 1132,113 1156,113 1180,113 1204,113 1228,113 1252,113 1276,113",
+     "rgb(255, 200, 0)"
+    ],
+    [
+     "52,134.34 76,169.26 100,190.6 124,210 148,210 172,210 196,210 220,210 244,173.14 268,186.72 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(168, 54, 221)"
+    ],
+    [
+     "52,136.28 76,111.06 100,116.88000000000001 124,116.88000000000001 148,116.88000000000001 172,124.64 196,145.98000000000002 220,163.44 244,157.62 268,157.62 292,163.44 316,169.26 340,163.44 364,173.14 388,173.14 412,173.14 436,173.14 460,173.14 484,173.14 508,177.01999999999998 532,173.14 556,173.14 580,173.14 604,173.14 628,177.01999999999998 652,173.14 676,173.14 700,173.14 724,173.14 748,173.14 772,173.14 796,173.14 820,177.01999999999998 844,173.14 868,173.14 892,173.14 916,173.14 940,173.14 964,173.14 988,173.14 1012,177.01999999999998 1036,173.14 1060,173.14 1084,177.01999999999998 1108,173.14 1132,173.14 1156,173.14 1180,173.14 1204,178.96 1228,173.14 1252,173.14 1276,173.14",
+     "rgb(0, 204, 255)"
+    ],
+    [
+     "52,99.42000000000002 76,72.26000000000002 100,126.58 124,210 148,210 172,126.58 196,210 220,210 244,72.26000000000002 268,99.42000000000002 292,210 316,210 340,210 364,210 388,210 412,210 436,210 460,210 484,210 508,210 532,210 556,210 580,210 604,210 628,210 652,210 676,210 700,210 724,210 748,210 772,210 796,210 820,210 844,210 868,210 892,210 916,210 940,210 964,210 988,210 1012,210 1036,210 1060,210 1084,210 1108,210 1132,210 1156,210 1180,210 1204,210 1228,210 1252,210 1276,210",
+     "rgb(190, 35, 35)"
+    ]
+   ],
+   "puntos": [
+    "Durability MD/HD Hot Gas · CW1: 60%",
+    "Durability MD/HD Hot Gas · CW2: 89%",
+    "Durability MD/HD Hot Gas · CW3: 91%",
+    "Durability MD/HD Hot Gas · CW4: 69%",
+    "Durability MD/HD Hot Gas · CW5: 74%",
+    "Durability MD/HD Hot Gas · CW6: 74%",
+    "Durability MD/HD Hot Gas · CW7: 74%",
+    "Durability MD/HD Hot Gas · CW8: 66%",
+    "Durability MD/HD Hot Gas · CW9: 40%",
+    "Durability MD/HD Hot Gas · CW10: 34%",
+    "Durability MD/HD Hot Gas · CW11: 31%",
+    "Durability MD/HD Hot Gas · CW12: 26%",
+    "Durability MD/HD Hot Gas · CW13: 26%",
+    "Durability MD/HD Hot Gas · CW14: 40%",
+    "Durability MD/HD Hot Gas · CW15: 40%",
+    "Durability MD/HD Hot Gas · CW16: 34%",
+    "Durability MD/HD Hot Gas · CW17: 34%",
+    "Durability MD/HD Hot Gas · CW18: 34%",
+    "Durability MD/HD Hot Gas · CW19: 31%",
+    "Durability MD/HD Hot Gas · CW20: 11%",
+    "Durability MD/HD Hot Gas · CW21: 14%",
+    "Durability MD/HD Hot Gas · CW22: 0%",
+    "Durability MD/HD Hot Gas · CW23: 0%",
+    "Durability MD/HD Hot Gas · CW24: 0%",
+    "Durability MD/HD Hot Gas · CW25: 0%",
+    "Durability MD/HD Hot Gas · CW26: 0%",
+    "Durability MD/HD Hot Gas · CW27: 0%",
+    "Durability MD/HD Hot Gas · CW28: 0%",
+    "Durability MD/HD Hot Gas · CW29: 0%",
+    "Durability MD/HD Hot Gas · CW30: 0%",
+    "Durability MD/HD Hot Gas · CW31: 0%",
+    "Durability MD/HD Hot Gas · CW32: 0%",
+    "Durability MD/HD Hot Gas · CW33: 0%",
+    "Durability MD/HD Hot Gas · CW34: 0%",
+    "Durability MD/HD Hot Gas · CW35: 0%",
+    "Durability MD/HD Hot Gas · CW36: 0%",
+    "Durability MD/HD Hot Gas · CW37: 0%",
+    "Durability MD/HD Hot Gas · CW38: 0%",
+    "Durability MD/HD Hot Gas · CW39: 0%",
+    "Durability MD/HD Hot Gas · CW40: 0%",
+    "Durability MD/HD Hot Gas · CW41: 0%",
+    "Durability MD/HD Hot Gas · CW42: 0%",
+    "Durability MD/HD Hot Gas · CW43: 0%",
+    "Durability MD/HD Hot Gas · CW44: 0%",
+    "Durability MD/HD Hot Gas · CW45: 0%",
+    "Durability MD/HD Hot Gas · CW46: 0%",
+    "Durability MD/HD Hot Gas · CW47: 0%",
+    "Durability MD/HD Hot Gas · CW48: 0%",
+    "Durability MD/HD Hot Gas · CW49: 0%",
+    "Durability MD/HD Hot Gas · CW50: 0%",
+    "Durability MD/HD Hot Gas · CW51: 0%",
+    "Durability MD/HD Hot Gas · CW52: 0%",
+    "PC Hot Gas · CW1: 24%",
+    "PC Hot Gas · CW2: 24%",
+    "PC Hot Gas · CW3: 33%",
+    "PC Hot Gas · CW4: 24%",
+    "PC Hot Gas · CW5: 0%",
+    "PC Hot Gas · CW6: 0%",
+    "PC Hot Gas · CW7: 0%",
+    "PC Hot Gas · CW8: 0%",
+    "PC Hot Gas · CW9: 0%",
+    "PC Hot Gas · CW10: 0%",
+    "PC Hot Gas · CW11: 0%",
+    "PC Hot Gas · CW12: 0%",
+    "PC Hot Gas · CW13: 0%",
+    "PC Hot Gas · CW14: 0%",
+    "PC Hot Gas · CW15: 0%",
+    "PC Hot Gas · CW16: 0%",
+    "PC Hot Gas · CW17: 0%",
+    "PC Hot Gas · CW18: 0%",
+    "PC Hot Gas · CW19: 0%",
+    "PC Hot Gas · CW20: 0%",
+    "PC Hot Gas · CW21: 0%",
+    "PC Hot Gas · CW22: 0%",
+    "PC Hot Gas · CW23: 0%",
+    "PC Hot Gas · CW24: 0%",
+    "PC Hot Gas · CW25: 0%",
+    "PC Hot Gas · CW26: 0%",
+    "PC Hot Gas · CW27: 0%",
+    "PC Hot Gas · CW28: 0%",
+    "PC Hot Gas · CW29: 0%",
+    "PC Hot Gas · CW30: 0%",
+    "PC Hot Gas · CW31: 0%",
+    "PC Hot Gas · CW32: 0%",
+    "PC Hot Gas · CW33: 0%",
+    "PC Hot Gas · CW34: 0%",
+    "PC Hot Gas · CW35: 0%",
+    "PC Hot Gas · CW36: 0%",
+    "PC Hot Gas · CW37: 0%",
+    "PC Hot Gas · CW38: 0%",
+    "PC Hot Gas · CW39: 0%",
+    "PC Hot Gas · CW40: 0%",
+    "PC Hot Gas · CW41: 0%",
+    "PC Hot Gas · CW42: 0%",
+    "PC Hot Gas · CW43: 0%",
+    "PC Hot Gas · CW44: 0%",
+    "PC Hot Gas · CW45: 0%",
+    "PC Hot Gas · CW46: 0%",
+    "PC Hot Gas · CW47: 0%",
+    "PC Hot Gas · CW48: 0%",
+    "PC Hot Gas · CW49: 0%",
+    "PC Hot Gas · CW50: 0%",
+    "PC Hot Gas · CW51: 0%",
+    "PC Hot Gas · CW52: 0%",
+    "Corrosion · CW1: 79%",
+    "Corrosion · CW2: 86%",
+    "Corrosion · CW3: 86%",
+    "Corrosion · CW4: 86%",
+    "Corrosion · CW5: 86%",
+    "Corrosion · CW6: 86%",
+    "Corrosion · CW7: 86%",
+    "Corrosion · CW8: 86%",
+    "Corrosion · CW9: 86%",
+    "Corrosion · CW10: 86%",
+    "Corrosion · CW11: 100%",
+    "Corrosion · CW12: 100%",
+    "Corrosion · CW13: 100%",
+    "Corrosion · CW14: 100%",
+    "Corrosion · CW15: 100%",
+    "Corrosion · CW16: 100%",
+    "Corrosion · CW17: 100%",
+    "Corrosion · CW18: 64%",
+    "Corrosion · CW19: 50%",
+    "Corrosion · CW20: 50%",
+    "Corrosion · CW21: 50%",
+    "Corrosion · CW22: 50%",
+    "Corrosion · CW23: 50%",
+    "Corrosion · CW24: 50%",
+    "Corrosion · CW25: 50%",
+    "Corrosion · CW26: 50%",
+    "Corrosion · CW27: 50%",
+    "Corrosion · CW28: 50%",
+    "Corrosion · CW29: 50%",
+    "Corrosion · CW30: 50%",
+    "Corrosion · CW31: 50%",
+    "Corrosion · CW32: 50%",
+    "Corrosion · CW33: 50%",
+    "Corrosion · CW34: 50%",
+    "Corrosion · CW35: 50%",
+    "Corrosion · CW36: 50%",
+    "Corrosion · CW37: 50%",
+    "Corrosion · CW38: 50%",
+    "Corrosion · CW39: 50%",
+    "Corrosion · CW40: 50%",
+    "Corrosion · CW41: 50%",
+    "Corrosion · CW42: 50%",
+    "Corrosion · CW43: 50%",
+    "Corrosion · CW44: 50%",
+    "Corrosion · CW45: 50%",
+    "Corrosion · CW46: 50%",
+    "Corrosion · CW47: 50%",
+    "Corrosion · CW48: 50%",
+    "Corrosion · CW49: 50%",
+    "Corrosion · CW50: 50%",
+    "Corrosion · CW51: 50%",
+    "Corrosion · CW52: 50%",
+    "Mechanical Fatigue · CW1: 39%",
+    "Mechanical Fatigue · CW2: 21%",
+    "Mechanical Fatigue · CW3: 10%",
+    "Mechanical Fatigue · CW4: 0%",
+    "Mechanical Fatigue · CW5: 0%",
+    "Mechanical Fatigue · CW6: 0%",
+    "Mechanical Fatigue · CW7: 0%",
+    "Mechanical Fatigue · CW8: 0%",
+    "Mechanical Fatigue · CW9: 19%",
+    "Mechanical Fatigue · CW10: 12%",
+    "Mechanical Fatigue · CW11: 0%",
+    "Mechanical Fatigue · CW12: 0%",
+    "Mechanical Fatigue · CW13: 0%",
+    "Mechanical Fatigue · CW14: 0%",
+    "Mechanical Fatigue · CW15: 0%",
+    "Mechanical Fatigue · CW16: 0%",
+    "Mechanical Fatigue · CW17: 0%",
+    "Mechanical Fatigue · CW18: 0%",
+    "Mechanical Fatigue · CW19: 0%",
+    "Mechanical Fatigue · CW20: 0%",
+    "Mechanical Fatigue · CW21: 0%",
+    "Mechanical Fatigue · CW22: 0%",
+    "Mechanical Fatigue · CW23: 0%",
+    "Mechanical Fatigue · CW24: 0%",
+    "Mechanical Fatigue · CW25: 0%",
+    "Mechanical Fatigue · CW26: 0%",
+    "Mechanical Fatigue · CW27: 0%",
+    "Mechanical Fatigue · CW28: 0%",
+    "Mechanical Fatigue · CW29: 0%",
+    "Mechanical Fatigue · CW30: 0%",
+    "Mechanical Fatigue · CW31: 0%",
+    "Mechanical Fatigue · CW32: 0%",
+    "Mechanical Fatigue · CW33: 0%",
+    "Mechanical Fatigue · CW34: 0%",
+    "Mechanical Fatigue · CW35: 0%",
+    "Mechanical Fatigue · CW36: 0%",
+    "Mechanical Fatigue · CW37: 0%",
+    "Mechanical Fatigue · CW38: 0%",
+    "Mechanical Fatigue · CW39: 0%",
+    "Mechanical Fatigue · CW40: 0%",
+    "Mechanical Fatigue · CW41: 0%",
+    "Mechanical Fatigue · CW42: 0%",
+    "Mechanical Fatigue · CW43: 0%",
+    "Mechanical Fatigue · CW44: 0%",
+    "Mechanical Fatigue · CW45: 0%",
+    "Mechanical Fatigue · CW46: 0%",
+    "Mechanical Fatigue · CW47: 0%",
+    "Mechanical Fatigue · CW48: 0%",
+    "Mechanical Fatigue · CW49: 0%",
+    "Mechanical Fatigue · CW50: 0%",
+    "Mechanical Fatigue · CW51: 0%",
+    "Mechanical Fatigue · CW52: 0%",
+    "Climatic / Environment · CW1: 38%",
+    "Climatic / Environment · CW2: 51%",
+    "Climatic / Environment · CW3: 48%",
+    "Climatic / Environment · CW4: 48%",
+    "Climatic / Environment · CW5: 48%",
+    "Climatic / Environment · CW6: 44%",
+    "Climatic / Environment · CW7: 33%",
+    "Climatic / Environment · CW8: 24%",
+    "Climatic / Environment · CW9: 27%",
+    "Climatic / Environment · CW10: 27%",
+    "Climatic / Environment · CW11: 24%",
+    "Climatic / Environment · CW12: 21%",
+    "Climatic / Environment · CW13: 24%",
+    "Climatic / Environment · CW14: 19%",
+    "Climatic / Environment · CW15: 19%",
+    "Climatic / Environment · CW16: 19%",
+    "Climatic / Environment · CW17: 19%",
+    "Climatic / Environment · CW18: 19%",
+    "Climatic / Environment · CW19: 19%",
+    "Climatic / Environment · CW20: 17%",
+    "Climatic / Environment · CW21: 19%",
+    "Climatic / Environment · CW22: 19%",
+    "Climatic / Environment · CW23: 19%",
+    "Climatic / Environment · CW24: 19%",
+    "Climatic / Environment · CW25: 17%",
+    "Climatic / Environment · CW26: 19%",
+    "Climatic / Environment · CW27: 19%",
+    "Climatic / Environment · CW28: 19%",
+    "Climatic / Environment · CW29: 19%",
+    "Climatic / Environment · CW30: 19%",
+    "Climatic / Environment · CW31: 19%",
+    "Climatic / Environment · CW32: 19%",
+    "Climatic / Environment · CW33: 17%",
+    "Climatic / Environment · CW34: 19%",
+    "Climatic / Environment · CW35: 19%",
+    "Climatic / Environment · CW36: 19%",
+    "Climatic / Environment · CW37: 19%",
+    "Climatic / Environment · CW38: 19%",
+    "Climatic / Environment · CW39: 19%",
+    "Climatic / Environment · CW40: 19%",
+    "Climatic / Environment · CW41: 17%",
+    "Climatic / Environment · CW42: 19%",
+    "Climatic / Environment · CW43: 19%",
+    "Climatic / Environment · CW44: 17%",
+    "Climatic / Environment · CW45: 19%",
+    "Climatic / Environment · CW46: 19%",
+    "Climatic / Environment · CW47: 19%",
+    "Climatic / Environment · CW48: 19%",
+    "Climatic / Environment · CW49: 16%",
+    "Climatic / Environment · CW50: 19%",
+    "Climatic / Environment · CW51: 19%",
+    "Climatic / Environment · CW52: 19%",
+    "Coolant Carts · CW1: 57%",
+    "Coolant Carts · CW2: 71%",
+    "Coolant Carts · CW3: 43%",
+    "Coolant Carts · CW4: 0%",
+    "Coolant Carts · CW5: 0%",
+    "Coolant Carts · CW6: 43%",
+    "Coolant Carts · CW7: 0%",
+    "Coolant Carts · CW8: 0%",
+    "Coolant Carts · CW9: 71%",
+    "Coolant Carts · CW10: 57%",
+    "Coolant Carts · CW11: 0%",
+    "Coolant Carts · CW12: 0%",
+    "Coolant Carts · CW13: 0%",
+    "Coolant Carts · CW14: 0%",
+    "Coolant Carts · CW15: 0%",
+    "Coolant Carts · CW16: 0%",
+    "Coolant Carts · CW17: 0%",
+    "Coolant Carts · CW18: 0%",
+    "Coolant Carts · CW19: 0%",
+    "Coolant Carts · CW20: 0%",
+    "Coolant Carts · CW21: 0%",
+    "Coolant Carts · CW22: 0%",
+    "Coolant Carts · CW23: 0%",
+    "Coolant Carts · CW24: 0%",
+    "Coolant Carts · CW25: 0%",
+    "Coolant Carts · CW26: 0%",
+    "Coolant Carts · CW27: 0%",
+    "Coolant Carts · CW28: 0%",
+    "Coolant Carts · CW29: 0%",
+    "Coolant Carts · CW30: 0%",
+    "Coolant Carts · CW31: 0%",
+    "Coolant Carts · CW32: 0%",
+    "Coolant Carts · CW33: 0%",
+    "Coolant Carts · CW34: 0%",
+    "Coolant Carts · CW35: 0%",
+    "Coolant Carts · CW36: 0%",
+    "Coolant Carts · CW37: 0%",
+    "Coolant Carts · CW38: 0%",
+    "Coolant Carts · CW39: 0%",
+    "Coolant Carts · CW40: 0%",
+    "Coolant Carts · CW41: 0%",
+    "Coolant Carts · CW42: 0%",
+    "Coolant Carts · CW43: 0%",
+    "Coolant Carts · CW44: 0%",
+    "Coolant Carts · CW45: 0%",
+    "Coolant Carts · CW46: 0%",
+    "Coolant Carts · CW47: 0%",
+    "Coolant Carts · CW48: 0%",
+    "Coolant Carts · CW49: 0%",
+    "Coolant Carts · CW50: 0%",
+    "Coolant Carts · CW51: 0%",
+    "Coolant Carts · CW52: 0%"
+   ]
+  },
+  "tablas": [
+   {
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      "Durability MD/HD Hot Gas",
+      "5",
+      "5",
+      "552 / 840",
+      [
+       "66%",
+       "66%",
+       "66% de las horas disponibles"
+      ],
+      "1",
+      "1"
+     ],
+     [
+      "PC Hot Gas",
+      "3",
+      "2",
+      "192 / 504",
+      [
+       "38%",
+       "38%",
+       "38% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Corrosion",
+      "2",
+      "2",
+      "288 / 336",
+      [
+       "86%",
+       "86%",
+       "86% de las horas disponibles"
+      ],
+      "0",
+      "1"
+     ],
+     [
+      "Mechanical Fatigue",
+      "6",
+      "3",
+      "192 / 1008",
+      [
+       "19%",
+       "19%",
+       "19% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Climatic / Environment",
+      "9",
+      "2",
+      "192 / 1512",
+      [
+       "13%",
+       "13%",
+       "13% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Coolant Carts",
+      "1",
+      "1",
+      "96 / 168",
+      [
+       "57%",
+       "57%",
+       "57% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "TOTAL",
+      "",
+      "",
+      "1512 / 4368",
+      [
+       "35%",
+       "35%",
+       ""
+      ],
+      "",
+      ""
+     ]
+    ],
+    "periodo": "CW53 · 28 Dec 26 → 03 Jan 27"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

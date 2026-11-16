@@ -1,0 +1,3616 @@
+{
+ "original": {
+  "titulo": "1500 Aire",
+  "semana": null,
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "00306 - Perkins C6.6 HP",
+   "clase": "",
+   "lw": "440px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27",
+     "Feb 27"
+    ],
+    [
+     "",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ],
+    [
+     "M16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "W18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "F20",
+     ""
+    ],
+    [
+     "S21",
+     "we"
+    ],
+    [
+     "S22",
+     "we"
+    ],
+    [
+     "M23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "W25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "F27",
+     ""
+    ],
+    [
+     "S28",
+     "we"
+    ],
+    [
+     "S29",
+     "we"
+    ],
+    [
+     "M30",
+     ""
+    ],
+    [
+     "T1",
+     ""
+    ],
+    [
+     "W2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "F4",
+     ""
+    ],
+    [
+     "S5",
+     "we"
+    ],
+    [
+     "S6",
+     "hol we"
+    ],
+    [
+     "M7",
+     ""
+    ],
+    [
+     "T8",
+     "hol"
+    ],
+    [
+     "W9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "F11",
+     ""
+    ],
+    [
+     "S12",
+     "we"
+    ],
+    [
+     "S13",
+     "we"
+    ],
+    [
+     "M14",
+     ""
+    ],
+    [
+     "T15",
+     ""
+    ],
+    [
+     "W16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "F18",
+     ""
+    ],
+    [
+     "S19",
+     "we"
+    ],
+    [
+     "S20",
+     "we"
+    ],
+    [
+     "M21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "W23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "F25",
+     "hol"
+    ],
+    [
+     "S26",
+     "we"
+    ],
+    [
+     "S27",
+     "we"
+    ],
+    [
+     "M28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "W30",
+     ""
+    ],
+    [
+     "T31",
+     ""
+    ],
+    [
+     "F1",
+     ""
+    ],
+    [
+     "S2",
+     "we"
+    ],
+    [
+     "S3",
+     "we"
+    ],
+    [
+     "M4",
+     ""
+    ],
+    [
+     "T5",
+     ""
+    ],
+    [
+     "W6",
+     ""
+    ],
+    [
+     "T7",
+     ""
+    ],
+    [
+     "F8",
+     ""
+    ],
+    [
+     "S9",
+     "we"
+    ],
+    [
+     "S10",
+     "we"
+    ],
+    [
+     "M11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "W13",
+     ""
+    ],
+    [
+     "T14",
+     ""
+    ],
+    [
+     "F15",
+     ""
+    ],
+    [
+     "S16",
+     "we"
+    ],
+    [
+     "S17",
+     "we"
+    ],
+    [
+     "M18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "W20",
+     ""
+    ],
+    [
+     "T21",
+     ""
+    ],
+    [
+     "F22",
+     ""
+    ],
+    [
+     "S23",
+     "we"
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "M25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "W27",
+     ""
+    ],
+    [
+     "T28",
+     ""
+    ],
+    [
+     "F29",
+     ""
+    ],
+    [
+     "S30",
+     "we"
+    ],
+    [
+     "S31",
+     "we"
+    ],
+    [
+     "M1",
+     ""
+    ],
+    [
+     "T2",
+     ""
+    ],
+    [
+     "W3",
+     ""
+    ],
+    [
+     "T4",
+     ""
+    ],
+    [
+     "F5",
+     ""
+    ],
+    [
+     "S6",
+     "we"
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "M8",
+     ""
+    ],
+    [
+     "T9",
+     ""
+    ],
+    [
+     "W10",
+     ""
+    ],
+    [
+     "T11",
+     ""
+    ],
+    [
+     "F12",
+     ""
+    ],
+    [
+     "S13",
+     "we"
+    ]
+   ],
+   "hoy": 530,
+   "filas": [
+    {
+     "banco": "P1 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 90,
+       "w": 206,
+       "titulo": "Running · Burst Test · 05 Nov 26→11 Nov 26 · 0% · confirmed 05 Nov 26→11 Nov 26",
+       "texto": "Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80) · 0%",
+       "clases": [
+        "solid",
+        "haloq",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 105,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 285,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "P2 · 80001028 - BMW - eCooler - XNF Gen 6 Battery coolingBurst Test · Burst Pressure (Assembly perfil OSE)",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 300,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 12 Nov 26→17 Nov 26 · 0%",
+       "texto": "Burst Test · Burst Pressure (Assembly perfil OSE)",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P3 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · P&S Woco Improved Validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 480,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 18 Nov 26→19 Nov 26 · 0%",
+       "texto": "Burst Test · P&S Woco Improved Validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P4 · 80001754 - Rimac - eCooler - Bane CinqueBurst Test · Hydro Profile Validation + INOX",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 540,
+       "w": 146,
+       "titulo": "Queued · Burst Test · 20 Nov 26→24 Nov 26 · 0%",
+       "texto": "Burst Test · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P5 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Spigot Rugosidad",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 690,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 25 Nov 26→26 Nov 26 · 0%",
+       "texto": "Burst Test · Spigot Rugosidad",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P6 · 80001754 - Rimac - eCooler - Bane CinqueK01 · Manifolds Celanese",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 750,
+       "w": 146,
+       "titulo": "Queued · K01 · 27 Nov 26→01 Dec 26 · 0%",
+       "texto": "K01 · Manifolds Celanese",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P7 · 80001754 - Rimac - eCooler - Bane CinqueBurst Test · Manifolds Celanese",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 900,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 02 Dec 26→03 Dec 26 · 0%",
+       "texto": "Burst Test · Manifolds Celanese",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P8 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · 3W ALU - standalone Validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 960,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 04 Dec 26→09 Dec 26 · 0%",
+       "texto": "Burst Test · 3W ALU - standalone Validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P9 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · Corrugated Tube + 3W plastic validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1140,
+       "w": 146,
+       "titulo": "Queued · Burst Test · 10 Dec 26→14 Dec 26 · 0%",
+       "texto": "Burst Test · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P10 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · Burst P&S RT",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1290,
+       "w": 86,
+       "titulo": "Queued · Burst Test · 15 Dec 26→17 Dec 26 · 0%",
+       "texto": "Burst Test · Burst P&S RT",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P11 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1380,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 18 Dec 26→23 Dec 26 · 0%",
+       "texto": "Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P12 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 2940,
+       "w": 116,
+       "titulo": "Queued · Burst Test · 08 Feb 27→11 Feb 27 · 0%",
+       "texto": "Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "capturas": [
+   {
+    "tipo": "excel",
+    "matriz": {
+     "title": "Test bench: 1500 Aire  ·  Focus: 00306 - Perkins C6.6 HP",
+     "mode": "daily",
+     "days": [
+      {
+       "day": 2,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": true
+      },
+      {
+       "day": 6,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Nov 26",
+       "cw": 49,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "F",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      }
+     ],
+     "rows": [
+      {
+       "label": "P1 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 3,
+         "c1": 9,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P2 · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "cells": [
+        {
+         "c0": 10,
+         "c1": 15,
+         "text": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (Assembly perfil OSE)",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P3 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 16,
+         "c1": 17,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · P&S Woco Improved Validation",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P4 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 18,
+         "c1": 22,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · Burst Test · Hydro Profile Validation + INOX",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P5 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 23,
+         "c1": 24,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Spigot Rugosidad",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P6 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 25,
+         "c1": 29,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · K01 · Manifolds Celanese",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P7 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 30,
+         "c1": 31,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · Burst Test · Manifolds Celanese",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P8 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 32,
+         "c1": 37,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · 3W ALU - standalone Validation ",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P9 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 38,
+         "c1": 42,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Corrugated Tube + 3W plastic validation ",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P10 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 43,
+         "c1": 45,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst P&S RT",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P11 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 46,
+         "c1": 51,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P12 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 98,
+         "c1": 101,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      }
+     ],
+     "legend": [
+      {
+       "name": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "color": "#E5C07B"
+      },
+      {
+       "name": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "color": "#9AD14B"
+      },
+      {
+       "name": "80001754 - Rimac - eCooler  - Bane Cinque",
+       "color": "#6BB5FF"
+      },
+      {
+       "name": "80001755 - Rimac - eCooler - Ampere Ceremony",
+       "color": "#6BB5FF"
+      }
+     ],
+     "focus": "00306 - Perkins C6.6 HP"
+    }
+   },
+   {
+    "tipo": "descarga",
+    "nombre": "Test_bench_1500_Aire_Focus_00306_Perkins_20261105.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "1500 Aire",
+  "semana": null,
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "00306 - Perkins C6.6 HP",
+   "clase": "",
+   "lw": "440px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27",
+     "Feb 27"
+    ],
+    [
+     "",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ],
+    [
+     "M16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "W18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "F20",
+     ""
+    ],
+    [
+     "S21",
+     "we"
+    ],
+    [
+     "S22",
+     "we"
+    ],
+    [
+     "M23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "W25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "F27",
+     ""
+    ],
+    [
+     "S28",
+     "we"
+    ],
+    [
+     "S29",
+     "we"
+    ],
+    [
+     "M30",
+     ""
+    ],
+    [
+     "T1",
+     ""
+    ],
+    [
+     "W2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "F4",
+     ""
+    ],
+    [
+     "S5",
+     "we"
+    ],
+    [
+     "S6",
+     "hol we"
+    ],
+    [
+     "M7",
+     ""
+    ],
+    [
+     "T8",
+     "hol"
+    ],
+    [
+     "W9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "F11",
+     ""
+    ],
+    [
+     "S12",
+     "we"
+    ],
+    [
+     "S13",
+     "we"
+    ],
+    [
+     "M14",
+     ""
+    ],
+    [
+     "T15",
+     ""
+    ],
+    [
+     "W16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "F18",
+     ""
+    ],
+    [
+     "S19",
+     "we"
+    ],
+    [
+     "S20",
+     "we"
+    ],
+    [
+     "M21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "W23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "F25",
+     "hol"
+    ],
+    [
+     "S26",
+     "we"
+    ],
+    [
+     "S27",
+     "we"
+    ],
+    [
+     "M28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "W30",
+     ""
+    ],
+    [
+     "T31",
+     ""
+    ],
+    [
+     "F1",
+     ""
+    ],
+    [
+     "S2",
+     "we"
+    ],
+    [
+     "S3",
+     "we"
+    ],
+    [
+     "M4",
+     ""
+    ],
+    [
+     "T5",
+     ""
+    ],
+    [
+     "W6",
+     ""
+    ],
+    [
+     "T7",
+     ""
+    ],
+    [
+     "F8",
+     ""
+    ],
+    [
+     "S9",
+     "we"
+    ],
+    [
+     "S10",
+     "we"
+    ],
+    [
+     "M11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "W13",
+     ""
+    ],
+    [
+     "T14",
+     ""
+    ],
+    [
+     "F15",
+     ""
+    ],
+    [
+     "S16",
+     "we"
+    ],
+    [
+     "S17",
+     "we"
+    ],
+    [
+     "M18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "W20",
+     ""
+    ],
+    [
+     "T21",
+     ""
+    ],
+    [
+     "F22",
+     ""
+    ],
+    [
+     "S23",
+     "we"
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "M25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "W27",
+     ""
+    ],
+    [
+     "T28",
+     ""
+    ],
+    [
+     "F29",
+     ""
+    ],
+    [
+     "S30",
+     "we"
+    ],
+    [
+     "S31",
+     "we"
+    ],
+    [
+     "M1",
+     ""
+    ],
+    [
+     "T2",
+     ""
+    ],
+    [
+     "W3",
+     ""
+    ],
+    [
+     "T4",
+     ""
+    ],
+    [
+     "F5",
+     ""
+    ],
+    [
+     "S6",
+     "we"
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "M8",
+     ""
+    ],
+    [
+     "T9",
+     ""
+    ],
+    [
+     "W10",
+     ""
+    ],
+    [
+     "T11",
+     ""
+    ],
+    [
+     "F12",
+     ""
+    ],
+    [
+     "S13",
+     "we"
+    ]
+   ],
+   "hoy": 530,
+   "filas": [
+    {
+     "banco": "P1 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 90,
+       "w": 206,
+       "titulo": "Running · Burst Test · 05 Nov 26→11 Nov 26 · 0% · confirmed 05 Nov 26→11 Nov 26",
+       "texto": "Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80) · 0%",
+       "clases": [
+        "solid",
+        "haloq",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 105,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 285,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "P2 · 80001028 - BMW - eCooler - XNF Gen 6 Battery coolingBurst Test · Burst Pressure (Assembly perfil OSE)",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 300,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 12 Nov 26→17 Nov 26 · 0%",
+       "texto": "Burst Test · Burst Pressure (Assembly perfil OSE)",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P3 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · P&S Woco Improved Validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 480,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 18 Nov 26→19 Nov 26 · 0%",
+       "texto": "Burst Test · P&S Woco Improved Validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P4 · 80001754 - Rimac - eCooler - Bane CinqueBurst Test · Hydro Profile Validation + INOX",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 540,
+       "w": 146,
+       "titulo": "Queued · Burst Test · 20 Nov 26→24 Nov 26 · 0%",
+       "texto": "Burst Test · Hydro Profile Validation + INOX",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P5 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Spigot Rugosidad",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 690,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 25 Nov 26→26 Nov 26 · 0%",
+       "texto": "Burst Test · Spigot Rugosidad",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P6 · 80001754 - Rimac - eCooler - Bane CinqueK01 · Manifolds Celanese",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 750,
+       "w": 146,
+       "titulo": "Queued · K01 · 27 Nov 26→01 Dec 26 · 0%",
+       "texto": "K01 · Manifolds Celanese",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P7 · 80001754 - Rimac - eCooler - Bane CinqueBurst Test · Manifolds Celanese",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 900,
+       "w": 56,
+       "titulo": "Queued · Burst Test · 02 Dec 26→03 Dec 26 · 0%",
+       "texto": "Burst Test · Manifolds Celanese",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P8 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · 3W ALU - standalone Validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 960,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 04 Dec 26→09 Dec 26 · 0%",
+       "texto": "Burst Test · 3W ALU - standalone Validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P9 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · Corrugated Tube + 3W plastic validation",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1140,
+       "w": 146,
+       "titulo": "Queued · Burst Test · 10 Dec 26→14 Dec 26 · 0%",
+       "texto": "Burst Test · Corrugated Tube + 3W plastic validation",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P10 · 80001755 - Rimac - eCooler - Ampere CeremonyBurst Test · Burst P&S RT",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1290,
+       "w": 86,
+       "titulo": "Queued · Burst Test · 15 Dec 26→17 Dec 26 · 0%",
+       "texto": "Burst Test · Burst P&S RT",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P11 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 1380,
+       "w": 176,
+       "titulo": "Queued · Burst Test · 18 Dec 26→23 Dec 26 · 0%",
+       "texto": "Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P12 · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery coolingBurst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+     "ancho": 3120,
+     "barras": [
+      {
+       "x": 2940,
+       "w": 116,
+       "titulo": "Queued · Burst Test · 08 Feb 27→11 Feb 27 · 0%",
+       "texto": "Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+       "clases": [
+        "solid",
+        "g-dim"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "capturas": [
+   {
+    "tipo": "excel",
+    "matriz": {
+     "title": "Test bench: 1500 Aire  ·  Focus: 00306 - Perkins C6.6 HP",
+     "mode": "daily",
+     "days": [
+      {
+       "day": 2,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": true
+      },
+      {
+       "day": 6,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Nov 26",
+       "cw": 49,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "F",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Feb 27",
+       "cw": 5,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Feb 27",
+       "cw": 6,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      }
+     ],
+     "rows": [
+      {
+       "label": "P1 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 3,
+         "c1": 9,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · P&S Woco Improved Validation (3 montajes -40,RT,80)",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P2 · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "cells": [
+        {
+         "c0": 10,
+         "c1": 15,
+         "text": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · Burst Test · Burst Pressure (Assembly perfil OSE)",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P3 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 16,
+         "c1": 17,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · P&S Woco Improved Validation",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P4 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 18,
+         "c1": 22,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · Burst Test · Hydro Profile Validation + INOX",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P5 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 23,
+         "c1": 24,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Spigot Rugosidad",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P6 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 25,
+         "c1": 29,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · K01 · Manifolds Celanese",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P7 · 80001754 - Rimac - eCooler  - Bane Cinque",
+       "cells": [
+        {
+         "c0": 30,
+         "c1": 31,
+         "text": "80001754 - Rimac - eCooler  - Bane Cinque · Burst Test · Manifolds Celanese",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001754 - Rimac - eCooler  - Bane Cinque"
+        }
+       ]
+      },
+      {
+       "label": "P8 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 32,
+         "c1": 37,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · 3W ALU - standalone Validation ",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P9 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 38,
+         "c1": 42,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Corrugated Tube + 3W plastic validation ",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P10 · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "cells": [
+        {
+         "c0": 43,
+         "c1": 45,
+         "text": "80001755 - Rimac - eCooler - Ampere Ceremony · Burst Test · Burst P&S RT",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80001755 - Rimac - eCooler - Ampere Ceremony"
+        }
+       ]
+      },
+      {
+       "label": "P11 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 46,
+         "c1": 51,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Burst Pressure (Ramos FUSHI) - RT/-40/80",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      },
+      {
+       "label": "P12 · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "cells": [
+        {
+         "c0": 98,
+         "c1": 101,
+         "text": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · Burst Test · Burst Pressure (Ramos AMG) - RT/-40/80",
+         "color": "#8CA0AD",
+         "dim": true,
+         "proj": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling"
+        }
+       ]
+      }
+     ],
+     "legend": [
+      {
+       "name": "80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling",
+       "color": "#E5C07B"
+      },
+      {
+       "name": "80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "color": "#9AD14B"
+      },
+      {
+       "name": "80001754 - Rimac - eCooler  - Bane Cinque",
+       "color": "#6BB5FF"
+      },
+      {
+       "name": "80001755 - Rimac - eCooler - Ampere Ceremony",
+       "color": "#6BB5FF"
+      }
+     ],
+     "focus": "00306 - Perkins C6.6 HP"
+    }
+   },
+   {
+    "tipo": "descarga",
+    "nombre": "Test_bench_1500_Aire_Focus_00306_Perkins_20261105.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

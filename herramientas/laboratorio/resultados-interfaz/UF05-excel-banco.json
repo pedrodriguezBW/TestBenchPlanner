@@ -1,0 +1,3358 @@
+{
+ "original": {
+  "titulo": "MD2",
+  "semana": null,
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "",
+   "lw": "418px",
+   "cabeceras": [
+    [
+     "",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M26",
+     ""
+    ],
+    [
+     "T27",
+     ""
+    ],
+    [
+     "W28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "F30",
+     ""
+    ],
+    [
+     "S31",
+     "we"
+    ],
+    [
+     "S1",
+     "hol we"
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ],
+    [
+     "M16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "W18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "F20",
+     ""
+    ],
+    [
+     "S21",
+     "we"
+    ],
+    [
+     "S22",
+     "we"
+    ],
+    [
+     "M23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "W25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "F27",
+     ""
+    ],
+    [
+     "S28",
+     "we"
+    ],
+    [
+     "S29",
+     "we"
+    ],
+    [
+     "M30",
+     ""
+    ],
+    [
+     "T1",
+     ""
+    ],
+    [
+     "W2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "F4",
+     ""
+    ],
+    [
+     "S5",
+     "we"
+    ],
+    [
+     "S6",
+     "hol we"
+    ],
+    [
+     "M7",
+     ""
+    ],
+    [
+     "T8",
+     "hol"
+    ],
+    [
+     "W9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "F11",
+     ""
+    ],
+    [
+     "S12",
+     "we"
+    ],
+    [
+     "S13",
+     "we"
+    ],
+    [
+     "M14",
+     ""
+    ],
+    [
+     "T15",
+     ""
+    ],
+    [
+     "W16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "F18",
+     ""
+    ],
+    [
+     "S19",
+     "we"
+    ],
+    [
+     "S20",
+     "we"
+    ],
+    [
+     "M21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "W23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "F25",
+     "hol"
+    ],
+    [
+     "S26",
+     "we"
+    ],
+    [
+     "S27",
+     "we"
+    ],
+    [
+     "M28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "W30",
+     ""
+    ],
+    [
+     "T31",
+     ""
+    ],
+    [
+     "F1",
+     ""
+    ],
+    [
+     "S2",
+     "we"
+    ],
+    [
+     "S3",
+     "we"
+    ],
+    [
+     "M4",
+     ""
+    ],
+    [
+     "T5",
+     ""
+    ],
+    [
+     "W6",
+     ""
+    ],
+    [
+     "T7",
+     ""
+    ],
+    [
+     "F8",
+     ""
+    ],
+    [
+     "S9",
+     "we"
+    ],
+    [
+     "S10",
+     "we"
+    ],
+    [
+     "M11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "W13",
+     ""
+    ],
+    [
+     "T14",
+     ""
+    ],
+    [
+     "F15",
+     ""
+    ],
+    [
+     "S16",
+     "we"
+    ],
+    [
+     "S17",
+     "we"
+    ],
+    [
+     "M18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "W20",
+     ""
+    ],
+    [
+     "T21",
+     ""
+    ],
+    [
+     "F22",
+     ""
+    ],
+    [
+     "S23",
+     "we"
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "M25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "W27",
+     ""
+    ],
+    [
+     "T28",
+     ""
+    ],
+    [
+     "F29",
+     ""
+    ],
+    [
+     "S30",
+     "we"
+    ],
+    [
+     "S31",
+     "we"
+    ]
+   ],
+   "hoy": 718,
+   "filas": [
+    {
+     "banco": "P1 · PPQ5 Viana #5Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 30,
+       "w": 386,
+       "titulo": "Delayed · Thermal Fatigue · 27 Oct 26→08 Nov 26 · 60% · confirmed 16 Oct 26→25 Oct 26",
+       "texto": "Thermal Fatigue · PPQ5 · 60%",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": -285,
+       "tipo": "s",
+       "color": "rgb(255, 107, 107)"
+      },
+      {
+       "x": -15,
+       "tipo": "e",
+       "color": "rgb(255, 107, 107)"
+      }
+     ]
+    },
+    {
+     "banco": "P2 · 00113 - Perkins - EGR Cooler & Tube - C4.4 HPEff & dP · Inner fin change x3 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 420,
+       "w": 116,
+       "titulo": "Queued · Eff & dP · 09 Nov 26→12 Nov 26 · 0%",
+       "texto": "Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P3 · 00306 - Perkins C6.6 HPEff & dP · Inner fin change x3 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 540,
+       "w": 176,
+       "titulo": "Queued · Eff & dP · 13 Nov 26→18 Nov 26 · 0%",
+       "texto": "Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P4 · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6Eff & dP · x3 Samples (170 kg/h)",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 720,
+       "w": 146,
+       "titulo": "Queued · Eff & dP · 19 Nov 26→23 Nov 26 · 0%",
+       "texto": "Eff & dP · x3 Samples (170 kg/h)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P5 · PPQ5 #29Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 870,
+       "w": 206,
+       "titulo": "Queued · Thermal Fatigue · 24 Nov 26→30 Nov 26 · 0%",
+       "texto": "Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P6 · PPQ5 #30Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1080,
+       "w": 206,
+       "titulo": "Queued · Thermal Fatigue · 01 Dec 26→07 Dec 26 · 0%",
+       "texto": "Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P7 · 80552 - Ford Scorpion MY27Eff & dP · Eff& dP - 2x samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1320,
+       "w": 86,
+       "titulo": "Queued · Eff & dP · 09 Dec 26→11 Dec 26 · 0%",
+       "texto": "Eff & dP · Eff& dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P8 · 80552 - Ford Scorpion MY27Thermal Fatigue · Thermal fatigue - 2x samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1470,
+       "w": 506,
+       "titulo": "Queued · Thermal Fatigue · 14 Dec 26→30 Dec 26 · 0%",
+       "texto": "Thermal Fatigue · Thermal fatigue - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P9 · 00651 - Ford - EGR Cooler - 2.5L DuratecThermal Fatigue · 6 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1980,
+       "w": 686,
+       "titulo": "Queued · Thermal Fatigue · 31 Dec 26→22 Jan 27 · 0%",
+       "texto": "Thermal Fatigue · 6 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P10 · 80842 - Legend 10LEff & dP · Eff & dP - PV2",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 2730,
+       "w": 146,
+       "titulo": "Queued · Eff & dP · 25 Jan 27→29 Jan 27 · 0%",
+       "texto": "Eff & dP · Eff & dP - PV2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "capturas": [
+   {
+    "tipo": "excel",
+    "matriz": {
+     "title": "Test bench: MD2",
+     "mode": "daily",
+     "days": [
+      {
+       "day": 26,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Nov 26",
+       "cw": 44,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": true
+      },
+      {
+       "day": 6,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Nov 26",
+       "cw": 49,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "F",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      }
+     ],
+     "rows": [
+      {
+       "label": "P1 · PPQ5 Viana #5",
+       "cells": [
+        {
+         "c0": 1,
+         "c1": 13,
+         "text": "PPQ5 Viana #5 · Thermal Fatigue · PPQ5",
+         "color": "#E5C07B",
+         "dim": "",
+         "proj": "PPQ5 Viana #5"
+        }
+       ]
+      },
+      {
+       "label": "P2 · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "cells": [
+        {
+         "c0": 14,
+         "c1": 17,
+         "text": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP · Eff & dP · Inner fin change x3 Samples",
+         "color": "#E86A92",
+         "dim": "",
+         "proj": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP"
+        }
+       ]
+      },
+      {
+       "label": "P3 · 00306 - Perkins C6.6 HP",
+       "cells": [
+        {
+         "c0": 18,
+         "c1": 23,
+         "text": "00306 - Perkins C6.6 HP · Eff & dP · Inner fin change x3 Samples",
+         "color": "#E86A92",
+         "dim": "",
+         "proj": "00306 - Perkins C6.6 HP"
+        }
+       ]
+      },
+      {
+       "label": "P4 · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6",
+       "cells": [
+        {
+         "c0": 24,
+         "c1": 28,
+         "text": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · Eff & dP · x3 Samples (170 kg/h)",
+         "color": "#F5A623",
+         "dim": "",
+         "proj": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6"
+        }
+       ]
+      },
+      {
+       "label": "P5 · PPQ5 #29",
+       "cells": [
+        {
+         "c0": 29,
+         "c1": 35,
+         "text": "PPQ5 #29 · Thermal Fatigue · PPQ5",
+         "color": "#56B6C2",
+         "dim": "",
+         "proj": "PPQ5 #29"
+        }
+       ]
+      },
+      {
+       "label": "P6 · PPQ5 #30",
+       "cells": [
+        {
+         "c0": 36,
+         "c1": 42,
+         "text": "PPQ5 #30 · Thermal Fatigue · PPQ5",
+         "color": "#B08BEA",
+         "dim": "",
+         "proj": "PPQ5 #30"
+        }
+       ]
+      },
+      {
+       "label": "P7 · 80552 - Ford Scorpion MY27",
+       "cells": [
+        {
+         "c0": 44,
+         "c1": 46,
+         "text": "80552 - Ford Scorpion MY27 · Eff & dP · Eff& dP - 2x samples",
+         "color": "#FF8FA3",
+         "dim": "",
+         "proj": "80552 - Ford Scorpion MY27"
+        }
+       ]
+      },
+      {
+       "label": "P8 · 80552 - Ford Scorpion MY27",
+       "cells": [
+        {
+         "c0": 49,
+         "c1": 65,
+         "text": "80552 - Ford Scorpion MY27 · Thermal Fatigue · Thermal fatigue - 2x samples",
+         "color": "#FF8FA3",
+         "dim": "",
+         "proj": "80552 - Ford Scorpion MY27"
+        }
+       ]
+      },
+      {
+       "label": "P9 · 00651 - Ford - EGR Cooler - 2.5L Duratec",
+       "cells": [
+        {
+         "c0": 66,
+         "c1": 88,
+         "text": "00651 - Ford - EGR Cooler - 2.5L Duratec · Thermal Fatigue · 6 Samples",
+         "color": "#7BD389",
+         "dim": "",
+         "proj": "00651 - Ford - EGR Cooler - 2.5L Duratec"
+        }
+       ]
+      },
+      {
+       "label": "P10 · 80842 - Legend 10L",
+       "cells": [
+        {
+         "c0": 91,
+         "c1": 95,
+         "text": "80842 - Legend 10L · Eff & dP · Eff & dP - PV2",
+         "color": "#D19A66",
+         "dim": "",
+         "proj": "80842 - Legend 10L"
+        }
+       ]
+      }
+     ],
+     "legend": [
+      {
+       "name": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "color": "#E86A92"
+      },
+      {
+       "name": "00306 - Perkins C6.6 HP",
+       "color": "#E86A92"
+      },
+      {
+       "name": "00651 - Ford - EGR Cooler - 2.5L Duratec",
+       "color": "#7BD389"
+      },
+      {
+       "name": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6",
+       "color": "#F5A623"
+      },
+      {
+       "name": "80552 - Ford Scorpion MY27",
+       "color": "#FF8FA3"
+      },
+      {
+       "name": "80842 - Legend 10L",
+       "color": "#D19A66"
+      },
+      {
+       "name": "PPQ5 #29",
+       "color": "#56B6C2"
+      },
+      {
+       "name": "PPQ5 #30",
+       "color": "#B08BEA"
+      },
+      {
+       "name": "PPQ5 Viana #5",
+       "color": "#E5C07B"
+      }
+     ],
+     "focus": ""
+    }
+   },
+   {
+    "tipo": "descarga",
+    "nombre": "Test_bench_MD2_20261105.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "MD2",
+  "semana": null,
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "",
+   "lw": "418px",
+   "cabeceras": [
+    [
+     "",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M26",
+     ""
+    ],
+    [
+     "T27",
+     ""
+    ],
+    [
+     "W28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "F30",
+     ""
+    ],
+    [
+     "S31",
+     "we"
+    ],
+    [
+     "S1",
+     "hol we"
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ],
+    [
+     "M16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "W18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "F20",
+     ""
+    ],
+    [
+     "S21",
+     "we"
+    ],
+    [
+     "S22",
+     "we"
+    ],
+    [
+     "M23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "W25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "F27",
+     ""
+    ],
+    [
+     "S28",
+     "we"
+    ],
+    [
+     "S29",
+     "we"
+    ],
+    [
+     "M30",
+     ""
+    ],
+    [
+     "T1",
+     ""
+    ],
+    [
+     "W2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "F4",
+     ""
+    ],
+    [
+     "S5",
+     "we"
+    ],
+    [
+     "S6",
+     "hol we"
+    ],
+    [
+     "M7",
+     ""
+    ],
+    [
+     "T8",
+     "hol"
+    ],
+    [
+     "W9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "F11",
+     ""
+    ],
+    [
+     "S12",
+     "we"
+    ],
+    [
+     "S13",
+     "we"
+    ],
+    [
+     "M14",
+     ""
+    ],
+    [
+     "T15",
+     ""
+    ],
+    [
+     "W16",
+     ""
+    ],
+    [
+     "T17",
+     ""
+    ],
+    [
+     "F18",
+     ""
+    ],
+    [
+     "S19",
+     "we"
+    ],
+    [
+     "S20",
+     "we"
+    ],
+    [
+     "M21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "W23",
+     ""
+    ],
+    [
+     "T24",
+     ""
+    ],
+    [
+     "F25",
+     "hol"
+    ],
+    [
+     "S26",
+     "we"
+    ],
+    [
+     "S27",
+     "we"
+    ],
+    [
+     "M28",
+     ""
+    ],
+    [
+     "T29",
+     ""
+    ],
+    [
+     "W30",
+     ""
+    ],
+    [
+     "T31",
+     ""
+    ],
+    [
+     "F1",
+     ""
+    ],
+    [
+     "S2",
+     "we"
+    ],
+    [
+     "S3",
+     "we"
+    ],
+    [
+     "M4",
+     ""
+    ],
+    [
+     "T5",
+     ""
+    ],
+    [
+     "W6",
+     ""
+    ],
+    [
+     "T7",
+     ""
+    ],
+    [
+     "F8",
+     ""
+    ],
+    [
+     "S9",
+     "we"
+    ],
+    [
+     "S10",
+     "we"
+    ],
+    [
+     "M11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "W13",
+     ""
+    ],
+    [
+     "T14",
+     ""
+    ],
+    [
+     "F15",
+     ""
+    ],
+    [
+     "S16",
+     "we"
+    ],
+    [
+     "S17",
+     "we"
+    ],
+    [
+     "M18",
+     ""
+    ],
+    [
+     "T19",
+     ""
+    ],
+    [
+     "W20",
+     ""
+    ],
+    [
+     "T21",
+     ""
+    ],
+    [
+     "F22",
+     ""
+    ],
+    [
+     "S23",
+     "we"
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "M25",
+     ""
+    ],
+    [
+     "T26",
+     ""
+    ],
+    [
+     "W27",
+     ""
+    ],
+    [
+     "T28",
+     ""
+    ],
+    [
+     "F29",
+     ""
+    ],
+    [
+     "S30",
+     "we"
+    ],
+    [
+     "S31",
+     "we"
+    ]
+   ],
+   "hoy": 718,
+   "filas": [
+    {
+     "banco": "P1 · PPQ5 Viana #5Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 30,
+       "w": 386,
+       "titulo": "Delayed · Thermal Fatigue · 27 Oct 26→08 Nov 26 · 60% · confirmed 16 Oct 26→25 Oct 26",
+       "texto": "Thermal Fatigue · PPQ5 · 60%",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": -285,
+       "tipo": "s",
+       "color": "rgb(255, 107, 107)"
+      },
+      {
+       "x": -15,
+       "tipo": "e",
+       "color": "rgb(255, 107, 107)"
+      }
+     ]
+    },
+    {
+     "banco": "P2 · 00113 - Perkins - EGR Cooler & Tube - C4.4 HPEff & dP · Inner fin change x3 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 420,
+       "w": 116,
+       "titulo": "Queued · Eff & dP · 09 Nov 26→12 Nov 26 · 0%",
+       "texto": "Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P3 · 00306 - Perkins C6.6 HPEff & dP · Inner fin change x3 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 540,
+       "w": 176,
+       "titulo": "Queued · Eff & dP · 13 Nov 26→18 Nov 26 · 0%",
+       "texto": "Eff & dP · Inner fin change x3 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P4 · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6Eff & dP · x3 Samples (170 kg/h)",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 720,
+       "w": 146,
+       "titulo": "Queued · Eff & dP · 19 Nov 26→23 Nov 26 · 0%",
+       "texto": "Eff & dP · x3 Samples (170 kg/h)",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P5 · PPQ5 #29Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 870,
+       "w": 206,
+       "titulo": "Queued · Thermal Fatigue · 24 Nov 26→30 Nov 26 · 0%",
+       "texto": "Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P6 · PPQ5 #30Thermal Fatigue · PPQ5",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1080,
+       "w": 206,
+       "titulo": "Queued · Thermal Fatigue · 01 Dec 26→07 Dec 26 · 0%",
+       "texto": "Thermal Fatigue · PPQ5",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P7 · 80552 - Ford Scorpion MY27Eff & dP · Eff& dP - 2x samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1320,
+       "w": 86,
+       "titulo": "Queued · Eff & dP · 09 Dec 26→11 Dec 26 · 0%",
+       "texto": "Eff & dP · Eff& dP - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P8 · 80552 - Ford Scorpion MY27Thermal Fatigue · Thermal fatigue - 2x samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1470,
+       "w": 506,
+       "titulo": "Queued · Thermal Fatigue · 14 Dec 26→30 Dec 26 · 0%",
+       "texto": "Thermal Fatigue · Thermal fatigue - 2x samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P9 · 00651 - Ford - EGR Cooler - 2.5L DuratecThermal Fatigue · 6 Samples",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 1980,
+       "w": 686,
+       "titulo": "Queued · Thermal Fatigue · 31 Dec 26→22 Jan 27 · 0%",
+       "texto": "Thermal Fatigue · 6 Samples",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "P10 · 80842 - Legend 10LEff & dP · Eff & dP - PV2",
+     "ancho": 2940,
+     "barras": [
+      {
+       "x": 2730,
+       "w": 146,
+       "titulo": "Queued · Eff & dP · 25 Jan 27→29 Jan 27 · 0%",
+       "texto": "Eff & dP · Eff & dP - PV2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "capturas": [
+   {
+    "tipo": "excel",
+    "matriz": {
+     "title": "Test bench: MD2",
+     "mode": "daily",
+     "days": [
+      {
+       "day": 26,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Oct 26",
+       "cw": 44,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Nov 26",
+       "cw": 44,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": true
+      },
+      {
+       "day": 6,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Nov 26",
+       "cw": 45,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Nov 26",
+       "cw": 46,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Nov 26",
+       "cw": 47,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Nov 26",
+       "cw": 48,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Nov 26",
+       "cw": 49,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Dec 26",
+       "cw": 49,
+       "dow": "S",
+       "we": true,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Dec 26",
+       "cw": 50,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Dec 26",
+       "cw": 51,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "F",
+       "we": false,
+       "hol": true,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Dec 26",
+       "cw": 52,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 31,
+       "month": "Dec 26",
+       "cw": 53,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 1,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 2,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 3,
+       "month": "Jan 27",
+       "cw": 53,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 4,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 5,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 6,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 7,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 8,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 9,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 10,
+       "month": "Jan 27",
+       "cw": 1,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 11,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 12,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 13,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 14,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 15,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 16,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 17,
+       "month": "Jan 27",
+       "cw": 2,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 18,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 19,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 20,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 21,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 22,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 23,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 24,
+       "month": "Jan 27",
+       "cw": 3,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 25,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "M",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 26,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 27,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "W",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 28,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "T",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 29,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "F",
+       "we": false,
+       "hol": false,
+       "today": false
+      },
+      {
+       "day": 30,
+       "month": "Jan 27",
+       "cw": 4,
+       "dow": "S",
+       "we": true,
+       "hol": false,
+       "today": false
+      }
+     ],
+     "rows": [
+      {
+       "label": "P1 · PPQ5 Viana #5",
+       "cells": [
+        {
+         "c0": 1,
+         "c1": 13,
+         "text": "PPQ5 Viana #5 · Thermal Fatigue · PPQ5",
+         "color": "#E5C07B",
+         "dim": "",
+         "proj": "PPQ5 Viana #5"
+        }
+       ]
+      },
+      {
+       "label": "P2 · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "cells": [
+        {
+         "c0": 14,
+         "c1": 17,
+         "text": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP · Eff & dP · Inner fin change x3 Samples",
+         "color": "#E86A92",
+         "dim": "",
+         "proj": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP"
+        }
+       ]
+      },
+      {
+       "label": "P3 · 00306 - Perkins C6.6 HP",
+       "cells": [
+        {
+         "c0": 18,
+         "c1": 23,
+         "text": "00306 - Perkins C6.6 HP · Eff & dP · Inner fin change x3 Samples",
+         "color": "#E86A92",
+         "dim": "",
+         "proj": "00306 - Perkins C6.6 HP"
+        }
+       ]
+      },
+      {
+       "label": "P4 · 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6",
+       "cells": [
+        {
+         "c0": 24,
+         "c1": 28,
+         "text": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · Eff & dP · x3 Samples (170 kg/h)",
+         "color": "#F5A623",
+         "dim": "",
+         "proj": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6"
+        }
+       ]
+      },
+      {
+       "label": "P5 · PPQ5 #29",
+       "cells": [
+        {
+         "c0": 29,
+         "c1": 35,
+         "text": "PPQ5 #29 · Thermal Fatigue · PPQ5",
+         "color": "#56B6C2",
+         "dim": "",
+         "proj": "PPQ5 #29"
+        }
+       ]
+      },
+      {
+       "label": "P6 · PPQ5 #30",
+       "cells": [
+        {
+         "c0": 36,
+         "c1": 42,
+         "text": "PPQ5 #30 · Thermal Fatigue · PPQ5",
+         "color": "#B08BEA",
+         "dim": "",
+         "proj": "PPQ5 #30"
+        }
+       ]
+      },
+      {
+       "label": "P7 · 80552 - Ford Scorpion MY27",
+       "cells": [
+        {
+         "c0": 44,
+         "c1": 46,
+         "text": "80552 - Ford Scorpion MY27 · Eff & dP · Eff& dP - 2x samples",
+         "color": "#FF8FA3",
+         "dim": "",
+         "proj": "80552 - Ford Scorpion MY27"
+        }
+       ]
+      },
+      {
+       "label": "P8 · 80552 - Ford Scorpion MY27",
+       "cells": [
+        {
+         "c0": 49,
+         "c1": 65,
+         "text": "80552 - Ford Scorpion MY27 · Thermal Fatigue · Thermal fatigue - 2x samples",
+         "color": "#FF8FA3",
+         "dim": "",
+         "proj": "80552 - Ford Scorpion MY27"
+        }
+       ]
+      },
+      {
+       "label": "P9 · 00651 - Ford - EGR Cooler - 2.5L Duratec",
+       "cells": [
+        {
+         "c0": 66,
+         "c1": 88,
+         "text": "00651 - Ford - EGR Cooler - 2.5L Duratec · Thermal Fatigue · 6 Samples",
+         "color": "#7BD389",
+         "dim": "",
+         "proj": "00651 - Ford - EGR Cooler - 2.5L Duratec"
+        }
+       ]
+      },
+      {
+       "label": "P10 · 80842 - Legend 10L",
+       "cells": [
+        {
+         "c0": 91,
+         "c1": 95,
+         "text": "80842 - Legend 10L · Eff & dP · Eff & dP - PV2",
+         "color": "#D19A66",
+         "dim": "",
+         "proj": "80842 - Legend 10L"
+        }
+       ]
+      }
+     ],
+     "legend": [
+      {
+       "name": "00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "color": "#E86A92"
+      },
+      {
+       "name": "00306 - Perkins C6.6 HP",
+       "color": "#E86A92"
+      },
+      {
+       "name": "00651 - Ford - EGR Cooler - 2.5L Duratec",
+       "color": "#7BD389"
+      },
+      {
+       "name": "00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6",
+       "color": "#F5A623"
+      },
+      {
+       "name": "80552 - Ford Scorpion MY27",
+       "color": "#FF8FA3"
+      },
+      {
+       "name": "80842 - Legend 10L",
+       "color": "#D19A66"
+      },
+      {
+       "name": "PPQ5 #29",
+       "color": "#56B6C2"
+      },
+      {
+       "name": "PPQ5 #30",
+       "color": "#B08BEA"
+      },
+      {
+       "name": "PPQ5 Viana #5",
+       "color": "#E5C07B"
+      }
+     ],
+     "focus": ""
+    }
+   },
+   {
+    "tipo": "descarga",
+    "nombre": "Test_bench_MD2_20261105.xlsx",
+    "mime": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

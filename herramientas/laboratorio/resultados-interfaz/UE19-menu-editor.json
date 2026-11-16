@@ -1,0 +1,1081 @@
+{
+ "original": {
+  "entradas": [
+   "1",
+   "53",
+   "45",
+   "45"
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "📁 Projects",
+   "ℹ️ About"
+  ],
+  "titulos": [
+   "BorgWarner STC Testing Department",
+   "Annual plan by bench",
+   "% Ocupación por CW · 2026",
+   "Ocupación por tipo de banco"
+  ],
+  "org": [
+   "ALL",
+   "",
+   "ALL",
+   "ALL"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status",
+   "🔍 Zoom to week",
+   "−",
+   "+",
+   "100%",
+   "📊 Excel",
+   "%",
+   "Horas",
+   "Full year",
+   "%",
+   "Horas",
+   "Año",
+   "Semana del dashboard"
+  ],
+  "hints": [
+   "Weekly resolution across 2026. Use Prev/Next above (or “Zoom to week”) to see a natural week at daily resolution.",
+   "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+   "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente.",
+   "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+  ],
+  "vacios": [],
+  "kpis": [
+   [
+    "16/26",
+    "Bancos con carga",
+    "kpi"
+   ],
+   [
+    "18",
+    "Corriendo / acumulando horas",
+    "kpi green"
+   ],
+   [
+    "2",
+    "En retraso (declarado)",
+    "kpi bad"
+   ],
+   [
+    "17/26",
+    "Bancos con carga",
+    "kpi"
+   ],
+   [
+    "24",
+    "Corriendo / acumulando horas",
+    "kpi green"
+   ],
+   [
+    "1",
+    "En retraso (declarado)",
+    "kpi bad"
+   ]
+  ],
+  "tablas": [
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      [
+       "Durability MD/HD Hot Gas",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "576 / 840",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "69%",
+       "69%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "PC Hot Gas",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "192 / 504",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "38%",
+       "38%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Corrosion",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "336 / 336",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "100%",
+       "100%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Mechanical Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "235 / 1008",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "23%",
+       "23%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Climatic / Environment",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "9",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "312 / 1512",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "21%",
+       "21%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Coolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "120 / 168",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "71%",
+       "71%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "TOTAL",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1771 / 4368",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "41%",
+       "41%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "entradas": [
+   "1",
+   "53",
+   "45",
+   "45"
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "💶 Monthly sheet",
+   "📁 Projects",
+   "ℹ️ About"
+  ],
+  "titulos": [
+   "BorgWarner STC Testing Department",
+   "Annual plan by bench",
+   "% Ocupación por CW · 2026",
+   "Ocupación por tipo de banco"
+  ],
+  "org": [
+   "ALL",
+   "",
+   "ALL",
+   "ALL"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status",
+   "🔍 Zoom to week",
+   "−",
+   "+",
+   "100%",
+   "📊 Excel",
+   "%",
+   "Horas",
+   "Full year",
+   "%",
+   "Horas",
+   "Año",
+   "Semana del dashboard"
+  ],
+  "hints": [
+   "Weekly resolution across 2026. Use Prev/Next above (or “Zoom to week”) to see a natural week at daily resolution.",
+   "Pasa el ratón por una barra para ver el detalle. Arrastra el borde de la 1ª columna para ensancharla.",
+   "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente.",
+   "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+  ],
+  "vacios": [],
+  "kpis": [
+   [
+    "16/26",
+    "Bancos con carga",
+    "kpi"
+   ],
+   [
+    "18",
+    "Corriendo / acumulando horas",
+    "kpi green"
+   ],
+   [
+    "2",
+    "En retraso (declarado)",
+    "kpi bad"
+   ],
+   [
+    "17/26",
+    "Bancos con carga",
+    "kpi"
+   ],
+   [
+    "24",
+    "Corriendo / acumulando horas",
+    "kpi green"
+   ],
+   [
+    "1",
+    "En retraso (declarado)",
+    "kpi bad"
+   ]
+  ],
+  "tablas": [
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      [
+       "Durability MD/HD Hot Gas",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "576 / 840",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "69%",
+       "69%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "PC Hot Gas",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "192 / 504",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "38%",
+       "38%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Corrosion",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "336 / 336",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "100%",
+       "100%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Mechanical Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "235 / 1008",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "23%",
+       "23%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Climatic / Environment",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "9",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "312 / 1512",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "21%",
+       "21%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Coolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "120 / 168",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "71%",
+       "71%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "TOTAL",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "600"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1771 / 4368",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "41%",
+       "41%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

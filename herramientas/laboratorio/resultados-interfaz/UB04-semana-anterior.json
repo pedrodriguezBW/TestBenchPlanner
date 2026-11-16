@@ -1,0 +1,2268 @@
+{
+ "original": {
+  "titulo": null,
+  "semana": "CW43 · 19 Oct 26 → 25 Oct 26",
+  "org": "ALL",
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW434/26Bancos con carga4Corriendo / acumulando horas1En retraso (declarado)⚠️ 3 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW445/26Bancos con carga5Corriendo / acumulando horas1En retraso (declarado)⚠️ 3 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   }
+  ],
+  "alerta": null,
+  "tarjetas": [
+   {
+    "titulo": "Annual plan by bench",
+    "hints": [
+     "Daily resolution for CW43 (19 Oct 26 → 25 Oct 26). Use Prev/Next above to move; press “Full year” to zoom out."
+    ],
+    "botones": [
+     "🗓 Full year",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   },
+   {
+    "titulo": "% Ocupación por CW · 2026",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Full year"
+    ],
+    "casillas": [
+     "1",
+     "53"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   },
+   {
+    "titulo": "Ocupación por tipo de banco",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Año",
+     "Semana del dashboard"
+    ],
+    "casillas": [
+     "43",
+     "43"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Oct 26"
+    ],
+    [
+     "",
+     "CW43"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M19",
+     ""
+    ],
+    [
+     "T20",
+     ""
+    ],
+    [
+     "W21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "F23",
+     ""
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "S25",
+     "we"
+    ]
+   ],
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "MD1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "MD1 · Completed · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue",
+       "texto": "✓ 11368 - R&D - Recuperator - Recuperator ICR350",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "MD2 · Completed · 00306 - Perkins C6.6 HP Eff & dP",
+       "texto": "✓ 00306 - Perkins C6.6 HP",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "MD2 · Completed · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP Eff & dP",
+       "texto": "✓ 00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD3",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "MD3 · Completed · 80000841 - Cummins - EGR Cooler - Barracuda 7.2L Thermal Fatigue",
+       "texto": "✓ 80000841 - Cummins - EGR Cooler - Barracuda 7.2L",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD4",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "MD4 · Running · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Sept 26→27 Nov 26",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-Sample ICA",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 135,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "Camiones",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "Camiones · Completed · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP",
+       "texto": "✓ 80001417 - Endeavour - Recuperator - MT350 Recuperator",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "FT Turismos",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "BC1 (4 branches)",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "BC1 (4 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 16 Oct 26→09 May 28",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 3 + 1 Gamma2",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "BC2 (12 branches)",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "BC2 (12 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 01 Sept 26→02 Nov 26",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 12x Gamma2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Manual Cylinder",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Fatiga",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 30,
+       "w": 118,
+       "titulo": "Fatiga · Completed · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement",
+       "texto": "✓ 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 148,
+       "titulo": "FP Aceite 1 · Completed · 11368 - R&D - Recuperator - Recuperator ICR350 Pressure Fatigue",
+       "texto": "✓ 11368 - R&D - Recuperator - Recuperator ICR350",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "FP Aceite 2 · Completed · 00000 - STC General Works Breakdown",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Urna Burst RT",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Other Tasks",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1500 WC",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "1500 WC · Completed · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Burst Test",
+       "texto": "✓ 80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1500 Aire",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "1500 Aire · Completed · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test",
+       "texto": "✓ 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "2000 CTAG · Completed · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Pressure Fatigue",
+       "texto": "✓ 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "2000 CTAG · Completed · 80001755 - Rimac - eCooler - Ampere Ceremony Type Test",
+       "texto": "✓ 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "2000 CTAG · Completed · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue",
+       "texto": "✓ 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK127",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "KK129",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "KK129 · Completed · HVCH Not available",
+       "texto": "✓ HVCH",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK118",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "1000 CTAG 1 · Running · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 20 Aug 26→07 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube - standalone validation + 3W ALU validation",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 2",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "XXL CTAG",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Snakes dP",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "Snakes dP · Completed · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Eff & dP",
+       "texto": "✓ 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "grafica": {
+   "ancho": "1302",
+   "leyenda": [
+    [
+     "Durability MD/HD Hot Gas",
+     "1"
+    ],
+    [
+     "PC Hot Gas",
+     "1"
+    ],
+    [
+     "Corrosion",
+     "1"
+    ],
+    [
+     "Mechanical Fatigue",
+     "1"
+    ],
+    [
+     "Climatic / Environment",
+     "1"
+    ],
+    [
+     "Coolant Carts",
+     "1"
+    ]
+   ],
+   "textos": [
+    [
+     "0%",
+     "34",
+     "213"
+    ],
+    [
+     "25%",
+     "34",
+     "164.5"
+    ],
+    [
+     "50%",
+     "34",
+     "116"
+    ],
+    [
+     "75%",
+     "34",
+     "67.5"
+    ],
+    [
+     "100%",
+     "34",
+     "19"
+    ],
+    [
+     "CW1",
+     "51.77358490566038",
+     "230"
+    ],
+    [
+     "CW3",
+     "98.86792452830188",
+     "230"
+    ],
+    [
+     "CW5",
+     "145.9622641509434",
+     "230"
+    ],
+    [
+     "CW7",
+     "193.0566037735849",
+     "230"
+    ],
+    [
+     "CW9",
+     "240.1509433962264",
+     "230"
+    ],
+    [
+     "CW11",
+     "287.2452830188679",
+     "230"
+    ],
+    [
+     "CW13",
+     "334.3396226415094",
+     "230"
+    ],
+    [
+     "CW15",
+     "381.4339622641509",
+     "230"
+    ],
+    [
+     "CW17",
+     "428.5283018867924",
+     "230"
+    ],
+    [
+     "CW19",
+     "475.6226415094339",
+     "230"
+    ],
+    [
+     "CW21",
+     "522.7169811320755",
+     "230"
+    ],
+    [
+     "CW23",
+     "569.811320754717",
+     "230"
+    ],
+    [
+     "CW25",
+     "616.9056603773585",
+     "230"
+    ],
+    [
+     "CW27",
+     "664",
+     "230"
+    ],
+    [
+     "CW29",
+     "711.0943396226415",
+     "230"
+    ],
+    [
+     "CW31",
+     "758.188679245283",
+     "230"
+    ],
+    [
+     "CW33",
+     "805.2830188679245",
+     "230"
+    ],
+    [
+     "CW35",
+     "852.377358490566",
+     "230"
+    ],
+    [
+     "CW37",
+     "899.4716981132075",
+     "230"
+    ],
+    [
+     "CW39",
+     "946.566037735849",
+     "230"
+    ],
+    [
+     "CW41",
+     "993.6603773584906",
+     "230"
+    ],
+    [
+     "CW43",
+     "1040.7547169811319",
+     "230"
+    ],
+    [
+     "CW45",
+     "1087.8490566037735",
+     "230"
+    ],
+    [
+     "CW47",
+     "1134.943396226415",
+     "230"
+    ],
+    [
+     "CW49",
+     "1182.0377358490564",
+     "230"
+    ],
+    [
+     "CW51",
+     "1229.132075471698",
+     "230"
+    ],
+    [
+     "CW53",
+     "1276.2264150943395",
+     "230"
+    ],
+    [
+     "CW45",
+     "1087.8490566037735",
+     "12"
+    ]
+   ],
+   "lineas": [
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,182.84 734.6415094339623,171.2 758.188679245283,87.78 781.7358490566038,149.86 805.2830188679245,120.75999999999999 828.8301886792452,87.78 852.377358490566,87.78 875.9245283018868,105.24 899.4716981132075,171.2 923.0188679245283,144.04 946.566037735849,132.39999999999998 970.1132075471697,72.26000000000002 993.6603773584906,43.16 1017.2075471698113,66.44 1040.7547169811319,93.60000000000001 1064.3018867924527,60.620000000000005 1087.8490566037735,76.14000000000001 1111.3962264150941,72.26000000000002 1134.943396226415,27.640000000000015 1158.4905660377358,48.98000000000002 1182.0377358490564,60.620000000000005 1205.5849056603772,87.78 1229.132075471698,66.44 1252.6792452830186,87.78 1276.2264150943395,66.44",
+     "rgb(76, 141, 255)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,200.3 734.6415094339623,173.14 758.188679245283,145.98000000000002 781.7358490566038,210 805.2830188679245,210 828.8301886792452,210 852.377358490566,173.14 875.9245283018868,153.74 899.4716981132075,200.3 923.0188679245283,210 946.566037735849,210 970.1132075471697,116.88000000000001 993.6603773584906,200.3 1017.2075471698113,173.14 1040.7547169811319,210 1064.3018867924527,163.44 1087.8490566037735,136.28 1111.3962264150941,163.44 1134.943396226415,182.84 1158.4905660377358,153.74 1182.0377358490564,153.74 1205.5849056603772,210 1229.132075471698,210 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(35, 188, 163)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,153.74 781.7358490566038,210 805.2830188679245,210 828.8301886792452,210 852.377358490566,210 875.9245283018868,126.58 899.4716981132075,113 923.0188679245283,113 946.566037735849,113 970.1132075471697,113 993.6603773584906,113 1017.2075471698113,72.26000000000002 1040.7547169811319,16 1064.3018867924527,16 1087.8490566037735,16 1111.3962264150941,16 1134.943396226415,16 1158.4905660377358,16 1182.0377358490564,16 1205.5849056603772,16 1229.132075471698,16 1252.6792452830186,56.73999999999998 1276.2264150943395,43.16",
+     "rgb(255, 200, 0)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,140.16 781.7358490566038,153.74 805.2830188679245,184.78 828.8301886792452,194.48 852.377358490566,173.14 875.9245283018868,186.72 899.4716981132075,173.14 923.0188679245283,177.01999999999998 946.566037735849,149.86 970.1132075471697,186.72 993.6603773584906,182.84 1017.2075471698113,163.44 1040.7547169811319,169.26 1064.3018867924527,165.38 1087.8490566037735,165.38 1111.3962264150941,177.01999999999998 1134.943396226415,210 1158.4905660377358,190.6 1182.0377358490564,163.44 1205.5849056603772,186.72 1229.132075471698,186.72 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(168, 54, 221)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,204.18 711.0943396226415,198.36 734.6415094339623,200.3 758.188679245283,190.6 781.7358490566038,182.84 805.2830188679245,153.74 828.8301886792452,142.10000000000002 852.377358490566,157.62 875.9245283018868,153.74 899.4716981132075,161.5 923.0188679245283,138.22 946.566037735849,153.74 970.1132075471697,163.44 993.6603773584906,173.14 1017.2075471698113,167.32 1040.7547169811319,169.26 1064.3018867924527,182.84 1087.8490566037735,169.26 1111.3962264150941,124.64 1134.943396226415,111.06 1158.4905660377358,116.88000000000001 1182.0377358490564,116.88000000000001 1205.5849056603772,136.28 1229.132075471698,116.88000000000001 1252.6792452830186,161.5 1276.2264150943395,163.44",
+     "rgb(0, 204, 255)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,72.26000000000002 781.7358490566038,99.42000000000002 805.2830188679245,72.26000000000002 828.8301886792452,153.74 852.377358490566,126.58 875.9245283018868,182.84 899.4716981132075,72.26000000000002 923.0188679245283,210 946.566037735849,210 970.1132075471697,153.74 993.6603773584906,72.26000000000002 1017.2075471698113,99.42000000000002 1040.7547169811319,72.26000000000002 1064.3018867924527,182.84 1087.8490566037735,72.26000000000002 1111.3962264150941,72.26000000000002 1134.943396226415,72.26000000000002 1158.4905660377358,210 1182.0377358490564,210 1205.5849056603772,126.58 1229.132075471698,210 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(190, 35, 35)"
+    ]
+   ],
+   "puntos": [
+    "Durability MD/HD Hot Gas · CW1: 0%",
+    "Durability MD/HD Hot Gas · CW2: 0%",
+    "Durability MD/HD Hot Gas · CW3: 0%",
+    "Durability MD/HD Hot Gas · CW4: 0%",
+    "Durability MD/HD Hot Gas · CW5: 0%",
+    "Durability MD/HD Hot Gas · CW6: 0%",
+    "Durability MD/HD Hot Gas · CW7: 0%",
+    "Durability MD/HD Hot Gas · CW8: 0%",
+    "Durability MD/HD Hot Gas · CW9: 0%",
+    "Durability MD/HD Hot Gas · CW10: 0%",
+    "Durability MD/HD Hot Gas · CW11: 0%",
+    "Durability MD/HD Hot Gas · CW12: 0%",
+    "Durability MD/HD Hot Gas · CW13: 0%",
+    "Durability MD/HD Hot Gas · CW14: 0%",
+    "Durability MD/HD Hot Gas · CW15: 0%",
+    "Durability MD/HD Hot Gas · CW16: 0%",
+    "Durability MD/HD Hot Gas · CW17: 0%",
+    "Durability MD/HD Hot Gas · CW18: 0%",
+    "Durability MD/HD Hot Gas · CW19: 0%",
+    "Durability MD/HD Hot Gas · CW20: 0%",
+    "Durability MD/HD Hot Gas · CW21: 0%",
+    "Durability MD/HD Hot Gas · CW22: 0%",
+    "Durability MD/HD Hot Gas · CW23: 0%",
+    "Durability MD/HD Hot Gas · CW24: 0%",
+    "Durability MD/HD Hot Gas · CW25: 0%",
+    "Durability MD/HD Hot Gas · CW26: 0%",
+    "Durability MD/HD Hot Gas · CW27: 0%",
+    "Durability MD/HD Hot Gas · CW28: 0%",
+    "Durability MD/HD Hot Gas · CW29: 14%",
+    "Durability MD/HD Hot Gas · CW30: 20%",
+    "Durability MD/HD Hot Gas · CW31: 63%",
+    "Durability MD/HD Hot Gas · CW32: 31%",
+    "Durability MD/HD Hot Gas · CW33: 46%",
+    "Durability MD/HD Hot Gas · CW34: 63%",
+    "Durability MD/HD Hot Gas · CW35: 63%",
+    "Durability MD/HD Hot Gas · CW36: 54%",
+    "Durability MD/HD Hot Gas · CW37: 20%",
+    "Durability MD/HD Hot Gas · CW38: 34%",
+    "Durability MD/HD Hot Gas · CW39: 40%",
+    "Durability MD/HD Hot Gas · CW40: 71%",
+    "Durability MD/HD Hot Gas · CW41: 86%",
+    "Durability MD/HD Hot Gas · CW42: 74%",
+    "Durability MD/HD Hot Gas · CW43: 60%",
+    "Durability MD/HD Hot Gas · CW44: 77%",
+    "Durability MD/HD Hot Gas · CW45: 69%",
+    "Durability MD/HD Hot Gas · CW46: 71%",
+    "Durability MD/HD Hot Gas · CW47: 94%",
+    "Durability MD/HD Hot Gas · CW48: 83%",
+    "Durability MD/HD Hot Gas · CW49: 77%",
+    "Durability MD/HD Hot Gas · CW50: 63%",
+    "Durability MD/HD Hot Gas · CW51: 74%",
+    "Durability MD/HD Hot Gas · CW52: 63%",
+    "Durability MD/HD Hot Gas · CW53: 74%",
+    "PC Hot Gas · CW1: 0%",
+    "PC Hot Gas · CW2: 0%",
+    "PC Hot Gas · CW3: 0%",
+    "PC Hot Gas · CW4: 0%",
+    "PC Hot Gas · CW5: 0%",
+    "PC Hot Gas · CW6: 0%",
+    "PC Hot Gas · CW7: 0%",
+    "PC Hot Gas · CW8: 0%",
+    "PC Hot Gas · CW9: 0%",
+    "PC Hot Gas · CW10: 0%",
+    "PC Hot Gas · CW11: 0%",
+    "PC Hot Gas · CW12: 0%",
+    "PC Hot Gas · CW13: 0%",
+    "PC Hot Gas · CW14: 0%",
+    "PC Hot Gas · CW15: 0%",
+    "PC Hot Gas · CW16: 0%",
+    "PC Hot Gas · CW17: 0%",
+    "PC Hot Gas · CW18: 0%",
+    "PC Hot Gas · CW19: 0%",
+    "PC Hot Gas · CW20: 0%",
+    "PC Hot Gas · CW21: 0%",
+    "PC Hot Gas · CW22: 0%",
+    "PC Hot Gas · CW23: 0%",
+    "PC Hot Gas · CW24: 0%",
+    "PC Hot Gas · CW25: 0%",
+    "PC Hot Gas · CW26: 0%",
+    "PC Hot Gas · CW27: 0%",
+    "PC Hot Gas · CW28: 0%",
+    "PC Hot Gas · CW29: 5%",
+    "PC Hot Gas · CW30: 19%",
+    "PC Hot Gas · CW31: 33%",
+    "PC Hot Gas · CW32: 0%",
+    "PC Hot Gas · CW33: 0%",
+    "PC Hot Gas · CW34: 0%",
+    "PC Hot Gas · CW35: 19%",
+    "PC Hot Gas · CW36: 29%",
+    "PC Hot Gas · CW37: 5%",
+    "PC Hot Gas · CW38: 0%",
+    "PC Hot Gas · CW39: 0%",
+    "PC Hot Gas · CW40: 48%",
+    "PC Hot Gas · CW41: 5%",
+    "PC Hot Gas · CW42: 19%",
+    "PC Hot Gas · CW43: 0%",
+    "PC Hot Gas · CW44: 24%",
+    "PC Hot Gas · CW45: 38%",
+    "PC Hot Gas · CW46: 24%",
+    "PC Hot Gas · CW47: 14%",
+    "PC Hot Gas · CW48: 29%",
+    "PC Hot Gas · CW49: 29%",
+    "PC Hot Gas · CW50: 0%",
+    "PC Hot Gas · CW51: 0%",
+    "PC Hot Gas · CW52: 0%",
+    "PC Hot Gas · CW53: 0%",
+    "Corrosion · CW1: 0%",
+    "Corrosion · CW2: 0%",
+    "Corrosion · CW3: 0%",
+    "Corrosion · CW4: 0%",
+    "Corrosion · CW5: 0%",
+    "Corrosion · CW6: 0%",
+    "Corrosion · CW7: 0%",
+    "Corrosion · CW8: 0%",
+    "Corrosion · CW9: 0%",
+    "Corrosion · CW10: 0%",
+    "Corrosion · CW11: 0%",
+    "Corrosion · CW12: 0%",
+    "Corrosion · CW13: 0%",
+    "Corrosion · CW14: 0%",
+    "Corrosion · CW15: 0%",
+    "Corrosion · CW16: 0%",
+    "Corrosion · CW17: 0%",
+    "Corrosion · CW18: 0%",
+    "Corrosion · CW19: 0%",
+    "Corrosion · CW20: 0%",
+    "Corrosion · CW21: 0%",
+    "Corrosion · CW22: 0%",
+    "Corrosion · CW23: 0%",
+    "Corrosion · CW24: 0%",
+    "Corrosion · CW25: 0%",
+    "Corrosion · CW26: 0%",
+    "Corrosion · CW27: 0%",
+    "Corrosion · CW28: 0%",
+    "Corrosion · CW29: 0%",
+    "Corrosion · CW30: 0%",
+    "Corrosion · CW31: 29%",
+    "Corrosion · CW32: 0%",
+    "Corrosion · CW33: 0%",
+    "Corrosion · CW34: 0%",
+    "Corrosion · CW35: 0%",
+    "Corrosion · CW36: 43%",
+    "Corrosion · CW37: 50%",
+    "Corrosion · CW38: 50%",
+    "Corrosion · CW39: 50%",
+    "Corrosion · CW40: 50%",
+    "Corrosion · CW41: 50%",
+    "Corrosion · CW42: 71%",
+    "Corrosion · CW43: 100%",
+    "Corrosion · CW44: 100%",
+    "Corrosion · CW45: 100%",
+    "Corrosion · CW46: 100%",
+    "Corrosion · CW47: 100%",
+    "Corrosion · CW48: 100%",
+    "Corrosion · CW49: 100%",
+    "Corrosion · CW50: 100%",
+    "Corrosion · CW51: 100%",
+    "Corrosion · CW52: 79%",
+    "Corrosion · CW53: 86%",
+    "Mechanical Fatigue · CW1: 0%",
+    "Mechanical Fatigue · CW2: 0%",
+    "Mechanical Fatigue · CW3: 0%",
+    "Mechanical Fatigue · CW4: 0%",
+    "Mechanical Fatigue · CW5: 0%",
+    "Mechanical Fatigue · CW6: 0%",
+    "Mechanical Fatigue · CW7: 0%",
+    "Mechanical Fatigue · CW8: 0%",
+    "Mechanical Fatigue · CW9: 0%",
+    "Mechanical Fatigue · CW10: 0%",
+    "Mechanical Fatigue · CW11: 0%",
+    "Mechanical Fatigue · CW12: 0%",
+    "Mechanical Fatigue · CW13: 0%",
+    "Mechanical Fatigue · CW14: 0%",
+    "Mechanical Fatigue · CW15: 0%",
+    "Mechanical Fatigue · CW16: 0%",
+    "Mechanical Fatigue · CW17: 0%",
+    "Mechanical Fatigue · CW18: 0%",
+    "Mechanical Fatigue · CW19: 0%",
+    "Mechanical Fatigue · CW20: 0%",
+    "Mechanical Fatigue · CW21: 0%",
+    "Mechanical Fatigue · CW22: 0%",
+    "Mechanical Fatigue · CW23: 0%",
+    "Mechanical Fatigue · CW24: 0%",
+    "Mechanical Fatigue · CW25: 0%",
+    "Mechanical Fatigue · CW26: 0%",
+    "Mechanical Fatigue · CW27: 0%",
+    "Mechanical Fatigue · CW28: 0%",
+    "Mechanical Fatigue · CW29: 0%",
+    "Mechanical Fatigue · CW30: 0%",
+    "Mechanical Fatigue · CW31: 36%",
+    "Mechanical Fatigue · CW32: 29%",
+    "Mechanical Fatigue · CW33: 13%",
+    "Mechanical Fatigue · CW34: 8%",
+    "Mechanical Fatigue · CW35: 19%",
+    "Mechanical Fatigue · CW36: 12%",
+    "Mechanical Fatigue · CW37: 19%",
+    "Mechanical Fatigue · CW38: 17%",
+    "Mechanical Fatigue · CW39: 31%",
+    "Mechanical Fatigue · CW40: 12%",
+    "Mechanical Fatigue · CW41: 14%",
+    "Mechanical Fatigue · CW42: 24%",
+    "Mechanical Fatigue · CW43: 21%",
+    "Mechanical Fatigue · CW44: 23%",
+    "Mechanical Fatigue · CW45: 23%",
+    "Mechanical Fatigue · CW46: 17%",
+    "Mechanical Fatigue · CW47: 0%",
+    "Mechanical Fatigue · CW48: 10%",
+    "Mechanical Fatigue · CW49: 24%",
+    "Mechanical Fatigue · CW50: 12%",
+    "Mechanical Fatigue · CW51: 12%",
+    "Mechanical Fatigue · CW52: 0%",
+    "Mechanical Fatigue · CW53: 0%",
+    "Climatic / Environment · CW1: 0%",
+    "Climatic / Environment · CW2: 0%",
+    "Climatic / Environment · CW3: 0%",
+    "Climatic / Environment · CW4: 0%",
+    "Climatic / Environment · CW5: 0%",
+    "Climatic / Environment · CW6: 0%",
+    "Climatic / Environment · CW7: 0%",
+    "Climatic / Environment · CW8: 0%",
+    "Climatic / Environment · CW9: 0%",
+    "Climatic / Environment · CW10: 0%",
+    "Climatic / Environment · CW11: 0%",
+    "Climatic / Environment · CW12: 0%",
+    "Climatic / Environment · CW13: 0%",
+    "Climatic / Environment · CW14: 0%",
+    "Climatic / Environment · CW15: 0%",
+    "Climatic / Environment · CW16: 0%",
+    "Climatic / Environment · CW17: 0%",
+    "Climatic / Environment · CW18: 0%",
+    "Climatic / Environment · CW19: 0%",
+    "Climatic / Environment · CW20: 0%",
+    "Climatic / Environment · CW21: 0%",
+    "Climatic / Environment · CW22: 0%",
+    "Climatic / Environment · CW23: 0%",
+    "Climatic / Environment · CW24: 0%",
+    "Climatic / Environment · CW25: 0%",
+    "Climatic / Environment · CW26: 0%",
+    "Climatic / Environment · CW27: 0%",
+    "Climatic / Environment · CW28: 3%",
+    "Climatic / Environment · CW29: 6%",
+    "Climatic / Environment · CW30: 5%",
+    "Climatic / Environment · CW31: 10%",
+    "Climatic / Environment · CW32: 14%",
+    "Climatic / Environment · CW33: 29%",
+    "Climatic / Environment · CW34: 35%",
+    "Climatic / Environment · CW35: 27%",
+    "Climatic / Environment · CW36: 29%",
+    "Climatic / Environment · CW37: 25%",
+    "Climatic / Environment · CW38: 37%",
+    "Climatic / Environment · CW39: 29%",
+    "Climatic / Environment · CW40: 24%",
+    "Climatic / Environment · CW41: 19%",
+    "Climatic / Environment · CW42: 22%",
+    "Climatic / Environment · CW43: 21%",
+    "Climatic / Environment · CW44: 14%",
+    "Climatic / Environment · CW45: 21%",
+    "Climatic / Environment · CW46: 44%",
+    "Climatic / Environment · CW47: 51%",
+    "Climatic / Environment · CW48: 48%",
+    "Climatic / Environment · CW49: 48%",
+    "Climatic / Environment · CW50: 38%",
+    "Climatic / Environment · CW51: 48%",
+    "Climatic / Environment · CW52: 25%",
+    "Climatic / Environment · CW53: 24%",
+    "Coolant Carts · CW1: 0%",
+    "Coolant Carts · CW2: 0%",
+    "Coolant Carts · CW3: 0%",
+    "Coolant Carts · CW4: 0%",
+    "Coolant Carts · CW5: 0%",
+    "Coolant Carts · CW6: 0%",
+    "Coolant Carts · CW7: 0%",
+    "Coolant Carts · CW8: 0%",
+    "Coolant Carts · CW9: 0%",
+    "Coolant Carts · CW10: 0%",
+    "Coolant Carts · CW11: 0%",
+    "Coolant Carts · CW12: 0%",
+    "Coolant Carts · CW13: 0%",
+    "Coolant Carts · CW14: 0%",
+    "Coolant Carts · CW15: 0%",
+    "Coolant Carts · CW16: 0%",
+    "Coolant Carts · CW17: 0%",
+    "Coolant Carts · CW18: 0%",
+    "Coolant Carts · CW19: 0%",
+    "Coolant Carts · CW20: 0%",
+    "Coolant Carts · CW21: 0%",
+    "Coolant Carts · CW22: 0%",
+    "Coolant Carts · CW23: 0%",
+    "Coolant Carts · CW24: 0%",
+    "Coolant Carts · CW25: 0%",
+    "Coolant Carts · CW26: 0%",
+    "Coolant Carts · CW27: 0%",
+    "Coolant Carts · CW28: 0%",
+    "Coolant Carts · CW29: 0%",
+    "Coolant Carts · CW30: 0%",
+    "Coolant Carts · CW31: 71%",
+    "Coolant Carts · CW32: 57%",
+    "Coolant Carts · CW33: 71%",
+    "Coolant Carts · CW34: 29%",
+    "Coolant Carts · CW35: 43%",
+    "Coolant Carts · CW36: 14%",
+    "Coolant Carts · CW37: 71%",
+    "Coolant Carts · CW38: 0%",
+    "Coolant Carts · CW39: 0%",
+    "Coolant Carts · CW40: 29%",
+    "Coolant Carts · CW41: 71%",
+    "Coolant Carts · CW42: 57%",
+    "Coolant Carts · CW43: 71%",
+    "Coolant Carts · CW44: 14%",
+    "Coolant Carts · CW45: 71%",
+    "Coolant Carts · CW46: 71%",
+    "Coolant Carts · CW47: 71%",
+    "Coolant Carts · CW48: 0%",
+    "Coolant Carts · CW49: 0%",
+    "Coolant Carts · CW50: 43%",
+    "Coolant Carts · CW51: 0%",
+    "Coolant Carts · CW52: 0%",
+    "Coolant Carts · CW53: 0%"
+   ]
+  },
+  "tablas": [
+   {
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      "Durability MD/HD Hot Gas",
+      "5",
+      "1",
+      "504 / 840",
+      [
+       "60%",
+       "60%",
+       "60% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "PC Hot Gas",
+      "3",
+      "0",
+      "0 / 504",
+      [
+       "0%",
+       "0%",
+       "0% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Corrosion",
+      "2",
+      "2",
+      "336 / 336",
+      [
+       "100%",
+       "100%",
+       "100% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Mechanical Fatigue",
+      "6",
+      "0",
+      "216 / 1008",
+      [
+       "21%",
+       "21%",
+       "21% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Climatic / Environment",
+      "9",
+      "1",
+      "312 / 1512",
+      [
+       "21%",
+       "21%",
+       "21% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Coolant Carts",
+      "1",
+      "0",
+      "120 / 168",
+      [
+       "71%",
+       "71%",
+       "71% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "TOTAL",
+      "",
+      "",
+      "1488 / 4368",
+      [
+       "34%",
+       "34%",
+       ""
+      ],
+      "",
+      ""
+     ]
+    ],
+    "periodo": "CW43 · 19 Oct 26 → 25 Oct 26"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": null,
+  "semana": "CW43 · 19 Oct 26 → 25 Oct 26",
+  "org": "ALL",
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "📊 Update Yearly Status"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW434/26Bancos con carga4Corriendo / acumulando horas1En retraso (declarado)⚠️ 3 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW445/26Bancos con carga5Corriendo / acumulando horas1En retraso (declarado)⚠️ 3 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   }
+  ],
+  "alerta": null,
+  "tarjetas": [
+   {
+    "titulo": "Annual plan by bench",
+    "hints": [
+     "Daily resolution for CW43 (19 Oct 26 → 25 Oct 26). Use Prev/Next above to move; press “Full year” to zoom out."
+    ],
+    "botones": [
+     "🗓 Full year",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   },
+   {
+    "titulo": "% Ocupación por CW · 2026",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles de cada semana (7 días × 24 h), la misma medida que la tabla de ocupación. Incluye los ensayos ya completados. Pulsa en la leyenda para mostrar u ocultar un tipo de banco. El filtro Org de esta tarjeta es independiente."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Full year"
+    ],
+    "casillas": [
+     "1",
+     "53"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   },
+   {
+    "titulo": "Ocupación por tipo de banco",
+    "hints": [
+     "% = horas de banco ocupadas / horas de banco disponibles en el periodo, contando los 7 días (24 h). Los ensayos con Weekend = No no ocupan el banco en fin de semana. Misma medida que la gráfica e incluye los ensayos ya completados."
+    ],
+    "botones": [
+     "%",
+     "Horas",
+     "Año",
+     "Semana del dashboard"
+    ],
+    "casillas": [
+     "43",
+     "43"
+    ],
+    "desplegables": [
+     "ALL"
+    ]
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Oct 26"
+    ],
+    [
+     "",
+     "CW43"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M19",
+     ""
+    ],
+    [
+     "T20",
+     ""
+    ],
+    [
+     "W21",
+     ""
+    ],
+    [
+     "T22",
+     ""
+    ],
+    [
+     "F23",
+     ""
+    ],
+    [
+     "S24",
+     "we"
+    ],
+    [
+     "S25",
+     "we"
+    ]
+   ],
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "MD1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "MD1 · Completed · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue",
+       "texto": "✓ 11368 - R&D - Recuperator - Recuperator ICR350",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "MD2 · Completed · 00306 - Perkins C6.6 HP Eff & dP",
+       "texto": "✓ 00306 - Perkins C6.6 HP",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "MD2 · Completed · 00113 - Perkins - EGR Cooler & Tube - C4.4 HP Eff & dP",
+       "texto": "✓ 00113 - Perkins - EGR Cooler & Tube - C4.4 HP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD3",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "MD3 · Completed · 80000841 - Cummins - EGR Cooler - Barracuda 7.2L Thermal Fatigue",
+       "texto": "✓ 80000841 - Cummins - EGR Cooler - Barracuda 7.2L",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "MD4",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "MD4 · Running · 11368 - R&D - Recuperator - Recuperator ICR350 Thermal Fatigue · 11 Sept 26→27 Nov 26",
+       "texto": "11368 - R&D - Recuperator - Recuperator ICR350 · Thermal Fatigue · C-Sample ICA",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 135,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "Camiones",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "Camiones · Completed · 80001417 - Endeavour - Recuperator - MT350 Recuperator Eff & dP",
+       "texto": "✓ 80001417 - Endeavour - Recuperator - MT350 Recuperator",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "FT Turismos",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "BC1 (4 branches)",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "BC1 (4 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 16 Oct 26→09 May 28",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 3 + 1 Gamma2",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "BC2 (12 branches)",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "BC2 (12 branches) · Running · 11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion Corrosion · 01 Sept 26→02 Nov 26",
+       "texto": "11373 - R&D - EGR Cooler - EGR cooler resistant to high Cl Corrosion · Corrosion · Validación Materiales - 12x Gamma2",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Manual Cylinder",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Fatiga",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 30,
+       "w": 118,
+       "titulo": "Fatiga · Completed · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Displacement",
+       "texto": "✓ 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 148,
+       "titulo": "FP Aceite 1 · Completed · 11368 - R&D - Recuperator - Recuperator ICR350 Pressure Fatigue",
+       "texto": "✓ 11368 - R&D - Recuperator - Recuperator ICR350",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "FP Aceite 2 · Completed · 00000 - STC General Works Breakdown",
+       "texto": "✓ 00000 - STC General Works",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Urna Burst RT",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Other Tasks",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1500 WC",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "1500 WC · Completed · 80001475 - Rimac - eCooler  - Rimac Snake - BMW Series i7 Burst Test",
+       "texto": "✓ 80001475 - Rimac - eCooler - Rimac Snake - BMW Series i7",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1500 Aire",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "1500 Aire · Completed · 80001755 - Rimac - eCooler - Ampere Ceremony Burst Test",
+       "texto": "✓ 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "2000 CTAG",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 90,
+       "w": 118,
+       "titulo": "2000 CTAG · Completed · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Pressure Fatigue",
+       "texto": "✓ 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "2000 CTAG · Completed · 80001755 - Rimac - eCooler - Ampere Ceremony Type Test",
+       "texto": "✓ 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "2000 CTAG · Completed · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling Pressure Fatigue",
+       "texto": "✓ 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK127",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "KK129",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "KK129 · Completed · HVCH Not available",
+       "texto": "✓ HVCH",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "KK118",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "1000 CTAG 1 · Running · 80001755 - Rimac - eCooler - Ampere Ceremony PTCE · 20 Aug 26→07 Jan 27",
+       "texto": "80001755 - Rimac - eCooler - Ampere Ceremony · PTCE · Corrugated Tube - standalone validation + 3W ALU validation",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "1000 CTAG 2",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "XXL CTAG",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Snakes dP",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 208,
+       "titulo": "Snakes dP · Completed · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling Eff & dP",
+       "texto": "✓ 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "grafica": {
+   "ancho": "1302",
+   "leyenda": [
+    [
+     "Durability MD/HD Hot Gas",
+     "1"
+    ],
+    [
+     "PC Hot Gas",
+     "1"
+    ],
+    [
+     "Corrosion",
+     "1"
+    ],
+    [
+     "Mechanical Fatigue",
+     "1"
+    ],
+    [
+     "Climatic / Environment",
+     "1"
+    ],
+    [
+     "Coolant Carts",
+     "1"
+    ]
+   ],
+   "textos": [
+    [
+     "0%",
+     "34",
+     "213"
+    ],
+    [
+     "25%",
+     "34",
+     "164.5"
+    ],
+    [
+     "50%",
+     "34",
+     "116"
+    ],
+    [
+     "75%",
+     "34",
+     "67.5"
+    ],
+    [
+     "100%",
+     "34",
+     "19"
+    ],
+    [
+     "CW1",
+     "51.77358490566038",
+     "230"
+    ],
+    [
+     "CW3",
+     "98.86792452830188",
+     "230"
+    ],
+    [
+     "CW5",
+     "145.9622641509434",
+     "230"
+    ],
+    [
+     "CW7",
+     "193.0566037735849",
+     "230"
+    ],
+    [
+     "CW9",
+     "240.1509433962264",
+     "230"
+    ],
+    [
+     "CW11",
+     "287.2452830188679",
+     "230"
+    ],
+    [
+     "CW13",
+     "334.3396226415094",
+     "230"
+    ],
+    [
+     "CW15",
+     "381.4339622641509",
+     "230"
+    ],
+    [
+     "CW17",
+     "428.5283018867924",
+     "230"
+    ],
+    [
+     "CW19",
+     "475.6226415094339",
+     "230"
+    ],
+    [
+     "CW21",
+     "522.7169811320755",
+     "230"
+    ],
+    [
+     "CW23",
+     "569.811320754717",
+     "230"
+    ],
+    [
+     "CW25",
+     "616.9056603773585",
+     "230"
+    ],
+    [
+     "CW27",
+     "664",
+     "230"
+    ],
+    [
+     "CW29",
+     "711.0943396226415",
+     "230"
+    ],
+    [
+     "CW31",
+     "758.188679245283",
+     "230"
+    ],
+    [
+     "CW33",
+     "805.2830188679245",
+     "230"
+    ],
+    [
+     "CW35",
+     "852.377358490566",
+     "230"
+    ],
+    [
+     "CW37",
+     "899.4716981132075",
+     "230"
+    ],
+    [
+     "CW39",
+     "946.566037735849",
+     "230"
+    ],
+    [
+     "CW41",
+     "993.6603773584906",
+     "230"
+    ],
+    [
+     "CW43",
+     "1040.7547169811319",
+     "230"
+    ],
+    [
+     "CW45",
+     "1087.8490566037735",
+     "230"
+    ],
+    [
+     "CW47",
+     "1134.943396226415",
+     "230"
+    ],
+    [
+     "CW49",
+     "1182.0377358490564",
+     "230"
+    ],
+    [
+     "CW51",
+     "1229.132075471698",
+     "230"
+    ],
+    [
+     "CW53",
+     "1276.2264150943395",
+     "230"
+    ],
+    [
+     "CW45",
+     "1087.8490566037735",
+     "12"
+    ]
+   ],
+   "lineas": [
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,182.84 734.6415094339623,171.2 758.188679245283,87.78 781.7358490566038,149.86 805.2830188679245,120.75999999999999 828.8301886792452,87.78 852.377358490566,87.78 875.9245283018868,105.24 899.4716981132075,171.2 923.0188679245283,144.04 946.566037735849,132.39999999999998 970.1132075471697,72.26000000000002 993.6603773584906,43.16 1017.2075471698113,66.44 1040.7547169811319,93.60000000000001 1064.3018867924527,60.620000000000005 1087.8490566037735,76.14000000000001 1111.3962264150941,72.26000000000002 1134.943396226415,27.640000000000015 1158.4905660377358,48.98000000000002 1182.0377358490564,60.620000000000005 1205.5849056603772,87.78 1229.132075471698,66.44 1252.6792452830186,87.78 1276.2264150943395,66.44",
+     "rgb(76, 141, 255)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,200.3 734.6415094339623,173.14 758.188679245283,145.98000000000002 781.7358490566038,210 805.2830188679245,210 828.8301886792452,210 852.377358490566,173.14 875.9245283018868,153.74 899.4716981132075,200.3 923.0188679245283,210 946.566037735849,210 970.1132075471697,116.88000000000001 993.6603773584906,200.3 1017.2075471698113,173.14 1040.7547169811319,210 1064.3018867924527,163.44 1087.8490566037735,136.28 1111.3962264150941,163.44 1134.943396226415,182.84 1158.4905660377358,153.74 1182.0377358490564,153.74 1205.5849056603772,210 1229.132075471698,210 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(35, 188, 163)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,153.74 781.7358490566038,210 805.2830188679245,210 828.8301886792452,210 852.377358490566,210 875.9245283018868,126.58 899.4716981132075,113 923.0188679245283,113 946.566037735849,113 970.1132075471697,113 993.6603773584906,113 1017.2075471698113,72.26000000000002 1040.7547169811319,16 1064.3018867924527,16 1087.8490566037735,16 1111.3962264150941,16 1134.943396226415,16 1158.4905660377358,16 1182.0377358490564,16 1205.5849056603772,16 1229.132075471698,16 1252.6792452830186,56.73999999999998 1276.2264150943395,43.16",
+     "rgb(255, 200, 0)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,140.16 781.7358490566038,153.74 805.2830188679245,184.78 828.8301886792452,194.48 852.377358490566,173.14 875.9245283018868,186.72 899.4716981132075,173.14 923.0188679245283,177.01999999999998 946.566037735849,149.86 970.1132075471697,186.72 993.6603773584906,182.84 1017.2075471698113,163.44 1040.7547169811319,169.26 1064.3018867924527,165.38 1087.8490566037735,165.38 1111.3962264150941,177.01999999999998 1134.943396226415,210 1158.4905660377358,190.6 1182.0377358490564,163.44 1205.5849056603772,186.72 1229.132075471698,186.72 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(168, 54, 221)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,204.18 711.0943396226415,198.36 734.6415094339623,200.3 758.188679245283,190.6 781.7358490566038,182.84 805.2830188679245,153.74 828.8301886792452,142.10000000000002 852.377358490566,157.62 875.9245283018868,153.74 899.4716981132075,161.5 923.0188679245283,138.22 946.566037735849,153.74 970.1132075471697,163.44 993.6603773584906,173.14 1017.2075471698113,167.32 1040.7547169811319,169.26 1064.3018867924527,182.84 1087.8490566037735,169.26 1111.3962264150941,124.64 1134.943396226415,111.06 1158.4905660377358,116.88000000000001 1182.0377358490564,116.88000000000001 1205.5849056603772,136.28 1229.132075471698,116.88000000000001 1252.6792452830186,161.5 1276.2264150943395,163.44",
+     "rgb(0, 204, 255)"
+    ],
+    [
+     "51.77358490566038,210 75.32075471698113,210 98.86792452830188,210 122.41509433962263,210 145.9622641509434,210 169.50943396226415,210 193.0566037735849,210 216.60377358490567,210 240.1509433962264,210 263.6981132075471,210 287.2452830188679,210 310.79245283018867,210 334.3396226415094,210 357.88679245283015,210 381.4339622641509,210 404.98113207547163,210 428.5283018867924,210 452.0754716981132,210 475.6226415094339,210 499.16981132075466,210 522.7169811320755,210 546.2641509433962,210 569.811320754717,210 593.3584905660377,210 616.9056603773585,210 640.4528301886793,210 664,210 687.5471698113207,210 711.0943396226415,210 734.6415094339623,210 758.188679245283,72.26000000000002 781.7358490566038,99.42000000000002 805.2830188679245,72.26000000000002 828.8301886792452,153.74 852.377358490566,126.58 875.9245283018868,182.84 899.4716981132075,72.26000000000002 923.0188679245283,210 946.566037735849,210 970.1132075471697,153.74 993.6603773584906,72.26000000000002 1017.2075471698113,99.42000000000002 1040.7547169811319,72.26000000000002 1064.3018867924527,182.84 1087.8490566037735,72.26000000000002 1111.3962264150941,72.26000000000002 1134.943396226415,72.26000000000002 1158.4905660377358,210 1182.0377358490564,210 1205.5849056603772,126.58 1229.132075471698,210 1252.6792452830186,210 1276.2264150943395,210",
+     "rgb(190, 35, 35)"
+    ]
+   ],
+   "puntos": [
+    "Durability MD/HD Hot Gas · CW1: 0%",
+    "Durability MD/HD Hot Gas · CW2: 0%",
+    "Durability MD/HD Hot Gas · CW3: 0%",
+    "Durability MD/HD Hot Gas · CW4: 0%",
+    "Durability MD/HD Hot Gas · CW5: 0%",
+    "Durability MD/HD Hot Gas · CW6: 0%",
+    "Durability MD/HD Hot Gas · CW7: 0%",
+    "Durability MD/HD Hot Gas · CW8: 0%",
+    "Durability MD/HD Hot Gas · CW9: 0%",
+    "Durability MD/HD Hot Gas · CW10: 0%",
+    "Durability MD/HD Hot Gas · CW11: 0%",
+    "Durability MD/HD Hot Gas · CW12: 0%",
+    "Durability MD/HD Hot Gas · CW13: 0%",
+    "Durability MD/HD Hot Gas · CW14: 0%",
+    "Durability MD/HD Hot Gas · CW15: 0%",
+    "Durability MD/HD Hot Gas · CW16: 0%",
+    "Durability MD/HD Hot Gas · CW17: 0%",
+    "Durability MD/HD Hot Gas · CW18: 0%",
+    "Durability MD/HD Hot Gas · CW19: 0%",
+    "Durability MD/HD Hot Gas · CW20: 0%",
+    "Durability MD/HD Hot Gas · CW21: 0%",
+    "Durability MD/HD Hot Gas · CW22: 0%",
+    "Durability MD/HD Hot Gas · CW23: 0%",
+    "Durability MD/HD Hot Gas · CW24: 0%",
+    "Durability MD/HD Hot Gas · CW25: 0%",
+    "Durability MD/HD Hot Gas · CW26: 0%",
+    "Durability MD/HD Hot Gas · CW27: 0%",
+    "Durability MD/HD Hot Gas · CW28: 0%",
+    "Durability MD/HD Hot Gas · CW29: 14%",
+    "Durability MD/HD Hot Gas · CW30: 20%",
+    "Durability MD/HD Hot Gas · CW31: 63%",
+    "Durability MD/HD Hot Gas · CW32: 31%",
+    "Durability MD/HD Hot Gas · CW33: 46%",
+    "Durability MD/HD Hot Gas · CW34: 63%",
+    "Durability MD/HD Hot Gas · CW35: 63%",
+    "Durability MD/HD Hot Gas · CW36: 54%",
+    "Durability MD/HD Hot Gas · CW37: 20%",
+    "Durability MD/HD Hot Gas · CW38: 34%",
+    "Durability MD/HD Hot Gas · CW39: 40%",
+    "Durability MD/HD Hot Gas · CW40: 71%",
+    "Durability MD/HD Hot Gas · CW41: 86%",
+    "Durability MD/HD Hot Gas · CW42: 74%",
+    "Durability MD/HD Hot Gas · CW43: 60%",
+    "Durability MD/HD Hot Gas · CW44: 77%",
+    "Durability MD/HD Hot Gas · CW45: 69%",
+    "Durability MD/HD Hot Gas · CW46: 71%",
+    "Durability MD/HD Hot Gas · CW47: 94%",
+    "Durability MD/HD Hot Gas · CW48: 83%",
+    "Durability MD/HD Hot Gas · CW49: 77%",
+    "Durability MD/HD Hot Gas · CW50: 63%",
+    "Durability MD/HD Hot Gas · CW51: 74%",
+    "Durability MD/HD Hot Gas · CW52: 63%",
+    "Durability MD/HD Hot Gas · CW53: 74%",
+    "PC Hot Gas · CW1: 0%",
+    "PC Hot Gas · CW2: 0%",
+    "PC Hot Gas · CW3: 0%",
+    "PC Hot Gas · CW4: 0%",
+    "PC Hot Gas · CW5: 0%",
+    "PC Hot Gas · CW6: 0%",
+    "PC Hot Gas · CW7: 0%",
+    "PC Hot Gas · CW8: 0%",
+    "PC Hot Gas · CW9: 0%",
+    "PC Hot Gas · CW10: 0%",
+    "PC Hot Gas · CW11: 0%",
+    "PC Hot Gas · CW12: 0%",
+    "PC Hot Gas · CW13: 0%",
+    "PC Hot Gas · CW14: 0%",
+    "PC Hot Gas · CW15: 0%",
+    "PC Hot Gas · CW16: 0%",
+    "PC Hot Gas · CW17: 0%",
+    "PC Hot Gas · CW18: 0%",
+    "PC Hot Gas · CW19: 0%",
+    "PC Hot Gas · CW20: 0%",
+    "PC Hot Gas · CW21: 0%",
+    "PC Hot Gas · CW22: 0%",
+    "PC Hot Gas · CW23: 0%",
+    "PC Hot Gas · CW24: 0%",
+    "PC Hot Gas · CW25: 0%",
+    "PC Hot Gas · CW26: 0%",
+    "PC Hot Gas · CW27: 0%",
+    "PC Hot Gas · CW28: 0%",
+    "PC Hot Gas · CW29: 5%",
+    "PC Hot Gas · CW30: 19%",
+    "PC Hot Gas · CW31: 33%",
+    "PC Hot Gas · CW32: 0%",
+    "PC Hot Gas · CW33: 0%",
+    "PC Hot Gas · CW34: 0%",
+    "PC Hot Gas · CW35: 19%",
+    "PC Hot Gas · CW36: 29%",
+    "PC Hot Gas · CW37: 5%",
+    "PC Hot Gas · CW38: 0%",
+    "PC Hot Gas · CW39: 0%",
+    "PC Hot Gas · CW40: 48%",
+    "PC Hot Gas · CW41: 5%",
+    "PC Hot Gas · CW42: 19%",
+    "PC Hot Gas · CW43: 0%",
+    "PC Hot Gas · CW44: 24%",
+    "PC Hot Gas · CW45: 38%",
+    "PC Hot Gas · CW46: 24%",
+    "PC Hot Gas · CW47: 14%",
+    "PC Hot Gas · CW48: 29%",
+    "PC Hot Gas · CW49: 29%",
+    "PC Hot Gas · CW50: 0%",
+    "PC Hot Gas · CW51: 0%",
+    "PC Hot Gas · CW52: 0%",
+    "PC Hot Gas · CW53: 0%",
+    "Corrosion · CW1: 0%",
+    "Corrosion · CW2: 0%",
+    "Corrosion · CW3: 0%",
+    "Corrosion · CW4: 0%",
+    "Corrosion · CW5: 0%",
+    "Corrosion · CW6: 0%",
+    "Corrosion · CW7: 0%",
+    "Corrosion · CW8: 0%",
+    "Corrosion · CW9: 0%",
+    "Corrosion · CW10: 0%",
+    "Corrosion · CW11: 0%",
+    "Corrosion · CW12: 0%",
+    "Corrosion · CW13: 0%",
+    "Corrosion · CW14: 0%",
+    "Corrosion · CW15: 0%",
+    "Corrosion · CW16: 0%",
+    "Corrosion · CW17: 0%",
+    "Corrosion · CW18: 0%",
+    "Corrosion · CW19: 0%",
+    "Corrosion · CW20: 0%",
+    "Corrosion · CW21: 0%",
+    "Corrosion · CW22: 0%",
+    "Corrosion · CW23: 0%",
+    "Corrosion · CW24: 0%",
+    "Corrosion · CW25: 0%",
+    "Corrosion · CW26: 0%",
+    "Corrosion · CW27: 0%",
+    "Corrosion · CW28: 0%",
+    "Corrosion · CW29: 0%",
+    "Corrosion · CW30: 0%",
+    "Corrosion · CW31: 29%",
+    "Corrosion · CW32: 0%",
+    "Corrosion · CW33: 0%",
+    "Corrosion · CW34: 0%",
+    "Corrosion · CW35: 0%",
+    "Corrosion · CW36: 43%",
+    "Corrosion · CW37: 50%",
+    "Corrosion · CW38: 50%",
+    "Corrosion · CW39: 50%",
+    "Corrosion · CW40: 50%",
+    "Corrosion · CW41: 50%",
+    "Corrosion · CW42: 71%",
+    "Corrosion · CW43: 100%",
+    "Corrosion · CW44: 100%",
+    "Corrosion · CW45: 100%",
+    "Corrosion · CW46: 100%",
+    "Corrosion · CW47: 100%",
+    "Corrosion · CW48: 100%",
+    "Corrosion · CW49: 100%",
+    "Corrosion · CW50: 100%",
+    "Corrosion · CW51: 100%",
+    "Corrosion · CW52: 79%",
+    "Corrosion · CW53: 86%",
+    "Mechanical Fatigue · CW1: 0%",
+    "Mechanical Fatigue · CW2: 0%",
+    "Mechanical Fatigue · CW3: 0%",
+    "Mechanical Fatigue · CW4: 0%",
+    "Mechanical Fatigue · CW5: 0%",
+    "Mechanical Fatigue · CW6: 0%",
+    "Mechanical Fatigue · CW7: 0%",
+    "Mechanical Fatigue · CW8: 0%",
+    "Mechanical Fatigue · CW9: 0%",
+    "Mechanical Fatigue · CW10: 0%",
+    "Mechanical Fatigue · CW11: 0%",
+    "Mechanical Fatigue · CW12: 0%",
+    "Mechanical Fatigue · CW13: 0%",
+    "Mechanical Fatigue · CW14: 0%",
+    "Mechanical Fatigue · CW15: 0%",
+    "Mechanical Fatigue · CW16: 0%",
+    "Mechanical Fatigue · CW17: 0%",
+    "Mechanical Fatigue · CW18: 0%",
+    "Mechanical Fatigue · CW19: 0%",
+    "Mechanical Fatigue · CW20: 0%",
+    "Mechanical Fatigue · CW21: 0%",
+    "Mechanical Fatigue · CW22: 0%",
+    "Mechanical Fatigue · CW23: 0%",
+    "Mechanical Fatigue · CW24: 0%",
+    "Mechanical Fatigue · CW25: 0%",
+    "Mechanical Fatigue · CW26: 0%",
+    "Mechanical Fatigue · CW27: 0%",
+    "Mechanical Fatigue · CW28: 0%",
+    "Mechanical Fatigue · CW29: 0%",
+    "Mechanical Fatigue · CW30: 0%",
+    "Mechanical Fatigue · CW31: 36%",
+    "Mechanical Fatigue · CW32: 29%",
+    "Mechanical Fatigue · CW33: 13%",
+    "Mechanical Fatigue · CW34: 8%",
+    "Mechanical Fatigue · CW35: 19%",
+    "Mechanical Fatigue · CW36: 12%",
+    "Mechanical Fatigue · CW37: 19%",
+    "Mechanical Fatigue · CW38: 17%",
+    "Mechanical Fatigue · CW39: 31%",
+    "Mechanical Fatigue · CW40: 12%",
+    "Mechanical Fatigue · CW41: 14%",
+    "Mechanical Fatigue · CW42: 24%",
+    "Mechanical Fatigue · CW43: 21%",
+    "Mechanical Fatigue · CW44: 23%",
+    "Mechanical Fatigue · CW45: 23%",
+    "Mechanical Fatigue · CW46: 17%",
+    "Mechanical Fatigue · CW47: 0%",
+    "Mechanical Fatigue · CW48: 10%",
+    "Mechanical Fatigue · CW49: 24%",
+    "Mechanical Fatigue · CW50: 12%",
+    "Mechanical Fatigue · CW51: 12%",
+    "Mechanical Fatigue · CW52: 0%",
+    "Mechanical Fatigue · CW53: 0%",
+    "Climatic / Environment · CW1: 0%",
+    "Climatic / Environment · CW2: 0%",
+    "Climatic / Environment · CW3: 0%",
+    "Climatic / Environment · CW4: 0%",
+    "Climatic / Environment · CW5: 0%",
+    "Climatic / Environment · CW6: 0%",
+    "Climatic / Environment · CW7: 0%",
+    "Climatic / Environment · CW8: 0%",
+    "Climatic / Environment · CW9: 0%",
+    "Climatic / Environment · CW10: 0%",
+    "Climatic / Environment · CW11: 0%",
+    "Climatic / Environment · CW12: 0%",
+    "Climatic / Environment · CW13: 0%",
+    "Climatic / Environment · CW14: 0%",
+    "Climatic / Environment · CW15: 0%",
+    "Climatic / Environment · CW16: 0%",
+    "Climatic / Environment · CW17: 0%",
+    "Climatic / Environment · CW18: 0%",
+    "Climatic / Environment · CW19: 0%",
+    "Climatic / Environment · CW20: 0%",
+    "Climatic / Environment · CW21: 0%",
+    "Climatic / Environment · CW22: 0%",
+    "Climatic / Environment · CW23: 0%",
+    "Climatic / Environment · CW24: 0%",
+    "Climatic / Environment · CW25: 0%",
+    "Climatic / Environment · CW26: 0%",
+    "Climatic / Environment · CW27: 0%",
+    "Climatic / Environment · CW28: 3%",
+    "Climatic / Environment · CW29: 6%",
+    "Climatic / Environment · CW30: 5%",
+    "Climatic / Environment · CW31: 10%",
+    "Climatic / Environment · CW32: 14%",
+    "Climatic / Environment · CW33: 29%",
+    "Climatic / Environment · CW34: 35%",
+    "Climatic / Environment · CW35: 27%",
+    "Climatic / Environment · CW36: 29%",
+    "Climatic / Environment · CW37: 25%",
+    "Climatic / Environment · CW38: 37%",
+    "Climatic / Environment · CW39: 29%",
+    "Climatic / Environment · CW40: 24%",
+    "Climatic / Environment · CW41: 19%",
+    "Climatic / Environment · CW42: 22%",
+    "Climatic / Environment · CW43: 21%",
+    "Climatic / Environment · CW44: 14%",
+    "Climatic / Environment · CW45: 21%",
+    "Climatic / Environment · CW46: 44%",
+    "Climatic / Environment · CW47: 51%",
+    "Climatic / Environment · CW48: 48%",
+    "Climatic / Environment · CW49: 48%",
+    "Climatic / Environment · CW50: 38%",
+    "Climatic / Environment · CW51: 48%",
+    "Climatic / Environment · CW52: 25%",
+    "Climatic / Environment · CW53: 24%",
+    "Coolant Carts · CW1: 0%",
+    "Coolant Carts · CW2: 0%",
+    "Coolant Carts · CW3: 0%",
+    "Coolant Carts · CW4: 0%",
+    "Coolant Carts · CW5: 0%",
+    "Coolant Carts · CW6: 0%",
+    "Coolant Carts · CW7: 0%",
+    "Coolant Carts · CW8: 0%",
+    "Coolant Carts · CW9: 0%",
+    "Coolant Carts · CW10: 0%",
+    "Coolant Carts · CW11: 0%",
+    "Coolant Carts · CW12: 0%",
+    "Coolant Carts · CW13: 0%",
+    "Coolant Carts · CW14: 0%",
+    "Coolant Carts · CW15: 0%",
+    "Coolant Carts · CW16: 0%",
+    "Coolant Carts · CW17: 0%",
+    "Coolant Carts · CW18: 0%",
+    "Coolant Carts · CW19: 0%",
+    "Coolant Carts · CW20: 0%",
+    "Coolant Carts · CW21: 0%",
+    "Coolant Carts · CW22: 0%",
+    "Coolant Carts · CW23: 0%",
+    "Coolant Carts · CW24: 0%",
+    "Coolant Carts · CW25: 0%",
+    "Coolant Carts · CW26: 0%",
+    "Coolant Carts · CW27: 0%",
+    "Coolant Carts · CW28: 0%",
+    "Coolant Carts · CW29: 0%",
+    "Coolant Carts · CW30: 0%",
+    "Coolant Carts · CW31: 71%",
+    "Coolant Carts · CW32: 57%",
+    "Coolant Carts · CW33: 71%",
+    "Coolant Carts · CW34: 29%",
+    "Coolant Carts · CW35: 43%",
+    "Coolant Carts · CW36: 14%",
+    "Coolant Carts · CW37: 71%",
+    "Coolant Carts · CW38: 0%",
+    "Coolant Carts · CW39: 0%",
+    "Coolant Carts · CW40: 29%",
+    "Coolant Carts · CW41: 71%",
+    "Coolant Carts · CW42: 57%",
+    "Coolant Carts · CW43: 71%",
+    "Coolant Carts · CW44: 14%",
+    "Coolant Carts · CW45: 71%",
+    "Coolant Carts · CW46: 71%",
+    "Coolant Carts · CW47: 71%",
+    "Coolant Carts · CW48: 0%",
+    "Coolant Carts · CW49: 0%",
+    "Coolant Carts · CW50: 43%",
+    "Coolant Carts · CW51: 0%",
+    "Coolant Carts · CW52: 0%",
+    "Coolant Carts · CW53: 0%"
+   ]
+  },
+  "tablas": [
+   {
+    "cabecera": [
+     "Tipo de banco",
+     "Bancos",
+     "Trabajando",
+     "Horas ocup./disp.",
+     "% ocupación",
+     "Inicia",
+     "Acaba"
+    ],
+    "filas": [
+     [
+      "Durability MD/HD Hot Gas",
+      "5",
+      "1",
+      "504 / 840",
+      [
+       "60%",
+       "60%",
+       "60% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "PC Hot Gas",
+      "3",
+      "0",
+      "0 / 504",
+      [
+       "0%",
+       "0%",
+       "0% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Corrosion",
+      "2",
+      "2",
+      "336 / 336",
+      [
+       "100%",
+       "100%",
+       "100% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Mechanical Fatigue",
+      "6",
+      "0",
+      "216 / 1008",
+      [
+       "21%",
+       "21%",
+       "21% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Climatic / Environment",
+      "9",
+      "1",
+      "312 / 1512",
+      [
+       "21%",
+       "21%",
+       "21% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "Coolant Carts",
+      "1",
+      "0",
+      "120 / 168",
+      [
+       "71%",
+       "71%",
+       "71% de las horas disponibles"
+      ],
+      "0",
+      "0"
+     ],
+     [
+      "TOTAL",
+      "",
+      "",
+      "1488 / 4368",
+      [
+       "34%",
+       "34%",
+       ""
+      ],
+      "",
+      ""
+     ]
+    ],
+    "periodo": "CW43 · 19 Oct 26 → 25 Oct 26"
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

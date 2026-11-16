@@ -8,5 +8,10 @@
     "declaration": false,
     "sourceMap": false
   },
-  "include": ["src/estado/operacionesOptimistas.ts", "src/estado/colaConfiguracion.ts", "src/api/tipos.ts"]
+  "include": [
+    "src/estado/operacionesOptimistas.ts",
+    "src/estado/colaConfiguracion.ts",
+    "src/utilidades/ganttModerno.ts",
+    "src/api/tipos.ts"
+  ]
 }

@@ -1,0 +1,116 @@
+/*
+ * Gantt general rediseñado (doc 09): propuesta A (carriles + color por
+ * proyecto + estado por forma) + foco con trazabilidad (D) + tarjetas.
+ * Todo va bajo .gm para no tocar el Gantt del banco ni el de equipos.
+ */
+
+/* ---- Barra de herramientas, ficha del foco y leyenda ---- */
+.gm-toolbar .gm-ctl{display:inline-flex;gap:8px;align-items:center}
+.gm-toolbar select.gm-color{background:var(--navy);color:var(--text);border:1px solid var(--line);border-radius:6px;font-size:12px;padding:3px 6px}
+.gm-toolbar .gm-traza{background:var(--navy);color:var(--muted);border:1px solid var(--line);border-radius:6px;font-size:12px;padding:3px 8px;cursor:pointer}
+.gm-toolbar .gm-traza.on{color:#fff;border-color:#a78bfa;background:rgba(167,139,250,.22)}
+.gm-toolbar .gm-traza:disabled{opacity:.5;cursor:default}
+.gm-ficha{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:6px 18px;padding:7px 12px;border:1px solid #a78bfa;border-radius:10px;background:rgba(167,139,250,.13);color:#d9ccff;font-size:12px}
+.gm-ficha b{color:#fff}
+.gm-ficha .gm-ficha-nombre{max-width:360px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm-ficha .gm-ficha-traza{color:#d9ccff}
+.gm-ficha .gm-ficha-retraso{color:var(--danger);font-weight:700}
+.gm-ficha .gm-ficha-cerrar{margin-left:auto;cursor:pointer;color:var(--muted);font-weight:700;padding:0 4px}
+.gm-ficha .gm-ficha-cerrar:hover{color:#fff}
+.gm-leyenda{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px}
+.gm-ley-estado{display:inline-flex;align-items:center;gap:5px;margin-right:10px;font-size:11px}
+.gm-m{display:inline-block;width:18px;height:10px;border-radius:3px;margin-left:6px;position:relative;--c:#6BB5FF;background:var(--c)}
+.gm-m.gm-hecho{background:rgba(107,181,255,.38)}
+.gm-m.gm-cola{background:rgba(107,181,255,.16);border:1.5px dashed var(--c)}
+.gm-m.gm-retraso{outline:2px solid var(--danger);outline-offset:-1px}
+.gm-m.gm-curso::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:#fff;border-radius:3px 0 0 3px}
+.gm-m.gm-esp{background:repeating-linear-gradient(45deg,#111 0,#111 3px,#f2f2f2 3px,#f2f2f2 6px)}
+.gm-chip{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--text);font-size:11px;cursor:pointer;white-space:nowrap}
+.gm-chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.gm-chip:hover{border-color:var(--muted)}
+.gm-chip.on{border-color:#a78bfa;background:rgba(167,139,250,.2)}
+.gm-chip.gm-mas{cursor:help;color:var(--muted)}
+
+/* Con «Color: Proyecto» la leyenda de colores por estado de la tarjeta ya no aplica: la sustituye la de formas. */
+.card:has(#ganttbox.gm:not(.gm-color-estado)) .dash-toolbar>.chip{display:none}
+
+/* ---- Cabeceras de categoría plegables ---- */
+.gm .g-cat{display:flex;align-items:center;border-top:1px solid var(--line);height:22px;cursor:pointer;background:rgba(255,255,255,.025)}
+.gm .g-cat .g-label{display:flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-left:3px solid transparent;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:visible;width:auto;min-width:var(--lw,170px);background:var(--panel2)}
+.gm .g-cat .gm-flecha{color:var(--muted);font-size:10px}
+.gm .g-cat .gm-cat-info{color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0}
+.gm .g-cat .g-track{height:22px;flex:1}
+.gm .g-cat.gm-sinfoco{opacity:.6}
+.gm .g-cat:hover .g-label{filter:brightness(1.2)}
+
+/* ---- Filas de banco con carriles ---- */
+.gm .g-row.gm-oculta{display:none}
+.gm .g-row .g-label.gm-label{flex-direction:column;align-items:stretch;justify-content:flex-start;padding:4px 8px 0;gap:2px}
+.gm .gm-l1{display:flex;align-items:center;min-width:0;height:18px}
+.gm .gm-l1 .g-bname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm .gm-ocup{margin-left:auto;padding-left:6px;display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;color:var(--muted);flex:none}
+.gm .gm-ocup i{display:inline-block;width:26px;height:4px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.gm .gm-ocup i b{display:block;height:100%}
+.gm .gm-paralelo{align-self:flex-start;margin-left:14px;font-size:9.5px;font-weight:700;color:#cfd8e3;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:999px;padding:0 7px;line-height:14px}
+.gm .g-track{background-color:transparent}
+.gm .gm-pasado{position:absolute;left:0;top:0;bottom:0;background:rgba(0,0,0,.22);pointer-events:none;z-index:0}
+
+/* ---- Barras: color = proyecto (--c), forma = estado ---- */
+.gm .g-bar{cursor:pointer;border-radius:5px;opacity:1}
+.gm .g-bar.solid{opacity:1}
+.gm .g-bar .g-lab{line-height:18px;padding:0 6px}
+.gm .g-bar.haloq{box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.gm .g-bar.gm-hecho .g-lab{color:#dfe7ee;font-weight:600}
+.gm .g-bar.gm-cola{border:1.5px dashed var(--c);box-shadow:none}
+.gm .g-bar.gm-cola .g-lab{color:var(--c);text-shadow:0 1px 2px rgba(0,0,0,.8)}
+.gm .g-bar.gm-retraso{outline:2px solid var(--danger);outline-offset:-2px}
+.gm .g-bar.gm-curso::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#fff;z-index:2}
+.gm .g-bar.gm-curso .g-lab{padding-left:9px}
+.gm .g-bar:hover{filter:brightness(1.18);z-index:4}
+
+/* ---- Foco de proyecto ---- */
+.gm.gm-foco .g-bar.g-dim{filter:saturate(.55) brightness(.75);opacity:.33}
+.gm.gm-foco .g-bar.g-dim:hover{opacity:.6}
+.gm.gm-foco .g-bar.g-foc{outline:1.5px solid #fff;outline-offset:-1.5px;z-index:3}
+.gm.gm-foco .g-bar.g-foc.gm-retraso{outline:2px solid var(--danger)}
+.gm .g-row.gm-usa .g-label{box-shadow:inset 3px 0 0 #a78bfa;background:#251f3d}
+.gm .g-row.gm-usa .g-track{background-color:rgba(167,139,250,.09)}
+.gm .g-row.gm-nousa .g-label{color:var(--muted);font-weight:500}
+.gm .gm-trazas{position:absolute;left:0;top:0;pointer-events:none;z-index:5;overflow:visible}
+.gm .gm-trazas path{fill:none;stroke:#f2ecff;stroke-width:1.6;opacity:.9;filter:drop-shadow(0 0 2px rgba(0,0,0,.8))}
+
+/* ---- Tarjeta al pasar el ratón ---- */
+.gm-tarjeta{position:fixed;z-index:1000;width:330px;max-width:calc(100vw - 16px);background:#0d1822;border:1.5px solid var(--turq);border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.55);padding:10px 12px 8px;color:var(--text);font-size:12px;pointer-events:none}
+.gm-tarjeta .gm-t-cab{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-bottom:5px}
+.gm-tarjeta .gm-t-cab b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gm-t-punto{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.gm-tarjeta .gm-t-estado{display:inline-block;padding:1px 8px;border-radius:5px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#0b1620}
+.gm-tarjeta dl{margin:8px 0 6px;display:grid;gap:3px}
+.gm-tarjeta dl>div{display:grid;grid-template-columns:96px 1fr;gap:8px}
+.gm-tarjeta dt{color:var(--muted)}
+.gm-tarjeta dd{margin:0;overflow-wrap:anywhere}
+.gm-tarjeta .gm-t-pie{border-top:1px solid var(--line);padding-top:5px;color:var(--muted);font-size:10.5px}
+
+/* ---- Ensayo abierto desde el Gantt: se resalta un momento en su tabla ---- */
+tr.gm-destello td{animation:gm-destello 2.4s ease-out}
+@keyframes gm-destello{0%,35%{background:rgba(167,139,250,.45)}100%{background:transparent}}
+
+@media print{.gm-leyenda,.gm-tarjeta{display:none}}
+
+/* ===== H9 · Gantt a altura libre =====================================
+   Los Gantt (general, por responsable y del banco) no tienen scroll vertical
+   propio: miden lo que necesitan y se desplaza la página. La cabecera la
+   traslada useCabeceraFlotante y la barra horizontal se duplica abajo. */
+.gantt.gm-alto-libre,.gantt.g-mini.gm-alto-libre{max-height:none}
+.gantt.gm-cab-flota>div>.g-months:last-of-type,.gantt.gm-cab-flota>div>.g-days{box-shadow:0 6px 10px -6px rgba(0,0,0,.6)}
+.gm-hscroll{position:sticky;bottom:-18px;z-index:40;overflow-x:auto;overflow-y:hidden;height:16px;margin-top:-16px;
+  background:var(--panel2);border:1px solid var(--line);border-radius:0 0 8px 8px;box-shadow:0 -4px 10px -4px rgba(0,0,0,.5)}
+.gm-hscroll[hidden]{display:none}
+/* Banco: el divisor fija el alto de la tabla; el Gantt de abajo no se comprime. */
+.bench-split.bs-libre{display:block;height:auto;min-height:0}
+.bench-split.bs-libre .bs-pane.top{min-height:140px}
+.bench-split.bs-libre .bs-pane.top.bs-auto{min-height:0}
+.bench-split.bs-libre .bs-pane.top.bs-auto .card{height:auto;max-height:max(220px,calc((100vh - 260px) / 2))}
+.bench-split.bs-libre .bs-pane.bot{display:block;overflow:visible;min-height:0}
+.bench-split.bs-libre .bs-pane.bot .card{height:auto;overflow:visible;display:block}
+.bench-split.bs-libre .bs-pane.bot .card .gantt{flex:none}

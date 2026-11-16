@@ -1,0 +1,3516 @@
+{
+ "original": {
+  "entradas": [
+   "",
+   "#23bca3",
+   "#4c8dff",
+   "Durability MD/HD Hot Gas",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "",
+   "#ffc800",
+   "Corrosión",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "",
+   "#23bca3",
+   "PC Hot Gas",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "",
+   "#a836dd",
+   "Mechanical Fatigue",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "",
+   "#00ccff",
+   "Climatic / Environment",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "",
+   "#be2323",
+   "Coolant Carts",
+   "Snakes dP",
+   ""
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "🔨 Test Benches"
+  ],
+  "org": [
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   ""
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Add category",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench"
+  ],
+  "hints": [
+   "Create and organise your bench categories and benches. Rename or recolour categories, add/rename/move/delete benches. Renaming a bench keeps its tests; deleting a bench or a non-empty category asks for confirmation.",
+   "5 bench(es)",
+   "2 bench(es)",
+   "3 bench(es)",
+   "6 bench(es)",
+   "9 bench(es)",
+   "1 bench(es)"
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "10",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "6",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "8",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "6",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "7",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "8",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "9",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "10",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "8",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueClimatic / Environment",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "entradas": [
+   "",
+   "#23bca3",
+   "#4c8dff",
+   "Durability MD/HD Hot Gas",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "",
+   "#ffc800",
+   "Corrosión",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "",
+   "#23bca3",
+   "PC Hot Gas",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "",
+   "#a836dd",
+   "Mechanical Fatigue",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "",
+   "#00ccff",
+   "Climatic / Environment",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "",
+   "#be2323",
+   "Coolant Carts",
+   "Snakes dP",
+   ""
+  ],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "💶 Monthly sheet",
+   "🔨 Configuration",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "🔨 Test Benches"
+  ],
+  "org": [
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "BW",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   "",
+   "CTAG",
+   ""
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Add category",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench",
+   "▲",
+   "▼",
+   "🗑 Delete",
+   "▲",
+   "▼",
+   "🗑",
+   "＋ Add bench"
+  ],
+  "hints": [
+   "Create and organise your bench categories and benches. Rename or recolour categories, add/rename/move/delete benches. Renaming a bench keeps its tests; deleting a bench or a non-empty category asks for confirmation.",
+   "5 bench(es)",
+   "2 bench(es)",
+   "3 bench(es)",
+   "6 bench(es)",
+   "9 bench(es)",
+   "1 bench(es)"
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "10",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…CorrosiónPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasPC Hot GasMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónMechanical FatigueClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "6",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasClimatic / EnvironmentCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "8",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "3",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "4",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "5",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "6",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "7",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "8",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "9",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "10",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueCoolant Carts",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "#",
+     "Bench",
+     "Org",
+     "Active tests",
+     "Move to category",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "1",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "8",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "move…Durability MD/HD Hot GasCorrosiónPC Hot GasMechanical FatigueClimatic / Environment",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "▲▼🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(35, 188, 163)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "＋ Add bench",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

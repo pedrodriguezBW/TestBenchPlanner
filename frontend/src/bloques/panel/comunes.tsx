@@ -72,8 +72,10 @@ export const horas = (v: number) => Math.round(v).toLocaleString('es-ES');
 /**
  * Tarjeta con tirador para cambiar su alto (rzOpen / rzHandle de la 4.9.4).
  * El alto se recuerda en este navegador; doble clic en el tirador lo restablece.
+ * Con `ajustable={false}` (H9, tarjetas del Gantt) no hay tirador: la tarjeta
+ * mide lo que necesite su contenido.
  */
-export function TarjetaRedimensionable({ clave, children }: { clave: string; children: ReactNode }) {
+export function TarjetaRedimensionable({ clave, children, ajustable = true }: { clave: string; children: ReactNode; ajustable?: boolean }) {
   const [alturas, setAlturas] = usePreferencia<Record<string, number>>('tbp_alturas_tarjetas', {});
   const tarjeta = useRef<HTMLDivElement>(null);
   const [alto, setAlto] = useState<number | null>(null);
@@ -103,6 +105,7 @@ export function TarjetaRedimensionable({ clave, children }: { clave: string; chi
     setAlto(null);
   };
 
+  if (!ajustable) return <div ref={tarjeta} className="card rzcard gm-tarjeta-libre" data-rzk={clave}>{children}</div>;
   return (
     <>
       <div ref={tarjeta} className="card rzcard" data-rzk={clave} style={actual ? { height: actual, overflow: 'auto' } : undefined}>{children}</div>

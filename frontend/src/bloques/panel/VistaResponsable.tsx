@@ -94,7 +94,7 @@ export function VistaResponsable() {
           </table>
         </TarjetaRedimensionable>
       )}
-      <TarjetaRedimensionable clave="resp-plan">
+      <TarjetaRedimensionable clave="resp-plan" ajustable={false}>
         <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
           <h3 style={{ margin: '0 8px 0 0' }}>{manager ? 'Team plan by bench' : 'My plan by bench'}</h3>
           <div className="dash-toolbar" style={{ marginLeft: 'auto' }}>

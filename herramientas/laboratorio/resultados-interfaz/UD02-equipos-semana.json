@@ -1,0 +1,370 @@
+{
+ "original": {
+  "titulo": "🔧 Additional Equipment",
+  "semana": "CW46",
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🗓 Full year",
+   "🔒 Bloquear recurso"
+  ],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "200px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26"
+    ],
+    [
+     "",
+     "CW46"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ]
+   ],
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "Hydraulic Cylinder 1",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 2",
+     "ancho": 182,
+     "barras": [
+      {
+       "x": 0,
+       "w": 76,
+       "titulo": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 09 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 76,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 05 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 78,
+       "w": 102,
+       "titulo": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 12 Nov 26→17 Nov 26",
+       "texto": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Bomba Manual",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 3",
+     "ancho": 182,
+     "barras": [
+      {
+       "x": 0,
+       "w": 102,
+       "titulo": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 02 Nov 26→12 Nov 26",
+       "texto": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 1",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 2",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 3",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "seccion": {
+   "titulos": [
+    "🔧 Additional Equipment",
+    "Bloqueos manuales (0)"
+   ],
+   "org": [
+    ""
+   ],
+   "opcionesResponsable": [],
+   "fechas": [],
+   "botones": [
+    "◀ Prev",
+    "Next ▶",
+    "Today",
+    "🗓 Full year",
+    "🔒 Bloquear recurso",
+    "−",
+    "+",
+    "100%",
+    "📊 Excel"
+   ],
+   "hints": [
+    "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+    "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+    "No hay bloqueos. Usa 🔒 Bloquear recurso para reservar un equipo por calibración, avería, etc."
+   ],
+   "vacios": [],
+   "kpis": [],
+   "tablas": []
+  },
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "🔧 Additional Equipment",
+  "semana": "CW46",
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🗓 Full year",
+   "🔒 Bloquear recurso"
+  ],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "200px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26"
+    ],
+    [
+     "",
+     "CW46"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M9",
+     ""
+    ],
+    [
+     "T10",
+     ""
+    ],
+    [
+     "W11",
+     ""
+    ],
+    [
+     "T12",
+     ""
+    ],
+    [
+     "F13",
+     ""
+    ],
+    [
+     "S14",
+     "we"
+    ],
+    [
+     "S15",
+     "we"
+    ]
+   ],
+   "hoy": null,
+   "filas": [
+    {
+     "banco": "Hydraulic Cylinder 1",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 2",
+     "ancho": 182,
+     "barras": [
+      {
+       "x": 0,
+       "w": 76,
+       "titulo": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 09 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 0,
+       "w": 76,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 05 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 78,
+       "w": 102,
+       "titulo": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 12 Nov 26→17 Nov 26",
+       "texto": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Bomba Manual",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 3",
+     "ancho": 182,
+     "barras": [
+      {
+       "x": 0,
+       "w": 102,
+       "titulo": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 02 Nov 26→12 Nov 26",
+       "texto": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 1",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 2",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 3",
+     "ancho": 182,
+     "barras": [],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "seccion": {
+   "titulos": [
+    "🔧 Additional Equipment",
+    "Bloqueos manuales (0)"
+   ],
+   "org": [
+    ""
+   ],
+   "opcionesResponsable": [],
+   "fechas": [],
+   "botones": [
+    "◀ Prev",
+    "Next ▶",
+    "Today",
+    "🗓 Full year",
+    "🔒 Bloquear recurso",
+    "−",
+    "+",
+    "100%",
+    "📊 Excel"
+   ],
+   "hints": [
+    "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+    "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+    "No hay bloqueos. Usa 🔒 Bloquear recurso para reservar un equipo por calibración, avería, etc."
+   ],
+   "vacios": [],
+   "kpis": [],
+   "tablas": []
+  },
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

@@ -1,0 +1,2 @@
+# Referencias byte a byte: Git no debe convertir sus saltos de línea a CRLF en Windows.
+herramientas/laboratorio/referencias-excel/*.xml -text

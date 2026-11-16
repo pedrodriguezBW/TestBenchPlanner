@@ -30,5 +30,11 @@
   "caso": "^UB21-",
   "ruta": "^/mensajes/0$",
   "motivo": "D39 (áreas, H7): el mensaje de 📊 Update Yearly Status dice «(ALL / BW / CTAG and by area)» porque la foto semanal guarda también THERMAL, HVCH-CTAG y HVCH-STC."
+ },
+ {
+  "caso": "^UE(08|19|20)-",
+  "ruta": "^/hints/1$",
+  "referencia": "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla.",
+  "motivo": "D40 (Gantt general rediseñado, H8): el texto de ayuda del Gantt del Dashboard explica la tarjeta al pasar el ratón en lugar del foco (el foco tiene ahora su propia ficha)."
  }
 ]

@@ -24,6 +24,7 @@ parado en la fecha del caso.
 | `controlador-react.cjs` · `comparar-interfaz.cjs` | Ejecutan los casos sobre la interfaz React como un usuario y comparan con las referencias (bloque A). |
 | `casos-interfaz/*.json` · `comparar-panel.cjs` | Dashboard, «By Responsible» (bloque B), KPI History (bloque C), equipos auxiliares (bloque D) y configuración (bloque E): mismos gestos en las dos interfaces y comparación de lo que se ve. |
 | `pruebas-ciclo-de-vida.cjs` | Presencia de la pestaña: ocultar o minimizar no avisa de cierre; salir de la página sí. |
+| `pruebas-gantt.cjs` | Gantt general rediseñado (H8, D40): carriles, color por proyecto, formas de estado, categorías plegables, tarjeta, foco con ficha y trazabilidad, clic que abre el ensayo; altura libre y divisor del banco (H9). |
 | `pruebas-rendimiento.cjs` | Latencia con SharePoint: altas y copias visibles al momento con un guardado lento simulado, cola de operaciones, fallo y código de pestaña en cada petición. |
 | `facturacion/hoja.cjs` | Réplica JavaScript de la facturación Java (reglas, hoja mensual, exportación Excel/HTML). |
 | `facturacion/api-simulada.cjs` | API `/api/v1/facturacion` del backend simulado (Equipment Types en memoria, vacíos al empezar). |

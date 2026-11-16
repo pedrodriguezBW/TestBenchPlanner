@@ -1,0 +1,182 @@
+{
+ "original": {
+  "celdas": [
+   [
+    "royo929a",
+    "—🔍",
+    null
+   ],
+   [
+    "r3rtxond",
+    "Hydraulic Cylinder 2!🔍",
+    "Hydraulic Cylinder 2: Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (2026-11-09→2026-11-11); 1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling (2026-11-05→2026-11-11); 1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (2026-11-12→2026-11-17)"
+   ],
+   [
+    "r0v8hmq4",
+    "—🔍",
+    null
+   ],
+   [
+    "rq6evds7",
+    "—🔍",
+    null
+   ],
+   [
+    "r2pw5wzb",
+    "—🔍",
+    null
+   ],
+   [
+    "rr4nahfo",
+    "—🔍",
+    null
+   ],
+   [
+    "ry4i5ovt",
+    "—🔍",
+    null
+   ],
+   [
+    "rmtkbkqe",
+    "—🔍",
+    null
+   ],
+   [
+    "ravpgk0u",
+    "—🔍",
+    null
+   ],
+   [
+    "rgszzdvf",
+    "—🔍",
+    null
+   ]
+  ],
+  "ventanas": [
+   {
+    "titulo": "Recursos auxiliares",
+    "sub": "Fechas del ensayo: 09 Nov 26 → 12 Nov 26. Un recurso está en uso si otro ensayo o un bloqueo lo ocupa en esas fechas.",
+    "filas": [
+     [
+      "Hydraulic Cylinder 2",
+      "—",
+      "CTAG",
+      "En usoUrna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (09 Nov 26→11 Nov 26)1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling (05 Nov 26→11 Nov 26)1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (12 Nov 26→17 Nov 26)",
+      "✓ Quitar"
+     ],
+     [
+      "Hydraulic Cylinder 3",
+      "—",
+      "CTAG",
+      "En usoFatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (02 Nov 26→12 Nov 26)",
+      "Añadir"
+     ]
+    ],
+    "grupos": [
+     "Asignados a este ensayo: Hydraulic Cylinder 2",
+     "Hydraulic Cylinder"
+    ],
+    "vacio": null,
+    "campos": [
+     [
+      "resm-search",
+      ""
+     ]
+    ]
+   }
+  ],
+  "aviso": "⚠️ Hydraulic Cylinder 2 ya está en uso en esas fechas:Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (09 Nov 26→11 Nov 26)1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling (05 Nov 26→11 Nov 26)1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (12 Nov 26→17 Nov 26)Se ha asignado igualmente; tenlo en cuenta.",
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "celdas": [
+   [
+    "royo929a",
+    "—🔍",
+    null
+   ],
+   [
+    "r3rtxond",
+    "Hydraulic Cylinder 2!🔍",
+    "Hydraulic Cylinder 2: Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (2026-11-09→2026-11-11); 1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling (2026-11-05→2026-11-11); 1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (2026-11-12→2026-11-17)"
+   ],
+   [
+    "r0v8hmq4",
+    "—🔍",
+    null
+   ],
+   [
+    "rq6evds7",
+    "—🔍",
+    null
+   ],
+   [
+    "r2pw5wzb",
+    "—🔍",
+    null
+   ],
+   [
+    "rr4nahfo",
+    "—🔍",
+    null
+   ],
+   [
+    "ry4i5ovt",
+    "—🔍",
+    null
+   ],
+   [
+    "rmtkbkqe",
+    "—🔍",
+    null
+   ],
+   [
+    "ravpgk0u",
+    "—🔍",
+    null
+   ],
+   [
+    "rgszzdvf",
+    "—🔍",
+    null
+   ]
+  ],
+  "ventanas": [
+   {
+    "titulo": "Recursos auxiliares",
+    "sub": "Fechas del ensayo: 09 Nov 26 → 12 Nov 26. Un recurso está en uso si otro ensayo o un bloqueo lo ocupa en esas fechas.",
+    "filas": [
+     [
+      "Hydraulic Cylinder 2",
+      "—",
+      "CTAG",
+      "En usoUrna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (09 Nov 26→11 Nov 26)1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling (05 Nov 26→11 Nov 26)1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (12 Nov 26→17 Nov 26)",
+      "✓ Quitar"
+     ],
+     [
+      "Hydraulic Cylinder 3",
+      "—",
+      "CTAG",
+      "En usoFatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (02 Nov 26→12 Nov 26)",
+      "Añadir"
+     ]
+    ],
+    "grupos": [
+     "Asignados a este ensayo: Hydraulic Cylinder 2",
+     "Hydraulic Cylinder"
+    ],
+    "vacio": null,
+    "campos": [
+     [
+      "resm-search",
+      ""
+     ]
+    ]
+   }
+  ],
+  "aviso": "⚠️ Hydraulic Cylinder 2 ya está en uso en esas fechas:Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (09 Nov 26→11 Nov 26)1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling (05 Nov 26→11 Nov 26)1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling (12 Nov 26→17 Nov 26)Se ha asignado igualmente; tenlo en cuenta.",
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

@@ -1,0 +1,576 @@
+{
+ "original": {
+  "titulos": [
+   "🔨 Equipments List"
+  ],
+  "org": [
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Añadir tipo",
+   "🗑 Borrar tipo",
+   "🗑",
+   "🗑",
+   "🗑",
+   "＋ Añadir equipo",
+   "🗑 Borrar tipo",
+   "🗑",
+   "🗑",
+   "🗑",
+   "＋ Añadir equipo"
+  ],
+  "hints": [
+   "Catálogo de equipos auxiliares (cilindros hidráulicos, generadores de pulsos y, en el futuro, adquisidores de señal, osciloscopios, fuentes de alimentación…). Se organizan por tipo de equipo (configurable). Cada recurso tiene un código de equipo único y pertenece a BW o CTAG.",
+   "3 equipo(s)",
+   "3 equipo(s)"
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Nombre",
+     "Código equipo (único)",
+     "Org",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "＋ Añadir equipo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Nombre",
+     "Código equipo (único)",
+     "Org",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "＋ Añadir equipo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "mensajes": [
+   "Borrar el recurso \"Bomba Manual\"?"
+  ],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulos": [
+   "🔨 Equipments List"
+  ],
+  "org": [
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG",
+   "CTAG"
+  ],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "＋ Añadir tipo",
+   "🗑 Borrar tipo",
+   "🗑",
+   "🗑",
+   "🗑",
+   "＋ Añadir equipo",
+   "🗑 Borrar tipo",
+   "🗑",
+   "🗑",
+   "🗑",
+   "＋ Añadir equipo"
+  ],
+  "hints": [
+   "Catálogo de equipos auxiliares (cilindros hidráulicos, generadores de pulsos y, en el futuro, adquisidores de señal, osciloscopios, fuentes de alimentación…). Se organizan por tipo de equipo (configurable). Cada recurso tiene un código de equipo único y pertenece a BW o CTAG.",
+   "3 equipo(s)",
+   "3 equipo(s)"
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Nombre",
+     "Código equipo (único)",
+     "Org",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "＋ Añadir equipo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Nombre",
+     "Código equipo (único)",
+     "Org",
+     ""
+    ],
+    "filas": [
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "BWCTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "🗑",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(255, 107, 107)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "＋ Añadir equipo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "mensajes": [
+   "Borrar el recurso \"Bomba Manual\"?"
+  ],
+  "erroresJs": []
+ }
+}

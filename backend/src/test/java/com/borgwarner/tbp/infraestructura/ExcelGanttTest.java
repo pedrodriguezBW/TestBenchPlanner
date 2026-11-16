@@ -33,6 +33,11 @@ class ExcelGanttTest {
         return Path.of(System.getProperty("laboratorio.dir", "../herramientas/laboratorio"), "referencias-excel");
     }
 
+    /** Lee una referencia sin depender de los saltos de línea del checkout (core.autocrlf en Windows). */
+    private static String referencia(String nombre) throws IOException {
+        return Files.readString(referencias().resolve(nombre)).replace("\r\n", "\n");
+    }
+
     private static Map<String, String> partes(byte[] xlsx) throws IOException {
         Map<String, String> partes = new LinkedHashMap<>();
         try (ZipInputStream zip = new ZipInputStream(new ByteArrayInputStream(xlsx))) {
@@ -49,8 +54,8 @@ class ExcelGanttTest {
             JsonNode matriz = JsonJs.mapper().readTree(referencias().resolve(vista + ".json").toFile());
             ExcelGantt.Resultado r = ExcelGantt.generar(matriz, LocalDate.of(2026, 11, 5));
             Map<String, String> partes = partes(r.contenido());
-            assertEquals(Files.readString(referencias().resolve(vista + ".sheet1.xml")), partes.get("xl/worksheets/sheet1.xml"), "hoja de " + vista);
-            assertEquals(Files.readString(referencias().resolve(vista + ".styles.xml")), partes.get("xl/styles.xml"), "estilos de " + vista);
+            assertEquals(referencia(vista + ".sheet1.xml"), partes.get("xl/worksheets/sheet1.xml"), "hoja de " + vista);
+            assertEquals(referencia(vista + ".styles.xml"), partes.get("xl/styles.xml"), "estilos de " + vista);
             assertTrue(r.nombre().endsWith("_20261105.xlsx"), r.nombre());
         }));
     }

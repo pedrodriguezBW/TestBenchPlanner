@@ -1,0 +1,2712 @@
+{
+ "original": {
+  "titulos": [
+   "📈 KPI History",
+   "Ensayos por mes",
+   "Ensayos por trimestre",
+   "Motivos de los ensayos cerrados en retraso",
+   "Foto semanal · ALL",
+   "Motivos acumulados en las fotos semanales · ALL"
+  ],
+  "org": [
+   "ALL",
+   ""
+  ],
+  "opcionesResponsable": [
+   [
+    "Todos",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  ],
+  "fechas": [
+   "2026-11-01",
+   "2026-11-30"
+  ],
+  "botones": [
+   "↻ Reload from SharePoint",
+   "Año",
+   "Año hasta hoy",
+   "Trimestre",
+   "Mes",
+   "⬇️ Exportar CSV"
+  ],
+  "hints": [
+   "Source: SharePoint (45 rows)",
+   "Dos lecturas distintas y complementarias: arriba, las estadísticas de ensayos (cada ensayo cuenta una sola vez, por su estado final al cerrarlo); abajo, la foto semanal guardada con 📊 Update Yearly Status, que es una instantánea de cómo estaba cada semana.",
+   "Desde",
+   "Hasta",
+   "Responsable",
+   "Ensayos ya cerrados, contados por el estado final que declaraste. La fecha de referencia es la de arranque (real o comprometido), porque «ensayos lanzados» se cuenta por cuándo empezaron. El filtro Org es el de arriba.",
+   "Ningún ensayo cerrado en retraso en este periodo.",
+   "Las semanas guardadas antes de la 4.9.3 no tienen ocupación («—») y su «en retraso» sigue el criterio antiguo. Son medias semanales, no totales: un ensayo largo aparece en varias semanas, así que sumarlas contaría el mismo ensayo más de una vez."
+  ],
+  "vacios": [],
+  "kpis": [
+   [
+    "3",
+    "Ensayos lanzados (cerrados) en el periodo",
+    "kpi"
+   ],
+   [
+    "3",
+    "Terminados en plazo",
+    "kpi green"
+   ],
+   [
+    "0",
+    "Terminados en retraso",
+    "kpi bad"
+   ],
+   [
+    "0%",
+    "Tasa de retraso",
+    "kpi bad"
+   ],
+   [
+    "16",
+    "Semanas registradas (ALL)",
+    "kpi"
+   ],
+   [
+    "17.6",
+    "Media corriendo/acumulando / semana",
+    "kpi green"
+   ],
+   [
+    "1.8",
+    "Media en retraso / semana",
+    "kpi bad"
+   ],
+   [
+    "47%",
+    "Media ocupación / semana (4 sem. con dato)",
+    "kpi"
+   ],
+   [
+    "CW45",
+    "Última semana · en retraso 2",
+    "kpi"
+   ]
+  ],
+  "tablas": [
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Mes",
+     "Lanzados",
+     "En plazo",
+     "En retraso",
+     "% retraso"
+    ],
+    "filas": [
+     [
+      [
+       "Nov 2026",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "700"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Mes",
+     "Lanzados",
+     "En plazo",
+     "En retraso",
+     "% retraso"
+    ],
+    "filas": [
+     [
+      [
+       "2026-Q4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "700"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Arranque",
+     "Banco",
+     "Proyecto",
+     "Tipo",
+     "Resp.",
+     "Estado final",
+     "Motivo",
+     "Fin real",
+     "Desv.",
+     "Parada",
+     "Cierre"
+    ],
+    "filas": [
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Snakes dP",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Eff & dP",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2000 CTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Pressure Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1500 WC",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80001755 - Rimac - eCooler - Ampere Ceremony",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Pressure Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash",
+    "cabecera": [
+     "Semana",
+     "Bancos con carga",
+     "Corriendo / acumulando",
+     "Ocupación (horas)",
+     "En retraso esa semana"
+    ],
+    "filas": [
+     [
+      [
+       "2026 · CW00",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW30",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "18",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW31",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "21",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW32",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW33",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW34",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW35",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "15/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "20",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW36",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "30",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW37",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "17/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "22",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW38",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "22",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW39",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "13/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "19",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW40",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "15/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW42",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "43%",
+       null,
+       "1800 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW43",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "25",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "53%",
+       null,
+       "2208 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW44",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "50%",
+       null,
+       "2107 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW45",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16/26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "18",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "41%",
+       null,
+       "1795 / 4368 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Reason",
+     "Count",
+     "Share"
+    ],
+    "filas": [
+     [
+      [
+       "Falta de recursos",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "40%",
+       "40%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Piezas con retraso",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Avería / Mant. no planificado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "9",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "60%",
+       "60%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Caída de ensayo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Cambio de prioridad",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Otro",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulos": [
+   "📈 KPI History",
+   "Ensayos por mes",
+   "Ensayos por trimestre",
+   "Motivos de los ensayos cerrados en retraso",
+   "Foto semanal · ALL",
+   "Motivos acumulados en las fotos semanales · ALL"
+  ],
+  "org": [
+   "ALL",
+   ""
+  ],
+  "opcionesResponsable": [
+   [
+    "Todos",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  ],
+  "fechas": [
+   "2026-11-01",
+   "2026-11-30"
+  ],
+  "botones": [
+   "↻ Reload from SharePoint",
+   "Año",
+   "Año hasta hoy",
+   "Trimestre",
+   "Mes",
+   "⬇️ Exportar CSV"
+  ],
+  "hints": [
+   "Source: SharePoint (45 rows)",
+   "Dos lecturas distintas y complementarias: arriba, las estadísticas de ensayos (cada ensayo cuenta una sola vez, por su estado final al cerrarlo); abajo, la foto semanal guardada con 📊 Update Yearly Status, que es una instantánea de cómo estaba cada semana.",
+   "Desde",
+   "Hasta",
+   "Responsable",
+   "Ensayos ya cerrados, contados por el estado final que declaraste. La fecha de referencia es la de arranque (real o comprometido), porque «ensayos lanzados» se cuenta por cuándo empezaron. El filtro Org es el de arriba.",
+   "Ningún ensayo cerrado en retraso en este periodo.",
+   "Las semanas guardadas antes de la 4.9.3 no tienen ocupación («—») y su «en retraso» sigue el criterio antiguo. Son medias semanales, no totales: un ensayo largo aparece en varias semanas, así que sumarlas contaría el mismo ensayo más de una vez."
+  ],
+  "vacios": [],
+  "kpis": [
+   [
+    "3",
+    "Ensayos lanzados (cerrados) en el periodo",
+    "kpi"
+   ],
+   [
+    "3",
+    "Terminados en plazo",
+    "kpi green"
+   ],
+   [
+    "0",
+    "Terminados en retraso",
+    "kpi bad"
+   ],
+   [
+    "0%",
+    "Tasa de retraso",
+    "kpi bad"
+   ],
+   [
+    "16",
+    "Semanas registradas (ALL)",
+    "kpi"
+   ],
+   [
+    "17.6",
+    "Media corriendo/acumulando / semana",
+    "kpi green"
+   ],
+   [
+    "1.8",
+    "Media en retraso / semana",
+    "kpi bad"
+   ],
+   [
+    "47%",
+    "Media ocupación / semana (4 sem. con dato)",
+    "kpi"
+   ],
+   [
+    "CW45",
+    "Última semana · en retraso 2",
+    "kpi"
+   ]
+  ],
+  "tablas": [
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Mes",
+     "Lanzados",
+     "En plazo",
+     "En retraso",
+     "% retraso"
+    ],
+    "filas": [
+     [
+      [
+       "Nov 2026",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "700"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Trimestre",
+     "Lanzados",
+     "En plazo",
+     "En retraso",
+     "% retraso"
+    ],
+    "filas": [
+     [
+      [
+       "2026-Q4",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "700"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "lst",
+    "cabecera": [
+     "Arranque",
+     "Banco",
+     "Proyecto",
+     "Tipo",
+     "Resp.",
+     "Estado final",
+     "Motivo",
+     "Fin real",
+     "Desv.",
+     "Parada",
+     "Cierre"
+    ],
+    "filas": [
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Snakes dP",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Eff & dP",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 13",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "2000 CTAG",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Pressure Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 29",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "1500 WC",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(70, 199, 178)",
+       "400"
+      ],
+      [
+       "80001755 - Rimac - eCooler - Ampere Ceremony",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Pressure Fatigue",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "Responsable 19",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "En plazo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "02 Nov 26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "✔ confirmado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(61, 214, 140)",
+       "400"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash",
+    "cabecera": [
+     "Semana",
+     "Bancos con carga",
+     "Corriendo / acumulando",
+     "Ocupación (horas)",
+     "En retraso esa semana"
+    ],
+    "filas": [
+     [
+      [
+       "2026 · CW00",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW30",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "18",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW31",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "21",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW32",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "11",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW33",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW34",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW35",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "15/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "20",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "400"
+      ]
+     ],
+     [
+      [
+       "2026 · CW36",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "30",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "5",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW37",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "17/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "22",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "3",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW38",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "14/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "22",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW39",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "13/24",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "19",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW40",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "15/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "—",
+       null,
+       "Semana guardada antes de 4.9.3: sin dato de ocupación",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW42",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "43%",
+       null,
+       "1800 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "4",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW43",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "25",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "53%",
+       null,
+       "2208 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW44",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "18/25",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "24",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "50%",
+       null,
+       "2107 / 4200 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "1",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ],
+     [
+      [
+       "2026 · CW45",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "16/26",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(140, 160, 173)",
+       "400"
+      ],
+      [
+       "18",
+       null,
+       "",
+       "rgb(61, 214, 140)",
+       "",
+       "700"
+      ],
+      [
+       "41%",
+       null,
+       "1795 / 4368 h",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "2",
+       null,
+       "",
+       "rgb(255, 107, 107)",
+       "",
+       "700"
+      ]
+     ]
+    ]
+   },
+   {
+    "clase": "dash util-full",
+    "cabecera": [
+     "Reason",
+     "Count",
+     "Share"
+    ],
+    "filas": [
+     [
+      [
+       "Falta de recursos",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "6",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "40%",
+       "40%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Piezas con retraso",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Avería / Mant. no planificado",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "9",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "60%",
+       "60%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Caída de ensayo",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Cambio de prioridad",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ],
+     [
+      [
+       "Otro",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "",
+       "600"
+      ],
+      [
+       "0",
+       null,
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ],
+      [
+       "0%",
+       "0%",
+       "",
+       "rgb(230, 237, 242)",
+       "rgb(230, 237, 242)",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

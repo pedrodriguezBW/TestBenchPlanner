@@ -1,0 +1,188 @@
+{
+ "original": {
+  "entradas": [],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "🔧 Tools"
+  ],
+  "org": [],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "📅 Calendar",
+   "⬇️ Export (JSON backup)",
+   "⬆️ Import (JSON)",
+   "🔄 IDs live",
+   "↻ Reset (local)"
+  ],
+  "hints": [
+   "Acciones movidas aqui desde la barra superior. Solo Admin.",
+   "📅 Calendar: festivos y reglas de fin de semana · Export/Import: copia de seguridad JSON local · IDs live: refresca estados de aprobacion desde SharePoint · Reset: reinicia solo tu copia local (los datos del equipo en SharePoint permanecen)."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [],
+  "ventanas": [
+   {
+    "titulo": "Holiday calendar (local · Vigo)",
+    "sub": null,
+    "filas": [],
+    "grupos": [],
+    "vacio": null,
+    "campos": [
+     [
+      "cfg-year",
+      "2027"
+     ],
+     [
+      "cfg-skip",
+      "on"
+     ],
+     [
+      "cfg-newd",
+      ""
+     ],
+     [
+      "cfg-newn",
+      ""
+     ]
+    ]
+   }
+  ],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "entradas": [],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "💶 Monthly sheet",
+   "🔨 Configuration",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "🔧 Tools"
+  ],
+  "org": [],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "📅 Calendar",
+   "⬇️ Export (JSON backup)",
+   "⬆️ Import (JSON)",
+   "🔄 IDs live",
+   "↻ Reset (local)"
+  ],
+  "hints": [
+   "Acciones movidas aqui desde la barra superior. Solo Admin.",
+   "📅 Calendar: festivos y reglas de fin de semana · Export/Import: copia de seguridad JSON local · IDs live: refresca estados de aprobacion desde SharePoint · Reset: reinicia solo tu copia local (los datos del equipo en SharePoint permanecen)."
+  ],
+  "vacios": [],
+  "kpis": [],
+  "tablas": [],
+  "ventanas": [
+   {
+    "titulo": "Holiday calendar (local · Vigo)",
+    "sub": null,
+    "filas": [],
+    "grupos": [],
+    "vacio": null,
+    "campos": [
+     [
+      "cfg-year",
+      "2027"
+     ],
+     [
+      "cfg-skip",
+      "on"
+     ],
+     [
+      "cfg-newd",
+      ""
+     ],
+     [
+      "cfg-newn",
+      ""
+     ]
+    ]
+   }
+  ],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

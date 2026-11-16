@@ -57,7 +57,8 @@ function extraer() {
     const h3 = c.querySelector('h3');
     const hints = [...c.querySelectorAll('.hint')].filter((h) => !h.closest('.g-toolbar') && !h.closest('[data-solo-nueva]')).map(t)
       .filter((h) => h !== 'Org' && h !== 'Org:'); // D39
-    return { titulo: t(h3), hints, botones: [...c.querySelectorAll('button')].map(t), casillas: [...c.querySelectorAll('input[type=number]')].map((i) => i.value),
+    // D40 (Gantt rediseñado): los controles nuevos del Gantt van marcados con data-solo-nueva.
+    return { titulo: t(h3), hints, botones: [...c.querySelectorAll('button')].filter((b) => !b.closest('[data-solo-nueva]')).map(t), casillas: [...c.querySelectorAll('input[type=number]')].map((i) => i.value),
       desplegables: comoOrg([...c.querySelectorAll('select')].filter((s) => !s.classList.contains('g-focsel'))) };
   });
   const caja = document.getElementById('ganttbox');
@@ -74,12 +75,15 @@ function extraer() {
       dias: caja.querySelector('.g-days') ? [...caja.querySelector('.g-days').children].map((d) => [t(d), d.className.split(/\s+/).filter((c) => ['we', 'hol', 'today'].includes(c)).sort().join(' ')]) : null,
       hoy: linea ? px(linea.style.left) : null,
       filas: filas.map((r) => ({
-        banco: t(r.querySelector('.g-label')),
+        // D40: la etiqueta nueva añade ocupación y «N en paralelo»; se compara solo el nombre del banco.
+        banco: t(r.querySelector('.g-bname') || r.querySelector('.g-label')),
         ancho: px(r.querySelector('.g-track').style.width),
         barras: [...r.querySelectorAll('.g-bar')].map((b) => ({
-          x: px(b.style.left), w: px(b.style.width), titulo: b.title, texto: t(b),
+          // D40: en el Gantt general rediseñado el color es el del proyecto y el estado va por la forma; el
+          // tooltip lo sustituye la tarjeta (el texto de la 4.9.4 sigue en data-titulo, con el estado y las fechas).
+          // Se comparan posición, tamaño, texto, título (estado) y clases; no el fondo, la opacidad ni la sombra.
+          x: px(b.style.left), w: px(b.style.width), titulo: b.title || b.getAttribute('data-titulo') || '', texto: t(b),
           clases: ['solid', 'striped', 'haloq', 'g-dim', 'g-foc'].filter((c) => b.classList.contains(c)),
-          fondo: getComputedStyle(b).backgroundColor, opacidad: getComputedStyle(b).opacity, sombra: b.style.boxShadow ? getComputedStyle(b).boxShadow : '',
         })),
         circulos: [...r.querySelectorAll('.g-circ')].map((c) => ({ x: px(c.style.left), tipo: c.classList.contains('s') ? 's' : 'e', color: getComputedStyle(c).borderTopColor })),
       })),

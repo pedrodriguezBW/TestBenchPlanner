@@ -1,0 +1,194 @@
+{
+ "original": {
+  "celdas": [
+   [
+    "royo929a",
+    "—🔍",
+    null
+   ],
+   [
+    "r3rtxond",
+    "—🔍",
+    null
+   ],
+   [
+    "r0v8hmq4",
+    "—🔍",
+    null
+   ],
+   [
+    "rq6evds7",
+    "—🔍",
+    null
+   ],
+   [
+    "r2pw5wzb",
+    "—🔍",
+    null
+   ],
+   [
+    "rr4nahfo",
+    "—🔍",
+    null
+   ],
+   [
+    "ry4i5ovt",
+    "—🔍",
+    null
+   ],
+   [
+    "rmtkbkqe",
+    "—🔍",
+    null
+   ],
+   [
+    "ravpgk0u",
+    "—🔍",
+    null
+   ],
+   [
+    "rgszzdvf",
+    "—🔍",
+    null
+   ]
+  ],
+  "ventanas": [
+   {
+    "titulo": "Recursos auxiliares",
+    "sub": "Fechas del ensayo: 09 Nov 26 → 12 Nov 26. Un recurso está en uso si otro ensayo o un bloqueo lo ocupa en esas fechas.",
+    "filas": [
+     [
+      "Coolant Pulse Generator 1",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ],
+     [
+      "Coolant Pulse Generator 2",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ],
+     [
+      "Coolant Pulse Generator 3",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ]
+    ],
+    "grupos": [
+     "Coolant Pulse Generator"
+    ],
+    "vacio": null,
+    "campos": [
+     [
+      "resm-search",
+      "pulse"
+     ]
+    ]
+   }
+  ],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "celdas": [
+   [
+    "royo929a",
+    "—🔍",
+    null
+   ],
+   [
+    "r3rtxond",
+    "—🔍",
+    null
+   ],
+   [
+    "r0v8hmq4",
+    "—🔍",
+    null
+   ],
+   [
+    "rq6evds7",
+    "—🔍",
+    null
+   ],
+   [
+    "r2pw5wzb",
+    "—🔍",
+    null
+   ],
+   [
+    "rr4nahfo",
+    "—🔍",
+    null
+   ],
+   [
+    "ry4i5ovt",
+    "—🔍",
+    null
+   ],
+   [
+    "rmtkbkqe",
+    "—🔍",
+    null
+   ],
+   [
+    "ravpgk0u",
+    "—🔍",
+    null
+   ],
+   [
+    "rgszzdvf",
+    "—🔍",
+    null
+   ]
+  ],
+  "ventanas": [
+   {
+    "titulo": "Recursos auxiliares",
+    "sub": "Fechas del ensayo: 09 Nov 26 → 12 Nov 26. Un recurso está en uso si otro ensayo o un bloqueo lo ocupa en esas fechas.",
+    "filas": [
+     [
+      "Coolant Pulse Generator 1",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ],
+     [
+      "Coolant Pulse Generator 2",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ],
+     [
+      "Coolant Pulse Generator 3",
+      "—",
+      "CTAG",
+      "Libre",
+      "Añadir"
+     ]
+    ],
+    "grupos": [
+     "Coolant Pulse Generator"
+    ],
+    "vacio": null,
+    "campos": [
+     [
+      "resm-search",
+      "pulse"
+     ]
+    ]
+   }
+  ],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

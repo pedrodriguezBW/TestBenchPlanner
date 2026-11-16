@@ -1,0 +1,176 @@
+{
+ "original": {
+  "entradas": [],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "📜 Registro de actividad"
+  ],
+  "org": [],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "↻ Recargar"
+  ],
+  "hints": [
+   "0 eventos (más recientes primero)",
+   "Quién se conecta y quién hace cambios (lista TestBenchActivityLog). Se muestra la última copia guardada y se actualiza en segundo plano."
+  ],
+  "vacios": [
+   "Sin eventos todavía (o backend/lista no disponible)."
+  ],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "act-log",
+    "cabecera": [
+     "Cuándo (UTC)",
+     "Usuario",
+     "Acción",
+     "Detalle"
+    ],
+    "filas": [
+     [
+      [
+       "Sin eventos todavía (o backend/lista no disponible).",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "entradas": [],
+  "menu": [
+   "📊 Dashboard",
+   "👤 By Responsible",
+   "📈 KPI History",
+   "MD1",
+   "MD2",
+   "MD3",
+   "MD4",
+   "Camiones",
+   "Turismos",
+   "Gasolina",
+   "FT Turismos",
+   "BC1 (4 branches)",
+   "BC2 (12 branches)",
+   "Manual Cylinder",
+   "Fatiga",
+   "FP Aceite 1",
+   "FP Aceite 2",
+   "Urna Burst RT",
+   "Other Tasks",
+   "1500 WC",
+   "1500 Aire",
+   "2000 CTAG",
+   "KK127",
+   "KK129",
+   "KK118",
+   "1000 CTAG 1",
+   "1000 CTAG 2",
+   "XXL CTAG",
+   "Snakes dP",
+   "📋 List of Equipments",
+   "💶 Monthly sheet",
+   "🔨 Configuration",
+   "🔨 Test Benches",
+   "🔨 Equipments List",
+   "📁 Projects",
+   "👤 Users/Rights Management",
+   "🔧 Tools",
+   "ℹ️ About",
+   "📜 Activity log"
+  ],
+  "titulos": [
+   "📜 Registro de actividad"
+  ],
+  "org": [],
+  "opcionesResponsable": [],
+  "fechas": [],
+  "botones": [
+   "↻ Recargar"
+  ],
+  "hints": [
+   "0 eventos (más recientes primero)",
+   "Quién se conecta y quién hace cambios (lista TestBenchActivityLog). Se muestra la última copia guardada y se actualiza en segundo plano."
+  ],
+  "vacios": [
+   "Sin eventos todavía (o backend/lista no disponible)."
+  ],
+  "kpis": [],
+  "tablas": [
+   {
+    "clase": "act-log",
+    "cabecera": [
+     "Cuándo (UTC)",
+     "Usuario",
+     "Acción",
+     "Detalle"
+    ],
+    "filas": [
+     [
+      [
+       "Sin eventos todavía (o backend/lista no disponible).",
+       null,
+       "",
+       "rgb(140, 160, 173)",
+       "",
+       "400"
+      ]
+     ]
+    ]
+   }
+  ],
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

@@ -1,0 +1,408 @@
+{
+ "original": {
+  "titulo": "👤 My planning",
+  "semana": "CW45 · 02 Nov 26 → 08 Nov 26",
+  "org": "ALL",
+  "responsable": {
+   "valor": "Responsable 27",
+   "opciones": [
+    "👥 Manager View — all team",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  },
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW452/26Bancos con carga2Corriendo / acumulando horas0En retraso (declarado)⚠️ 1 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW461/26Bancos con carga2Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   }
+  ],
+  "alerta": {
+   "texto": "⚠ 3 test(s) without an approved ID (or no ID). Create/track the approval tickets to avoid blocking your tests: Responsable 27 – 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · ID 3507 | Responsable 27 – 00577 Renault M9R Cooler · ID 3644 | Responsable 27 – 00938 - Perkins Compact X 3.6LRC · ID 3645📋 Open approval tickets form",
+   "ok": false
+  },
+  "tarjetas": [
+   {
+    "titulo": "My plan by bench",
+    "hints": [
+     "Only tests where Responsible = Responsable 27."
+    ],
+    "botones": [
+     "🗓 Full year",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26"
+    ],
+    [
+     "",
+     "CW45"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ]
+   ],
+   "hoy": 260,
+   "filas": [
+    {
+     "banco": "MD2",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "Turismos · Running · 00577 Renault M9R Cooler Eff & dP · 02 Nov 26→05 Nov 26",
+       "texto": "00577 Renault M9R Cooler · Eff & dP · Eff&dP x 3 Samples",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 15,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 105,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 60,
+       "w": 58,
+       "titulo": "FP Aceite 1 · Running · 00938 - Perkins Compact X 3.6LRC Pressure Fatigue · 04 Nov 26→05 Nov 26",
+       "texto": "00938 - Perkins Compact X 3.6LRC · Pressure Fatigue · Housing Change - Lado Agua",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 75,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 75,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "FP Aceite 2 · Completed · 00306 - Perkins C6.6 HP Pressure Fatigue",
+       "texto": "✓ 00306 - Perkins C6.6 HP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "👤 My planning",
+  "semana": "CW45 · 02 Nov 26 → 08 Nov 26",
+  "org": "ALL",
+  "responsable": {
+   "valor": "Responsable 27",
+   "opciones": [
+    "👥 Manager View — all team",
+    "Responsable 01",
+    "Responsable 03",
+    "Responsable 05",
+    "Responsable 07",
+    "Responsable 09",
+    "Responsable 11",
+    "Responsable 13",
+    "Responsable 15",
+    "Responsable 17",
+    "Responsable 19",
+    "Responsable 21",
+    "Responsable 23",
+    "Responsable 25",
+    "Responsable 27",
+    "Responsable 29",
+    "Responsable 31"
+   ]
+  },
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today"
+  ],
+  "kpi": [
+   {
+    "texto": "Esta semana · CW452/26Bancos con carga2Corriendo / acumulando horas0En retraso (declarado)⚠️ 1 ensayo(s) con sugerencia de la app",
+    "aviso": "La app ha detectado ensayos que quiza merezcan otra calificacion. Tu decides: abre el banco y pulsa la chincheta de la fila."
+   },
+   {
+    "texto": "Semana que viene · CW461/26Bancos con carga2Corriendo / acumulando horas0En retraso (declarado)",
+    "aviso": null
+   }
+  ],
+  "alerta": {
+   "texto": "⚠ 3 test(s) without an approved ID (or no ID). Create/track the approval tickets to avoid blocking your tests: Responsable 27 – 00903 - Perkins - EGR Module - CAT vehicles 2.8-3.6 · ID 3507 | Responsable 27 – 00577 Renault M9R Cooler · ID 3644 | Responsable 27 – 00938 - Perkins Compact X 3.6LRC · ID 3645📋 Open approval tickets form",
+   "ok": false
+  },
+  "tarjetas": [
+   {
+    "titulo": "My plan by bench",
+    "hints": [
+     "Only tests where Responsible = Responsable 27."
+    ],
+    "botones": [
+     "🗓 Full year",
+     "−",
+     "+",
+     "100%",
+     "📊 Excel"
+    ],
+    "casillas": [],
+    "desplegables": []
+   }
+  ],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "170px",
+   "cabeceras": [
+    [
+     "",
+     "Nov 26"
+    ],
+    [
+     "",
+     "CW45"
+    ]
+   ],
+   "dias": [
+    [
+     "",
+     ""
+    ],
+    [
+     "M2",
+     ""
+    ],
+    [
+     "T3",
+     ""
+    ],
+    [
+     "W4",
+     ""
+    ],
+    [
+     "T5",
+     "today"
+    ],
+    [
+     "F6",
+     ""
+    ],
+    [
+     "S7",
+     "we"
+    ],
+    [
+     "S8",
+     "we"
+    ]
+   ],
+   "hoy": 260,
+   "filas": [
+    {
+     "banco": "MD2",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Turismos",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 118,
+       "titulo": "Turismos · Running · 00577 Renault M9R Cooler Eff & dP · 02 Nov 26→05 Nov 26",
+       "texto": "00577 Renault M9R Cooler · Eff & dP · Eff&dP x 3 Samples",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 15,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 105,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "Gasolina",
+     "ancho": 210,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "FP Aceite 1",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 60,
+       "w": 58,
+       "titulo": "FP Aceite 1 · Running · 00938 - Perkins Compact X 3.6LRC Pressure Fatigue · 04 Nov 26→05 Nov 26",
+       "texto": "00938 - Perkins Compact X 3.6LRC · Pressure Fatigue · Housing Change - Lado Agua",
+       "clases": [
+        "solid",
+        "haloq"
+       ]
+      }
+     ],
+     "circulos": [
+      {
+       "x": 75,
+       "tipo": "s",
+       "color": "rgb(61, 214, 140)"
+      },
+      {
+       "x": 75,
+       "tipo": "e",
+       "color": "rgb(61, 214, 140)"
+      }
+     ]
+    },
+    {
+     "banco": "FP Aceite 2",
+     "ancho": 210,
+     "barras": [
+      {
+       "x": 0,
+       "w": 28,
+       "titulo": "FP Aceite 2 · Completed · 00306 - Perkins C6.6 HP Pressure Fatigue",
+       "texto": "✓ 00306 - Perkins C6.6 HP",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "mensajes": [],
+  "erroresJs": []
+ }
+}

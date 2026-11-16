@@ -12,9 +12,14 @@ import { VentanaCierre, type DatosCierre } from './VentanaCierre';
 
 /*
  * Pantalla de un banco (renderBench): cabecera con Completed / Confirm all /
- * Add test, tabla de prioridades arriba y Gantt diario abajo, con un divisor
- * que reparte el espacio (se recuerda en este navegador).
+ * Add test, tabla de prioridades arriba y Gantt diario abajo. El divisor fija
+ * el ALTO de la tabla (se recuerda en este navegador); el Gantt de abajo mide
+ * siempre lo que necesita, así que agrandar la tabla desplaza el Gantt hacia
+ * abajo (la página hace scroll) en vez de comprimirlo (H9).
  */
+/** Alto mínimo de la tabla de prioridades al arrastrar el divisor. */
+const MIN_TABLA = 140;
+
 export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (banco: string) => void }) {
   const { vista, operar, editarCampo, estadosAprobacion, proyectos, mostrarMensaje, soloLectura } = usePlanificador();
   const [seleccion, setSeleccion] = useState<Set<string>>(new Set());
@@ -22,11 +27,30 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
   const [verCerrados, setVerCerrados] = useState(false);
   const [buscadorPara, setBuscadorPara] = useState<FilaEnsayo | null>(null);
   const [recursosPara, setRecursosPara] = useState<string | null>(null);
-  const [reparto, setReparto] = usePreferencia<number>('tbp_reparto_banco', 1);
+  const [altoTabla, setAltoTabla] = usePreferencia<number | null>('tbp_alto_tabla_banco', null);
   const contenedor = useRef<HTMLDivElement>(null);
 
   // Cambiar de banco limpia la selección (como en la 4.9.4).
   useEffect(() => { setSeleccion(new Set()); }, [banco]);
+
+  // Ensayo abierto desde el Gantt general (clic en su barra): se centra y se resalta un momento.
+  useEffect(() => {
+    let pedido: { banco: string; id: string; cerrado?: boolean } | null = null;
+    try { pedido = JSON.parse(sessionStorage.getItem('tbp_abrir_ensayo') || 'null'); } catch { pedido = null; }
+    if (!pedido || pedido.banco !== banco || !vista) return;
+    if (pedido.cerrado && !verCerrados) { setVerCerrados(true); return; }
+    const id = pedido.id;
+    const temporizador = window.setTimeout(() => {
+      const fila = contenedor.current?.querySelector<HTMLElement>(`tr[data-id="${CSS.escape(id)}"]`)
+        ?? document.querySelector<HTMLElement>(`#main tr[data-id="${CSS.escape(id)}"]`);
+      try { sessionStorage.removeItem('tbp_abrir_ensayo'); } catch { /* nada */ }
+      if (!fila) return;
+      fila.scrollIntoView({ block: 'center' });
+      fila.classList.add('gm-destello');
+      window.setTimeout(() => fila.classList.remove('gm-destello'), 2600);
+    }, 60);
+    return () => window.clearTimeout(temporizador);
+  }, [banco, vista, verCerrados]);
 
   if (!vista) return null;
   const grupo = vista.grupos.find((g) => g.bancos.some((b) => b.nombre === banco));
@@ -95,18 +119,24 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
 
   const empezarReparto = (e: EventoRaton) => {
     e.preventDefault();
-    const y0 = e.clientY, r0 = reparto;
-    const alto = contenedor.current?.getBoundingClientRect().height || 1;
-    let actual = r0;
+    const panel = contenedor.current?.querySelector<HTMLElement>('.bs-pane.top');
+    if (!panel) return;
+    const y0 = e.clientY, h0 = panel.getBoundingClientRect().height;
+    // Tope: lo que mide la tabla entera (más allá solo quedaría hueco vacío).
+    const tarjeta = panel.querySelector<HTMLElement>('.card');
+    const envoltorio = panel.querySelector<HTMLElement>('.tbl-wrap');
+    const tope = tarjeta && envoltorio ? Math.max(MIN_TABLA, envoltorio.scrollHeight + (tarjeta.offsetHeight - envoltorio.clientHeight) + 2) : 4000;
+    let actual = h0;
     const mover = (ev: MouseEvent) => {
-      actual = Math.max(0.3, Math.min(1.7, r0 + ((ev.clientY - y0) / alto) * 2));
-      contenedor.current?.style.setProperty('--split', String(actual));
+      actual = Math.round(Math.max(MIN_TABLA, Math.min(tope, h0 + ev.clientY - y0)));
+      panel.classList.remove('bs-auto');
+      panel.style.height = actual + 'px';
     };
     const soltar = () => {
       document.removeEventListener('pointermove', mover);
       document.removeEventListener('pointerup', soltar);
       document.body.classList.remove('bs-resizing');
-      setReparto(actual);
+      setAltoTabla(actual);
     };
     document.body.classList.add('bs-resizing');
     document.addEventListener('pointermove', mover);
@@ -132,8 +162,8 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
       </div>
       <BarraSeleccion banco={banco} vista={vista} cantidad={seleccionActiva.length} onDuplicar={() => void duplicar()}
         onMover={(d, p) => void mover(d, p)} onBorrar={() => void borrarSeleccion()} onLimpiar={() => setSeleccion(new Set())} />
-      <div className="bench-split" id="benchsplit" ref={contenedor} style={{ ['--split' as string]: reparto }}>
-        <div className="bs-pane top">
+      <div className="bench-split bs-libre" id="benchsplit" ref={contenedor}>
+        <div className={`bs-pane top${altoTabla ? '' : ' bs-auto'}`} style={altoTabla ? { height: altoTabla } : undefined}>
           <div className="card">
             <div className="tbl-wrap">
               <TablaEnsayos banco={banco} filas={activas} hoy={vista.hoy} estadosAprobacion={estadosAprobacion}
@@ -142,7 +172,7 @@ export function VistaBanco({ banco, onIrABanco }: { banco: string; onIrABanco: (
           </div>
         </div>
         <div className="bs-divider no-print" id="bsdiv" title="Drag to resize table / Gantt (double-click to reset)"
-          onPointerDown={empezarReparto} onDoubleClick={() => setReparto(1)}>
+          onPointerDown={empezarReparto} onDoubleClick={() => { contenedor.current?.querySelector<HTMLElement>('.bs-pane.top')?.style.removeProperty('height'); setAltoTabla(null); }}>
           <div className="grip" />
         </div>
         <div className="bs-pane bot">

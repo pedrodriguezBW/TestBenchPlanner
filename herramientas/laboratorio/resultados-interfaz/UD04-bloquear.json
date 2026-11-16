@@ -1,0 +1,742 @@
+{
+ "original": {
+  "titulo": "🔧 Additional Equipment",
+  "semana": "CW45",
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🔍 Zoom to week",
+   "🔒 Bloquear recurso"
+  ],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "200px",
+   "cabeceras": [
+    [
+     "",
+     "Dec 25",
+     "Jan 26",
+     "Feb 26",
+     "Mar 26",
+     "Apr 26",
+     "May 26",
+     "Jun 26",
+     "Jul 26",
+     "Aug 26",
+     "Sept 26",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53"
+    ]
+   ],
+   "dias": null,
+   "hoy": 2999,
+   "filas": [
+    {
+     "banco": "Hydraulic Cylinder 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2934,
+       "w": 43,
+       "titulo": "1500 Aire · 80001754 - Rimac - eCooler  - Bane Cinque · 20 Nov 26→24 Nov 26",
+       "texto": "1500 Aire · 80001754 - Rimac - eCooler - Bane Cinque",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2772,
+       "w": 34,
+       "titulo": "Urna Burst RT · 80001755 - Rimac - eCooler - Ampere Ceremony · 02 Nov 26→05 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2835,
+       "w": 25,
+       "titulo": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 09 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2799,
+       "w": 61,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 05 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2862,
+       "w": 52,
+       "titulo": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 12 Nov 26→17 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2916,
+       "w": 16,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 18 Nov 26→19 Nov 26",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3186,
+       "w": 52,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 18 Dec 26→23 Dec 26",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2790,
+       "w": 79,
+       "titulo": "Avería · fuga · 04 Nov 26→12 Nov 26 · ⚠ solape",
+       "texto": "🔒 Avería",
+       "clases": []
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Bomba Manual",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 3",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2772,
+       "w": 97,
+       "titulo": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 02 Nov 26→12 Nov 26",
+       "texto": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3042,
+       "w": 79,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 02 Dec 26→10 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3123,
+       "w": 43,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 11 Dec 26→15 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3168,
+       "w": 25,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 16 Dec 26→18 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 1",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2907,
+       "w": 43,
+       "titulo": "2000 CTAG · 80001754 - Rimac - eCooler  - Bane Cinque · 17 Nov 26→21 Nov 26",
+       "texto": "2000 CTAG · 80001754 - Rimac - eCooler - Bane Cinque",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2952,
+       "w": 25,
+       "titulo": "2000 CTAG · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 22 Nov 26→24 Nov 26",
+       "texto": "2000 CTAG · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 3",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "seccion": {
+   "titulos": [
+    "🔧 Additional Equipment",
+    "Bloqueos manuales (1)"
+   ],
+   "org": [
+    ""
+   ],
+   "opcionesResponsable": [],
+   "fechas": [],
+   "botones": [
+    "◀ Prev",
+    "Next ▶",
+    "Today",
+    "🔍 Zoom to week",
+    "🔒 Bloquear recurso",
+    "−",
+    "+",
+    "100%",
+    "📊 Excel",
+    "🗑"
+   ],
+   "hints": [
+    "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+    "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla."
+   ],
+   "vacios": [],
+   "kpis": [],
+   "tablas": [
+    {
+     "clase": "lst",
+     "cabecera": [
+      "Recurso",
+      "Desde",
+      "Hasta",
+      "Motivo",
+      "Nota",
+      ""
+     ],
+     "filas": [
+      [
+       [
+        "Hydraulic Cylinder 2",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "rgb(230, 237, 242)",
+        "400"
+       ],
+       [
+        "04 Nov 26",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "12 Nov 26",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "Avería",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "fuga",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "🗑",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "rgb(255, 107, 107)",
+        "400"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ },
+ "nueva": {
+  "titulo": "🔧 Additional Equipment",
+  "semana": "CW45",
+  "org": null,
+  "responsable": null,
+  "botonesSemana": [
+   "◀ Prev",
+   "Next ▶",
+   "Today",
+   "🔍 Zoom to week",
+   "🔒 Bloquear recurso"
+  ],
+  "kpi": [],
+  "alerta": null,
+  "tarjetas": [],
+  "gantt": {
+   "zoom": "100%",
+   "foco": "",
+   "clase": "g-mini",
+   "lw": "200px",
+   "cabeceras": [
+    [
+     "",
+     "Dec 25",
+     "Jan 26",
+     "Feb 26",
+     "Mar 26",
+     "Apr 26",
+     "May 26",
+     "Jun 26",
+     "Jul 26",
+     "Aug 26",
+     "Sept 26",
+     "Oct 26",
+     "Nov 26",
+     "Dec 26",
+     "Jan 27"
+    ],
+    [
+     "",
+     "CW1",
+     "CW2",
+     "CW3",
+     "CW4",
+     "CW5",
+     "CW6",
+     "CW7",
+     "CW8",
+     "CW9",
+     "CW10",
+     "CW11",
+     "CW12",
+     "CW13",
+     "CW14",
+     "CW15",
+     "CW16",
+     "CW17",
+     "CW18",
+     "CW19",
+     "CW20",
+     "CW21",
+     "CW22",
+     "CW23",
+     "CW24",
+     "CW25",
+     "CW26",
+     "CW27",
+     "CW28",
+     "CW29",
+     "CW30",
+     "CW31",
+     "CW32",
+     "CW33",
+     "CW34",
+     "CW35",
+     "CW36",
+     "CW37",
+     "CW38",
+     "CW39",
+     "CW40",
+     "CW41",
+     "CW42",
+     "CW43",
+     "CW44",
+     "CW45",
+     "CW46",
+     "CW47",
+     "CW48",
+     "CW49",
+     "CW50",
+     "CW51",
+     "CW52",
+     "CW53"
+    ]
+   ],
+   "dias": null,
+   "hoy": 2999,
+   "filas": [
+    {
+     "banco": "Hydraulic Cylinder 1",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2934,
+       "w": 43,
+       "titulo": "1500 Aire · 80001754 - Rimac - eCooler  - Bane Cinque · 20 Nov 26→24 Nov 26",
+       "texto": "1500 Aire · 80001754 - Rimac - eCooler - Bane Cinque",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2772,
+       "w": 34,
+       "titulo": "Urna Burst RT · 80001755 - Rimac - eCooler - Ampere Ceremony · 02 Nov 26→05 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001755 - Rimac - eCooler - Ampere Ceremony",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2835,
+       "w": 25,
+       "titulo": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 09 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "Urna Burst RT · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2799,
+       "w": 61,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 05 Nov 26→11 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2862,
+       "w": 52,
+       "titulo": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 12 Nov 26→17 Nov 26 · ⚠ solape",
+       "texto": "1500 Aire · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2916,
+       "w": 16,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 18 Nov 26→19 Nov 26",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3186,
+       "w": 52,
+       "titulo": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 18 Dec 26→23 Dec 26",
+       "texto": "1500 Aire · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2790,
+       "w": 79,
+       "titulo": "Avería · fuga · 04 Nov 26→12 Nov 26 · ⚠ solape",
+       "texto": "🔒 Avería",
+       "clases": []
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Bomba Manual",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Hydraulic Cylinder 3",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2772,
+       "w": 97,
+       "titulo": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling · 02 Nov 26→12 Nov 26",
+       "texto": "Fatiga · 80001028 - BMW - eCooler - XNF Gen 6 Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3042,
+       "w": 79,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 02 Dec 26→10 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3123,
+       "w": 43,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 11 Dec 26→15 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 3168,
+       "w": 25,
+       "titulo": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 16 Dec 26→18 Dec 26",
+       "texto": "Fatiga · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 1",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 2",
+     "ancho": 3339,
+     "barras": [
+      {
+       "x": 2907,
+       "w": 43,
+       "titulo": "2000 CTAG · 80001754 - Rimac - eCooler  - Bane Cinque · 17 Nov 26→21 Nov 26",
+       "texto": "2000 CTAG · 80001754 - Rimac - eCooler - Bane Cinque",
+       "clases": [
+        "solid"
+       ]
+      },
+      {
+       "x": 2952,
+       "w": 25,
+       "titulo": "2000 CTAG · 80000885 - BMW - 80000885 11297 Battery cooling BMW -  Battery cooling · 22 Nov 26→24 Nov 26",
+       "texto": "2000 CTAG · 80000885 - BMW - 80000885 11297 Battery cooling BMW - Battery cooling",
+       "clases": [
+        "solid"
+       ]
+      }
+     ],
+     "circulos": []
+    },
+    {
+     "banco": "Coolant Pulse Generator 3",
+     "ancho": 3339,
+     "barras": [],
+     "circulos": []
+    }
+   ]
+  },
+  "tablas": [],
+  "seccion": {
+   "titulos": [
+    "🔧 Additional Equipment",
+    "Bloqueos manuales (1)"
+   ],
+   "org": [
+    ""
+   ],
+   "opcionesResponsable": [],
+   "fechas": [],
+   "botones": [
+    "◀ Prev",
+    "Next ▶",
+    "Today",
+    "🔍 Zoom to week",
+    "🔒 Bloquear recurso",
+    "−",
+    "+",
+    "100%",
+    "📊 Excel",
+    "🗑"
+   ],
+   "hints": [
+    "Ocupación de cilindros, generadores de pulsos y demás equipos auxiliares, agrupados por tipo. Las barras son los ensayos que usan el recurso; las rayadas son bloqueos manuales (calibración, avería…). La ocupación sale de las fechas de cada ensayo.",
+    "Elige un proyecto para resaltarlo (el resto se atenúa). Arrastra el borde de la 1ª columna para ensancharla."
+   ],
+   "vacios": [],
+   "kpis": [],
+   "tablas": [
+    {
+     "clase": "lst",
+     "cabecera": [
+      "Recurso",
+      "Desde",
+      "Hasta",
+      "Motivo",
+      "Nota",
+      ""
+     ],
+     "filas": [
+      [
+       [
+        "Hydraulic Cylinder 2",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "rgb(230, 237, 242)",
+        "400"
+       ],
+       [
+        "04 Nov 26",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "12 Nov 26",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "Avería",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "fuga",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "",
+        "400"
+       ],
+       [
+        "🗑",
+        null,
+        "",
+        "rgb(230, 237, 242)",
+        "rgb(255, 107, 107)",
+        "400"
+       ]
+      ]
+     ]
+    }
+   ]
+  },
+  "ventanas": [],
+  "aviso": null,
+  "mensajes": [],
+  "erroresJs": []
+ }
+}
