@@ -1,9 +1,9 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { iniciarCicloDeVida } from './cicloDeVida';
+import { colaConfiguracion } from './colaConfiguracion';
 import { aplicarOperacionesOptimistas, crearCola, prepararOperacionOptimista, type OperacionOptimista } from './operacionesOptimistas';
 import { api, ErrorApi, ErrorConflicto, ErrorRegla, ErrorSinConexion, type CambioCampo } from '../api/cliente';
 import type { FilaEnConflicto, FilaEnsayo, RespuestaOperacion, Sesion, TipoOperacion, ValoresCierre, Vista } from '../api/tipos';
-import { apiFacturacion, type DatosFacturacionEnsayo } from '../api/facturacion';
 
 /*
  * Estado compartido de la aplicación y comunicación con el backend.
@@ -64,8 +64,6 @@ interface Contexto {
   editarCampo: (banco: string, id: string, campo: string, valor: string | boolean | null) => void;
   operar: (banco: string, tipo: TipoOperacion, datos?: Record<string, unknown>, afectados?: string[]) => Promise<RespuestaOperacion | null>;
   cerrarEnsayo: (banco: string, id: string, valores: ValoresCierre, correccion: boolean) => Promise<boolean>;
-  /** Datos de facturación del ensayo (DataJson.billing), con la misma cola, versión y aviso de conflicto que el cierre. */
-  guardarFacturacion: (banco: string, id: string, billing: DatosFacturacionEnsayo) => Promise<boolean>;
   avisar: (texto: string, tipo?: 'info' | 'error') => void;
   mostrarMensaje: (texto: string) => void;
   recargar: () => Promise<void>;
@@ -425,38 +423,6 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   const cerrarAhoraRef = useRef(cerrarAhora);
   cerrarAhoraRef.current = cerrarAhora;
 
-  const guardarFacturacion = useCallback(async (banco: string, idPedido: string, billing: DatosFacturacionEnsayo) => {
-    if (soloLecturaRef.current) return false;
-    return colaOperaciones.current(() => guardarFacturacionAhoraRef.current(banco, idPedido, billing));
-  }, []);
-
-  const guardarFacturacionAhora = async (banco: string, idPedido: string, billing: DatosFacturacionEnsayo): Promise<boolean> => {
-    await vaciarPendientes();
-    const id = idReal(idPedido);
-    const version = versionDe(id);
-    const ejecutar = async (forzar: boolean): Promise<boolean> => {
-      try {
-        const r = await apiFacturacion.guardarEnsayo(banco, id, billing, version, forzar);
-        recibirVista(r.vista);
-        return true;
-      } catch (e) {
-        if (e instanceof ErrorConflicto) {
-          return new Promise((resolver) => setConflicto({
-            filas: e.filas,
-            descripcion: 'datos de facturación del ensayo',
-            verSuVersion: () => { setConflicto(null); void recargarSilencioso(); resolver(false); },
-            guardarLaMia: () => { setConflicto(null); void ejecutar(true).then(resolver); },
-          }));
-        }
-        setMensajeModal(e instanceof Error ? e.message : String(e));
-        return false;
-      }
-    };
-    return ejecutar(false);
-  };
-  const guardarFacturacionAhoraRef = useRef(guardarFacturacionAhora);
-  guardarFacturacionAhoraRef.current = guardarFacturacionAhora;
-
   // ---- lecturas --------------------------------------------------------------------
 
   const recargarSilencioso = useCallback(async () => {
@@ -576,10 +542,26 @@ export function ProveedorPlanificador({ children }: { children: ReactNode }) {
   );
   vistaVisibleRef.current = vista;
 
+  // Configuración compartida guardada en segundo plano: al terminar se recargan vista
+  // y listas una sola vez; un fallo se avisa (la pantalla vuelve a lo guardado).
+  useEffect(() => {
+    colaConfiguracion.configurar({
+      despues: async () => { await Promise.all([recargarSilencioso(), recargarListas()]); },
+      alFallar: (e) => setMensajeModal(`The configuration could not be saved in SharePoint; the screen shows what is really saved.\n\n${e instanceof Error ? e.message : String(e)}`),
+    });
+  }, [recargarSilencioso, recargarListas]);
+  useEffect(() => {
+    const salir = (e: BeforeUnloadEvent) => {
+      if (colaConfiguracion.pendiente()) { e.preventDefault(); e.returnValue = ''; }
+    };
+    window.addEventListener('beforeunload', salir);
+    return () => window.removeEventListener('beforeunload', salir);
+  }, []);
+
   const valor: Contexto = {
     vista, sesion, soloLectura, sincronizacion, copiaSinConexion, proyectos, personas, estadosAprobacion, avisos, conflicto,
     mensajeModal, cerrarMensajeModal: () => setMensajeModal(null),
-    editarCampo, operar, cerrarEnsayo, guardarFacturacion, avisar, mostrarMensaje: setMensajeModal, recargar: recargarSilencioso, recargarListas, refrescarAprobaciones, versionDe,
+    editarCampo, operar, cerrarEnsayo, avisar, mostrarMensaje: setMensajeModal, recargar: recargarSilencioso, recargarListas, refrescarAprobaciones, versionDe,
   };
   return <ContextoPlanificador.Provider value={valor}>{children}</ContextoPlanificador.Provider>;
 }

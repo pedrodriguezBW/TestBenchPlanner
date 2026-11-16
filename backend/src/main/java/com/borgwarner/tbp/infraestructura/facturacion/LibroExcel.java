@@ -14,11 +14,11 @@ import java.util.zip.ZipOutputStream;
 
 /**
  * Libro de Excel sencillo escrito en Office Open XML directamente (sin
- * librerías), como ExcelGantt. Réplica de la parte de libro de
- * herramientas/laboratorio/facturacion/exportaciones.cjs.
+ * librerías), como ExcelGantt. Réplica: herramientas/laboratorio/facturacion/hoja.cjs.
  *
  * Estilos: 0 normal · 1 cabecera · 2 importe · 3 importe en negrita · 4 fecha ·
- * 5 horas · 6 título · 7 negrita · 8 mes (mmm-yy) · 9 horas en negrita.
+ * 5 horas · 6 título · 7 negrita · 8 mes (mmm-yy) · 9 horas en negrita · 10 a 16 texto con sangría 1 a 7.
+ * Los importes llevan «€».
  */
 public final class LibroExcel {
 
@@ -32,10 +32,17 @@ public final class LibroExcel {
     public static final int NEGRITA = 7;
     public static final int MES = 8;
     public static final int HORAS_NEGRITA = 9;
+    public static final int SANGRIA_1 = 10;
+    public static final int SANGRIA_2 = 11;
+
+    /** Texto con sangría de n niveles (1 a 7; 0 = normal). */
+    public static int sangria(int n) {
+        return n <= 0 ? NORMAL : SANGRIA_1 + Math.min(n, 7) - 1;
+    }
 
     private static final String ESTILOS = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
             + "<styleSheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\"><numFmts count=\"3\">"
-            + "<numFmt numFmtId=\"164\" formatCode=\"#,##0.00\"/><numFmt numFmtId=\"165\" formatCode=\"dd/mm/yyyy\"/>"
+            + "<numFmt numFmtId=\"164\" formatCode=\"#,##0.00\\ &quot;€&quot;\"/><numFmt numFmtId=\"165\" formatCode=\"dd/mm/yyyy\"/>"
             + "<numFmt numFmtId=\"166\" formatCode=\"mmm\\-yy\"/></numFmts><fonts count=\"4\"><font><sz val=\"10\"/><name val=\"Arial\"/></font>"
             + "<font><b/><sz val=\"10\"/><color rgb=\"FFFFFFFF\"/><name val=\"Arial\"/></font>"
             + "<font><b/><sz val=\"14\"/><color rgb=\"FF0C1D2C\"/><name val=\"Arial\"/></font>"
@@ -44,7 +51,7 @@ public final class LibroExcel {
             + "<bgColor indexed=\"64\"/></patternFill></fill></fills><borders count=\"2\"><border><left/><right/><top/><bottom/><diagonal/></border>"
             + "<border><left style=\"thin\"><color rgb=\"FFD9D9D9\"/></left><right style=\"thin\"><color rgb=\"FFD9D9D9\"/></right>"
             + "<top style=\"thin\"><color rgb=\"FFD9D9D9\"/></top><bottom style=\"thin\"><color rgb=\"FFD9D9D9\"/></bottom><diagonal/></border></borders>"
-            + "<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs><cellXfs count=\"10\">"
+            + "<cellStyleXfs count=\"1\"><xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\"/></cellStyleXfs><cellXfs count=\"17\">"
             + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\"/>"
             + "<xf numFmtId=\"0\" fontId=\"1\" fillId=\"2\" borderId=\"1\" xfId=\"0\" applyFont=\"1\" applyFill=\"1\" applyBorder=\"1\"><alignment wrapText=\"1\" vertical=\"center\"/></xf>"
             + "<xf numFmtId=\"164\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\"/>"
@@ -55,6 +62,13 @@ public final class LibroExcel {
             + "<xf numFmtId=\"0\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyFont=\"1\"/>"
             + "<xf numFmtId=\"166\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\"/>"
             + "<xf numFmtId=\"2\" fontId=\"3\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyNumberFormat=\"1\" applyFont=\"1\"/>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"1\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"2\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"3\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"4\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"5\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"6\"/></xf>"
+            + "<xf numFmtId=\"0\" fontId=\"0\" fillId=\"0\" borderId=\"0\" xfId=\"0\" applyAlignment=\"1\"><alignment indent=\"7\"/></xf>"
             + "</cellXfs><cellStyles count=\"1\"><cellStyle name=\"Normal\" xfId=\"0\" builtinId=\"0\"/></cellStyles></styleSheet>";
 
     /** Celda: valor (texto o número; null = vacía) y estilo. */
@@ -73,6 +87,8 @@ public final class LibroExcel {
     public static final class Hoja {
         final String nombre;
         final List<List<Celda>> filas = new ArrayList<>();
+        /** Nivel de esquema de cada fila (agrupar/desagrupar en Excel, como una tabla dinámica); 0 = sin agrupar. */
+        final List<Integer> esquema = new ArrayList<>();
         double[] anchos = new double[0];
         int fijarFila;
 
@@ -91,30 +107,39 @@ public final class LibroExcel {
         }
 
         public Hoja fila(Celda... celdas) {
-            filas.add(new ArrayList<>(Arrays.asList(celdas)));
-            return this;
+            return fila(Arrays.asList(celdas), 0);
         }
 
         public Hoja fila(List<Celda> celdas) {
+            return fila(celdas, 0);
+        }
+
+        /** Fila con nivel de esquema (1 a 7). */
+        public Hoja fila(List<Celda> celdas, int nivelEsquema) {
             filas.add(new ArrayList<>(celdas));
+            esquema.add(Math.max(0, Math.min(7, nivelEsquema)));
             return this;
         }
 
         public Hoja vacia() {
-            filas.add(new ArrayList<>());
-            return this;
+            return fila(List.of(), 0);
         }
 
         String xml() {
             StringBuilder s = new StringBuilder();
             s.append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<worksheet xmlns=\"http://schemas.openxmlformats.org/spreadsheetml/2006/main\">");
+            int maxEsquema = esquema.stream().mapToInt(Integer::intValue).max().orElse(0);
+            if (maxEsquema > 0) {
+                // Botones de agrupar en la fila de resumen (encima del detalle), como en una tabla dinámica.
+                s.append("<sheetPr><outlinePr summaryBelow=\"0\"/></sheetPr>");
+            }
             if (fijarFila > 0) {
                 s.append("<sheetViews><sheetView workbookViewId=\"0\"><pane ySplit=\"").append(fijarFila).append("\" topLeftCell=\"A")
                         .append(fijarFila + 1).append("\" activePane=\"bottomLeft\" state=\"frozen\"/></sheetView></sheetViews>");
             } else {
                 s.append("<sheetViews><sheetView workbookViewId=\"0\"/></sheetViews>");
             }
-            s.append("<sheetFormatPr defaultRowHeight=\"13.2\"/>");
+            s.append("<sheetFormatPr defaultRowHeight=\"13.2\"").append(maxEsquema > 0 ? " outlineLevelRow=\"" + maxEsquema + "\"" : "").append("/>");
             if (anchos.length > 0) {
                 s.append("<cols>");
                 for (int i = 0; i < anchos.length; i++) {
@@ -125,7 +150,11 @@ public final class LibroExcel {
             }
             s.append("<sheetData>");
             for (int i = 0; i < filas.size(); i++) {
-                s.append("<row r=\"").append(i + 1).append("\">");
+                s.append("<row r=\"").append(i + 1).append("\"");
+                if (esquema.get(i) > 0) {
+                    s.append(" outlineLevel=\"").append(esquema.get(i)).append("\"");
+                }
+                s.append(">");
                 List<Celda> celdas = filas.get(i);
                 for (int j = 0; j < celdas.size(); j++) {
                     Celda c = celdas.get(j);

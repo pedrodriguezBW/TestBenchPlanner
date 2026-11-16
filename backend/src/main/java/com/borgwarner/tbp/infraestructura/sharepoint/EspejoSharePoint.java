@@ -147,6 +147,32 @@ public class EspejoSharePoint {
                 cliente.merge(contexto, digest, base, id, uno, "*");
             });
         }
+        espejarFacturacion(contexto, digest, base, id, fila);
+    }
+
+    /** Columnas de facturación de la tarea (no existen en la 4.9.4): solo las que tenga la lista. */
+    public static final List<String> COLUMNAS_FACTURACION = List.of("SetupHours", "HV", "ProductLine");
+
+    static ObjectNode cuerpoFacturacion(JsonNode r) {
+        ObjectNode b = JsonJs.objetoVacio();
+        b.set("SetupHours", numero(r.get("setupHours")));
+        String hv = ValorJs.texto(r.get("hv"));
+        b.set("HV", hv.equals("yes") ? TextNode.valueOf("Yes") : (hv.equals("no") ? TextNode.valueOf("No") : NullNode.getInstance()));
+        b.set("ProductLine", textoONulo(r, "productLine"));
+        return b;
+    }
+
+    private void espejarFacturacion(BrowserContext contexto, String digest, String base, int id, JsonNode fila) {
+        try {
+            java.util.Set<String> existentes = cliente.columnas(contexto, cliente.sitio(), AlmacenEnsayosSharePoint.LISTA);
+            ObjectNode cuerpo = cuerpoFacturacion(fila);
+            cuerpo.retain(COLUMNAS_FACTURACION.stream().filter(existentes::contains).toList());
+            if (cuerpo.size() > 0 && !cliente.merge(contexto, digest, base, id, cuerpo, "*").ok()) {
+                LOG.warn("Espejo: columnas de facturación no aceptadas en la fila {}", id);
+            }
+        } catch (RuntimeException e) {
+            LOG.warn("Espejo: columnas de facturación {}", e.getMessage());
+        }
     }
 
     private static void ponerSi(ObjectNode destino, String campo, String valor) {

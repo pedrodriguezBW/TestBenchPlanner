@@ -80,6 +80,20 @@ public final class EdicionEnsayo {
                     e.poner("progress100Date", "");
                 }
             }
+            // Facturación: horas de setup (o piezas en los Equipment Types por pieza), HV y Product Line.
+            case "setupHours" -> {
+                if (texto.isEmpty()) {
+                    e.poner("setupHours", "");
+                } else {
+                    double horas = ValorJs.numeroDeTexto(texto);
+                    if (Double.isNaN(horas) || horas < 0) {
+                        throw new ReglaNoCumplida("Setup: indica un número mayor o igual que 0.");
+                    }
+                    e.poner("setupHours", ValorJs.nodoNumero(horas));
+                }
+            }
+            case "hv" -> e.poner("hv", "yes".equals(texto) || "no".equals(texto) ? texto : "");
+            case "productLine" -> e.poner("productLine", texto.trim());
             case "weekend" -> e.poner("weekend", "yes".equals(texto));
             case "inputs" -> e.poner("inputs", !"no".equals(texto));
             default -> {

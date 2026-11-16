@@ -1,12 +1,12 @@
 package com.borgwarner.tbp.configuracion;
 
-import com.borgwarner.tbp.aplicacion.puertos.AlmacenFacturacion;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCalendario;
 import com.borgwarner.tbp.aplicacion.EstadoConexion;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenCatalogos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenEnsayos;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenHistoricoKpi;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenRecursos;
+import com.borgwarner.tbp.aplicacion.puertos.AlmacenTiposEquipo;
 import com.borgwarner.tbp.aplicacion.puertos.AlmacenUsuarios;
 import com.borgwarner.tbp.aplicacion.puertos.Colaboracion;
 import com.borgwarner.tbp.aplicacion.puertos.ConsultaAprobaciones;
@@ -17,8 +17,6 @@ import com.borgwarner.tbp.infraestructura.comun.CopiaSinConexion;
 import com.borgwarner.tbp.infraestructura.local.AlmacenEnsayosLocal;
 import com.borgwarner.tbp.infraestructura.local.AlmacenesAuxiliaresLocales;
 import com.borgwarner.tbp.infraestructura.local.DatosLocales;
-import com.borgwarner.tbp.infraestructura.facturacion.AlmacenFacturacionArchivos;
-import com.borgwarner.tbp.infraestructura.sharepoint.AlmacenFacturacionSharePoint;
 import com.borgwarner.tbp.infraestructura.sharepoint.AlmacenEnsayosSharePoint;
 import com.borgwarner.tbp.infraestructura.sharepoint.AprobacionesSharePoint;
 import com.borgwarner.tbp.infraestructura.sharepoint.ClienteSharePoint;
@@ -100,10 +98,10 @@ public class ConfiguracionAlmacenes {
             return new AlmacenesAuxiliaresLocales.Recursos(datos, colaboracion, permitirVacias);
         }
 
-        /** Facturación del modo local: junto a los datos locales (se reinicia con ellos solo si se borra la carpeta). */
+        /** Tipos de equipo de facturación del modo local (tipos-equipo.json junto a los datos locales). */
         @Bean
-        public AlmacenFacturacion almacenFacturacion(PropiedadesPlanner p) {
-            return new AlmacenFacturacionArchivos(Path.of(p.local().carpetaDatos()).resolve("facturacion"));
+        public AlmacenTiposEquipo almacenTiposEquipo(DatosLocales datos) {
+            return new AlmacenesAuxiliaresLocales.TiposEquipo(datos);
         }
 
         @Bean
@@ -184,24 +182,10 @@ public class ConfiguracionAlmacenes {
             return copia.usuarios(new ListasAuxiliaresSharePoint.Usuarios(cliente, permitirVacias));
         }
 
-        /**
-         * Facturación con SharePoint: por defecto en ficheros de este PC
-         * (planner.facturacion.almacen=local); con «sharepoint» se comparte en una
-         * carpeta de una biblioteca del sitio (planner.facturacion.carpeta-sharepoint),
-         * que hay que crear antes. Nunca se escribe en las listas de la planificación.
-         */
+        /** Tipos de equipo de facturación: lista TestBenchEquipmentTypes del sitio. */
         @Bean
-        public AlmacenFacturacion almacenFacturacion(ClienteSharePoint cliente, PropiedadesPlanner p,
-                                                     @Value("${planner.facturacion.almacen:local}") String modo,
-                                                     @Value("${planner.facturacion.carpeta-sharepoint:}") String carpeta) {
-            if ("sharepoint".equalsIgnoreCase(modo)) {
-                if (carpeta == null || carpeta.isBlank()) {
-                    throw new IllegalStateException("Falta planner.facturacion.carpeta-sharepoint (carpeta de la biblioteca para la facturación)");
-                }
-                LOG.warn("Facturación en SharePoint: {}", carpeta);
-                return new AlmacenFacturacionSharePoint(cliente, carpeta);
-            }
-            return new AlmacenFacturacionArchivos(Path.of(p.carpetaUsuario()).resolve("facturacion"));
+        public AlmacenTiposEquipo almacenTiposEquipo(ClienteSharePoint cliente) {
+            return new ListasAuxiliaresSharePoint.TiposEquipo(cliente);
         }
 
         @Bean

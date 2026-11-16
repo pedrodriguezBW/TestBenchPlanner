@@ -1,0 +1,1001 @@
+{
+ "nota": "Datos de PRUEBA sacados de «2026 Ensayos interno.xlsx» (hojas Equipos y costes, INPUTS_2026 y ENERO; columna de enero de TablaDin_varios). No se cargan en la aplicación.",
+ "mes": "2026-01",
+ "tipos": [
+  {
+   "titulo": "Shaker 40kN",
+   "grupo": "Shakers",
+   "anio": 2026,
+   "sinHv": 19.59,
+   "conHv": 24.0,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Shaker 74kN",
+   "grupo": "Shakers",
+   "anio": 2026,
+   "sinHv": 19.59,
+   "conHv": 24.0,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Cámara climática",
+   "grupo": "Climático",
+   "anio": 2026,
+   "sinHv": 3.72,
+   "conHv": 8.13,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Cámara choques térmicos",
+   "grupo": "Climático",
+   "anio": 2026,
+   "sinHv": 5.78,
+   "conHv": 10.190000000000001,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Desplazamientos relativos",
+   "grupo": "",
+   "anio": 2026,
+   "sinHv": 9.92,
+   "conHv": 9.92,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Caudal",
+   "grupo": "Caudal",
+   "anio": 2026,
+   "sinHv": 37.93,
+   "conHv": null,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH L03",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2026,
+   "sinHv": 9.93,
+   "conHv": 9.93,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH L02",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2026,
+   "sinHv": 5.65,
+   "conHv": 5.65,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH Lubu CTAG",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2026,
+   "sinHv": 8.0,
+   "conHv": 8.0,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Heating Plates",
+   "grupo": "HVCH (STC)",
+   "anio": 2026,
+   "sinHv": 16.0,
+   "conHv": 16.0,
+   "unidad": "HORAS",
+   "regla": "ASINH_200"
+  },
+  {
+   "titulo": "RACS",
+   "grupo": "RACS",
+   "anio": 2026,
+   "sinHv": 126.92,
+   "conHv": 126.92,
+   "unidad": "PIEZAS",
+   "regla": "PER_PIECE"
+  },
+  {
+   "titulo": "HVCH Functional",
+   "grupo": "HVCH (STC)",
+   "anio": 2026,
+   "sinHv": 9.17,
+   "conHv": 12.89,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH Lubu",
+   "grupo": "HVCH (STC)",
+   "anio": 2026,
+   "sinHv": 19.45,
+   "conHv": 19.45,
+   "unidad": "HORAS",
+   "regla": "ASINH_200"
+  },
+  {
+   "titulo": "R&D",
+   "grupo": "HVCH (STC)",
+   "anio": 2026,
+   "sinHv": 17.78,
+   "conHv": 21.5,
+   "unidad": "HORAS",
+   "regla": "ASINH_100"
+  },
+  {
+   "titulo": "RACS_porhora",
+   "grupo": "",
+   "anio": 2026,
+   "sinHv": 21.5,
+   "conHv": 21.5,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Shaker 40kN",
+   "grupo": "Shakers",
+   "anio": 2025,
+   "sinHv": 18.37,
+   "conHv": 22.78,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Shaker 74kN",
+   "grupo": "Shakers",
+   "anio": 2025,
+   "sinHv": 18.37,
+   "conHv": 22.78,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Cámara climática",
+   "grupo": "Climático",
+   "anio": 2025,
+   "sinHv": 4.0,
+   "conHv": 8.41,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Cámara choques térmicos",
+   "grupo": "Climático",
+   "anio": 2025,
+   "sinHv": 5.8,
+   "conHv": 10.21,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Desplazamientos relativos",
+   "grupo": "",
+   "anio": 2025,
+   "sinHv": 9.92,
+   "conHv": 9.92,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Caudal",
+   "grupo": "Caudal",
+   "anio": 2025,
+   "sinHv": 37.93,
+   "conHv": null,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH L03",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2025,
+   "sinHv": 9.93,
+   "conHv": 9.93,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH L02",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2025,
+   "sinHv": 4.94,
+   "conHv": 4.94,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH Lubu CTAG",
+   "grupo": "HVCH (CTAG)",
+   "anio": 2025,
+   "sinHv": 8.0,
+   "conHv": 8.0,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "Heating Plates",
+   "grupo": "HVCH (STC)",
+   "anio": 2025,
+   "sinHv": 13.78,
+   "conHv": 13.78,
+   "unidad": "HORAS",
+   "regla": "ASINH_200"
+  },
+  {
+   "titulo": "RACS",
+   "grupo": "RACS",
+   "anio": 2025,
+   "sinHv": 126.92,
+   "conHv": 126.92,
+   "unidad": "PIEZAS",
+   "regla": "PER_PIECE"
+  },
+  {
+   "titulo": "HVCH Functional",
+   "grupo": "HVCH (STC)",
+   "anio": 2025,
+   "sinHv": 9.17,
+   "conHv": 13.17,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  },
+  {
+   "titulo": "HVCH Lubu",
+   "grupo": "HVCH (STC)",
+   "anio": 2025,
+   "sinHv": 20.3,
+   "conHv": 20.3,
+   "unidad": "HORAS",
+   "regla": "ASINH_200"
+  },
+  {
+   "titulo": "R&D",
+   "grupo": "HVCH (STC)",
+   "anio": 2025,
+   "sinHv": 19.85,
+   "conHv": 23.85,
+   "unidad": "HORAS",
+   "regla": "ASINH_100"
+  },
+  {
+   "titulo": "RACS_porhora",
+   "grupo": "",
+   "anio": 2025,
+   "sinHv": 20.3,
+   "conHv": 20.3,
+   "unidad": "HORAS",
+   "regla": "LINEAR"
+  }
+ ],
+ "lineas": [
+  {
+   "proyecto": "R&D HVCH Robustness",
+   "tarea": "TEST-3539",
+   "requester": "mrilo",
+   "numeroProyecto": 11364,
+   "orden": "463B11364MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "Heating Plates",
+   "hv": "no",
+   "horasNetas": 358,
+   "setup": 6,
+   "horasTotales": 364,
+   "tarifaExcel": 16,
+   "costeExcel": 4352.360197274896,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "R&D HVCH Robustness",
+   "tarea": "TEST-3723/3256 (HVCH 3)",
+   "requester": "mrilo",
+   "numeroProyecto": 11364,
+   "orden": "463B11364MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "HVCH Lubu",
+   "hv": "no",
+   "horasNetas": 281,
+   "setup": 4,
+   "horasTotales": 285,
+   "tarifaExcel": 19.45,
+   "costeExcel": 4482.943343757747,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "R&D HVCH Robustness",
+   "tarea": "TEST-3831 (HVCH 4) ",
+   "requester": "mrilo",
+   "numeroProyecto": 11364,
+   "orden": "463B11364MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "HVCH Lubu",
+   "hv": "no",
+   "horasNetas": 316,
+   "setup": 4,
+   "horasTotales": 320,
+   "tarifaExcel": 19.45,
+   "costeExcel": 4858.54514554997,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "R&D HVCH Robustness",
+   "tarea": "TEST-3701(HVCH-6)",
+   "requester": "mrilo",
+   "numeroProyecto": 11364,
+   "orden": "463B11364MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "HVCH Lubu",
+   "hv": "no",
+   "horasNetas": 361,
+   "setup": 4,
+   "horasTotales": 365,
+   "tarifaExcel": 19.45,
+   "costeExcel": 5300.194122394584,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "R&D HVCH Robustness",
+   "tarea": "TEST-3322, TEST-3919",
+   "requester": "mrilo",
+   "numeroProyecto": 11364,
+   "orden": "463B11364MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "R&D",
+   "hv": "no",
+   "horasNetas": 296,
+   "setup": 0,
+   "horasTotales": 296,
+   "tarifaExcel": 17.78,
+   "costeExcel": 3210.5717173716407,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-19"
+  },
+  {
+   "proyecto": "Daimler AGR Klappe-01431",
+   "tarea": 3546,
+   "requester": "braferreira",
+   "numeroProyecto": 1431,
+   "orden": "463B99997MS0",
+   "productLine": "Viana",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 456,
+   "setup": 0,
+   "horasTotales": 456,
+   "tarifaExcel": 3.72,
+   "costeExcel": 1696.3200000000002,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "JD D39mm EGR Valve-10353",
+   "tarea": 3663,
+   "requester": "braferreira",
+   "numeroProyecto": 10353,
+   "orden": "463B10353MS0",
+   "productLine": "Viana",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 168,
+   "setup": 8,
+   "horasTotales": 176,
+   "tarifaExcel": 3.72,
+   "costeExcel": 654.72,
+   "inicio": "2026-01-13",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Ford Panther GEN IV-10798",
+   "tarea": 3726,
+   "requester": "fedmartin",
+   "numeroProyecto": 10798,
+   "orden": "463B10847MS0",
+   "productLine": "Viana",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 456,
+   "setup": 0,
+   "horasTotales": 456,
+   "tarifaExcel": 3.72,
+   "costeExcel": 1696.3200000000002,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "BMW B57D-10847",
+   "tarea": 3375,
+   "requester": "fedmartin",
+   "numeroProyecto": 10847,
+   "orden": "463B10847MS0",
+   "productLine": "Viana",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 192,
+   "setup": 2,
+   "horasTotales": 194,
+   "tarifaExcel": 3.72,
+   "costeExcel": 721.6800000000001,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-09"
+  },
+  {
+   "proyecto": "LVAH JCS-11198",
+   "tarea": "Life tester",
+   "requester": "alnieto",
+   "numeroProyecto": 11198,
+   "orden": "463B99997HS0",
+   "productLine": "Heaters",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 1400,
+   "setup": 0,
+   "horasTotales": 1400,
+   "tarifaExcel": 3.72,
+   "costeExcel": 5208,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "MEB21-80248",
+   "tarea": "3581 (cargar a 99997)",
+   "requester": "srodriguez",
+   "numeroProyecto": 80000248,
+   "orden": "463B99997HS0",
+   "productLine": "Heaters",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 456,
+   "setup": 1,
+   "horasTotales": 457,
+   "tarifaExcel": 3.72,
+   "costeExcel": 1700.0400000000002,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "OM654-80380",
+   "tarea": 3152,
+   "requester": "bperez",
+   "numeroProyecto": 80000380,
+   "orden": "463B80380MA0",
+   "productLine": "Viana",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 456,
+   "setup": 0,
+   "horasTotales": 456,
+   "tarifaExcel": 3.72,
+   "costeExcel": 1696.3200000000002,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Cold plates for battery cooling-80885",
+   "tarea": 3791,
+   "requester": "berlopez",
+   "numeroProyecto": 80000885,
+   "orden": "463B80885MD7",
+   "productLine": "eCoolers",
+   "grupo": "Climático",
+   "equipmentType": "Cámara climática",
+   "hv": "no",
+   "horasNetas": 168,
+   "setup": 2,
+   "horasTotales": 170,
+   "tarifaExcel": 3.72,
+   "costeExcel": 632.4,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-08"
+  },
+  {
+   "proyecto": "BMW HVCH Robustness 9KW",
+   "tarea": "BMW DeltaPV1 L02",
+   "requester": "afilgueira",
+   "numeroProyecto": 80001786,
+   "orden": "463B81786MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH L02",
+   "hv": "yes",
+   "horasNetas": 440,
+   "setup": 0,
+   "horasTotales": 440,
+   "tarifaExcel": 5.65,
+   "costeExcel": 2486,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "BMW HVCH Robustness 9KW",
+   "tarea": "BMW 9kW PV1 L02 Life Test",
+   "requester": "afilgueira",
+   "numeroProyecto": 80001786,
+   "orden": "463B81786MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH L02",
+   "hv": "yes",
+   "horasNetas": 413,
+   "setup": 0,
+   "horasTotales": 413,
+   "tarifaExcel": 5.65,
+   "costeExcel": 2333.4500000000003,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Daimler EVA2 HVCH",
+   "tarea": "EVA2 5,2kW NXP K02",
+   "requester": "alnieto",
+   "numeroProyecto": "01517",
+   "orden": "463B01517MS0",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH L03",
+   "hv": "yes",
+   "horasNetas": 72,
+   "setup": 0,
+   "horasTotales": 72,
+   "tarifaExcel": 9.93,
+   "costeExcel": 714.96,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Daimler EVA2 HVCH",
+   "tarea": "EVA2 5,2kW NXP P03 Post K02",
+   "requester": "alnieto",
+   "numeroProyecto": "01517",
+   "orden": "463B01517MS0",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH L03",
+   "hv": "yes",
+   "horasNetas": 6,
+   "setup": 0,
+   "horasTotales": 6,
+   "tarifaExcel": 9.93,
+   "costeExcel": 59.58,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "HVCH Daimler MMA",
+   "tarea": "K02 MMA PV4 Tanda 3",
+   "requester": "alnieto",
+   "numeroProyecto": 80283,
+   "orden": "463B80283MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH Lubu CTAG",
+   "hv": "yes",
+   "horasNetas": 15,
+   "setup": 0,
+   "horasTotales": 15,
+   "tarifaExcel": 8,
+   "costeExcel": 120,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "BMW HVCH Robustness 9KW",
+   "tarea": "P03 Post M04 secuencia",
+   "requester": "afilgueira",
+   "numeroProyecto": 80001786,
+   "orden": "463B81786MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH Lubu CTAG",
+   "hv": "yes",
+   "horasNetas": 8,
+   "setup": 0,
+   "horasTotales": 8,
+   "tarifaExcel": 8,
+   "costeExcel": 64,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "BMW HVCH Robustness 9KW",
+   "tarea": "K02 Post L02 New Coolant",
+   "requester": "afilgueira",
+   "numeroProyecto": 80001786,
+   "orden": "463B81786MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (CTAG)",
+   "equipmentType": "HVCH Lubu CTAG",
+   "hv": "yes",
+   "horasNetas": 30,
+   "setup": 0,
+   "horasTotales": 30,
+   "tarifaExcel": 8,
+   "costeExcel": 240,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Stellantis Small-80000834",
+   "tarea": "TEST-2603, TEST-3859, TEST-3925",
+   "requester": "lezara",
+   "numeroProyecto": 80000834,
+   "orden": "463B80834MD7",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "R&D",
+   "hv": "no",
+   "horasNetas": 36,
+   "setup": 0,
+   "horasTotales": 36,
+   "tarifaExcel": 17.78,
+   "costeExcel": 627.0033971893006,
+   "inicio": "2026-01-07",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "GM C1Yx-80002017",
+   "tarea": "TEST-3839, TEST-3840, TEST-3896",
+   "requester": "lezara",
+   "numeroProyecto": 80002017,
+   "orden": "463B82017MD4",
+   "productLine": "Heaters",
+   "grupo": "HVCH (STC)",
+   "equipmentType": "R&D",
+   "hv": "no",
+   "horasNetas": 21,
+   "setup": 0,
+   "horasTotales": 21,
+   "tarifaExcel": 17.78,
+   "costeExcel": 370.6887304318012,
+   "inicio": "2026-01-12",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "Volvo GPA-80511",
+   "tarea": 3819.3904,
+   "requester": "yasantos",
+   "numeroProyecto": 80000511,
+   "orden": "463B80511MD7",
+   "productLine": "Heaters",
+   "grupo": "RACS",
+   "equipmentType": "RACS",
+   "hv": "no",
+   "horasNetas": 5,
+   "setup": 0,
+   "horasTotales": 5,
+   "tarifaExcel": 126.92,
+   "costeExcel": 634.6,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-20"
+  },
+  {
+   "proyecto": "OM654-80380",
+   "tarea": "TEST-3601, TEST-3634, TEST-3635",
+   "requester": "bperez",
+   "numeroProyecto": 80000380,
+   "orden": "463B80380MA0",
+   "productLine": "Viana",
+   "grupo": "Shakers",
+   "equipmentType": "Shaker 40kN",
+   "hv": "no",
+   "horasNetas": 66,
+   "setup": 9,
+   "horasTotales": 75,
+   "tarifaExcel": 19.59,
+   "costeExcel": 1469.25,
+   "inicio": "2026-01-09",
+   "fin": "2026-01-15"
+  },
+  {
+   "proyecto": "Volvo LP EGR Cooler",
+   "tarea": "TEST-3682, TEST-3683",
+   "requester": "cmorell",
+   "numeroProyecto": 80923,
+   "orden": "463B80923MA0",
+   "productLine": "Vigo",
+   "grupo": "Shakers",
+   "equipmentType": "Shaker 74kN",
+   "hv": "no",
+   "horasNetas": 90,
+   "setup": 6,
+   "horasTotales": 96,
+   "tarifaExcel": 19.59,
+   "costeExcel": 1880.6399999999999,
+   "inicio": "2026-01-01",
+   "fin": "2026-01-05"
+  }
+ ],
+ "columnas": [
+  "Shakers",
+  "HVCH (STC)",
+  "HVCH (CTAG)",
+  "Climático",
+  "RACS"
+ ],
+ "filas": [
+  {
+   "etiqueta": "Vigo",
+   "valores": {
+    "Shakers": 1880.6399999999999
+   },
+   "total": 1880.6399999999999
+  },
+  {
+   "etiqueta": "463B80923MA0",
+   "valores": {
+    "Shakers": 1880.6399999999999
+   },
+   "total": 1880.6399999999999
+  },
+  {
+   "etiqueta": "cmorell",
+   "valores": {
+    "Shakers": 1880.6399999999999
+   },
+   "total": 1880.6399999999999
+  },
+  {
+   "etiqueta": "Viana",
+   "valores": {
+    "Shakers": 1469.25,
+    "Climático": 6465.360000000001
+   },
+   "total": 7934.610000000001
+  },
+  {
+   "etiqueta": "463B10353MS0",
+   "valores": {
+    "Climático": 654.72
+   },
+   "total": 654.72
+  },
+  {
+   "etiqueta": "braferreira",
+   "valores": {
+    "Climático": 654.72
+   },
+   "total": 654.72
+  },
+  {
+   "etiqueta": "463B10847MS0",
+   "valores": {
+    "Climático": 2418
+   },
+   "total": 2418
+  },
+  {
+   "etiqueta": "fedmartin",
+   "valores": {
+    "Climático": 2418
+   },
+   "total": 2418
+  },
+  {
+   "etiqueta": "463B80380MA0",
+   "valores": {
+    "Shakers": 1469.25,
+    "Climático": 1696.3200000000002
+   },
+   "total": 3165.57
+  },
+  {
+   "etiqueta": "bperez",
+   "valores": {
+    "Shakers": 1469.25,
+    "Climático": 1696.3200000000002
+   },
+   "total": 3165.57
+  },
+  {
+   "etiqueta": "463B99997MS0",
+   "valores": {
+    "Climático": 1696.3200000000002
+   },
+   "total": 1696.3200000000002
+  },
+  {
+   "etiqueta": "braferreira",
+   "valores": {
+    "Climático": 1696.3200000000002
+   },
+   "total": 1696.3200000000002
+  },
+  {
+   "etiqueta": "Heaters",
+   "valores": {
+    "HVCH (STC)": 23202.306653969936,
+    "HVCH (CTAG)": 6017.990000000001,
+    "Climático": 6908.04,
+    "RACS": 634.6
+   },
+   "total": 36762.93665396994
+  },
+  {
+   "etiqueta": "463B01517MS0",
+   "valores": {
+    "HVCH (CTAG)": 774.5400000000001
+   },
+   "total": 774.5400000000001
+  },
+  {
+   "etiqueta": "alnieto",
+   "valores": {
+    "HVCH (CTAG)": 774.5400000000001
+   },
+   "total": 774.5400000000001
+  },
+  {
+   "etiqueta": "463B11364MD4",
+   "valores": {
+    "HVCH (STC)": 22204.6145263488
+   },
+   "total": 22204.614526348836
+  },
+  {
+   "etiqueta": "mrilo",
+   "valores": {
+    "HVCH (STC)": 22204.614526348836
+   },
+   "total": 22204.614526348836
+  },
+  {
+   "etiqueta": "463B80283MD7",
+   "valores": {
+    "HVCH (CTAG)": 120
+   },
+   "total": 120
+  },
+  {
+   "etiqueta": "alnieto",
+   "valores": {
+    "HVCH (CTAG)": 120
+   },
+   "total": 120
+  },
+  {
+   "etiqueta": "463B80511MD7",
+   "valores": {
+    "RACS": 634.6
+   },
+   "total": 634.6
+  },
+  {
+   "etiqueta": "yasantos",
+   "valores": {
+    "RACS": 634.6
+   },
+   "total": 634.6
+  },
+  {
+   "etiqueta": "463B80834MD7",
+   "valores": {
+    "HVCH (STC)": 627.0033971893006
+   },
+   "total": 627.0033971893006
+  },
+  {
+   "etiqueta": "lezara",
+   "valores": {
+    "HVCH (STC)": 627.0033971893006
+   },
+   "total": 627.0033971893006
+  },
+  {
+   "etiqueta": "463B81786MD7",
+   "valores": {
+    "HVCH (CTAG)": 5123.450000000001
+   },
+   "total": 5123.450000000001
+  },
+  {
+   "etiqueta": "afilgueira",
+   "valores": {
+    "HVCH (CTAG)": 5123.450000000001
+   },
+   "total": 5123.450000000001
+  },
+  {
+   "etiqueta": "463B82017MD4",
+   "valores": {
+    "HVCH (STC)": 370.6887304318012
+   },
+   "total": 370.6887304318012
+  },
+  {
+   "etiqueta": "lezara",
+   "valores": {
+    "HVCH (STC)": 370.6887304318012
+   },
+   "total": 370.6887304318012
+  },
+  {
+   "etiqueta": "463B99997HS0",
+   "valores": {
+    "Climático": 6908.04
+   },
+   "total": 6908.04
+  },
+  {
+   "etiqueta": "srodriguez",
+   "valores": {
+    "Climático": 1700.0400000000002
+   },
+   "total": 1700.0400000000002
+  },
+  {
+   "etiqueta": "alnieto",
+   "valores": {
+    "Climático": 5208
+   },
+   "total": 5208
+  },
+  {
+   "etiqueta": "eCoolers",
+   "valores": {
+    "Climático": 632.4
+   },
+   "total": 632.4
+  },
+  {
+   "etiqueta": "463B80885MD7",
+   "valores": {
+    "Climático": 632.4
+   },
+   "total": 632.4
+  },
+  {
+   "etiqueta": "berlopez",
+   "valores": {
+    "Climático": 632.4
+   },
+   "total": 632.4
+  },
+  {
+   "etiqueta": "Total general",
+   "valores": {
+    "Shakers": 3349.89,
+    "HVCH (STC)": 23202.306653969936,
+    "HVCH (CTAG)": 6017.990000000001,
+    "Climático": 14005.800000000001,
+    "RACS": 634.6
+   },
+   "total": 47210.58665396994
+  }
+ ],
+ "ordenesTablaDinamica": {
+  "463B01517MS0": 774.5400000000001,
+  "463B10353MS0": 654.72,
+  "463B10847MS0": 2418,
+  "463B11364MD4": 22204.614526348836,
+  "463B80283MD7": 120,
+  "463B80380MA0": 3165.57,
+  "463B80511MD7": 634.6,
+  "463B80834MD7": 627.0033971893006,
+  "463B80885MD7": 632.4,
+  "463B80923MA0": 1880.6399999999999,
+  "463B81786MD7": 5123.450000000001,
+  "463B82017MD4": 370.6887304318012,
+  "463B99997HS0": 6908.04,
+  "463B99997MS0": 1696.3200000000002
+ }
+}

@@ -8,7 +8,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * y responsables (TestBenchResponsibles, congelada desde la v3.7).
  *
  * Formato de intercambio: el de /api/load_config de la 4.9.4
- * {responsibles:[…], projects:[…], benches:[{name, groupKey, groupName, dot, org, seq}]}.
+ * {responsibles:[…], projects:[…], benches:[{name, groupKey, groupName, dot, org, seq}]}
+ * más, para la facturación, projectOrders {«título del proyecto»: «orden(es)»}
+ * (columna BillingOrder) y benches[].equipmentType (columna EquipmentType).
+ * Si al guardar no llegan (interfaz clásica), se conservan las guardadas.
  */
 public interface AlmacenCatalogos {
 

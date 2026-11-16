@@ -37,6 +37,30 @@ que aún esperan turno se descartan (`FiltroPestana`, `PestanasActivas`,
 Una consulta descartada no cuenta como lectura fallida para D11 ni activa el
 modo sin conexión.
 
+## Guardar listas auxiliares: solo lo que cambia (H5c, 11-nov-2026)
+
+Antes, guardar Test Benches o Projects reescribía TODAS las filas de TestBenchProjects y
+TestBenchBenches campo a campo (un MERGE por columna y fila: unas 300 peticiones, varios
+minutos). Mientras tanto el carril de escritura quedaba ocupado y la interfaz parecía
+bloqueada (presencia y recargas en espera). Ahora `prepararReconciliacion` lee también los
+valores actuales y `aplicarReconciliacion` solo envía los campos que difieren, en un único
+MERGE por fila (campo a campo solo si ese MERGE falla). Cambiar la categoría de facturación de
+un banco = 1 escritura. Las columnas que la lista no tiene no se intentan escribir (se
+informan en field_errors) y un fallo en BillingOrder/BillingCategory se muestra como error.
+Pruebas: ClienteSharePointTest (4 nuevas).
+
+### Test Benches y Projects en segundo plano (H5c)
+
+Como `pushConfig` de la 4.9.4, la pantalla cambia en el acto y el guardado va en segundo
+plano (`frontend/src/estado/colaConfiguracion.ts`): en orden, de uno en uno, juntando los
+cambios que esperan (cada guardado lleva la lista completa; renombrar no se junta porque el
+backend necesita cada renombrado para mover los ensayos). Mientras hay guardados pendientes
+la cabecera muestra «Saving…» y cerrar la pestaña pide confirmación. A diferencia de la 4.9.4,
+un fallo no queda en la consola: se avisa, se descartan los cambios que esperaban y la
+pantalla vuelve a lo guardado. Al vaciarse la cola se recargan vista y listas una vez.
+Pruebas: test/colaConfiguracion.test.mjs (3) y pruebas-facturacion.cjs (4 comprobaciones
+con retardo y fallo simulados: retardoConfiguracionMs / fallarConfiguracion).
+
 ## Garantías que se mantienen
 
 - **Escrituras**: todas siguen por una sola conexión, en orden y con la misma

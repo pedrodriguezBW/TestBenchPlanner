@@ -39,7 +39,7 @@ let ultimaMatrizExcel = null;
 // versión publicada, conectados y modo sin conexión (copia de este PC).
 // retardoOperacionesMs: lo que tarda «SharePoint» en guardar un alta, copia… (sin bloquear las lecturas).
 // fallarOperaciones: las operaciones de banco responden 500. pestanas: códigos X-TBP-Pestana recibidos.
-const LABORATORIO_INICIAL = () => ({ publicada: null, conectados: null, copiaSinConexion: null, retardoOperacionesMs: 0,
+const LABORATORIO_INICIAL = () => ({ publicada: null, conectados: null, copiaSinConexion: null, retardoOperacionesMs: 0, retardoConfiguracionMs: 0, fallarConfiguracion: false,
   fallarOperaciones: false, aceptarIdsPropuestos: false, pestanas: [], peticionesSinPestana: 0 });
 let laboratorio = LABORATORIO_INICIAL();
 let hoyLaboratorio = '2026-11-05';
@@ -116,14 +116,9 @@ async function comprobarVersiones(versiones) {
   return filas.length ? { estado: 409, cuerpo: { error: 'conflicto', mensaje: 'Otra persona ha cambiado este ensayo', filas } } : null;
 }
 
-/** Facturación (/api/v1/facturacion) con el motor JavaScript del laboratorio; DataJson.billing en la 4.9.4. */
+/** Facturación (/api/v1/facturacion) con la réplica JavaScript (facturacion/hoja.cjs). */
 const facturacion = facturacionSimulada.crear({
-  vista, comprobarVersiones, rol: () => rol, hoy: () => hoyLaboratorio, aprobaciones: () => (escenario ? escenario.aprobaciones : []),
-  ponerBilling: (banco, id, billing) => sesion.evaluar(([bn, rid, b]) => {
-    const r = (state.benches[bn] || []).find((x) => x.id === rid);
-    if (r) r.billing = b;
-    recomputeAll();
-  }, [banco, id, billing]),
+  vista, rol: () => rol, catalogos: () => sesion.evaluar(() => JSON.parse(JSON.stringify(cfgSnapshot()))),
 });
 
 /** Ejecuta pasos y devuelve 422 si la 4.9.4 mostró un aviso (alert) de regla. */
@@ -199,6 +194,16 @@ async function campos(banco, id, cuerpo) {
   if (conflicto) return conflicto;
   if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
   for (const c of cuerpo.cambios || []) {
+    // Campos de facturación (Setup, HV, Product Line): la 4.9.4 no los tiene; se guardan en la fila tal cual (EdicionEnsayo.java).
+    if (facturacionSimulada.CAMPOS_TAREA.includes(c.campo)) {
+      const n = facturacionSimulada.normalizarCampo(c.campo, c.valor);
+      if (n.error) return { estado: 422, cuerpo: { error: 'regla', mensaje: n.error } };
+      await sesion.evaluar(([bn, rid, k, v]) => {
+        const r = (state.benches[bn] || []).find((x) => x.id === rid);
+        if (r) { r[k] = v; save(); }
+      }, [banco, id, c.campo, n.valor]);
+      continue;
+    }
     const avisos = await pasos([{ op: 'editar', banco, ensayo: id, campo: c.campo, valor: c.valor }]);
     if (avisos.length) return { estado: 422, cuerpo: { error: 'regla', mensaje: avisos[0] } };
   }
@@ -377,11 +382,14 @@ async function atender(metodo, ruta, cuerpo) {
   const protegida = (lista) => ({ estado: 412, cuerpo: { error: 'lista-protegida', mensaje: `No se guarda: la lista ${lista} quedaría vacía (protección de listas, D11).` } });
   if (p === '/api/v1/catalogos' && metodo === 'GET') {
     // Responsables: los de la lista compartida (como el backend), no la lista fija de la 4.9.4 (D24).
-    return { estado: 200, cuerpo: await sesion.evaluar((r) => Object.assign({ responsibles: r }, JSON.parse(JSON.stringify(cfgSnapshot()))), escenario.configuracion.responsibles || []) };
+    // Más las columnas de facturación (BillingOrder / EquipmentType), que guarda la API simulada de facturación.
+    return { estado: 200, cuerpo: facturacion.mezclarCatalogo(await sesion.evaluar((r) => Object.assign({ responsibles: r }, JSON.parse(JSON.stringify(cfgSnapshot()))), escenario.configuracion.responsibles || [])) };
   }
   if (p === '/api/v1/catalogos' && metodo === 'PUT') {
     if (rol === 'readonly') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Tu usuario es de solo lectura: no se guardan cambios.' } };
     if (!(cuerpo.projects || []).length) return protegida('TestBenchProjects');
+    const denegado = facturacion.guardarCatalogo(await facturacion.catalogosActuales(), cuerpo, {});
+    if (denegado) return denegado;
     await sesion.evaluar((pr) => { state.projects = pr; save(); refreshDL(); }, cuerpo.projects);
     await sesion.avanzar(1500);
     return { estado: 200, cuerpo: { ok: true } };
@@ -389,6 +397,7 @@ async function atender(metodo, ruta, cuerpo) {
   if (p === '/api/v1/configuracion/bancos' && metodo === 'PUT') {
     if (rol !== 'admin') return { estado: 403, cuerpo: { error: 'sin-permiso', mensaje: 'Solo un Admin puede hacer esta operación.' } };
     if (!(cuerpo.benches || []).length) return protegida('TestBenchBenches');
+    facturacion.guardarCatalogo(await facturacion.catalogosActuales(), { benches: cuerpo.benches }, cuerpo.renombrados);
     const antes = (await vista()).textos;
     await sesion.evaluar(([cfg, ren]) => {
       // Lo mismo que renameBench / delBench / delCategory de la 4.9.4 sobre state.benches.
@@ -535,9 +544,19 @@ const servidor = http.createServer((req, res) => {
       res.end(JSON.stringify({ error: 'SharePoint no responde (laboratorio)' }));
       return;
     }
+    // Guardar Test Benches / Projects (la interfaz nueva lo hace en segundo plano).
+    const esConfiguracion = req.method === 'PUT' && /^\/api\/v1\/(configuracion\/bancos|catalogos)(\?|$)/.test(req.url);
+    if (esConfiguracion && laboratorio.fallarConfiguracion) {
+      setTimeout(() => {
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'SharePoint no responde (laboratorio)' }));
+      }, Number(laboratorio.retardoConfiguracionMs || 0));
+      return;
+    }
     // El retardo simula un guardado lento en SharePoint: la operación se aplica al final y,
     // mientras tanto, las lecturas se siguen atendiendo (no ocupa la cola).
-    const retardo = esOperacion ? Number(laboratorio.retardoOperacionesMs || 0) : 0;
+    const retardo = esOperacion ? Number(laboratorio.retardoOperacionesMs || 0)
+      : esConfiguracion ? Number(laboratorio.retardoConfiguracionMs || 0) : 0;
     const encolar = (trabajo) => { cola = cola.then(trabajo); };
     const atenderEnCola = async () => {
       try {

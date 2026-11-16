@@ -24,6 +24,6 @@
  {
   "caso": "^U[EF]",
   "ruta": "^/menu(/\\d+)?$",
-  "motivo": "D37 (facturación, H5): el menú lateral tiene el grupo nuevo «Billing» (Periods, Review, Overview / Reports y, para Admin, Configuration) detrás de «List of Equipments»; la 4.9.4 no tiene facturación."
+  "motivo": "D37 (facturación, H5): el menú lateral tiene el grupo nuevo «Billing» (Monthly sheet y, para Admin, Configuration) detrás de «List of Equipments»; la 4.9.4 no tiene facturación."
  }
 ]

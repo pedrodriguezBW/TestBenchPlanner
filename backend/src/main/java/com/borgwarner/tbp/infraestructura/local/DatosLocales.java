@@ -24,7 +24,7 @@ public class DatosLocales {
 
     public static final List<String> FICHEROS = List.of(
             "planner.json", "configuracion.json", "kpis.json", "usuarios.json",
-            "recursos.json", "aprobaciones.json", "version.json");
+            "recursos.json", "aprobaciones.json", "version.json", "tipos-equipo.json");
 
     private static final ObjectWriter ESCRITOR = JsonJs.mapper().writer().with(SerializationFeature.INDENT_OUTPUT);
 
@@ -57,6 +57,9 @@ public class DatosLocales {
                     }
                 }
                 Files.deleteIfExists(carpeta.resolve("actividad.json"));
+                if (!Files.exists(escenario.resolve("tipos-equipo.json"))) {
+                    Files.deleteIfExists(carpeta.resolve("tipos-equipo.json"));
+                }
             } catch (IOException e) {
                 throw new UncheckedIOException(e);
             }
